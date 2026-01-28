@@ -96,6 +96,7 @@ export function useGameState(playerLevel = 0) {
         const cx = obj.x + OBJECT_SIZE / 2;
         const cy = obj.y + OBJECT_SIZE / 2;
         const d = Math.hypot(touchX - cx, touchY - cy);
+        // Find nearest object (original behavior - always finds nearest for easy cat paw taps)
         if (d < minDist) {
           minDist = d;
           nearestIdx = i;
