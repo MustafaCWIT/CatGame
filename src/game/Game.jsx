@@ -1,7 +1,7 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { useGameState } from '../hooks/useGameState';
 import { useTouchHandler } from '../hooks/useTouchHandler';
-import { OBJECT_SIZE, LEVELS, getLevelForXP, getNextLevelXP } from './levels';
+import { OBJECT_SIZE, LEVELS, getLevelForXP, getNextLevelXP, MIN_OBJECT_DISTANCE } from './levels';
 import { playChime, tryVibrate } from './sounds';
 import FloatingObject from './FloatingObject';
 import Ripple from './Ripple';
@@ -90,17 +90,71 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
     let running = true;
     function animate() {
       if (!running) return;
-      setObjects(prev => prev.map(obj => {
-        let { x, y, vx, vy, rotation, rotationSpeed } = obj;
-        x += vx;
-        y += vy;
-        if (x < 0 || x > width - OBJECT_SIZE) vx = -vx;
-        if (y < 0 || y > height - OBJECT_SIZE) vy = -vy;
-        x = Math.max(0, Math.min(width - OBJECT_SIZE, x));
-        y = Math.max(0, Math.min(height - OBJECT_SIZE, y));
-        rotation = (rotation + rotationSpeed) % 360;
-        return { ...obj, x, y, vx, vy, rotation, spawning: false };
-      }));
+      setObjects(prev => {
+        // First, update positions
+        const updated = prev.map(obj => {
+          let { x, y, vx, vy, rotation, rotationSpeed } = obj;
+          x += vx;
+          y += vy;
+          if (x < 0 || x > width - OBJECT_SIZE) vx = -vx;
+          if (y < 0 || y > height - OBJECT_SIZE) vy = -vy;
+          x = Math.max(0, Math.min(width - OBJECT_SIZE, x));
+          y = Math.max(0, Math.min(height - OBJECT_SIZE, y));
+          rotation = (rotation + rotationSpeed) % 360;
+          return { ...obj, x, y, vx, vy, rotation, spawning: false };
+        });
+        
+        // Then, check for collisions and push objects apart
+        const collisionAdjusted = updated.map((obj, i) => {
+          let { x, y, vx, vy } = obj;
+          const objCenterX = x + OBJECT_SIZE / 2;
+          const objCenterY = y + OBJECT_SIZE / 2;
+          
+          // Check collision with all other objects
+          updated.forEach((otherObj, j) => {
+            if (i === j) return; // Skip self
+            
+            const otherCenterX = otherObj.x + OBJECT_SIZE / 2;
+            const otherCenterY = otherObj.y + OBJECT_SIZE / 2;
+            const distance = Math.hypot(objCenterX - otherCenterX, objCenterY - otherCenterY);
+            
+            // If objects are too close, push them apart
+            if (distance < MIN_OBJECT_DISTANCE && distance > 0) {
+              const minDist = MIN_OBJECT_DISTANCE;
+              const overlap = minDist - distance;
+              const angle = Math.atan2(objCenterY - otherCenterY, objCenterX - otherCenterX);
+              
+              // Push this object away from the other
+              const pushX = Math.cos(angle) * overlap * 0.5;
+              const pushY = Math.sin(angle) * overlap * 0.5;
+              
+              x += pushX;
+              y += pushY;
+              
+              // Adjust velocity to push away
+              const pushStrength = 0.1;
+              vx += Math.cos(angle) * pushStrength;
+              vy += Math.sin(angle) * pushStrength;
+              
+              // Clamp position to screen bounds
+              x = Math.max(0, Math.min(width - OBJECT_SIZE, x));
+              y = Math.max(0, Math.min(height - OBJECT_SIZE, y));
+            }
+          });
+          
+          // Limit velocity to prevent objects from moving too fast
+          const maxSpeed = 0.5;
+          const speed = Math.hypot(vx, vy);
+          if (speed > maxSpeed) {
+            vx = (vx / speed) * maxSpeed;
+            vy = (vy / speed) * maxSpeed;
+          }
+          
+          return { ...obj, x, y, vx, vy };
+        });
+        
+        return collisionAdjusted;
+      });
       animFrameRef.current = requestAnimationFrame(animate);
     }
     animFrameRef.current = requestAnimationFrame(animate);

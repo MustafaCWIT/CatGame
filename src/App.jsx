@@ -18,6 +18,15 @@ function saveProgress(data) {
   } catch { /* ignore */ }
 }
 
+// Reset progress function - call this before building for client
+// You can call window.resetWhiskusProgress() in browser console
+if (typeof window !== 'undefined') {
+  window.resetWhiskusProgress = function() {
+    localStorage.removeItem('tap-to-purr-progress');
+    window.location.reload();
+  };
+}
+
 function App() {
   const [screen, setScreen] = useState('home');
   const [progress, setProgress] = useState(loadProgress);
@@ -50,6 +59,15 @@ function App() {
     setScreen('home');
   }, []);
 
+  const handleResetProgress = useCallback(() => {
+    if (window.confirm('Reset all progress? This will set XP to 0 and cannot be undone.')) {
+      localStorage.removeItem('tap-to-purr-progress');
+      const resetProgress = { totalXP: 0 };
+      setProgress(resetProgress);
+      setGameKey(prev => prev + 1);
+    }
+  }, []);
+
   if (screen === 'game') {
     return <Game key={`game-${progress.totalXP}-${gameKey}`} playerLevel={playerLevel} totalXP={progress.totalXP} onEnd={handleEndGame} onRestart={handleStartGame} />;
   }
@@ -68,7 +86,7 @@ function App() {
     );
   }
 
-  return <Home onStartGame={handleStartGame} playerLevel={playerLevel} totalXP={progress.totalXP} />;
+  return <Home onStartGame={handleStartGame} playerLevel={playerLevel} totalXP={progress.totalXP} onResetProgress={handleResetProgress} />;
 }
 
 export default App;

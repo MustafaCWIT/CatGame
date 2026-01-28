@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import './Home.css';
 import { LEVELS, getNextLevelXP } from './game/levels';
 
-export default function Home({ onStartGame, playerLevel = 0, totalXP = 0 }) {
+export default function Home({ onStartGame, playerLevel = 0, totalXP = 0, onResetProgress }) {
   const fileInputRef = useRef(null);
   const [video, setVideo] = useState(null);
   const [videoName, setVideoName] = useState('');
@@ -101,6 +101,27 @@ export default function Home({ onStartGame, playerLevel = 0, totalXP = 0 }) {
           <div className="home-level-info">
             <span className="home-level-label">Level {playerLevel + 1}</span>
             <span className="home-level-name">{LEVELS[playerLevel].name}</span>
+            {onResetProgress && (
+              <button 
+                onClick={onResetProgress}
+                style={{
+                  background: 'rgba(239, 68, 68, 0.1)',
+                  border: '1px solid rgba(239, 68, 68, 0.3)',
+                  borderRadius: '8px',
+                  padding: '6px 12px',
+                  fontSize: '11px',
+                  color: 'rgba(239, 68, 68, 0.8)',
+                  cursor: 'pointer',
+                  fontFamily: 'system-ui, -apple-system, sans-serif',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px',
+                }}
+                title="Reset Progress"
+              >
+                Reset
+              </button>
+            )}
           </div>
           {(() => {
             const nextXP = getNextLevelXP(playerLevel);
