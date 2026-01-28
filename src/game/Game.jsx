@@ -273,7 +273,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
         {/* Right: Score */}
         <div style={{ ...glassStyle, padding: '8px 18px', display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: 1 }}>Score</span>
-          <span style={{ fontSize: 22, fontWeight: 700, color: '#c4b5fd', fontVariantNumeric: 'tabular-nums' }}>{score}</span>
+          <span style={{ fontSize: 22, fontWeight: 700, color: level.primaryColor, fontVariantNumeric: 'tabular-nums' }}>{score}</span>
         </div>
       </div>
 
@@ -287,7 +287,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
           <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: 1 }}>
             Lvl {playerLevel + 1}
           </span>
-          <span style={{ fontSize: 14, fontWeight: 600, color: '#a5b4fc' }}>{level.name}</span>
+          <span style={{ fontSize: 14, fontWeight: 600, color: level.primaryColor }}>{level.name}</span>
           {/* XP progress to next level */}
           {nextLevelXP && (
             <>
@@ -297,7 +297,9 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
               }}>
                 <div style={{
                   height: '100%', width: `${xpProgress * 100}%`,
-                  background: xpProgress >= 1 ? 'linear-gradient(90deg, #6ee7b7, #34d399)' : 'linear-gradient(90deg, #a78bfa, #c4b5fd)',
+                  background: xpProgress >= 1 
+                    ? 'linear-gradient(90deg, #6ee7b7, #34d399)' 
+                    : `linear-gradient(90deg, ${level.primaryColor}, ${level.secondaryColor})`,
                   borderRadius: 2, transition: 'width 0.3s ease',
                 }} />
               </div>
@@ -360,13 +362,13 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
               display: 'flex', justifyContent: 'center', gap: 28,
             }}>
               <div>
-                <div style={{ fontSize: 40, fontWeight: 700, color: '#a78bfa', lineHeight: 1 }}>{score}</div>
-                <div style={{ fontSize: 11, color: 'rgba(165,180,252,0.5)', textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 6 }}>Collected</div>
+                <div style={{ fontSize: 40, fontWeight: 700, color: level.primaryColor, lineHeight: 1 }}>{score}</div>
+                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 6 }}>Collected</div>
               </div>
               <div style={{ width: 1, background: 'rgba(255,255,255,0.08)' }} />
               <div>
-                <div style={{ fontSize: 40, fontWeight: 700, color: '#67e8f9', lineHeight: 1 }}>+{score}</div>
-                <div style={{ fontSize: 11, color: 'rgba(165,180,252,0.5)', textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 6 }}>XP Earned</div>
+                <div style={{ fontSize: 40, fontWeight: 700, color: level.secondaryColor, lineHeight: 1 }}>+{score}</div>
+                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 6 }}>XP Earned</div>
               </div>
             </div>
 
@@ -386,12 +388,14 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
                 <div style={{
                   height: '100%', borderRadius: 3, transition: 'width 0.6s ease',
                   width: `${Math.min(xpProgress, 1) * 100}%`,
-                  background: didLevelUp ? 'linear-gradient(90deg, #6ee7b7, #34d399)' : 'linear-gradient(90deg, #a78bfa, #c4b5fd)',
+                  background: didLevelUp 
+                    ? 'linear-gradient(90deg, #6ee7b7, #34d399)' 
+                    : `linear-gradient(90deg, ${level.primaryColor}, ${level.secondaryColor})`,
                 }} />
               </div>
             </div>
 
-            <div style={{ color: '#a5b4fc', fontSize: 14, fontWeight: 500, marginBottom: 24 }}>
+            <div style={{ color: level.primaryColor, fontSize: 14, fontWeight: 500, marginBottom: 24 }}>
               World: {level.name}
             </div>
 
