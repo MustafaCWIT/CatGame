@@ -26,10 +26,10 @@ export default function LevelsScreen({ totalXP = 0, onStartGame, onGoBack }) {
   };
 
   const activities = [
-    { text: 'You earned 4500 points playing midnight paws', date: '29/01/2026' },
-    { text: 'You earned 4500 points playing midnight paws', date: '29/01/2026' },
-    { text: 'You earned 4500 points playing midnight paws', date: '29/01/2026' },
-    { text: 'You earned 4500 points playing midnight paws', date: '29/01/2026' },
+    { text: 'You earned 4500 points playing midnight paws', date: '03/02/2026' },
+    { text: 'You earned 3200 points playing midnight paws', date: '02/02/2026' },
+    { text: 'You earned 5100 points playing midnight paws', date: '01/02/2026' },
+    { text: 'You earned 2800 points playing midnight paws', date: '29/01/2026' },
   ];
 
   return (
@@ -134,7 +134,7 @@ export default function LevelsScreen({ totalXP = 0, onStartGame, onGoBack }) {
             {activities.map((activity, index) => (
               <div key={index} className="levels-activity-item">
                 <div className="levels-activity-icon">
-                  <img src={dollarImg} alt="" className="levels-activity-img" />
+                  <img src={gameImg} alt="" className="levels-activity-img" />
                 </div>
                 <span className="levels-activity-text">{activity.text}</span>
                 <span className="levels-activity-date">{activity.date}</span>
