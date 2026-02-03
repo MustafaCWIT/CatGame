@@ -1,0 +1,203 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  background: linear-gradient(180deg, #930F74 0%, #4D014B 100%);
+  border-radius: 24px;
+  padding: 25px 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Sections */
+.modal-section {
+  margin-bottom: 25px;
+}
+
+.modal-title {
+  font-family: 'Fredoka One', system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 15px 0;
+}
+
+.modal-subtitle {
+  font-family: 'Fredoka One', system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  margin: 0 0 20px 0;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Steps */
+.modal-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-step-number {
+  width: 28px;
+  height: 28px;
+  background: #CD61A9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka One', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.modal-step-text {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  color: white;
+  line-height: 1.4;
+}
+
+/* Participate section */
+.modal-participate {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px 15px;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+/* Prize cards */
+.modal-prizes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-prize-card {
+  position: relative;
+  background: #CD61A9;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  min-height: 70px;
+  overflow: visible;
+}
+
+.modal-prize-card-top {
+  padding-left: 70px;
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.modal-prize-card-bottom {
+  padding-right: 90px;
+}
+
+.modal-prize-content {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.modal-prize-title {
+  font-family: 'Fredoka One', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.3;
+}
+
+.modal-prize-desc {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.3;
+  margin-top: 4px;
+}
+
+.modal-prize-img {
+  position: absolute;
+  z-index: 2;
+}
+
+.modal-prize-img-cat {
+  left: -50px;
+  top: -45px;
+  width: 110px;
+  height: auto;
+}
+
+.modal-prize-img-food {
+  right: -10px;
+  bottom: -10px;
+  width: 100px;
+  height: auto;
+}
+
+/* Let's Go button */
+.modal-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background: #CD61A9;
+  border: none;
+  border-radius: 30px;
+  font-family: 'Fredoka One', system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(205, 97, 169, 0.4);
+  margin-top: 10px;
+}
+
+.modal-btn:hover {
+  box-shadow: 0 6px 20px rgba(205, 97, 169, 0.5);
+}
+
+.modal-btn:active {
+  transform: scale(0.97);
+}

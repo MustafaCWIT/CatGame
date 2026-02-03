@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import SplashScreen from './SplashScreen';
+import HowToPlayModal from './HowToPlayModal';
 import Home from './Home';
 import Game from './game/Game';
 import GameOver from './GameOver';
@@ -30,6 +31,7 @@ if (typeof window !== 'undefined') {
 
 function App() {
   const [screen, setScreen] = useState('splash');
+  const [showModal, setShowModal] = useState(false);
   const [progress, setProgress] = useState(loadProgress);
   const [sessionScore, setSessionScore] = useState(0);
   const [prevLevel, setPrevLevel] = useState(0);
@@ -61,7 +63,12 @@ function App() {
   }, []);
 
   const handleSplashComplete = useCallback(() => {
+    setShowModal(true);
     setScreen('home');
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setShowModal(false);
   }, []);
 
   const handleResetProgress = useCallback(() => {
@@ -95,7 +102,12 @@ function App() {
     );
   }
 
-  return <Home onStartGame={handleStartGame} playerLevel={playerLevel} totalXP={progress.totalXP} onResetProgress={handleResetProgress} />;
+  return (
+    <>
+      <Home onStartGame={handleStartGame} playerLevel={playerLevel} totalXP={progress.totalXP} onResetProgress={handleResetProgress} />
+      {showModal && <HowToPlayModal onClose={handleCloseModal} />}
+    </>
+  );
 }
 
 export default App;
