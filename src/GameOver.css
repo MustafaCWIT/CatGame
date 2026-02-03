@@ -1,376 +1,169 @@
 .go-page {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  overflow-y: auto;
-  background: linear-gradient(145deg, #0f0a1a 0%, #1a1040 40%, #1e1b4b 100%);
+  padding: 20px;
 }
 
-.go-bg {
+.go-background {
   position: fixed;
   inset: 0;
-  pointer-events: none;
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
-.go-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.2;
-  animation: go-drift 10s ease-in-out infinite;
-}
-
-.go-blob-1 {
-  width: 300px;
-  height: 300px;
-  background: #a78bfa;
-  top: -80px;
-  right: -40px;
-}
-
-.go-blob-2 {
-  width: 250px;
-  height: 250px;
-  background: #6366f1;
-  bottom: -60px;
-  left: -40px;
-  animation-delay: -4s;
-}
-
-.go-blob-3 {
-  width: 200px;
-  height: 200px;
-  background: #7c3aed;
-  top: 50%;
-  left: 30%;
-  animation-delay: -7s;
-}
-
-@keyframes go-drift {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(20px, -15px) scale(1.04); }
-}
-
-/* Container */
-.go-container {
+/* Modal container with cat */
+.go-modal-container {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
-  padding: 32px 24px;
-  max-width: 440px;
-  width: 100%;
-  animation: go-enter 0.5s ease-out;
+  margin-bottom: 30px;
 }
 
-@keyframes go-enter {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Cat peeking from top */
+.go-cat {
+  width: 140px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  margin-bottom: -50px;
+  animation: catPeek 2s ease-in-out infinite;
 }
 
-/* Trophy section */
-.go-trophy-section {
-  text-align: center;
+@keyframes catPeek {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Modal box */
+.go-modal {
+  background: radial-gradient(circle at center, #930F74 0%, #4D014B 100%);
+  border-radius: 24px;
+  padding: 60px 40px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 280px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.go-trophy {
-  font-size: 56px;
-  animation: go-bounce 2.5s ease-in-out infinite;
-  margin-bottom: 12px;
+/* Dollar icon */
+.go-dollar {
+  width: 80px;
+  height: auto;
+  margin-bottom: 15px;
+  animation: dollarBounce 2s ease-in-out infinite;
 }
 
-@keyframes go-bounce {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-8px) scale(1.05); }
+@keyframes dollarBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
-.go-heading {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 30px;
-  font-weight: 800;
-  color: #f0ecff;
-  margin: 0;
-  letter-spacing: -0.3px;
-}
-
-.go-message {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 15px;
-  color: rgba(165, 180, 252, 0.6);
-  margin: 6px 0 0;
-}
-
-/* Stats card */
-.go-card {
-  width: 100%;
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 20px;
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.go-card-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-}
-
-.go-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.go-stat-number {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 48px;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.go-stat-purple { color: #a78bfa; }
-.go-stat-cyan { color: #67e8f9; }
-
-.go-stat-label {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  color: rgba(165, 180, 252, 0.45);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-}
-
-.go-stat-sep {
-  width: 1px;
-  height: 56px;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.go-card-divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.go-world-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 4px;
-}
-
-.go-world-label {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 12px;
-  color: rgba(165, 180, 252, 0.4);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.go-world-value {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: #a5b4fc;
-}
-
-/* Level pips */
-.go-levels-row {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-}
-
-.go-level-pip {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
-
-.go-pip-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  transition: all 0.3s;
-}
-
-.go-level-reached .go-pip-dot {
-  background: rgba(167, 139, 250, 0.4);
-}
-
-.go-level-current .go-pip-dot {
-  background: #a78bfa;
-  box-shadow: 0 0 12px rgba(167, 139, 250, 0.5);
-  width: 12px;
-  height: 12px;
-}
-
-.go-pip-label {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 10px;
-  color: rgba(165, 180, 252, 0.3);
-}
-
-.go-level-current .go-pip-label {
-  color: rgba(165, 180, 252, 0.7);
-  font-weight: 600;
-}
-
-/* Level Up Banner */
-.go-levelup {
-  width: 100%;
-  background: linear-gradient(135deg, rgba(110,231,183,0.12), rgba(52,211,153,0.08));
-  border: 1px solid rgba(110,231,183,0.2);
-  border-radius: 18px;
-  padding: 20px 24px;
-  text-align: center;
-  animation: go-enter 0.5s ease-out;
-}
-
-.go-levelup-icon { font-size: 32px; margin-bottom: 4px; }
-
-.go-levelup-title {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 22px;
-  font-weight: 800;
-  color: #6ee7b7;
-}
-
-.go-levelup-transition {
-  font-family: system-ui, -apple-system, sans-serif;
+/* Score text */
+.go-label {
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  color: rgba(110,231,183,0.7);
-  margin-top: 4px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 5px 0;
 }
 
-.go-levelup-sub {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 12px;
-  color: rgba(110,231,183,0.45);
-  margin-top: 2px;
+.go-score {
+  font-family: 'Poppins', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: #FFD700;
+  margin: 0 0 25px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* XP progress in card */
-.go-xp-section {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.go-xp-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.go-xp-level {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: #a5b4fc;
-}
-
-.go-xp-numbers {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 12px;
-  color: rgba(165, 180, 252, 0.4);
-  font-variant-numeric: tabular-nums;
-}
-
-.go-xp-max {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 12px;
-  color: rgba(110, 231, 183, 0.6);
-  font-weight: 600;
-}
-
-.go-xp-bar {
-  height: 6px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.go-xp-fill {
-  height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #a78bfa, #c4b5fd);
-  transition: width 0.6s ease;
-}
-
-.go-xp-fill-green {
-  background: linear-gradient(90deg, #6ee7b7, #34d399);
-}
-
-/* Total XP badge */
-.go-total-xp {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 13px;
-  color: rgba(165, 180, 252, 0.35);
-  font-variant-numeric: tabular-nums;
-}
-
-/* Actions */
+/* Action buttons */
 .go-actions {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 12px;
   width: 100%;
 }
 
 .go-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 15px 20px;
-  border-radius: 14px;
-  cursor: pointer;
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 15px;
+  width: 100%;
+  padding: 14px 30px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
   font-weight: 600;
-  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
 }
 
 .go-btn:active {
-  transform: scale(0.97);
+  transform: scale(0.95);
 }
 
-.go-btn-primary {
-  background: linear-gradient(135deg, #7c3aed, #6366f1);
+.go-btn-play {
+  background: linear-gradient(180deg, #FFB347 0%, #FF8C00 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.go-btn-play:hover {
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.5);
+}
+
+.go-btn-end {
+  background: linear-gradient(180deg, #4A3258 0%, #2D1B3D 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.go-btn-end:hover {
+  background: linear-gradient(180deg, #5A4268 0%, #3D2B4D 100%);
+}
+
+/* Unlock button at bottom */
+.go-unlock-btn {
+  position: relative;
+  z-index: 1;
+  padding: 16px 40px;
+  background: linear-gradient(180deg, #FFB347 0%, #FF8C00 100%);
   border: none;
-  color: #f0ecff;
-  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.go-btn-primary:hover {
-  box-shadow: 0 6px 24px rgba(124, 58, 237, 0.35);
+.go-unlock-btn:hover {
+  box-shadow: 0 6px 25px rgba(255, 140, 0, 0.5);
 }
 
-.go-btn-secondary {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #a5b4fc;
-}
-
-.go-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
+.go-unlock-btn:active {
+  transform: scale(0.95);
 }
