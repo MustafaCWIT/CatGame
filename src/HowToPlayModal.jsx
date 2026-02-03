@@ -1,6 +1,6 @@
 import './HowToPlayModal.css';
 import sleepCatImg from './assets/sleepCat.png';
-import foodBoxImg from './assets/foodBox.png';
+import foodBoxesImg from './assets/foodBoxes.png';
 
 export default function HowToPlayModal({ onClose }) {
   return (
@@ -52,7 +52,7 @@ export default function HowToPlayModal({ onClose }) {
                 <span className="modal-prize-title">A Year of Whiskas</span>
                 <span className="modal-prize-title">Wet & Dry Food</span>
               </div>
-              <img src={foodBoxImg} alt="" className="modal-prize-img modal-prize-img-food" />
+              <img src={foodBoxesImg} alt="" className="modal-prize-img modal-prize-img-food" />
             </div>
           </div>
         </div>

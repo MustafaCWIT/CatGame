@@ -26,19 +26,19 @@
   right: 15px;
   width: 32px;
   height: 32px;
-  background: rgba(255, 255, 255, 0.15);
+  background: white;
   border: none;
   border-radius: 50%;
-  color: white;
+  color: #930F74;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .modal-close:hover {
-  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
 }
 
 /* Sections */
@@ -47,7 +47,7 @@
 }
 
 .modal-title {
-  font-family: 'Fredoka One', system-ui, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-size: 22px;
   font-weight: 700;
   color: white;
@@ -55,7 +55,7 @@
 }
 
 .modal-subtitle {
-  font-family: 'Fredoka One', system-ui, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-size: 18px;
   font-weight: 400;
   color: white;
@@ -80,12 +80,12 @@
 .modal-step-number {
   width: 28px;
   height: 28px;
-  background: #CD61A9;
+  background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Fredoka One', system-ui, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-size: 14px;
   font-weight: 700;
   color: white;
@@ -93,10 +93,11 @@
 }
 
 .modal-step-text {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 14px;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  font-size: 13px;
   color: white;
   line-height: 1.4;
+  font-weight: 400;
 }
 
 /* Participate section */
@@ -124,6 +125,7 @@
   align-items: center;
   min-height: 70px;
   overflow: visible;
+  justify-content: space-between;
 }
 
 .modal-prize-card-top {
@@ -133,7 +135,14 @@
 }
 
 .modal-prize-card-bottom {
-  padding-right: 90px;
+  padding-right: 15px;
+  min-height: 65px;
+  margin-bottom: 35px;
+  margin-right: 45px;
+}
+
+.modal-prize-card-bottom .modal-prize-title {
+  font-size: 14px;
 }
 
 .modal-prize-content {
@@ -143,19 +152,20 @@
 }
 
 .modal-prize-title {
-  font-family: 'Fredoka One', system-ui, sans-serif;
-  font-size: 14px;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 16px;
   font-weight: 700;
   color: white;
   line-height: 1.3;
 }
 
 .modal-prize-desc {
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 11px;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  font-size: 10px;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.3;
   margin-top: 4px;
+  font-weight: 400;
 }
 
 .modal-prize-img {
@@ -171,9 +181,10 @@
 }
 
 .modal-prize-img-food {
-  right: -10px;
-  bottom: -10px;
-  width: 100px;
+  position: absolute;
+  right: -45px;
+  bottom: -30px;
+  width: 180px;
   height: auto;
 }
 
@@ -181,21 +192,21 @@
 .modal-btn {
   width: 100%;
   padding: 16px 24px;
-  background: #CD61A9;
+  background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
   border: none;
   border-radius: 30px;
-  font-family: 'Fredoka One', system-ui, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-size: 18px;
   font-weight: 700;
   color: white;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 15px rgba(205, 97, 169, 0.4);
+  box-shadow: 0 4px 15px rgba(220, 105, 0, 0.4);
   margin-top: 10px;
 }
 
 .modal-btn:hover {
-  box-shadow: 0 6px 20px rgba(205, 97, 169, 0.5);
+  box-shadow: 0 6px 20px rgba(220, 105, 0, 0.5);
 }
 
 .modal-btn:active {
