@@ -48,13 +48,13 @@ export default function Home({ onStartGame }) {
         {/* Logo */}
         <img src={logoImg} alt="Whiskas" className="home-logo" />
 
-        {/* Title */}
-        <h1 className="home-title">Tap To Purr</h1>
-
-        {/* Cat with blue circle */}
-        <div className="home-cat-container">
-          <div className="home-cat-circle"></div>
-          <img src={catImg} alt="Cat" className="home-cat" />
+        {/* Title and Cat in same row */}
+        <div className="home-hero">
+          <h1 className="home-title">Tap To Purr</h1>
+          <div className="home-cat-container">
+            <div className="home-cat-circle"></div>
+            <img src={catImg} alt="Cat" className="home-cat" />
+          </div>
         </div>
 
         {/* Action buttons */}
@@ -93,14 +93,14 @@ export default function Home({ onStartGame }) {
         <div className="home-participate">
           <h2 className="home-participate-title">Participate and win</h2>
           <div className="home-prize-buttons">
-            <button className="home-prize-btn">
+            <button className="home-prize-btn home-prize-btn-left">
+              <img src={sleepCatImg} alt="" className="home-prize-img home-prize-img-left" />
               <div className="home-prize-text">
                 <span>Purradise</span>
                 <span>Reset Day</span>
               </div>
-              <img src={sleepCatImg} alt="" className="home-prize-img home-prize-img-left" />
             </button>
-            <button className="home-prize-btn">
+            <button className="home-prize-btn home-prize-btn-right">
               <div className="home-prize-text">
                 <span>A Year of Whiskas</span>
                 <span>Wet & Dry Food</span>
