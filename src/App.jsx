@@ -7,6 +7,7 @@ import SignupScreen from './SignupScreen';
 import StartingScreen from './StartingScreen';
 import Game from './game/Game';
 import GameOver from './GameOver';
+import LevelsScreen from './LevelsScreen';
 import { getLevelForXP } from './game/levels';
 
 function loadProgress() {
@@ -38,7 +39,6 @@ function App() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [progress, setProgress] = useState(loadProgress);
   const [sessionScore, setSessionScore] = useState(0);
-  const [prevLevel, setPrevLevel] = useState(0);
   const [gameKey, setGameKey] = useState(0);
 
   const playerLevel = getLevelForXP(progress.totalXP);
@@ -78,13 +78,11 @@ function App() {
   }, []);
 
   const handleEndGame = useCallback((score) => {
-    const oldLevel = getLevelForXP(progress.totalXP);
     const newXP = progress.totalXP + score;
     const updated = { totalXP: newXP };
     setProgress(updated);
     saveProgress(updated);
     setSessionScore(score);
-    setPrevLevel(oldLevel);
     setScreen('gameover');
   }, [progress]);
 
@@ -99,6 +97,10 @@ function App() {
 
   const handleCloseModal = useCallback(() => {
     setShowModal(false);
+  }, []);
+
+  const handleUnlockThemes = useCallback(() => {
+    setScreen('levels');
   }, []);
 
   const handleResetProgress = useCallback(() => {
@@ -127,22 +129,29 @@ function App() {
   }
 
   if (screen === 'gameover') {
-    const newLevel = getLevelForXP(progress.totalXP);
     return (
       <GameOver
         score={sessionScore}
-        totalXP={progress.totalXP}
-        prevLevel={prevLevel}
-        newLevel={newLevel}
         onPlayAgain={handleStartGame}
         onGoHome={handleGoHome}
+        onUnlockThemes={handleUnlockThemes}
+      />
+    );
+  }
+
+  if (screen === 'levels') {
+    return (
+      <LevelsScreen
+        totalXP={progress.totalXP}
+        onStartGame={handleStartGame}
+        onGoBack={handleGoHome}
       />
     );
   }
 
   return (
     <>
-      <Home onStartGame={handlePlayClick} playerLevel={playerLevel} totalXP={progress.totalXP} onResetProgress={handleResetProgress} />
+      <Home onStartGame={handlePlayClick} onResetProgress={handleResetProgress} />
       {showModal && <HowToPlayModal onClose={handleCloseModal} />}
       {showLoginModal && <LoginModal onClose={handleCloseLoginModal} onLogin={handleLogin} />}
     </>

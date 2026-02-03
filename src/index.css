@@ -9,4 +9,13 @@ html, body, #root {
   height: 100%;
   overflow: hidden;
   background: #0f0a1a;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+button, input, textarea, select {
+  font-family: 'Poppins', sans-serif;
 }

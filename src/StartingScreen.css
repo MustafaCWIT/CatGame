@@ -49,7 +49,7 @@
 .starting-title {
   position: relative;
   z-index: 2;
-  font-family: 'Fredoka', 'Fredoka One', system-ui, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 36px;
   font-weight: 700;
   color: #FF8410;
@@ -172,7 +172,7 @@
 }
 
 .starting-label {
-  font-family: 'Poppins', system-ui, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: white;
@@ -180,7 +180,7 @@
 }
 
 .starting-number {
-  font-family: 'Fredoka One', system-ui, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 80px;
   font-weight: 700;
   color: white;

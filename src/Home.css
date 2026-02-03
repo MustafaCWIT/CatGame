@@ -140,7 +140,7 @@
 
 /* Title */
 .home-title {
-  font-family: 'Fredoka One', 'Baloo 2', 'Comic Sans MS', 'Chalkboard', cursive, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 36px;
   font-weight: 700;
   color: white;
@@ -214,9 +214,9 @@
   padding: 14px 20px;
   border: none;
   border-radius: 25px;
-  font-family: 'Comic Sans MS', 'Chalkboard', 'Comic Neue', cursive, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
@@ -277,7 +277,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .video-remove {
@@ -313,9 +313,9 @@
 }
 
 .home-participate-title {
-  font-family: 'Fredoka One', 'Baloo 2', 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   color: white;
   margin: 0 0 12px 0;
   font-style: italic;
@@ -375,7 +375,7 @@
 }
 
 .home-prize-text span {
-  font-family: 'Fredoka One', system-ui, -apple-system, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 13px;
   font-weight: 600;
   color: white;

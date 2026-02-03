@@ -42,7 +42,7 @@
 }
 
 .login-title {
-  font-family: 'Poppins', system-ui, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 26px;
   font-weight: 700;
   color: white;
@@ -50,7 +50,7 @@
 }
 
 .login-subtitle {
-  font-family: 'Poppins', system-ui, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.8);
@@ -69,7 +69,7 @@
   background: rgba(77, 1, 75, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
-  font-family: 'Poppins', system-ui, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   color: white;
   outline: none;
@@ -92,7 +92,7 @@
   background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
   border: none;
   border-radius: 25px;
-  font-family: 'Poppins', system-ui, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 700;
   color: white;

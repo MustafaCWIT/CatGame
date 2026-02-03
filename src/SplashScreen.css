@@ -121,7 +121,7 @@
 }
 
 .splash-title {
-  font-family: 'Fredoka One', 'Baloo 2', 'Comic Sans MS', 'Chalkboard', cursive, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 36px;
   font-weight: 700;
   color: white;
@@ -198,9 +198,9 @@
 }
 
 .splash-loader-text {
-  font-family: 'Comic Sans MS', 'Chalkboard', 'Comic Neue', cursive, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
