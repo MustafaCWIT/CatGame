@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import SplashScreen from './SplashScreen';
 import Home from './Home';
 import Game from './game/Game';
 import GameOver from './GameOver';
@@ -28,7 +29,7 @@ if (typeof window !== 'undefined') {
 }
 
 function App() {
-  const [screen, setScreen] = useState('home');
+  const [screen, setScreen] = useState('splash');
   const [progress, setProgress] = useState(loadProgress);
   const [sessionScore, setSessionScore] = useState(0);
   const [prevLevel, setPrevLevel] = useState(0);
@@ -59,6 +60,10 @@ function App() {
     setScreen('home');
   }, []);
 
+  const handleSplashComplete = useCallback(() => {
+    setScreen('home');
+  }, []);
+
   const handleResetProgress = useCallback(() => {
     if (window.confirm('Reset all progress? This will set XP to 0 and cannot be undone.')) {
       localStorage.removeItem('tap-to-purr-progress');
@@ -67,6 +72,10 @@ function App() {
       setGameKey(prev => prev + 1);
     }
   }, []);
+
+  if (screen === 'splash') {
+    return <SplashScreen onLoadingComplete={handleSplashComplete} />;
+  }
 
   if (screen === 'game') {
     return <Game key={`game-${progress.totalXP}-${gameKey}`} playerLevel={playerLevel} totalXP={progress.totalXP} onEnd={handleEndGame} onRestart={handleStartGame} />;
