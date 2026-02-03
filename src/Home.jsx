@@ -8,7 +8,7 @@ import cloudsImg from './assets/clouds.png';
 import sleepCatImg from './assets/sleepCat.png';
 import foodBoxImg from './assets/foodBox.png';
 
-export default function Home({ onStartGame }) {
+export default function Home({ onStartGame, onResetProgress }) {
   const fileInputRef = useRef(null);
   const [video, setVideo] = useState(null);
   const [videoName, setVideoName] = useState('');
@@ -43,6 +43,15 @@ export default function Home({ onStartGame }) {
           <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
         </svg>
       </div>
+
+      {/* Reset XP button */}
+      {onResetProgress && (
+        <button className="home-reset-btn" onClick={onResetProgress} title="Reset XP">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+          </svg>
+        </button>
+      )}
 
       <div className="home-content">
         {/* Logo */}

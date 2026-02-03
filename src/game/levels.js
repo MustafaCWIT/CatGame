@@ -6,11 +6,12 @@ export const LEVELS = [
     name: 'Soft Sky',
     xpRequired: 0,       // unlocked from start
     background: ['#2d1b69', '#1a1040', '#3b2d80'],
-    objects: ['fish', 'star', 'paw'],
+    objects: ['fish', 'star', 'clouds', 'bowl'],
     objectColors: ['#c4b5fd', '#a78bfa', '#7dd3fc', '#e0e7ff'],
     primaryColor: '#c4b5fd', // Purple for UI elements
     secondaryColor: '#a78bfa',
     ambientParticles: 'sparkle',
+    useImageBackground: true, // Use gameBackground.png image
   },
   {
     name: 'Cozy Bowl World',
@@ -111,5 +112,6 @@ export const OBJECT_POINTS = {
   sparkle: 2,
   // Fallback for any other types
   cloud: 1,
+  clouds: 1,
   glowfish: 1,
 };

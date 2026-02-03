@@ -1,9 +1,25 @@
 import { memo } from 'react';
 import { LEVELS } from './levels';
+import gameBackgroundImg from '../assets/gameBackground.png';
 
 const Background = memo(function Background({ levelIndex, width, height }) {
   const level = LEVELS[levelIndex] || LEVELS[0];
   const [c1, c2, c3] = level.background;
+
+  // Use image background for level 0 if specified
+  if (level.useImageBackground && levelIndex === 0) {
+    return (
+      <image
+        href={gameBackgroundImg}
+        width={width}
+        height={height}
+        preserveAspectRatio="xMidYMid slice"
+        opacity="1"
+      >
+        <animate attributeName="opacity" from="0" to="1" dur="1.5s" fill="freeze" />
+      </image>
+    );
+  }
 
   return (
     <rect width={width} height={height} fill={`url(#bg-grad-${levelIndex})`}>

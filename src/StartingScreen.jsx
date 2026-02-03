@@ -11,11 +11,17 @@ export default function StartingScreen({ levelName, onCountdownComplete }) {
   const [count, setCount] = useState(1);
 
   useEffect(() => {
-    if (count < 4) {
+    if (count < 3) {
       const timer = setTimeout(() => setCount(count + 1), 1000);
       return () => clearTimeout(timer);
+    } else if (count === 3) {
+      // Start game when count reaches 3 (show 3 briefly then start)
+      const timer = setTimeout(() => {
+        onCountdownComplete();
+      }, 500);
+      return () => clearTimeout(timer);
     }
-  }, [count]);
+  }, [count, onCountdownComplete]);
 
   return (
     <div className="starting-screen">

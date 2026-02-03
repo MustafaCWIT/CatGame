@@ -81,6 +81,35 @@
   transform: scale(1.05);
 }
 
+/* Reset XP button */
+.home-reset-btn {
+  position: fixed;
+  top: 65px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: rgba(239, 68, 68, 0.9);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 3;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.home-reset-btn:hover {
+  transform: scale(1.05);
+  background: rgba(239, 68, 68, 1);
+}
+
+.home-reset-btn:active {
+  transform: scale(0.95);
+}
+
 /* Content */
 .home-content {
   position: relative;
