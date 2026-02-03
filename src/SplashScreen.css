@@ -27,7 +27,7 @@
 /* Clouds */
 .splash-clouds {
   position: absolute;
-  width: 100px;
+  width: 150px;
   height: auto;
   z-index: 1;
   animation: float 3s ease-in-out infinite;
@@ -134,14 +134,15 @@
 }
 
 .splash-cat {
-  width: 200px;
+  width: 280px;
   height: auto;
   display: block;
   animation: catBounce 1.5s ease-in-out infinite;
   order: 2;
   flex-shrink: 0;
   position: relative;
-  left: 99px;
+  left: 50%;
+
 }
 
 @keyframes catBounce {
@@ -154,9 +155,9 @@
 }
 
 .splash-name {
-  width: 180px;
+  width: 240px;
   height: auto;
-  margin: 10px auto 20px auto;
+  margin-top: -60px;
   display: block;
   order: 3;
 }
