@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import SplashScreen from './SplashScreen';
 import HowToPlayModal from './HowToPlayModal';
 import Home from './Home';
+import SignupScreen from './SignupScreen';
 import Game from './game/Game';
 import GameOver from './GameOver';
 import { getLevelForXP } from './game/levels';
@@ -38,6 +39,18 @@ function App() {
   const [gameKey, setGameKey] = useState(0);
 
   const playerLevel = getLevelForXP(progress.totalXP);
+
+  const handlePlayClick = useCallback(() => {
+    setScreen('signup');
+  }, []);
+
+  const handleSignup = useCallback((formData) => {
+    // After signup, start the game
+    const latestProgress = loadProgress();
+    setProgress(latestProgress);
+    setGameKey(prev => prev + 1);
+    setScreen('game');
+  }, []);
 
   const handleStartGame = useCallback(() => {
     // Reload progress to ensure we have the latest level
@@ -84,6 +97,10 @@ function App() {
     return <SplashScreen onLoadingComplete={handleSplashComplete} />;
   }
 
+  if (screen === 'signup') {
+    return <SignupScreen onSignup={handleSignup} onGoHome={handleGoHome} />;
+  }
+
   if (screen === 'game') {
     return <Game key={`game-${progress.totalXP}-${gameKey}`} playerLevel={playerLevel} totalXP={progress.totalXP} onEnd={handleEndGame} onRestart={handleStartGame} />;
   }
@@ -104,7 +121,7 @@ function App() {
 
   return (
     <>
-      <Home onStartGame={handleStartGame} playerLevel={playerLevel} totalXP={progress.totalXP} onResetProgress={handleResetProgress} />
+      <Home onStartGame={handlePlayClick} playerLevel={playerLevel} totalXP={progress.totalXP} onResetProgress={handleResetProgress} />
       {showModal && <HowToPlayModal onClose={handleCloseModal} />}
     </>
   );
