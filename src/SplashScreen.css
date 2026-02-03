@@ -27,44 +27,40 @@
 /* Clouds */
 .splash-clouds {
   position: absolute;
-  width: 180px;
+  width: 140px;
   height: auto;
   z-index: 1;
 }
 
 .splash-clouds-left {
-  top: 2%;
-  left: 0px !important; /* Position at left edge, complete cloud visible */
-  width: 320px; /* Increased size */
-  margin: 0;
-  padding: 0;
-  transform-origin: left top; /* Anchor at left top */
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0s;
+  top: 15%;
+  left: -90px;
+  width: 270px;
+  height: 290px;
+  animation: floatLeft 3s ease-in-out infinite;
 }
 
 .splash-clouds-right {
-  top: 2%;
-  right: -90px; /* Half of width (180px) to make it half off-screen */
-  animation: floatFlipped 3s ease-in-out infinite;
-  animation-delay: 1.5s;
+  top: 12%;
+  right: -50px;
+  animation: floatRight 3s ease-in-out infinite;
 }
 
-@keyframes float {
+@keyframes floatLeft {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
-@keyframes floatFlipped {
+@keyframes floatRight {
   0%, 100% {
     transform: scaleX(-1) translateY(0);
   }
   50% {
-    transform: scaleX(-1) translateY(-10px);
+    transform: scaleX(-1) translateY(-8px);
   }
 }
 
