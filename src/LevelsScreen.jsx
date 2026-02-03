@@ -6,15 +6,22 @@ import dollarImg from './assets/dollar.png';
 import gameImg from './assets/game.png';
 import gameBackgroundImg from './assets/gameBackground.png';
 
-export default function LevelsScreen({ totalXP = 0, onStartGame, onGoBack }) {
+export default function LevelsScreen({
+  totalXP = 0,
+  videosCount = 0,
+  activities = [],
+  userData = {},
+  onStartGame,
+  onGoBack,
+  onVideoUpload
+}) {
   const fileInputRef = useRef(null);
-  const [videosCount, setVideosCount] = useState(2);
   const [selectedTheme, setSelectedTheme] = useState('midnight');
 
   const handleUpload = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setVideosCount(prev => prev + 1);
+    onVideoUpload?.();
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -24,13 +31,6 @@ export default function LevelsScreen({ totalXP = 0, onStartGame, onGoBack }) {
       onStartGame?.();
     }
   };
-
-  const activities = [
-    { text: 'You earned 4500 points playing midnight paws', date: '03/02/2026' },
-    { text: 'You earned 3200 points playing midnight paws', date: '02/02/2026' },
-    { text: 'You earned 5100 points playing midnight paws', date: '01/02/2026' },
-    { text: 'You earned 2800 points playing midnight paws', date: '29/01/2026' },
-  ];
 
   return (
     <div className="levels">
@@ -54,10 +54,10 @@ export default function LevelsScreen({ totalXP = 0, onStartGame, onGoBack }) {
       <div className="levels-content">
         {/* User Profile */}
         <div className="levels-user-section">
-          <h1 className="levels-user-name">Stella Metthew</h1>
+          <h1 className="levels-user-name">{userData.fullName || 'Guest Player'}</h1>
           <div className="levels-user-info">
-            <span>stella@gmail.com</span>
-            <span>052 2785545</span>
+            <span>{userData.email || 'No email'}</span>
+            <span>{userData.phone || 'No phone'}</span>
           </div>
         </div>
 
@@ -67,7 +67,7 @@ export default function LevelsScreen({ totalXP = 0, onStartGame, onGoBack }) {
             <img src={dollarImg} alt="" className="levels-stat-img" />
             <div className="levels-stat-content">
               <span className="levels-stat-label">Points Earned</span>
-              <span className="levels-stat-value">{totalXP || 15000}</span>
+              <span className="levels-stat-value">{totalXP.toLocaleString()}</span>
             </div>
           </div>
           <div className="levels-stat-card">
@@ -131,15 +131,24 @@ export default function LevelsScreen({ totalXP = 0, onStartGame, onGoBack }) {
         <div className="levels-activity-section">
           <h2 className="levels-activity-title">My Activity</h2>
           <div className="levels-activity-list">
-            {activities.map((activity, index) => (
-              <div key={index} className="levels-activity-item">
+            {activities.length > 0 ? (
+              activities.map((activity, index) => (
+                <div key={index} className="levels-activity-item">
+                  <div className="levels-activity-icon">
+                    <img src={gameImg} alt="" className="levels-activity-img" />
+                  </div>
+                  <span className="levels-activity-text">{activity.text}</span>
+                  <span className="levels-activity-date">{activity.date}</span>
+                </div>
+              ))
+            ) : (
+              <div className="levels-activity-item">
                 <div className="levels-activity-icon">
                   <img src={gameImg} alt="" className="levels-activity-img" />
                 </div>
-                <span className="levels-activity-text">{activity.text}</span>
-                <span className="levels-activity-date">{activity.date}</span>
+                <span className="levels-activity-text">No activities yet. Play a game to earn points!</span>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
