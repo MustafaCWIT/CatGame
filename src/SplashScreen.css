@@ -33,7 +33,7 @@
 }
 
 .splash-clouds-left {
-  top: 15%;
+  top: 5%;
   left: -90px;
   width: 270px;
   height: 290px;
@@ -67,10 +67,10 @@
 /* Fish */
 .splash-fish {
   position: absolute;
-  top: 50%;
-  left: -60px; /* Half of width (120px) to make it half off-screen from left */
+  top: 35%;
+  left: -70px;
   transform: translateY(-50%);
-  width: 120px; /* Increased size */
+  width: 160px;
   height: auto;
   z-index: 2;
   animation: swim 2s ease-in-out infinite;
