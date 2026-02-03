@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import SplashScreen from './SplashScreen';
 import HowToPlayModal from './HowToPlayModal';
+import LoginModal from './LoginModal';
 import Home from './Home';
 import SignupScreen from './SignupScreen';
 import Game from './game/Game';
@@ -33,6 +34,7 @@ if (typeof window !== 'undefined') {
 function App() {
   const [screen, setScreen] = useState('splash');
   const [showModal, setShowModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [progress, setProgress] = useState(loadProgress);
   const [sessionScore, setSessionScore] = useState(0);
   const [prevLevel, setPrevLevel] = useState(0);
@@ -44,12 +46,22 @@ function App() {
     setScreen('signup');
   }, []);
 
-  const handleSignup = useCallback((formData) => {
-    // After signup, start the game
+  const handleSignup = useCallback(() => {
+    // After signup, go back to home and show login modal
+    setScreen('home');
+    setShowLoginModal(true);
+  }, []);
+
+  const handleLogin = useCallback(() => {
+    setShowLoginModal(false);
     const latestProgress = loadProgress();
     setProgress(latestProgress);
     setGameKey(prev => prev + 1);
     setScreen('game');
+  }, []);
+
+  const handleCloseLoginModal = useCallback(() => {
+    setShowLoginModal(false);
   }, []);
 
   const handleStartGame = useCallback(() => {
@@ -123,6 +135,7 @@ function App() {
     <>
       <Home onStartGame={handlePlayClick} playerLevel={playerLevel} totalXP={progress.totalXP} onResetProgress={handleResetProgress} />
       {showModal && <HowToPlayModal onClose={handleCloseModal} />}
+      {showLoginModal && <LoginModal onClose={handleCloseLoginModal} onLogin={handleLogin} />}
     </>
   );
 }
