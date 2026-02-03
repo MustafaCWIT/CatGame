@@ -168,7 +168,7 @@
 
 .splash-loader-fill {
   height: 100%;
-  background: linear-gradient(90deg, #ff69b4, #ff1493, #ff69b4);
+  background: linear-gradient(90deg, #FFBA0A, #DC6900, #FFBA0A);
   background-size: 200% 100%;
   border-radius: 8px;
   transition: width 0.1s ease-out;
