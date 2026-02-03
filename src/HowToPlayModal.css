@@ -135,14 +135,14 @@
 }
 
 .modal-prize-card-bottom {
-  padding-right: 15px;
+  padding-right: 120px;
   min-height: 65px;
   margin-bottom: 35px;
   margin-right: 45px;
 }
 
 .modal-prize-card-bottom .modal-prize-title {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .modal-prize-content {
@@ -182,7 +182,7 @@
 
 .modal-prize-img-food {
   position: absolute;
-  right: -45px;
+  right: -60px;
   bottom: -30px;
   width: 180px;
   height: auto;
