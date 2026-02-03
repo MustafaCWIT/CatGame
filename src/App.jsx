@@ -4,6 +4,7 @@ import HowToPlayModal from './HowToPlayModal';
 import LoginModal from './LoginModal';
 import Home from './Home';
 import SignupScreen from './SignupScreen';
+import StartingScreen from './StartingScreen';
 import Game from './game/Game';
 import GameOver from './GameOver';
 import { getLevelForXP } from './game/levels';
@@ -54,6 +55,10 @@ function App() {
 
   const handleLogin = useCallback(() => {
     setShowLoginModal(false);
+    setScreen('starting');
+  }, []);
+
+  const handleCountdownComplete = useCallback(() => {
     const latestProgress = loadProgress();
     setProgress(latestProgress);
     setGameKey(prev => prev + 1);
@@ -111,6 +116,10 @@ function App() {
 
   if (screen === 'signup') {
     return <SignupScreen onSignup={handleSignup} onGoHome={handleGoHome} />;
+  }
+
+  if (screen === 'starting') {
+    return <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} />;
   }
 
   if (screen === 'game') {
