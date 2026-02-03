@@ -71,11 +71,11 @@
   position: absolute;
   width: 160px;
   height: auto;
-  top: -80px;
+  top: -100px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
-  animation: catBounce 1.5s ease-in-out infinite;
+  animation: catBounce 2s ease-in-out infinite;
 }
 
 @keyframes catBounce {
@@ -83,7 +83,7 @@
     transform: translateX(-50%) translateY(0);
   }
   50% {
-    transform: translateX(-50%) translateY(-8px);
+    transform: translateX(-50%) translateY(-3px);
   }
 }
 
@@ -106,16 +106,16 @@
   border-radius: 20px;
 }
 
-/* Star - positioned where cat paw reaches */
+/* Star - positioned at bottom center (bowl position) */
 .starting-star {
   position: absolute;
   width: 50px;
   height: auto;
-  top: 60px;
-  left: 50%;
+  bottom: 50px;
+  left: 58%;
   transform: translateX(-50%);
   z-index: 4;
-  animation: starGlow 1s ease-in-out infinite;
+  animation: starGlow 1.5s ease-in-out infinite;
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
 }
 
@@ -125,8 +125,8 @@
     filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
   }
   50% {
-    transform: translateX(-50%) scale(1.1);
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1));
+    transform: translateX(-50%) scale(1.05);
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
   }
 }
 
@@ -134,9 +134,9 @@
 /* Fish */
 .starting-fish {
   position: absolute;
-  left: 20px;
-  bottom: 50px;
-  width: 50px;
+  left: 15px;
+  top: 15px;
+  width: 90px;
   height: auto;
   z-index: 2;
   animation: fishSwim 2s ease-in-out infinite;
@@ -155,9 +155,8 @@
 .starting-bowl {
   position: absolute;
   bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
+  left: 35px;
+  width: 70px;
   height: auto;
   z-index: 2;
 }
