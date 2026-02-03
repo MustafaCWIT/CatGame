@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import './LevelsScreen.css';
 import backgroundImg from './assets/background.png';
 import logoImg from './assets/logo.png';
@@ -15,15 +15,7 @@ export default function LevelsScreen({
   onGoBack,
   onVideoUpload
 }) {
-  const fileInputRef = useRef(null);
   const [selectedTheme, setSelectedTheme] = useState('midnight');
-
-  const handleUpload = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    onVideoUpload?.();
-    if (fileInputRef.current) fileInputRef.current.value = '';
-  };
 
   const handleThemeSelect = (theme) => {
     if (theme === 'midnight') {
@@ -80,16 +72,9 @@ export default function LevelsScreen({
         </div>
 
         {/* Upload Button */}
-        <button className="levels-upload-btn" onClick={() => fileInputRef.current?.click()}>
+        <button className="levels-upload-btn" onClick={onVideoUpload}>
           Upload Video
         </button>
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="video/*"
-          className="hidden-input"
-          onChange={handleUpload}
-        />
 
         {/* Select Theme Section */}
         <div className="levels-theme-section">

@@ -8,6 +8,7 @@ import StartingScreen from './StartingScreen';
 import Game from './game/Game';
 import GameOver from './GameOver';
 import LevelsScreen from './LevelsScreen';
+import UploadScreen from './UploadScreen';
 import { getLevelForXP } from './game/levels';
 
 function loadProgress() {
@@ -152,6 +153,28 @@ function App() {
     }
   }, []);
 
+  const handleGoToUpload = useCallback(() => {
+    setScreen('upload');
+  }, []);
+
+  const handleVideoUpload = useCallback(() => {
+    const now = new Date();
+    const dateStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
+    const newActivity = {
+      text: 'You uploaded a video',
+      date: dateStr
+    };
+    const activities = progress.activities || [];
+    const updated = {
+      ...progress,
+      videosCount: (progress.videosCount || 0) + 1,
+      activities: [newActivity, ...activities].slice(0, 10)
+    };
+    setProgress(updated);
+    saveProgress(updated);
+    // Stay on upload screen to show success message
+  }, [progress]);
+
   if (screen === 'splash') {
     return <SplashScreen onLoadingComplete={handleSplashComplete} />;
   }
@@ -188,11 +211,16 @@ function App() {
         userData={userData}
         onStartGame={handleStartGame}
         onGoBack={handleGoHome}
-        onVideoUpload={() => {
-          const updated = { ...progress, videosCount: (progress.videosCount || 0) + 1 };
-          setProgress(updated);
-          saveProgress(updated);
-        }}
+        onVideoUpload={handleGoToUpload}
+      />
+    );
+  }
+
+  if (screen === 'upload') {
+    return (
+      <UploadScreen
+        onGoHome={handleGoHome}
+        onUpload={handleVideoUpload}
       />
     );
   }
