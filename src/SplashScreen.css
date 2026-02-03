@@ -72,8 +72,9 @@
 /* Fish */
 .splash-fish {
   position: absolute;
-  top: 15%;
+  top: 50%;
   left: 8%;
+  transform: translateY(-50%);
   width: 60px;
   height: auto;
   z-index: 2;
@@ -82,10 +83,10 @@
 
 @keyframes swim {
   0%, 100% {
-    transform: translateX(0) rotate(-5deg);
+    transform: translateY(-50%) translateX(0) rotate(-5deg);
   }
   50% {
-    transform: translateX(10px) rotate(5deg);
+    transform: translateY(-50%) translateX(10px) rotate(5deg);
   }
 }
 
@@ -109,12 +110,14 @@
   justify-content: center;
   text-align: center;
   padding: 20px;
+  gap: 0;
 }
 
 .splash-logo {
   width: 120px;
   height: auto;
   margin-bottom: 10px;
+  order: 0;
 }
 
 .splash-title {
@@ -123,15 +126,22 @@
   font-weight: 700;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  margin: 0 0 20px 0;
+  margin: 0;
+  margin-bottom: 20px;
   letter-spacing: 1px;
+  order: 1;
+  flex-shrink: 0;
 }
 
 .splash-cat {
   width: 200px;
   height: auto;
-  margin-bottom: -10px;
+  display: block;
   animation: catBounce 1.5s ease-in-out infinite;
+  order: 2;
+  flex-shrink: 0;
+  position: relative;
+  left: 99px;
 }
 
 @keyframes catBounce {
@@ -146,7 +156,9 @@
 .splash-name {
   width: 180px;
   height: auto;
-  margin-bottom: 30px;
+  margin: 10px auto 20px auto;
+  display: block;
+  order: 3;
 }
 
 /* Loader */
@@ -155,6 +167,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  order: 4;
 }
 
 .splash-loader {
