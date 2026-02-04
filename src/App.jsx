@@ -89,7 +89,15 @@ function App() {
         .eq('id', userId)
         .single();
 
-      if (error) throw error;
+      if (error) {
+        // If the profile is not found (PGRST116), the user was likely deleted
+        if (error.code === 'PGRST116') {
+          console.warn('Profile not found for session, logging out...');
+          handleLogout();
+        }
+        throw error;
+      }
+
       if (data) {
         setProgress({
           totalXP: data.total_xp || 0,
