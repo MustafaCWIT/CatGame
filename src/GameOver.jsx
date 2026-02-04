@@ -1,9 +1,33 @@
+import { useState, useEffect } from 'react';
 import './GameOver.css';
 import catViewingImg from './assets/catViewing.png';
 import dollarImg from './assets/dollar.png';
 import gameBackgroundImg from './assets/gameBackground.png';
 
+const ASSETS = [catViewingImg, dollarImg, gameBackgroundImg];
+
 export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes }) {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    let loaded = 0;
+    ASSETS.forEach(src => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        loaded++;
+        if (loaded === ASSETS.length) setIsReady(true);
+      };
+      img.onerror = () => {
+        loaded++;
+        if (loaded === ASSETS.length) setIsReady(true);
+      };
+    });
+    const timer = setTimeout(() => setIsReady(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isReady) return null; // Game Over is usually an overlay, so hide until ready
   return (
     <div className="go-page">
       <img src={gameBackgroundImg} alt="" className="go-background-blur" />

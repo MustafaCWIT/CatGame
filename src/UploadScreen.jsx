@@ -1,12 +1,35 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import './UploadScreen.css';
 import backgroundImg from './assets/background.png';
 import logoImg from './assets/logo.png';
+
+const ASSETS = [backgroundImg, logoImg];
 
 export default function UploadScreen({ onGoHome, onUpload }) {
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    let loaded = 0;
+    ASSETS.forEach(src => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        loaded++;
+        if (loaded === ASSETS.length) setIsReady(true);
+      };
+      img.onerror = () => {
+        loaded++;
+        if (loaded === ASSETS.length) setIsReady(true);
+      };
+    });
+    const timer = setTimeout(() => setIsReady(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isReady) return <div className="upload loading" style={{ background: '#9C27B0', height: '100vh', width: '100vw' }} />;
 
   const handleFileSelect = (e) => {
     const file = e.target.files?.[0];

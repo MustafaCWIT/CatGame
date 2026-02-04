@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './LevelsScreen.css';
 import logoImg from './assets/logo.png';
 import dollarImg from './assets/dollar.png';
 import gameImg from './assets/game.png';
 import backgroundImg from './assets/background.png';
 import cloudsImg from './assets/clouds.png';
+
+const ASSETS = [logoImg, dollarImg, gameImg, backgroundImg, cloudsImg];
 
 export default function LevelsScreen({
   totalXP = 0,
@@ -16,6 +18,27 @@ export default function LevelsScreen({
   onVideoUpload
 }) {
   const [selectedTheme, setSelectedTheme] = useState('midnight');
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    let loaded = 0;
+    ASSETS.forEach(src => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        loaded++;
+        if (loaded === ASSETS.length) setIsReady(true);
+      };
+      img.onerror = () => {
+        loaded++;
+        if (loaded === ASSETS.length) setIsReady(true);
+      };
+    });
+    const timer = setTimeout(() => setIsReady(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isReady) return <div className="levels loading" style={{ background: '#9C27B0', height: '100vh', width: '100vw' }} />;
 
   const handleThemeSelect = (theme) => {
     if (theme === 'midnight') {
