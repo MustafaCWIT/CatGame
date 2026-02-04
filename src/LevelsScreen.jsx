@@ -4,6 +4,7 @@ import logoImg from './assets/logo.png';
 import dollarImg from './assets/dollar.png';
 import gameImg from './assets/game.png';
 import backgroundImg from './assets/background.png';
+import cloudsImg from './assets/clouds.png';
 
 export default function LevelsScreen({
   totalXP = 0,
@@ -26,6 +27,7 @@ export default function LevelsScreen({
   return (
     <div className="levels">
       <img src={backgroundImg} alt="" className="levels-background" />
+      <img src={cloudsImg} alt="" className="levels-clouds-decoration" />
       {/* Header */}
       <div className="levels-header">
         <button className="levels-home-btn" onClick={onGoBack}>
