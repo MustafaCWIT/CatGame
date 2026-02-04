@@ -112,3 +112,25 @@
 .login-btn:active {
   transform: scale(0.97);
 }
+
+/* Signup link */
+.login-signup-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
+.login-signup-link {
+  color: #FFBA0A;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.login-signup-link:hover {
+  color: #FFC933;
+}
