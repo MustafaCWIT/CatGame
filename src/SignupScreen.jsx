@@ -6,7 +6,7 @@ import signUpCloudImg from './assets/signUpCloud.png';
 
 const ASSETS = [logoImg, backgroundImg, signUpCloudImg];
 
-export default function SignupScreen({ onSignup, onGoHome }) {
+export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -43,7 +43,7 @@ export default function SignupScreen({ onSignup, onGoHome }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSignup(formData);
+    if (!isLoading) onSignup(formData);
   };
 
   return (
@@ -54,7 +54,7 @@ export default function SignupScreen({ onSignup, onGoHome }) {
       <img src={signUpCloudImg} alt="" className="signup-cloud" />
 
       {/* Home button */}
-      <button className="signup-home" onClick={onGoHome}>
+      <button className="signup-home" onClick={onGoHome} disabled={isLoading}>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
           <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
         </svg>
@@ -85,6 +85,7 @@ export default function SignupScreen({ onSignup, onGoHome }) {
             onChange={handleChange}
             className="signup-input"
             required
+            disabled={isLoading}
           />
           <input
             type="email"
@@ -94,6 +95,7 @@ export default function SignupScreen({ onSignup, onGoHome }) {
             onChange={handleChange}
             className="signup-input"
             required
+            disabled={isLoading}
           />
           <input
             type="password"
@@ -103,6 +105,7 @@ export default function SignupScreen({ onSignup, onGoHome }) {
             onChange={handleChange}
             className="signup-input"
             required
+            disabled={isLoading}
           />
           <input
             type="tel"
@@ -112,6 +115,7 @@ export default function SignupScreen({ onSignup, onGoHome }) {
             onChange={handleChange}
             className="signup-input"
             required
+            disabled={isLoading}
           />
           <input
             type="text"
@@ -121,10 +125,11 @@ export default function SignupScreen({ onSignup, onGoHome }) {
             onChange={handleChange}
             className="signup-input"
             required
+            disabled={isLoading}
           />
 
-          <button type="submit" className="signup-btn">
-            Sign Up
+          <button type="submit" className="signup-btn" disabled={isLoading}>
+            {isLoading ? <span className="btn-loader" /> : 'Sign Up'}
           </button>
         </form>
       </div>
