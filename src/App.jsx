@@ -10,6 +10,8 @@ import GameOver from './GameOver';
 import LevelsScreen from './LevelsScreen';
 import UploadScreen from './UploadScreen';
 import { getLevelForXP } from './game/levels';
+import { supabase } from './lib/supabase';
+import { useEffect } from 'react';
 
 function loadProgress() {
   try {
@@ -57,6 +59,66 @@ function App() {
   const [sessionScore, setSessionScore] = useState(0);
   const [gameKey, setGameKey] = useState(0);
   const [showGameOverModal, setShowGameOverModal] = useState(false);
+  const [session, setSession] = useState(null);
+  const [authLoading, setAuthLoading] = useState(false);
+
+  // Initialize Supabase session and fetch profile
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      if (session) fetchProfile(session.user.id);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      if (session) fetchProfile(session.user.id);
+      else {
+        setProgress({ totalXP: 0, videosCount: 0, activities: [] });
+        setUserData({ fullName: '', email: '', phone: '' });
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const fetchProfile = async (userId) => {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single();
+
+      if (error) throw error;
+      if (data) {
+        setProgress({
+          totalXP: data.total_xp || 0,
+          videosCount: data.videos_count || 0,
+          activities: data.activities || []
+        });
+        setUserData({
+          fullName: data.full_name || '',
+          email: data.email || '',
+          phone: data.phone || ''
+        });
+      }
+    } catch (err) {
+      console.error('Error fetching profile:', err);
+    }
+  };
+
+  const updateProfile = async (updates) => {
+    if (!session?.user) return;
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .update(updates)
+        .eq('id', session.user.id);
+      if (error) throw error;
+    } catch (err) {
+      console.error('Error updating profile:', err);
+    }
+  };
 
   const playerLevel = getLevelForXP(progress.totalXP);
 
@@ -68,23 +130,60 @@ function App() {
     setScreen('signup');
   }, []);
 
-  const handleSignup = useCallback((formData) => {
-    // Save user data
-    const user = {
-      fullName: formData.fullName,
-      email: formData.email,
-      phone: formData.phone
-    };
-    setUserData(user);
-    saveUserData(user);
-    // After signup, go back to home and show login modal
-    setScreen('home');
-    setShowLoginModal(true);
+  const handleSignup = useCallback(async (formData) => {
+    setAuthLoading(true);
+    try {
+      const { error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          data: {
+            full_name: formData.fullName,
+            phone: formData.phone,
+            cat_name: formData.catName
+          }
+        }
+      });
+
+      if (error) throw error;
+
+      alert('Signup successful! Your account is ready.');
+      setScreen('home');
+      setShowLoginModal(true);
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setAuthLoading(false);
+    }
   }, []);
 
-  const handleLogin = useCallback(() => {
-    setShowLoginModal(false);
-    setScreen('starting');
+  const handleLogin = useCallback(async (formData) => {
+    setAuthLoading(true);
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password
+      });
+
+      if (error) throw error;
+
+      setShowLoginModal(false);
+      setScreen('starting');
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setAuthLoading(false);
+    }
+  }, []);
+
+  const handleLogout = useCallback(async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      setScreen('home');
+    } catch (err) {
+      alert(err.message);
+    }
   }, []);
 
   const handleCountdownComplete = useCallback(() => {
@@ -119,12 +218,18 @@ function App() {
     const updated = {
       totalXP: newXP,
       videosCount: progress.videosCount || 0,
-      activities: [newActivity, ...activities].slice(0, 10) // Keep last 10 activities
+      activities: [newActivity, ...activities].slice(0, 10)
     };
     setProgress(updated);
     saveProgress(updated);
     setSessionScore(score);
-  }, [progress]);
+
+    // Sync to Supabase
+    updateProfile({
+      total_xp: updated.totalXP,
+      activities: updated.activities
+    });
+  }, [progress, session, updateProfile]);
 
   const handleShowGameOver = useCallback((score) => {
     handleEndGame(score);
@@ -154,14 +259,22 @@ function App() {
     setScreen('levels');
   }, []);
 
-  const handleResetProgress = useCallback(() => {
+  const handleResetProgress = useCallback(async () => {
     if (window.confirm('Reset all progress? This will set XP to 0 and cannot be undone.')) {
       localStorage.removeItem('tap-to-purr-progress');
-      const resetProgress = { totalXP: 0 };
+      const resetProgress = { totalXP: 0, videosCount: 0, activities: [] };
       setProgress(resetProgress);
       setGameKey(prev => prev + 1);
+
+      if (session?.user) {
+        await updateProfile({
+          total_xp: 0,
+          videos_count: 0,
+          activities: []
+        });
+      }
     }
-  }, []);
+  }, [session, updateProfile]);
 
   const handleGoToUpload = useCallback(() => {
     setScreen('upload');
@@ -182,15 +295,20 @@ function App() {
     };
     setProgress(updated);
     saveProgress(updated);
-    // Stay on upload screen to show success message
-  }, [progress]);
+
+    // Sync to Supabase
+    updateProfile({
+      videos_count: updated.videosCount,
+      activities: updated.activities
+    });
+  }, [progress, session, updateProfile]);
 
   if (screen === 'splash') {
     return <SplashScreen onLoadingComplete={handleSplashComplete} />;
   }
 
   if (screen === 'signup') {
-    return <SignupScreen onSignup={handleSignup} onGoHome={handleGoHome} />;
+    return <SignupScreen onSignup={handleSignup} onGoHome={handleGoHome} isLoading={authLoading} />;
   }
 
   if (screen === 'starting') {
@@ -200,11 +318,11 @@ function App() {
   if (screen === 'game') {
     return (
       <>
-        <Game 
-          key={`game-${progress.totalXP}-${gameKey}`} 
-          playerLevel={playerLevel} 
-          totalXP={progress.totalXP} 
-          onEnd={handleEndGame} 
+        <Game
+          key={`game-${progress.totalXP}-${gameKey}`}
+          playerLevel={playerLevel}
+          totalXP={progress.totalXP}
+          onEnd={handleEndGame}
           onRestart={handleStartGame}
           onShowGameOver={handleShowGameOver}
         />
@@ -265,9 +383,21 @@ function App() {
 
   return (
     <>
-      <Home onStartGame={handlePlayClick} onResetProgress={handleResetProgress} />
+      <Home
+        onStartGame={handlePlayClick}
+        onResetProgress={handleResetProgress}
+        onLogout={session ? handleLogout : null}
+        user={session?.user}
+      />
       {showModal && <HowToPlayModal onClose={handleCloseModal} />}
-      {showLoginModal && <LoginModal onClose={handleCloseLoginModal} onLogin={handleLogin} onSignup={handleSignupClick} />}
+      {showLoginModal && (
+        <LoginModal
+          onClose={handleCloseLoginModal}
+          onLogin={handleLogin}
+          onSignup={handleSignupClick}
+          isLoading={authLoading}
+        />
+      )}
     </>
   );
 }

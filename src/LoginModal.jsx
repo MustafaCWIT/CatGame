@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './LoginModal.css';
 
-export default function LoginModal({ onClose, onLogin, onSignup }) {
+export default function LoginModal({ onClose, onLogin, onSignup, isLoading }) {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -14,14 +14,14 @@ export default function LoginModal({ onClose, onLogin, onSignup }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(formData);
+    if (!isLoading) onLogin(formData);
   };
 
   return (
     <div className="login-overlay">
       <div className="login-container">
         {/* Close button */}
-        <button className="login-close" onClick={onClose}>
+        <button className="login-close" onClick={onClose} disabled={isLoading}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
             <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
@@ -41,6 +41,7 @@ export default function LoginModal({ onClose, onLogin, onSignup }) {
             onChange={handleChange}
             className="login-input"
             required
+            disabled={isLoading}
           />
           <input
             type="password"
@@ -50,16 +51,17 @@ export default function LoginModal({ onClose, onLogin, onSignup }) {
             onChange={handleChange}
             className="login-input"
             required
+            disabled={isLoading}
           />
 
-          <button type="submit" className="login-btn">
-            Login
+          <button type="submit" className="login-btn" disabled={isLoading}>
+            {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
         {/* Signup link */}
         <p className="login-signup-text">
-          Don't have an account? <span className="login-signup-link" onClick={onSignup}>Sign up</span>
+          Don't have an account? <span className="login-signup-link" onClick={!isLoading ? onSignup : undefined}>Sign up</span>
         </p>
       </div>
     </div>
