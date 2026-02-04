@@ -42,7 +42,7 @@ function saveUserData(data) {
 // Reset progress function - call this before building for client
 // You can call window.resetWhiskusProgress() in browser console
 if (typeof window !== 'undefined') {
-  window.resetWhiskusProgress = function() {
+  window.resetWhiskusProgress = function () {
     localStorage.removeItem('tap-to-purr-progress');
     window.location.reload();
   };
@@ -60,6 +60,10 @@ function App() {
   const playerLevel = getLevelForXP(progress.totalXP);
 
   const handlePlayClick = useCallback(() => {
+    setShowLoginModal(true);
+  }, []);
+
+  const handleSignupClick = useCallback(() => {
     setScreen('signup');
   }, []);
 
