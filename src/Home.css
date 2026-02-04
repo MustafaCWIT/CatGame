@@ -21,18 +21,21 @@
 /* Fish at top left */
 .home-fish {
   position: fixed;
-  top: 15px;
-  left: 15px;
-  width: 120px;
+  top: 3px;
+  left: -60px;
+  width: 160px;
   height: auto;
   z-index: 2;
   animation: swim 2s ease-in-out infinite;
 }
 
 @keyframes swim {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0) rotate(-5deg);
   }
+
   50% {
     transform: translateX(8px) rotate(5deg);
   }
@@ -41,18 +44,21 @@
 /* Cloud at top right */
 .home-cloud {
   position: fixed;
-  top: 50px;
-  right: 10px;
-  width: 120px;
+  top: 70px;
+  right: -90px;
+  width: 220px;
   height: auto;
   z-index: 2;
   animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-8px);
   }
@@ -97,6 +103,7 @@
   color: white;
   z-index: 3;
   cursor: pointer;
+  visibility: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease, background 0.2s ease;
 }
@@ -118,16 +125,16 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  padding-top: 60px;
+  padding-top: 20px;
   width: 100%;
   max-width: 400px;
 }
 
 /* Logo */
 .home-logo {
-  width: 100px;
+  width: 200px;
   height: auto;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 
 /* Hero section - Title and Cat in same row */
@@ -193,9 +200,12 @@
 }
 
 @keyframes catBounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
   }
+
   50% {
     transform: translateX(-50%) translateY(-5px);
   }
@@ -204,16 +214,16 @@
 /* Action buttons */
 .home-buttons {
   display: flex;
-  gap: 12px;
+  gap: 15px;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .home-btn {
   flex: 1;
   padding: 14px 20px;
   border: none;
-  border-radius: 25px;
+  border-radius: 13px;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -312,19 +322,20 @@
   text-align: center;
 }
 
-.home-participate-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-weight: 500;
+.home-participate-title,
+.home-participate h2.home-participate-title {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
   color: white;
-  margin: 0 0 12px 0;
-  font-style: italic;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  margin: 0 0 15px 0;
+  text-transform: none !important;
 }
 
 .home-prize-buttons {
   display: flex;
-  gap: 10px;
+  gap: 25px;
   width: 100%;
   margin-top: 60px;
 }
@@ -357,6 +368,7 @@
 .home-prize-btn-left {
   padding-left: 55px;
   margin-left: 50px;
+  flex: 1.4;
 }
 
 .home-prize-btn-right {
