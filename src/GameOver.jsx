@@ -5,6 +5,19 @@ import dollarImg from './assets/dollar.png';
 export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes }) {
   return (
     <div className="go-page">
+      {/* Header */}
+      <div className="go-header">
+        <button className="go-home-btn" onClick={onGoHome}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+          </svg>
+        </button>
+        <div className="go-profile-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+          </svg>
+        </div>
+      </div>
 
       <div className="go-modal-container">
         {/* Cat peeking from top */}
