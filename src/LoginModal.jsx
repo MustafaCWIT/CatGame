@@ -55,7 +55,7 @@ export default function LoginModal({ onClose, onLogin, onSignup, isLoading }) {
           />
 
           <button type="submit" className="login-btn" disabled={isLoading}>
-            {isLoading ? 'Logging in...' : 'Login'}
+            {isLoading ? <span className="btn-loader" /> : 'Login'}
           </button>
         </form>
 

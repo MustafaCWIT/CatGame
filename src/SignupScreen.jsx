@@ -129,7 +129,7 @@ export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
           />
 
           <button type="submit" className="signup-btn" disabled={isLoading}>
-            {isLoading ? 'Creating account...' : 'Sign Up'}
+            {isLoading ? <span className="btn-loader" /> : 'Sign Up'}
           </button>
         </form>
       </div>

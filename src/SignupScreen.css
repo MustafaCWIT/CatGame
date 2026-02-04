@@ -165,6 +165,15 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 15px rgba(220, 105, 0, 0.4);
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.signup-btn:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
 }
 
 .signup-btn:hover {
