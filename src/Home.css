@@ -244,17 +244,17 @@
 .home-btn-play {
   background: linear-gradient(180deg, #DC6900 0%, #FFBA0A 100%);
   color: white;
-  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5);
 }
 
 .home-btn-play:hover {
-  box-shadow: 0 6px 16px rgba(255, 140, 0, 0.5);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.6);
 }
 
 .home-btn-upload {
   background: linear-gradient(180deg, #DC6900 0%, #FFBA0A 100%);
   color: white;
-  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5);
 }
 
 .home-btn-upload:hover {
