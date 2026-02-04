@@ -12,33 +12,14 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
   const type = level.objects[Math.floor(Math.random() * level.objects.length)];
   const color = level.objectColors[Math.floor(Math.random() * level.objectColors.length)];
 
-  let x, y, targetX, targetY;
-  const duration = randomBetween(3, 5); // Slightly slower for initial drops
+  // Always drop from top to bottom for "one at a time" flow
+  const duration = randomBetween(1.0, 2.0); // Faster drop for more excitement
 
-  if (isInitial) {
-    // Drop from top to bottom one by one during start
-    const columnWidth = (screenW - OBJECT_SIZE) / (MAX_OBJECTS > 1 ? MAX_OBJECTS - 1 : 1);
-    x = index * columnWidth;
-    y = -OBJECT_SIZE - 200; // Start off-screen at the top
-    targetX = x;
-    targetY = screenH + 200; // Drop all the way through the bottom
-  } else {
-    // Randomized directional movement for regular gameplay
-    const isVertical = Math.random() > 0.5;
-    const side = Math.random() > 0.5 ? 0 : 1;
-
-    if (isVertical) {
-      y = side === 0 ? -OBJECT_SIZE - 100 : screenH + 100;
-      x = randomBetween(SPAWN_MARGIN, screenW - SPAWN_MARGIN - OBJECT_SIZE);
-      targetX = x;
-      targetY = side === 0 ? screenH + 200 : -OBJECT_SIZE - 200;
-    } else {
-      x = side === 0 ? -OBJECT_SIZE - 100 : screenW + 100;
-      y = randomBetween(SPAWN_MARGIN, screenH - SPAWN_MARGIN - OBJECT_SIZE);
-      targetX = side === 0 ? screenW + 200 : -OBJECT_SIZE - 200;
-      targetY = y;
-    }
-  }
+  // Random horizontal position across the screen
+  const x = randomBetween(SPAWN_MARGIN, screenW - SPAWN_MARGIN - OBJECT_SIZE);
+  const y = -OBJECT_SIZE - 200; // Start off-screen at the top
+  const targetX = x;
+  const targetY = screenH + 200; // Drop all the way through
 
   return {
     id: ++objectIdCounter,
@@ -49,7 +30,7 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
     targetX,
     targetY,
     duration,
-    scale: randomBetween(1.0, 1.4), // Slightly larger targets
+    scale: randomBetween(1.0, 1.4),
     rotation: randomBetween(0, 360),
     rotationSpeed: randomBetween(-0.2, 0.2),
     opacity: 1,
