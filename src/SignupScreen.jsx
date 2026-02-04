@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './SignupScreen.css';
 import logoImg from './assets/logo.png';
 import backgroundImg from './assets/background.png';
-import cloudImg from './assets/clouds.png';
+import signUpCloudImg from './assets/signUpCloud.png';
 
 export default function SignupScreen({ onSignup, onGoHome }) {
   const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ export default function SignupScreen({ onSignup, onGoHome }) {
       <img src={backgroundImg} alt="" className="signup-background" />
 
       {/* Cloud at bottom */}
-      <img src={cloudImg} alt="" className="signup-cloud" />
+      <img src={signUpCloudImg} alt="" className="signup-cloud" />
 
       {/* Home button */}
       <button className="signup-home" onClick={onGoHome}>
