@@ -37,14 +37,18 @@
 
 /* Header */
 .levels-header {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 500px;
+  position: absolute;
+  /* Positioned at the very top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .levels-home-btn {
@@ -76,6 +80,9 @@
 
 .levels-logo {
   height: 50px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Content */
@@ -85,7 +92,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 20px 40px;
+  padding: 100px 20px 40px;
+  /* Increased top padding to account for absolute header */
   width: 100%;
   max-width: 500px;
 }
@@ -137,32 +145,36 @@
   box-sizing: border-box;
 }
 
-.levels-stat-card-videos {
+.levels-stat-column {
+  flex: 1;
+  display: flex;
   flex-direction: column;
-  padding: 0;
-  overflow: visible;
-  border: none;
-  background: none;
-  box-shadow: none;
+  align-items: center;
+  /* Center the button relative to the card */
+  height: auto;
+  position: relative;
 }
 
-.levels-stat-video-top {
+.levels-stat-video-card {
   background: linear-gradient(135deg, #930F74 0%, #4D014B 100%);
   border: 3px solid #A74C8E;
-  border-radius: 20px 20px 0 0;
-  padding: 15px 10px;
+  border-radius: 24px;
+  padding: 15px 12px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 15px;
   width: 100%;
   height: 110px;
   box-sizing: border-box;
+  padding-bottom: 25px;
+  /* Extra space for overlapping button */
 }
 
 .levels-stat-img {
-  width: 50px;
-  height: 50px;
+  width: 65px;
+  /* Increased size */
+  height: 65px;
   object-fit: contain;
 }
 
@@ -188,22 +200,26 @@
 }
 
 .levels-upload-btn {
-  width: 100%;
+  width: 96%;
+  /* Matches the inset look in the image */
   padding: 12px;
   background: linear-gradient(180deg, #FF9800 0%, #FFB300 100%);
   border: none;
-  border-radius: 0 0 20px 20px;
+  border-radius: 15px;
+  /* Fully rounded corners like the image */
   color: white;
   font-size: 18px;
   font-weight: 800;
   font-style: italic;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
-  margin-top: -3px;
-  /* Slightly overlap border */
-  border-left: 3px solid #A74C8E;
-  border-right: 3px solid #A74C8E;
-  border-bottom: 3px solid #A74C8E;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-top: -25px;
+  /* Precise overlap with the purple card */
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  text-transform: none;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Theme Section */

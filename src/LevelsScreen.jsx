@@ -60,8 +60,8 @@ export default function LevelsScreen({
               <span className="levels-stat-value">{totalXP.toLocaleString() || '15000'}</span>
             </div>
           </div>
-          <div className="levels-stat-card-videos">
-            <div className="levels-stat-video-top">
+          <div className="levels-stat-column">
+            <div className="levels-stat-video-card">
               <img src={gameImg} alt="" className="levels-stat-img" />
               <div className="levels-stat-content">
                 <span className="levels-stat-label">Videos uploaded</span>
