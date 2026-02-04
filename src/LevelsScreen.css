@@ -1,0 +1,396 @@
+.levels {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  background: #9C27B0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.levels-background {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Custom glow effect matching the image */
+.levels::before {
+  content: '';
+  position: fixed;
+  top: 20%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(135, 206, 235, 0.4) 0%, rgba(135, 206, 235, 0) 70%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.levels-clouds-decoration {
+  position: fixed;
+  top: 5%;
+  right: -180px;
+  width: 500px;
+  height: auto;
+  z-index: 0;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* Header */
+.levels-header {
+  position: absolute;
+  /* Positioned at the very top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.levels-home-btn {
+  width: 44px;
+  height: 44px;
+  background: #FFB300;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.levels-profile-btn {
+  width: 44px;
+  height: 44px;
+  background: #64B5F6;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+}
+
+.levels-logo {
+  height: 70px;
+  /* Increased from 50px */
+  position: absolute;
+  left: 50%;
+  top: 35px;
+  /* Added space from top */
+  transform: translateX(-50%);
+}
+
+/* Content */
+.levels-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 140px 20px 40px;
+  /* Increased top padding to account for logo position */
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.levels-content::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+/* User Section */
+.levels-user-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.levels-user-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 5px 0;
+}
+
+.levels-user-info {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+}
+
+/* Stats Section */
+.levels-stats {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.levels-stat-card {
+  flex: 1;
+  background: linear-gradient(135deg, #930F74 0%, #4D014B 100%);
+  border: 3px solid #A74C8E;
+  border-radius: 20px;
+  padding: 15px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  height: 110px;
+  box-sizing: border-box;
+}
+
+.levels-stat-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Center the button relative to the card */
+  height: auto;
+  position: relative;
+}
+
+.levels-stat-video-card {
+  background: linear-gradient(135deg, #930F74 0%, #4D014B 100%);
+  border: 3px solid #A74C8E;
+  border-radius: 24px;
+  padding: 15px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  width: 100%;
+  height: 110px;
+  box-sizing: border-box;
+  padding-bottom: 25px;
+  /* Extra space for overlapping button */
+}
+
+.levels-stat-img {
+  width: 65px;
+  /* Increased size */
+  height: 65px;
+  object-fit: contain;
+}
+
+.levels-stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.levels-stat-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  color: white;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.levels-stat-value {
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: #F88C08;
+  line-height: 1;
+}
+
+.levels-upload-btn {
+  width: 96%;
+  /* Matches the inset look in the image */
+  padding: 12px;
+  background: linear-gradient(180deg, #FF9800 0%, #FFB300 100%);
+  border: none;
+  border-radius: 15px;
+  /* Fully rounded corners like the image */
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  font-style: italic;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-top: -25px;
+  /* Precise overlap with the purple card */
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  text-transform: none;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Theme Section */
+.levels-theme-section {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.levels-section-title {
+  color: white;
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-align: left;
+  width: 100%;
+}
+
+.levels-theme-cards {
+  display: flex;
+  gap: 20px;
+}
+
+.levels-theme-card {
+  flex: 1;
+  background: linear-gradient(135deg, #930F74 0%, #4D014B 100%);
+  border: 4px solid #A74C8E;
+  /* Slightly thicker and correct color */
+  border-radius: 24px;
+  height: 200px;
+  /* Adjusted height for better aspect ratio */
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.levels-theme-midnight {
+  background-image: url('./assets/gameBackground.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.levels-theme-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.levels-theme-check {
+  font-size: 50px;
+  color: white;
+}
+
+.levels-theme-lock {
+  font-size: 40px;
+  color: white;
+}
+
+.levels-theme-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background: transparent;
+}
+
+.levels-theme-name {
+  color: #F88C08;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+/* Activity Section */
+.levels-activity-section {
+  width: 100%;
+}
+
+.levels-activity-title {
+  color: white;
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.levels-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 15px;
+}
+
+/* Scrollbar styling */
+.levels-activity-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.levels-activity-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.levels-activity-list::-webkit-scrollbar-thumb {
+  background: #4D014B;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+.levels-activity-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+}
+
+.levels-activity-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.levels-activity-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.levels-activity-text {
+  flex: 1;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.levels-activity-date {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+}

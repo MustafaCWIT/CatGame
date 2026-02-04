@@ -1,0 +1,176 @@
+.signup-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.signup-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Cloud at bottom */
+.signup-cloud {
+  position: absolute;
+  bottom: -600px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1500px;
+  height: auto;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+/* Home button */
+.signup-home {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 3;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.signup-home:hover {
+  transform: scale(1.05);
+}
+
+.signup-home:active {
+  transform: scale(0.95);
+}
+
+/* Profile icon */
+.signup-profile {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: rgba(100, 200, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Content */
+.signup-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  padding-top: 10px;
+  width: 100%;
+  max-width: 350px;
+}
+
+/* Logo */
+.signup-logo {
+  width: 220px;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+/* Title */
+.signup-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0px 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  align-self: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.signup-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 25px 0;
+  align-self: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+/* Form */
+.signup-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.signup-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: #4D014E;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: white;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  box-sizing: border-box;
+}
+
+.signup-input::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.signup-input:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: #4D014E;
+}
+
+/* Sign Up button */
+.signup-btn {
+  width: 50%;
+  padding: 16px 24px;
+  background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
+  border: none;
+  border-radius: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(220, 105, 0, 0.4);
+  margin-top: 10px;
+}
+
+.signup-btn:hover {
+  box-shadow: 0 6px 20px rgba(220, 105, 0, 0.5);
+}
+
+.signup-btn:active {
+  transform: scale(0.97);
+}

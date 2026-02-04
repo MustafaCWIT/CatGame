@@ -7,48 +7,40 @@ function randomBetween(min, max) {
   return min + Math.random() * (max - min);
 }
 
-function createObject(levelIndex, screenW, screenH, existingObjects = []) {
+export function createObject(levelIndex, screenW, screenH, existingObjects = [], isInitial = false, index = 0) {
   const level = LEVELS[levelIndex];
   const type = level.objects[Math.floor(Math.random() * level.objects.length)];
   const color = level.objectColors[Math.floor(Math.random() * level.objectColors.length)];
-  
-  // Try to find a position that doesn't overlap with existing objects
-  let attempts = 0;
-  let x, y;
-  let validPosition = false;
-  
-  while (attempts < 50 && !validPosition) {
-    x = randomBetween(SPAWN_MARGIN, screenW - SPAWN_MARGIN - OBJECT_SIZE);
-    y = randomBetween(SPAWN_MARGIN, screenH - SPAWN_MARGIN - OBJECT_SIZE);
-    
-    const centerX = x + OBJECT_SIZE / 2;
-    const centerY = y + OBJECT_SIZE / 2;
-    
-    // Check distance from all existing objects
-    validPosition = existingObjects.every(obj => {
-      const objCenterX = obj.x + OBJECT_SIZE / 2;
-      const objCenterY = obj.y + OBJECT_SIZE / 2;
-      const distance = Math.hypot(centerX - objCenterX, centerY - objCenterY);
-      return distance >= MIN_OBJECT_DISTANCE;
-    });
-    
-    attempts++;
+
+  // Always drop from top to bottom for "one at a time" flow
+
+  // Ensure objects are well-centered and not clumped at the left
+  let range = screenW - (SPAWN_MARGIN * 2) - OBJECT_SIZE;
+  let x;
+  if (range <= 0) {
+    // If screen is narrow, just center it
+    x = (screenW - OBJECT_SIZE) / 2;
+  } else {
+    // Randomly place within the safe middle area
+    x = SPAWN_MARGIN + Math.random() * range;
   }
-  
-  // If we couldn't find a good position after 50 attempts, use the last one anyway
-  // (better than infinite loop)
-  
+
+  const y = -OBJECT_SIZE;
+  const targetX = x;
+  const targetY = screenH + OBJECT_SIZE;
+
   return {
     id: ++objectIdCounter,
     type,
     color,
     x,
     y,
-    vx: randomBetween(-0.3, 0.3),
-    vy: randomBetween(-0.3, 0.3),
-    scale: randomBetween(0.8, 1.2),
+    targetX,
+    targetY,
+    duration: randomBetween(1.5, 2.8), // Slower and more varied for easier catching
+    scale: randomBetween(1.0, 1.4),
     rotation: randomBetween(0, 360),
-    rotationSpeed: randomBetween(-0.3, 0.3),
+    rotationSpeed: randomBetween(-0.2, 0.2),
     opacity: 1,
     spawning: true,
   };
@@ -68,22 +60,49 @@ export function useGameState(playerLevel = 0) {
     screenSize.current = { w, h };
   }, []);
 
+  const timeoutsRef = useRef([]);
+
+  const clearTimeouts = useCallback(() => {
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+  }, []);
+
   const initObjects = useCallback((w, h) => {
     screenSize.current = { w, h };
-    const objs = [];
+    clearTimeouts();
+    setObjects([]);
+
     for (let i = 0; i < MAX_OBJECTS; i++) {
-      objs.push(createObject(playerLevel, w, h, objs));
+      const tid = setTimeout(() => {
+        setObjects(prev => {
+          const newObj = createObject(playerLevel, w, h, prev, true, i);
+          return [...prev, newObj];
+        });
+      }, i * 400);
+      timeoutsRef.current.push(tid);
     }
-    setObjects(objs);
+  }, [playerLevel, clearTimeouts]);
+
+  const replaceObject = useCallback((oldId) => {
+    setObjects(prev => {
+      const idx = prev.findIndex(o => o.id === oldId);
+      if (idx === -1) return prev;
+
+      const { w, h } = screenSize.current;
+      const newObj = createObject(playerLevel, w, h, prev);
+      const next = [...prev];
+      next[idx] = newObj;
+      return next;
+    });
   }, [playerLevel]);
 
   const collectNearest = useCallback((touchX, touchY) => {
     // Prevent double collection
     if (isCollectingRef.current) return;
-    
+
     // Mark as collecting immediately to prevent re-entry
     isCollectingRef.current = true;
-    
+
     setObjects(prev => {
       if (prev.length === 0) {
         isCollectingRef.current = false;
@@ -93,10 +112,12 @@ export function useGameState(playerLevel = 0) {
       let minDist = Infinity;
       let nearestIdx = -1;
       prev.forEach((obj, i) => {
+        // We use the object's CURRENT position (from React state)
+        // Note: For GSAP, we might need a way to get the actual visual position if we want perfect accuracy
+        // but since we update state on collection, it's usually reasonable to use state.
         const cx = obj.x + OBJECT_SIZE / 2;
         const cy = obj.y + OBJECT_SIZE / 2;
         const d = Math.hypot(touchX - cx, touchY - cy);
-        // Find nearest object (original behavior - always finds nearest for easy cat paw taps)
         if (d < minDist) {
           minDist = d;
           nearestIdx = i;
@@ -109,22 +130,23 @@ export function useGameState(playerLevel = 0) {
       }
 
       const collected = prev[nearestIdx];
-      
+
       // Prevent processing the same object twice
       if (lastCollectedIdRef.current === collected.id) {
         isCollectingRef.current = false;
         return prev;
       }
-      
+
       // Mark this object as collected
       lastCollectedIdRef.current = collected.id;
 
       // Get points based on object type
       const pointsEarned = OBJECT_POINTS[collected.type] ?? 1;
-      const popupX = collected.x + OBJECT_SIZE / 2;
-      const popupY = collected.y + OBJECT_SIZE / 2;
+      // We'll use the touch coords for effects for better feedback
+      const popupX = touchX;
+      const popupY = touchY;
 
-      // Update effects and score - use functional updates to ensure correct values
+      // Update effects and score
       setRipples(r => [...r, {
         id: Date.now() + Math.random(),
         x: popupX,
@@ -132,13 +154,8 @@ export function useGameState(playerLevel = 0) {
         color: collected.color,
       }]);
 
-      // Add score exactly once - use functional update
-      setScore(s => {
-        // Double-check we haven't already processed this
-        return s + pointsEarned;
-      });
+      setScore(s => s + pointsEarned);
 
-      // Show point popup
       setPointPopups(p => [...p, {
         id: Date.now() + Math.random(),
         x: popupX,
@@ -148,19 +165,69 @@ export function useGameState(playerLevel = 0) {
         type: collected.type,
       }]);
 
-      // Spawn new object at the same fixed level, avoiding existing objects
       const { w, h } = screenSize.current;
       const newObj = createObject(playerLevel, w, h, prev);
 
       const next = [...prev];
       next[nearestIdx] = newObj;
-      
-      // Reset collection flag after a short delay
+
       setTimeout(() => {
         isCollectingRef.current = false;
         lastCollectedIdRef.current = null;
       }, 300);
-      
+
+      return next;
+    });
+  }, [playerLevel]);
+
+  const collectById = useCallback((id, touchX, touchY) => {
+    if (isCollectingRef.current) return;
+    isCollectingRef.current = true;
+
+    setObjects(prev => {
+      const idx = prev.findIndex(o => o.id === id);
+      if (idx === -1) {
+        isCollectingRef.current = false;
+        return prev;
+      }
+
+      const collected = prev[idx];
+      if (lastCollectedIdRef.current === collected.id) {
+        isCollectingRef.current = false;
+        return prev;
+      }
+
+      lastCollectedIdRef.current = collected.id;
+      const pointsEarned = OBJECT_POINTS[collected.type] ?? 1;
+
+      setRipples(r => [...r, {
+        id: Date.now() + Math.random(),
+        x: touchX,
+        y: touchY,
+        color: collected.color,
+      }]);
+
+      setScore(s => s + pointsEarned);
+
+      setPointPopups(p => [...p, {
+        id: Date.now() + Math.random(),
+        x: touchX,
+        y: touchY,
+        points: pointsEarned,
+        color: collected.color,
+        type: collected.type,
+      }]);
+
+      const { w, h } = screenSize.current;
+      const newObj = createObject(playerLevel, w, h, prev);
+      const next = [...prev];
+      next[idx] = newObj;
+
+      setTimeout(() => {
+        isCollectingRef.current = false;
+        lastCollectedIdRef.current = null;
+      }, 300);
+
       return next;
     });
   }, [playerLevel]);
@@ -176,17 +243,14 @@ export function useGameState(playerLevel = 0) {
   const resetGame = useCallback(() => {
     setScore(0);
     objectIdCounter = 0;
-    isCollectingRef.current = false; // Reset collection flag
-    lastCollectedIdRef.current = null; // Reset last collected ID
-    const { w, h } = screenSize.current;
-    const objs = [];
-    for (let i = 0; i < MAX_OBJECTS; i++) {
-      objs.push(createObject(playerLevel, w, h, objs));
-    }
-    setObjects(objs);
+    isCollectingRef.current = false;
+    lastCollectedIdRef.current = null;
     setRipples([]);
     setPointPopups([]);
-  }, [playerLevel]);
+
+    const { w, h } = screenSize.current;
+    initObjects(w, h);
+  }, [playerLevel, initObjects]);
 
   return {
     score,
@@ -197,6 +261,8 @@ export function useGameState(playerLevel = 0) {
     pointPopups,
     initObjects,
     collectNearest,
+    collectById,
+    replaceObject,
     clearRipple,
     clearPointPopup,
     resetGame,

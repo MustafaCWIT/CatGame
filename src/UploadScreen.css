@@ -1,0 +1,208 @@
+.upload-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.upload-background {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Header */
+.upload-header {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+.upload-home-btn {
+  width: 44px;
+  height: 44px;
+  background: #FFB300;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.upload-home-btn:active {
+  transform: scale(0.95);
+}
+
+.upload-logo {
+  height: 70px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 20px;
+}
+
+.upload-profile-btn {
+  width: 44px;
+  height: 44px;
+  background: #64B5F6;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Content */
+.upload-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 160px 20px 40px;
+  /* Increased from 100px to give more space from top */
+  /* Account for absolute header */
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Upload Card */
+.upload-card {
+  width: 100%;
+  background: radial-gradient(circle at center, #930F74 0%, #4D014B 100%);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-radius: 32px;
+  /* Increased roundedness to match image */
+  padding: 35px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Aligned left like the image */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+  box-sizing: border-box;
+}
+
+.upload-card-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 25px 0;
+}
+
+.upload-select-btn {
+  width: 100%;
+  padding: 20px;
+  background: #4D014E;
+  border: 1px solid rgba(255, 255, 255, 0.29);
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.upload-select-btn:hover {
+  background: #5d025e;
+  /* Slightly lighter shade for feedback */
+}
+
+.upload-select-btn:active {
+  transform: scale(0.98);
+}
+
+.hidden-input {
+  display: none;
+}
+
+.upload-success-msg {
+  width: 100%;
+  padding: 16px 20px;
+  background: #22c55e;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.upload-submit-btn {
+  padding: 12px 45px;
+  background: linear-gradient(180deg, #FF9800 0%, #FFB300 100%);
+  border: none;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  font-style: italic;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.upload-submit-btn:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(220, 105, 0, 0.5);
+}
+
+.upload-submit-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.upload-submit-btn:disabled {
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* Instructions */
+.upload-instructions {
+  width: 100%;
+  padding: 0 10px;
+}
+
+.upload-instructions-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 15px 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.upload-instruction {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+}

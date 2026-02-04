@@ -1,0 +1,228 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: linear-gradient(180deg, #930F74 0%, #4D014B 100%);
+  border-radius: 24px;
+  padding: 25px 20px;
+  /* max-height: 90vh; */
+  overflow: visible;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  color: #930F74;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  transform: scale(1.1);
+}
+
+/* Sections */
+.modal-section {
+  margin-bottom: 25px;
+}
+
+.modal-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 15px 0;
+}
+
+.modal-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+/* Steps */
+.modal-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-step-number {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+  border: 2px solid white;
+}
+
+.modal-step-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: white;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* Participate section */
+.modal-participate {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px 15px;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+/* Prize cards */
+.modal-prizes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-prize-card {
+  position: relative;
+  background: #CF66AC;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  min-height: 70px;
+  overflow: visible;
+  justify-content: space-between;
+}
+
+.modal-prize-card-top {
+  padding-left: 130px;
+  padding-right: 10px;
+  margin-left: 0;
+  margin-top: 30px;
+}
+
+.modal-prize-card-bottom {
+  padding-right: 120px;
+  min-height: 65px;
+  margin-bottom: 35px;
+  margin-right: 45px;
+}
+
+.modal-prize-card-bottom .modal-prize-title {
+  font-size: 12px;
+}
+
+.modal-prize-content {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.modal-prize-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.3;
+}
+
+.modal-prize-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.3;
+  margin-top: 4px;
+  font-weight: 400;
+  display: block;
+}
+
+.modal-prize-img {
+  position: absolute;
+  z-index: 2;
+}
+
+.modal-prize-img-cat {
+  left: 0;
+  top: -36px;
+  width: 90px;
+  height: auto;
+}
+
+.modal-prize-img-food {
+  position: absolute;
+  right: -60px;
+  bottom: -30px;
+  width: 180px;
+  height: auto;
+}
+
+/* Let's Go button */
+.modal-btn {
+  /* width: 100%; removed to allow auto width */
+  padding: 16px 48px;
+  background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
+  border: none;
+  border-radius: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(220, 105, 0, 0.4);
+  /* Position absolute bottom center */
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  width: auto;
+  min-width: 200px;
+  z-index: 100;
+}
+
+.modal-btn:hover {
+  box-shadow: 0 6px 20px rgba(220, 105, 0, 0.5);
+}
+
+.modal-btn:active {
+  transform: scale(0.97);
+}

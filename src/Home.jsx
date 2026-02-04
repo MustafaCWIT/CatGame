@@ -1,8 +1,14 @@
 import { useRef, useState } from 'react';
 import './Home.css';
-import { LEVELS, getNextLevelXP } from './game/levels';
+import backgroundImg from './assets/background.png';
+import logoImg from './assets/logo.png';
+import catImg from './assets/cat.png';
+import fishImg from './assets/fish.png';
+import cloudsImg from './assets/clearClouds.png';
+import sleepCatImg from './assets/sleepCat.png';
+import foodBoxImg from './assets/foodBox.png';
 
-export default function Home({ onStartGame, playerLevel = 0, totalXP = 0, onResetProgress }) {
+export default function Home({ onStartGame, onResetProgress }) {
   const fileInputRef = useRef(null);
   const [video, setVideo] = useState(null);
   const [videoName, setVideoName] = useState('');
@@ -23,55 +29,51 @@ export default function Home({ onStartGame, playerLevel = 0, totalXP = 0, onRese
 
   return (
     <div className="home">
-      <div className="home-bg">
-        <div className="blob blob-1" />
-        <div className="blob blob-2" />
-        <div className="blob blob-3" />
+      <img src={backgroundImg} alt="" className="home-background" />
+
+      {/* Fish at top left */}
+      <img src={fishImg} alt="" className="home-fish" />
+
+      {/* Cloud at top right */}
+      <img src={cloudsImg} alt="" className="home-cloud" />
+
+      {/* Profile icon at top right */}
+      <div className="home-profile">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+        </svg>
       </div>
 
+      {/* Reset XP button */}
+      {onResetProgress && (
+        <button className="home-reset-btn" onClick={onResetProgress} title="Reset XP">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z" />
+          </svg>
+        </button>
+      )}
+
       <div className="home-content">
-        {/* Header */}
-        <div className="home-header">
-          <div className="home-logo">
-            <span className="home-logo-icon">🐾</span>
+        {/* Logo */}
+        <img src={logoImg} alt="Whiskas" className="home-logo" />
+
+        {/* Title and Cat in same row */}
+        <div className="home-hero">
+          <h1 className="home-title">Tap To Purr</h1>
+          <div className="home-cat-container">
+            <div className="home-cat-circle"></div>
+            <img src={catImg} alt="Cat" className="home-cat" />
           </div>
-          <h1 className="home-title">Whiskus</h1>
-          <p className="home-subtitle">A magical interactive game designed for cats</p>
         </div>
 
-        {/* Action cards */}
-        <div className="home-cards">
-          <button className="card card-play" onClick={onStartGame}>
-            <div className="card-icon-wrap card-icon-play">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M8 5.14v13.72a1 1 0 001.5.86l11.04-6.86a1 1 0 000-1.72L9.5 4.28A1 1 0 008 5.14z" fill="currentColor"/>
-              </svg>
-            </div>
-            <div className="card-text">
-              <span className="card-label">Start Game</span>
-              <span className="card-desc">Place tablet on the floor and let your cat play</span>
-            </div>
-            <svg className="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+        {/* Action buttons */}
+        <div className="home-buttons">
+          <button className="home-btn home-btn-play" onClick={onStartGame}>
+            Play Tap-To-Purr
           </button>
-
-          <button className="card card-upload" onClick={() => fileInputRef.current?.click()}>
-            <div className="card-icon-wrap card-icon-upload">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M15 10l-4-4-4 4M11 6v9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M20 16v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className="card-text">
-              <span className="card-label">Upload Video</span>
-              <span className="card-desc">Share a recording of your cat playing</span>
-            </div>
-            <svg className="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+          <button className="home-btn home-btn-upload" onClick={() => fileInputRef.current?.click()}>
+            Upload Cat Video
           </button>
-
           <input
             ref={fileInputRef}
             type="file"
@@ -88,7 +90,7 @@ export default function Home({ onStartGame, playerLevel = 0, totalXP = 0, onRese
               <span className="video-name">{videoName}</span>
               <button className="video-remove" onClick={handleRemoveVideo}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                  <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </button>
             </div>
@@ -96,49 +98,26 @@ export default function Home({ onStartGame, playerLevel = 0, totalXP = 0, onRese
           </div>
         )}
 
-        {/* Player level badge */}
-        <div className="home-level-badge">
-          <div className="home-level-info">
-            <span className="home-level-label">Level {playerLevel + 1}</span>
-            <span className="home-level-name">{LEVELS[playerLevel].name}</span>
-            {onResetProgress && (
-              <button 
-                onClick={onResetProgress}
-                style={{
-                  background: 'rgba(239, 68, 68, 0.1)',
-                  border: '1px solid rgba(239, 68, 68, 0.3)',
-                  borderRadius: '8px',
-                  padding: '6px 12px',
-                  fontSize: '11px',
-                  color: 'rgba(239, 68, 68, 0.8)',
-                  cursor: 'pointer',
-                  fontFamily: 'system-ui, -apple-system, sans-serif',
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.5px',
-                }}
-                title="Reset Progress"
-              >
-                Reset
-              </button>
-            )}
-          </div>
-          {(() => {
-            const nextXP = getNextLevelXP(playerLevel);
-            if (!nextXP) return <span className="home-level-max">MAX</span>;
-            const currentXP = LEVELS[playerLevel].xpRequired;
-            const progress = Math.min(1, (totalXP - currentXP) / (nextXP - currentXP));
-            return (
-              <div className="home-level-bar-wrap">
-                <div className="home-level-bar">
-                  <div className="home-level-fill" style={{ width: `${progress * 100}%` }} />
-                </div>
-                <span className="home-level-xp">{totalXP} / {nextXP} XP</span>
+        {/* Participate section */}
+        <div className="home-participate">
+          <h2 className="home-participate-title">Participate and win</h2>
+          <div className="home-prize-buttons">
+            <button className="home-prize-btn home-prize-btn-left">
+              <img src={sleepCatImg} alt="" className="home-prize-img home-prize-img-left" />
+              <div className="home-prize-text">
+                <span>Purradise</span>
+                <span>Reset Day</span>
               </div>
-            );
-          })()}
+            </button>
+            <button className="home-prize-btn home-prize-btn-right">
+              <div className="home-prize-text">
+                <span>A Year of Whiskas</span>
+                <span>Wet & Dry Food</span>
+              </div>
+              <img src={foodBoxImg} alt="" className="home-prize-img home-prize-img-right" />
+            </button>
+          </div>
         </div>
-
       </div>
     </div>
   );

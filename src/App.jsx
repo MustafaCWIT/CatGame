@@ -1,7 +1,14 @@
 import { useState, useCallback } from 'react';
+import SplashScreen from './SplashScreen';
+import HowToPlayModal from './HowToPlayModal';
+import LoginModal from './LoginModal';
 import Home from './Home';
+import SignupScreen from './SignupScreen';
+import StartingScreen from './StartingScreen';
 import Game from './game/Game';
 import GameOver from './GameOver';
+import LevelsScreen from './LevelsScreen';
+import UploadScreen from './UploadScreen';
 import { getLevelForXP } from './game/levels';
 
 function loadProgress() {
@@ -9,7 +16,7 @@ function loadProgress() {
     const raw = localStorage.getItem('tap-to-purr-progress');
     if (raw) return JSON.parse(raw);
   } catch { /* ignore */ }
-  return { totalXP: 0 };
+  return { totalXP: 0, videosCount: 0, activities: [] };
 }
 
 function saveProgress(data) {
@@ -18,45 +25,133 @@ function saveProgress(data) {
   } catch { /* ignore */ }
 }
 
+function loadUserData() {
+  try {
+    const raw = localStorage.getItem('tap-to-purr-user');
+    if (raw) return JSON.parse(raw);
+  } catch { /* ignore */ }
+  return { fullName: '', email: '', phone: '' };
+}
+
+function saveUserData(data) {
+  try {
+    localStorage.setItem('tap-to-purr-user', JSON.stringify(data));
+  } catch { /* ignore */ }
+}
+
 // Reset progress function - call this before building for client
 // You can call window.resetWhiskusProgress() in browser console
 if (typeof window !== 'undefined') {
-  window.resetWhiskusProgress = function() {
+  window.resetWhiskusProgress = function () {
     localStorage.removeItem('tap-to-purr-progress');
     window.location.reload();
   };
 }
 
 function App() {
-  const [screen, setScreen] = useState('home');
+  const [screen, setScreen] = useState('splash');
+  const [showModal, setShowModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [progress, setProgress] = useState(loadProgress);
+  const [userData, setUserData] = useState(loadUserData);
   const [sessionScore, setSessionScore] = useState(0);
-  const [prevLevel, setPrevLevel] = useState(0);
   const [gameKey, setGameKey] = useState(0);
+  const [showGameOverModal, setShowGameOverModal] = useState(false);
 
   const playerLevel = getLevelForXP(progress.totalXP);
+
+  const handlePlayClick = useCallback(() => {
+    setShowLoginModal(true);
+  }, []);
+
+  const handleSignupClick = useCallback(() => {
+    setScreen('signup');
+  }, []);
+
+  const handleSignup = useCallback((formData) => {
+    // Save user data
+    const user = {
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone
+    };
+    setUserData(user);
+    saveUserData(user);
+    // After signup, go back to home and show login modal
+    setScreen('home');
+    setShowLoginModal(true);
+  }, []);
+
+  const handleLogin = useCallback(() => {
+    setShowLoginModal(false);
+    setScreen('starting');
+  }, []);
+
+  const handleCountdownComplete = useCallback(() => {
+    const latestProgress = loadProgress();
+    setProgress(latestProgress);
+    setGameKey(prev => prev + 1);
+    setScreen('game');
+  }, []);
+
+  const handleCloseLoginModal = useCallback(() => {
+    setShowLoginModal(false);
+  }, []);
 
   const handleStartGame = useCallback(() => {
     // Reload progress to ensure we have the latest level
     const latestProgress = loadProgress();
     setProgress(latestProgress);
     setGameKey(prev => prev + 1); // Force remount with updated props
+    setShowGameOverModal(false);
     setScreen('game');
   }, []);
 
   const handleEndGame = useCallback((score) => {
-    const oldLevel = getLevelForXP(progress.totalXP);
     const newXP = progress.totalXP + score;
-    const updated = { totalXP: newXP };
+    const now = new Date();
+    const dateStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
+    const newActivity = {
+      text: `You earned ${score} points playing midnight paws`,
+      date: dateStr
+    };
+    const activities = progress.activities || [];
+    const updated = {
+      totalXP: newXP,
+      videosCount: progress.videosCount || 0,
+      activities: [newActivity, ...activities].slice(0, 10) // Keep last 10 activities
+    };
     setProgress(updated);
     saveProgress(updated);
     setSessionScore(score);
-    setPrevLevel(oldLevel);
-    setScreen('gameover');
   }, [progress]);
 
+  const handleShowGameOver = useCallback((score) => {
+    handleEndGame(score);
+    setShowGameOverModal(true);
+  }, [handleEndGame]);
+
   const handleGoHome = useCallback(() => {
+    // Reload progress to ensure we have the latest data
+    const latestProgress = loadProgress();
+    setProgress(latestProgress);
     setScreen('home');
+  }, []);
+
+  const handleSplashComplete = useCallback(() => {
+    setShowModal(true);
+    setScreen('home');
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setShowModal(false);
+  }, []);
+
+  const handleUnlockThemes = useCallback(() => {
+    // Reload progress to ensure we have the latest data
+    const latestProgress = loadProgress();
+    setProgress(latestProgress);
+    setScreen('levels');
   }, []);
 
   const handleResetProgress = useCallback(() => {
@@ -68,25 +163,113 @@ function App() {
     }
   }, []);
 
+  const handleGoToUpload = useCallback(() => {
+    setScreen('upload');
+  }, []);
+
+  const handleVideoUpload = useCallback(() => {
+    const now = new Date();
+    const dateStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
+    const newActivity = {
+      text: 'You uploaded a video',
+      date: dateStr
+    };
+    const activities = progress.activities || [];
+    const updated = {
+      ...progress,
+      videosCount: (progress.videosCount || 0) + 1,
+      activities: [newActivity, ...activities].slice(0, 10)
+    };
+    setProgress(updated);
+    saveProgress(updated);
+    // Stay on upload screen to show success message
+  }, [progress]);
+
+  if (screen === 'splash') {
+    return <SplashScreen onLoadingComplete={handleSplashComplete} />;
+  }
+
+  if (screen === 'signup') {
+    return <SignupScreen onSignup={handleSignup} onGoHome={handleGoHome} />;
+  }
+
+  if (screen === 'starting') {
+    return <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} />;
+  }
+
   if (screen === 'game') {
-    return <Game key={`game-${progress.totalXP}-${gameKey}`} playerLevel={playerLevel} totalXP={progress.totalXP} onEnd={handleEndGame} onRestart={handleStartGame} />;
+    return (
+      <>
+        <Game 
+          key={`game-${progress.totalXP}-${gameKey}`} 
+          playerLevel={playerLevel} 
+          totalXP={progress.totalXP} 
+          onEnd={handleEndGame} 
+          onRestart={handleStartGame}
+          onShowGameOver={handleShowGameOver}
+        />
+        {showGameOverModal && (
+          <GameOver
+            score={sessionScore}
+            onPlayAgain={() => {
+              setShowGameOverModal(false);
+              handleStartGame();
+            }}
+            onGoHome={() => {
+              setShowGameOverModal(false);
+              handleGoHome();
+            }}
+            onUnlockThemes={() => {
+              setShowGameOverModal(false);
+              handleUnlockThemes();
+            }}
+          />
+        )}
+      </>
+    );
   }
 
   if (screen === 'gameover') {
-    const newLevel = getLevelForXP(progress.totalXP);
     return (
       <GameOver
         score={sessionScore}
-        totalXP={progress.totalXP}
-        prevLevel={prevLevel}
-        newLevel={newLevel}
         onPlayAgain={handleStartGame}
         onGoHome={handleGoHome}
+        onUnlockThemes={handleUnlockThemes}
       />
     );
   }
 
-  return <Home onStartGame={handleStartGame} playerLevel={playerLevel} totalXP={progress.totalXP} onResetProgress={handleResetProgress} />;
+  if (screen === 'levels') {
+    return (
+      <LevelsScreen
+        totalXP={progress.totalXP}
+        videosCount={progress.videosCount || 0}
+        activities={progress.activities || []}
+        userData={userData}
+        onStartGame={handleStartGame}
+        onGoBack={handleGoHome}
+        onVideoUpload={handleGoToUpload}
+      />
+    );
+  }
+
+  if (screen === 'upload') {
+    return (
+      <UploadScreen
+        onGoHome={handleGoHome}
+        onUpload={handleVideoUpload}
+      />
+    );
+  }
+
+  return (
+    <>
+      <Home onStartGame={handlePlayClick} onResetProgress={handleResetProgress} />
+      {showModal && <HowToPlayModal onClose={handleCloseModal} />}
+      {showLoginModal && <LoginModal onClose={handleCloseLoginModal} onLogin={handleLogin} onSignup={handleSignupClick} />}
+    </>
+  );
 }
 
 export default App;

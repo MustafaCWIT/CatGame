@@ -6,11 +6,12 @@ export const LEVELS = [
     name: 'Soft Sky',
     xpRequired: 0,       // unlocked from start
     background: ['#2d1b69', '#1a1040', '#3b2d80'],
-    objects: ['fish', 'star', 'paw'],
+    objects: ['fish', 'star', 'clouds', 'bowl'],
     objectColors: ['#c4b5fd', '#a78bfa', '#7dd3fc', '#e0e7ff'],
     primaryColor: '#c4b5fd', // Purple for UI elements
     secondaryColor: '#a78bfa',
     ambientParticles: 'sparkle',
+    useImageBackground: true, // Use gameBackground.png image
   },
   {
     name: 'Cozy Bowl World',
@@ -87,11 +88,11 @@ export const OBJECT_SHAPES = {
   nebula: 'M 35 10 Q 55 10 55 25 Q 65 35 55 45 Q 55 60 35 55 Q 15 60 15 45 Q 5 35 15 25 Q 15 10 35 10 Z',
 };
 
-export const OBJECT_SIZE = 140; // Increased for cat paws (was 80)
-export const MAX_OBJECTS = 6; // Reduced to allow more space
-export const SPAWN_MARGIN = 140; // Increased margin (proportional to OBJECT_SIZE)
-export const MIN_OBJECT_DISTANCE = 200; // Minimum distance between object centers (increased for larger objects)
-export const TAP_RADIUS = 250; // Tap detection radius - very forgiving for cat paws (was unlimited, now generous limit)
+export const OBJECT_SIZE = 250; // Extra large for cat paws
+export const MAX_OBJECTS = 1; // Only one object at a time
+export const SPAWN_MARGIN = 150; // Increased margin to center objects more
+export const MIN_OBJECT_DISTANCE = 300;
+export const TAP_RADIUS = 400; // Very generous touch area for cats
 export const OBJECT_SPEED = 0.3;
 
 // Points for each object type
@@ -111,5 +112,6 @@ export const OBJECT_POINTS = {
   sparkle: 2,
   // Fallback for any other types
   cloud: 1,
+  clouds: 1,
   glowfish: 1,
 };
