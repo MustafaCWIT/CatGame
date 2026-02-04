@@ -8,6 +8,50 @@
   padding-top: 40px;
   overflow: hidden;
   z-index: 100;
+  background: #9C27B0;
+  /* Fallback theme purple */
+}
+
+.starting-screen.loading {
+  justify-content: center;
+  padding-top: 0;
+}
+
+.starting-loader-text {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  animation: loaderPulse 1s ease-in-out infinite;
+  z-index: 10;
+}
+
+@keyframes loaderPulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in {
+  animation: screenFadeIn 0.5s ease-out forwards;
+}
+
+@keyframes screenFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .starting-background {
@@ -79,9 +123,12 @@
 }
 
 @keyframes catBounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
   }
+
   50% {
     transform: translateX(-50%) translateY(-3px);
   }
@@ -120,10 +167,13 @@
 }
 
 @keyframes starGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(-50%) scale(1);
     filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
   }
+
   50% {
     transform: translateX(-50%) scale(1.05);
     filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1));
@@ -143,9 +193,12 @@
 }
 
 @keyframes fishSwim {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0) rotate(-5deg);
   }
+
   50% {
     transform: translateX(10px) rotate(5deg);
   }
@@ -190,9 +243,12 @@
 }
 
 @keyframes countPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }

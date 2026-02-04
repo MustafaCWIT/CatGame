@@ -7,6 +7,17 @@ import fishImg from './assets/fish.png';
 import bowlImg from './assets/bowl.png';
 import cloudsImg from './assets/clouds.png';
 import backgroundImg from './assets/background.png';
+import gameBackgroundImg from './assets/gameBackground.png';
+import lyingCatImg from './assets/lyingCat.png';
+import starImg from './assets/star.png';
+import dollarImg from './assets/dollar.png';
+import gameImg from './assets/game.png';
+import catViewingImg from './assets/catViewing.png';
+import clearCloudsImg from './assets/clearClouds.png';
+import foodBoxImg from './assets/foodBox.png';
+import foodBoxesImg from './assets/foodBoxes.png';
+import signUpCloudImg from './assets/signUpCloud.png';
+import sleepCatImg from './assets/sleepCat.png';
 
 // Helper function to preload an image
 function preloadImage(src) {
@@ -32,6 +43,17 @@ export default function SplashScreen({ onLoadingComplete }) {
     fishImg,
     bowlImg,
     cloudsImg,
+    gameBackgroundImg,
+    lyingCatImg,
+    starImg,
+    dollarImg,
+    gameImg,
+    catViewingImg,
+    clearCloudsImg,
+    foodBoxImg,
+    foodBoxesImg,
+    signUpCloudImg,
+    sleepCatImg
   ];
 
   useEffect(() => {
@@ -106,35 +128,35 @@ export default function SplashScreen({ onLoadingComplete }) {
 
   return (
     <div className={`splash-screen ${isLoaded ? 'splash-fade-out' : ''}`}>
-      <img 
-        src={backgroundImg} 
-        alt="" 
+      <img
+        src={backgroundImg}
+        alt=""
         className={`splash-background ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
       />
 
       {/* Clouds */}
-      <img 
-        src={cloudsImg} 
-        alt="" 
+      <img
+        src={cloudsImg}
+        alt=""
         className={`splash-clouds splash-clouds-left ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
       />
-      <img 
-        src={cloudsImg} 
-        alt="" 
+      <img
+        src={cloudsImg}
+        alt=""
         className={`splash-clouds splash-clouds-right ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
       />
 
       {/* Logo */}
-      <img 
-        src={logoImg} 
-        alt="Whiskas" 
+      <img
+        src={logoImg}
+        alt="Whiskas"
         className={`splash-logo ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
       />
 
       {/* Fish */}
-      <img 
-        src={fishImg} 
-        alt="" 
+      <img
+        src={fishImg}
+        alt=""
         className={`splash-fish ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
       />
 
@@ -146,16 +168,16 @@ export default function SplashScreen({ onLoadingComplete }) {
         </h1>
 
         {/* Cat */}
-        <img 
-          src={catImg} 
-          alt="Cat" 
+        <img
+          src={catImg}
+          alt="Cat"
           className={`splash-cat ${imagesLoaded ? 'splash-image-loaded splash-content-visible' : 'splash-image-loading splash-content-hidden'}`}
         />
 
         {/* Name/Purradise */}
-        <img 
-          src={nameImg} 
-          alt="Purradise" 
+        <img
+          src={nameImg}
+          alt="Purradise"
           className={`splash-name ${imagesLoaded ? 'splash-image-loaded splash-content-visible' : 'splash-image-loading splash-content-hidden'}`}
         />
 
@@ -169,9 +191,9 @@ export default function SplashScreen({ onLoadingComplete }) {
       </div>
 
       {/* Bowl */}
-      <img 
-        src={bowlImg} 
-        alt="" 
+      <img
+        src={bowlImg}
+        alt=""
         className={`splash-bowl ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
       />
     </div>
