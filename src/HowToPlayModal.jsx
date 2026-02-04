@@ -9,7 +9,7 @@ export default function HowToPlayModal({ onClose }) {
         {/* Close button */}
         <button className="modal-close" onClick={onClose}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </button>
 
@@ -42,7 +42,7 @@ export default function HowToPlayModal({ onClose }) {
               <img src={sleepCatImg} alt="" className="modal-prize-img modal-prize-img-cat" />
               <div className="modal-prize-content">
                 <span className="modal-prize-title">Purradise Reset Day</span>
-                <span className="modal-prize-desc">premium grooming experience at a top-rated pet spa, including pickup and drop-off.</span>
+                <span className="modal-prize-desc">premium grooming experience at a top-rated pet<br />spa, including pickup and drop-off.</span>
               </div>
             </div>
 
