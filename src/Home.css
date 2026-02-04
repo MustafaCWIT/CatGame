@@ -349,7 +349,7 @@
 .home-prize-btn {
   flex: 1;
   position: relative;
-  padding: 15px 12px;
+  padding: 15px 18px;
   border: none;
   border-radius: 16px;
   background: #66065A;
@@ -409,13 +409,13 @@
 .home-prize-img-left {
   position: absolute;
   left: -60px;
-  top: -50px;
-  width: 110px;
+  top: -45px;
+  width: 90px;
 }
 
 .home-prize-img-right {
   position: absolute;
-  right: 5px;
-  bottom: -5px;
+  right: 2px;
+  bottom: -13px;
   width: 65px;
 }
