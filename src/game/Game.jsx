@@ -7,8 +7,9 @@ import FloatingObject from './FloatingObject';
 import Ripple from './Ripple';
 import PointPopup from './PointPopup';
 import Background, { BackgroundDefs } from './Background';
+import { createObject } from '../hooks/useGameState';
 
-const GAME_DURATION = 30; // seconds
+const GAME_DURATION = 120; // 2 minutes
 
 export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGameOver }) {
   const {
@@ -18,7 +19,8 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
     ripples,
     pointPopups,
     initObjects,
-    collectNearest,
+    collectById,
+    replaceObject,
     clearRipple,
     clearPointPopup,
     resetGame,
@@ -26,7 +28,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
   } = useGameState(playerLevel);
 
   const svgRef = useRef(null);
-  const animFrameRef = useRef(null);
+  const objectRefs = useRef({}); // To track visual positions for GSAP
   const longPressTimer = useRef(null);
   const pitchCounter = useRef(0);
   const scoreRef = useRef(score);
@@ -34,7 +36,6 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
   scoreRef.current = score;
 
   const [timeLeft, setTimeLeft] = useState(GAME_DURATION);
-  const [showEndBtn, setShowEndBtn] = useState(true);
   const [showGameOver, setShowGameOver] = useState(false);
   const scoreSavedRef = useRef(false);
   const timerIntervalRef = useRef(null);
@@ -42,30 +43,23 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
   const width = window.innerWidth;
   const height = window.innerHeight;
 
-  // Compute level-up info for the modal
   const newTotalXP = totalXP + score;
   const newLevel = getLevelForXP(newTotalXP);
-  const didLevelUp = newLevel > playerLevel;
   const level = LEVELS[playerLevel];
 
-  // XP progress toward next level
   const currentLevelXP = LEVELS[playerLevel].xpRequired;
   const nextLevelXP = getNextLevelXP(playerLevel);
   const xpProgress = nextLevelXP
     ? Math.min(1, (newTotalXP - currentLevelXP) / (nextLevelXP - currentLevelXP))
     : 1;
 
-  // Keep end button visible (removed auto-hide)
-
-  // Countdown timer
   useEffect(() => {
     if (showGameOver) return;
-    
+
     timerIntervalRef.current = setInterval(() => {
       setTimeLeft(prev => {
         if (prev <= 1) {
           clearInterval(timerIntervalRef.current);
-          // Save score when time runs out (only once)
           if (onEnd && scoreRef.current > 0 && !scoreSavedRef.current) {
             onEnd(scoreRef.current);
             scoreSavedRef.current = true;
@@ -85,102 +79,55 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
     };
   }, [onEnd, onShowGameOver, showGameOver]);
 
-  // Initialize objects on mount and reset score saved flag
+  // Initialize objects on mount and handle resize
   useEffect(() => {
-    scoreSavedRef.current = false; // Reset when component mounts (new game)
-    initObjects(width, height);
-    const onResize = () => updateScreenSize(window.innerWidth, window.innerHeight);
+    scoreSavedRef.current = false;
+    // Use initial window size
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    initObjects(w, h);
+
+    const onResize = () => {
+      updateScreenSize(window.innerWidth, window.innerHeight);
+    };
+
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [initObjects, updateScreenSize]); // stable dependencies
 
-  // Animation loop
-  useEffect(() => {
-    if (showGameOver) return;
-    
-    let running = true;
-    function animate() {
-      if (!running || showGameOver) return;
-      setObjects(prev => {
-        // First, update positions
-        const updated = prev.map(obj => {
-          let { x, y, vx, vy, rotation, rotationSpeed } = obj;
-          x += vx;
-          y += vy;
-          if (x < 0 || x > width - OBJECT_SIZE) vx = -vx;
-          if (y < 0 || y > height - OBJECT_SIZE) vy = -vy;
-          x = Math.max(0, Math.min(width - OBJECT_SIZE, x));
-          y = Math.max(0, Math.min(height - OBJECT_SIZE, y));
-          rotation = (rotation + rotationSpeed) % 360;
-          return { ...obj, x, y, vx, vy, rotation, spawning: false };
-        });
-        
-        // Then, check for collisions and push objects apart
-        const collisionAdjusted = updated.map((obj, i) => {
-          let { x, y, vx, vy } = obj;
-          const objCenterX = x + OBJECT_SIZE / 2;
-          const objCenterY = y + OBJECT_SIZE / 2;
-          
-          // Check collision with all other objects
-          updated.forEach((otherObj, j) => {
-            if (i === j) return; // Skip self
-            
-            const otherCenterX = otherObj.x + OBJECT_SIZE / 2;
-            const otherCenterY = otherObj.y + OBJECT_SIZE / 2;
-            const distance = Math.hypot(objCenterX - otherCenterX, objCenterY - otherCenterY);
-            
-            // If objects are too close, push them apart
-            if (distance < MIN_OBJECT_DISTANCE && distance > 0) {
-              const minDist = MIN_OBJECT_DISTANCE;
-              const overlap = minDist - distance;
-              const angle = Math.atan2(objCenterY - otherCenterY, objCenterX - otherCenterX);
-              
-              // Push this object away from the other
-              const pushX = Math.cos(angle) * overlap * 0.5;
-              const pushY = Math.sin(angle) * overlap * 0.5;
-              
-              x += pushX;
-              y += pushY;
-              
-              // Adjust velocity to push away
-              const pushStrength = 0.1;
-              vx += Math.cos(angle) * pushStrength;
-              vy += Math.sin(angle) * pushStrength;
-              
-              // Clamp position to screen bounds
-              x = Math.max(0, Math.min(width - OBJECT_SIZE, x));
-              y = Math.max(0, Math.min(height - OBJECT_SIZE, y));
-            }
-          });
-          
-          // Limit velocity to prevent objects from moving too fast
-          const maxSpeed = 0.5;
-          const speed = Math.hypot(vx, vy);
-          if (speed > maxSpeed) {
-            vx = (vx / speed) * maxSpeed;
-            vy = (vy / speed) * maxSpeed;
-          }
-          
-          return { ...obj, x, y, vx, vy };
-        });
-        
-        return collisionAdjusted;
-      });
-      animFrameRef.current = requestAnimationFrame(animate);
-    }
-    animFrameRef.current = requestAnimationFrame(animate);
-    return () => {
-      running = false;
-      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
-    };
-  }, [width, height, setObjects, showGameOver]);
+  const registerRef = useCallback((id, el) => {
+    if (el) objectRefs.current[id] = el;
+    else delete objectRefs.current[id];
+  }, []);
 
   const onTouch = useCallback((tx, ty) => {
     if (showGameOver) return;
-    collectNearest(tx, ty);
-    playChime(pitchCounter.current++);
-    tryVibrate();
-  }, [collectNearest, showGameOver]);
+
+    // Find nearest object by checking the ACTUAL screen position of the animated elements
+    let minDist = Infinity;
+    let nearestId = null;
+
+    objects.forEach(obj => {
+      const el = objectRefs.current[obj.id];
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const d = Math.hypot(tx - cx, ty - cy);
+
+      if (d < minDist) {
+        minDist = d;
+        nearestId = obj.id;
+      }
+    });
+
+    if (nearestId !== null) {
+      collectById(nearestId, tx, ty);
+      playChime(pitchCounter.current++);
+      tryVibrate();
+    }
+  }, [objects, showGameOver, collectById]);
 
   const { handleTouchStart, handleTouchEnd, handleMouseDown } = useTouchHandler(onTouch);
 
@@ -231,25 +178,32 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
           position: 'absolute', top: 0, left: 0,
           touchAction: 'none', userSelect: 'none', WebkitUserSelect: 'none', cursor: 'none',
         }}
-        onTouchStart={(e) => { 
-          if (!showGameOver) { 
+        onTouchStart={(e) => {
+          if (!showGameOver) {
             isTouchDevice.current = true;
-            handleTouchStart(e); 
-            handleResetStart(e); 
-          } 
+            handleTouchStart(e);
+            handleResetStart(e);
+          }
         }}
         onTouchEnd={(e) => { handleTouchEnd(e); handleResetEnd(); }}
-        onMouseDown={(e) => { 
-          if (!showGameOver && !isTouchDevice.current) { 
-            handleMouseDown(e); 
-            handleResetStart(e); 
-          } 
+        onMouseDown={(e) => {
+          if (!showGameOver && !isTouchDevice.current) {
+            handleMouseDown(e);
+            handleResetStart(e);
+          }
         }}
         onMouseUp={handleResetEnd}
       >
         <BackgroundDefs levelIndex={playerLevel} width={width} height={height} />
         <Background levelIndex={playerLevel} width={width} height={height} />
-        {objects.map(obj => <FloatingObject key={obj.id} obj={obj} />)}
+        {objects.map(obj => (
+          <FloatingObject
+            key={obj.id}
+            obj={obj}
+            onOffScreen={replaceObject}
+            registerRef={registerRef}
+          />
+        ))}
         {ripples.map(r => <Ripple key={r.id} ripple={r} onDone={clearRipple} />)}
         {pointPopups.map(p => <PointPopup key={p.id} popup={p} onDone={clearPointPopup} />)}
       </svg>
@@ -261,27 +215,27 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
         pointerEvents: 'none', fontFamily: 'system-ui, -apple-system, sans-serif', zIndex: 10,
       }}>
         {/* Left: Score */}
-        <div style={{ 
-          ...glassStyle, 
-          background: 'rgba(124, 58, 237, 0.9)', 
-          padding: '10px 18px', 
+        <div style={{
+          ...glassStyle,
+          background: 'rgba(124, 58, 237, 0.9)',
+          padding: '10px 18px',
           borderRadius: 12,
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: 8 
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8
         }}>
           <span style={{ fontSize: 22, fontWeight: 700, color: 'white', fontVariantNumeric: 'tabular-nums' }}>{score}</span>
         </div>
 
         {/* Right: Timer */}
-        <div style={{ 
-          ...glassStyle, 
-          background: 'rgba(124, 58, 237, 0.9)', 
-          padding: '10px 18px', 
+        <div style={{
+          ...glassStyle,
+          background: 'rgba(124, 58, 237, 0.9)',
+          padding: '10px 18px',
           borderRadius: 12,
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: 10 
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10
         }}>
           <span style={{
             fontSize: 22, fontWeight: 700, fontVariantNumeric: 'tabular-nums',
@@ -296,7 +250,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
         pointerEvents: 'auto', zIndex: 10,
       }}>
         <button
-          onClick={(e) => { 
+          onClick={(e) => {
             e.stopPropagation();
             // Pause the game and show GameOver modal
             setShowGameOver(true);
@@ -351,8 +305,8 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
                 }}>
                   <div style={{
                     height: '100%', width: `${xpProgress * 100}%`,
-                    background: xpProgress >= 1 
-                      ? 'linear-gradient(90deg, #6ee7b7, #34d399)' 
+                    background: xpProgress >= 1
+                      ? 'linear-gradient(90deg, #6ee7b7, #34d399)'
                       : `linear-gradient(90deg, ${level.primaryColor}, ${level.secondaryColor})`,
                     borderRadius: 2, transition: 'width 0.3s ease',
                   }} />
