@@ -1,7 +1,7 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { useGameState } from '../hooks/useGameState';
 import { useTouchHandler } from '../hooks/useTouchHandler';
-import { OBJECT_SIZE, LEVELS, getLevelForXP, getNextLevelXP, MIN_OBJECT_DISTANCE } from './levels';
+import { OBJECT_SIZE, LEVELS, getLevelForXP, getNextLevelXP, MIN_OBJECT_DISTANCE, TAP_RADIUS } from './levels';
 import { playChime, tryVibrate } from './sounds';
 import FloatingObject from './FloatingObject';
 import Ripple from './Ripple';
@@ -122,7 +122,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
       }
     });
 
-    if (nearestId !== null) {
+    if (nearestId !== null && minDist < TAP_RADIUS) {
       collectById(nearestId, tx, ty);
       playChime(pitchCounter.current++);
       tryVibrate();
