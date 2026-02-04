@@ -1,10 +1,13 @@
 import './GameOver.css';
 import catViewingImg from './assets/catViewing.png';
 import dollarImg from './assets/dollar.png';
+import gameBackgroundImg from './assets/gameBackground.png';
 
 export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes }) {
   return (
     <div className="go-page">
+      <img src={gameBackgroundImg} alt="" className="go-background-blur" />
+
       {/* Header */}
       <div className="go-header">
         <button className="go-home-btn" onClick={onGoHome}>
