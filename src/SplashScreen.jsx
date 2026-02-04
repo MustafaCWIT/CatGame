@@ -8,64 +8,158 @@ import bowlImg from './assets/bowl.png';
 import cloudsImg from './assets/clouds.png';
 import backgroundImg from './assets/background.png';
 
+// Helper function to preload an image
+function preloadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
 export default function SplashScreen({ onLoadingComplete }) {
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // List of all images to preload
+  const imagesToLoad = [
+    backgroundImg,
+    logoImg,
+    catImg,
+    nameImg,
+    fishImg,
+    bowlImg,
+    cloudsImg,
+  ];
 
   useEffect(() => {
-    // Simulate loading progress
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        return prev + 2;
-      });
-    }, 50);
+    let isMounted = true;
+    let loadedCount = 0;
+    const totalImages = imagesToLoad.length;
 
-    return () => clearInterval(interval);
+    // Preload all images
+    const loadImages = async () => {
+      try {
+        // Load images in parallel
+        const loadPromises = imagesToLoad.map((src) =>
+          preloadImage(src)
+            .then(() => {
+              if (isMounted) {
+                loadedCount++;
+                const newProgress = Math.min(
+                  Math.floor((loadedCount / totalImages) * 90), // Reserve 10% for final transition
+                  90
+                );
+                setProgress(newProgress);
+              }
+            })
+            .catch((error) => {
+              console.warn('Failed to load image:', src, error);
+              if (isMounted) {
+                loadedCount++;
+                const newProgress = Math.min(
+                  Math.floor((loadedCount / totalImages) * 90),
+                  90
+                );
+                setProgress(newProgress);
+              }
+            })
+        );
+
+        await Promise.all(loadPromises);
+
+        if (isMounted) {
+          // All images loaded, complete progress
+          setProgress(100);
+          setImagesLoaded(true);
+        }
+      } catch (error) {
+        console.error('Error loading images:', error);
+        if (isMounted) {
+          setProgress(100);
+          setImagesLoaded(true);
+        }
+      }
+    };
+
+    loadImages();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   useEffect(() => {
-    if (progress === 100) {
-      // Wait a bit before transitioning
+    if (imagesLoaded && progress === 100) {
+      // Wait a bit before transitioning after all images are loaded
       const timeout = setTimeout(() => {
         setIsLoaded(true);
         setTimeout(() => {
           onLoadingComplete();
         }, 500);
-      }, 300);
+      }, 2000); // Increased from 300ms to 2000ms (2 seconds)
       return () => clearTimeout(timeout);
     }
-  }, [progress, onLoadingComplete]);
+  }, [imagesLoaded, progress, onLoadingComplete]);
 
   return (
     <div className={`splash-screen ${isLoaded ? 'splash-fade-out' : ''}`}>
-      <img src={backgroundImg} alt="" className="splash-background" />
+      <img 
+        src={backgroundImg} 
+        alt="" 
+        className={`splash-background ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
+      />
 
       {/* Clouds */}
-      <img src={cloudsImg} alt="" className="splash-clouds splash-clouds-left" />
-      <img src={cloudsImg} alt="" className="splash-clouds splash-clouds-right" />
+      <img 
+        src={cloudsImg} 
+        alt="" 
+        className={`splash-clouds splash-clouds-left ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
+      />
+      <img 
+        src={cloudsImg} 
+        alt="" 
+        className={`splash-clouds splash-clouds-right ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
+      />
 
       {/* Logo */}
-      <img src={logoImg} alt="Whiskas" className="splash-logo" />
+      <img 
+        src={logoImg} 
+        alt="Whiskas" 
+        className={`splash-logo ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
+      />
 
       {/* Fish */}
-      <img src={fishImg} alt="" className="splash-fish" />
+      <img 
+        src={fishImg} 
+        alt="" 
+        className={`splash-fish ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
+      />
 
       {/* Main content */}
       <div className="splash-content">
         {/* Title */}
-        <h1 className="splash-title">Tap To Purr</h1>
+        <h1 className={`splash-title ${imagesLoaded ? 'splash-content-visible' : 'splash-content-hidden'}`}>
+          Tap To Purr
+        </h1>
 
         {/* Cat */}
-        <img src={catImg} alt="Cat" className="splash-cat" />
+        <img 
+          src={catImg} 
+          alt="Cat" 
+          className={`splash-cat ${imagesLoaded ? 'splash-image-loaded splash-content-visible' : 'splash-image-loading splash-content-hidden'}`}
+        />
 
         {/* Name/Purradise */}
-        <img src={nameImg} alt="Purradise" className="splash-name" />
+        <img 
+          src={nameImg} 
+          alt="Purradise" 
+          className={`splash-name ${imagesLoaded ? 'splash-image-loaded splash-content-visible' : 'splash-image-loading splash-content-hidden'}`}
+        />
 
-        {/* Loader */}
+        {/* Loader - always visible */}
         <div className="splash-loader-container">
           <div className="splash-loader">
             <div className="splash-loader-fill" style={{ width: `${progress}%` }} />
@@ -75,7 +169,11 @@ export default function SplashScreen({ onLoadingComplete }) {
       </div>
 
       {/* Bowl */}
-      <img src={bowlImg} alt="" className="splash-bowl" />
+      <img 
+        src={bowlImg} 
+        alt="" 
+        className={`splash-bowl ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
+      />
     </div>
   );
 }
