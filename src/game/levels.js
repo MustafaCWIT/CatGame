@@ -90,7 +90,7 @@ export const OBJECT_SHAPES = {
 
 export const OBJECT_SIZE = 250; // Extra large for cat paws
 export const MAX_OBJECTS = 1; // Only one object at a time
-export const SPAWN_MARGIN = 100; // Adjusted for larger size
+export const SPAWN_MARGIN = 150; // Increased margin to center objects more
 export const MIN_OBJECT_DISTANCE = 300;
 export const TAP_RADIUS = 400; // Very generous touch area for cats
 export const OBJECT_SPEED = 0.3;

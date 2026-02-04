@@ -13,13 +13,21 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
   const color = level.objectColors[Math.floor(Math.random() * level.objectColors.length)];
 
   // Always drop from top to bottom for "one at a time" flow
-  const duration = randomBetween(1.0, 2.0); // Faster drop for more excitement
 
-  // Random horizontal position across the screen
-  const x = randomBetween(SPAWN_MARGIN, screenW - SPAWN_MARGIN - OBJECT_SIZE);
-  const y = -OBJECT_SIZE - 200; // Start off-screen at the top
+  // Ensure objects are well-centered and not clumped at the left
+  let range = screenW - (SPAWN_MARGIN * 2) - OBJECT_SIZE;
+  let x;
+  if (range <= 0) {
+    // If screen is narrow, just center it
+    x = (screenW - OBJECT_SIZE) / 2;
+  } else {
+    // Randomly place within the safe middle area
+    x = SPAWN_MARGIN + Math.random() * range;
+  }
+
+  const y = -OBJECT_SIZE;
   const targetX = x;
-  const targetY = screenH + 200; // Drop all the way through
+  const targetY = screenH + OBJECT_SIZE;
 
   return {
     id: ++objectIdCounter,
@@ -29,7 +37,7 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
     y,
     targetX,
     targetY,
-    duration,
+    duration: randomBetween(1.5, 2.8), // Slower and more varied for easier catching
     scale: randomBetween(1.0, 1.4),
     rotation: randomBetween(0, 360),
     rotationSpeed: randomBetween(-0.2, 0.2),

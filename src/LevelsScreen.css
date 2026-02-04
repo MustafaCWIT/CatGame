@@ -6,8 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
   background: #9C27B0;
   -webkit-overflow-scrolling: touch;
 }
@@ -94,8 +93,9 @@
   /* Increased from 50px */
   position: absolute;
   left: 50%;
+  top: 35px;
+  /* Added space from top */
   transform: translateX(-50%);
-  margin-bottom: 20px;
 }
 
 /* Content */
@@ -105,10 +105,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 20px 40px;
-  /* Increased top padding to account for absolute header */
+  padding: 140px 20px 40px;
+  /* Increased top padding to account for logo position */
   width: 100%;
   max-width: 500px;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.levels-content::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 /* User Section */
