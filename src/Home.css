@@ -174,7 +174,7 @@
   position: absolute;
   width: 260px;
   height: 80px;
-  background: radial-gradient(ellipse at 50% 30%, #96b8c9 0%, #ade8ff 30%, #718f9b 60%, #7e9eac 100%);
+  background: radial-gradient(ellipse at 50% 50%, #718f9b 0%, #7e9eac 40%, #96b8c9 70%, #ade8ff 100%);
   border-radius: 50%;
   bottom: 5px;
   left: 50%;
@@ -185,6 +185,7 @@
     inset 0 -10px 20px rgba(204, 236, 250, 0.4),
     inset 0 10px 20px rgba(155, 153, 153, 0.3);
   z-index: 0;
+  filter: blur(8px);
 }
 
 .home-cat {
