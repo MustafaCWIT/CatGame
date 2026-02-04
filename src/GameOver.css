@@ -6,12 +6,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding: 20px;
+  justify-content: flex-start;
+  overflow-y: auto;
+  padding: 100px 20px 60px;
   z-index: 1000;
   background: rgba(45, 0, 50, 0.15);
-  /* Lighter purple tint */
+  box-sizing: border-box;
 }
 
 .go-background-blur {
@@ -175,23 +175,24 @@
 }
 
 .go-btn-end {
-  background: #3A0B55;
+  background: linear-gradient(180deg, #74036A 0%, #4B1188 100%);
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Unlock button at bottom */
 .go-unlock-btn {
-  margin-top: 30px;
-  padding: 16px 40px;
+  margin-top: 40px;
+  padding: 16px 50px;
   background: linear-gradient(180deg, #FF9800 0%, #FFB300 100%);
   border: none;
-  border-radius: 30px;
+  border-radius: 20px;
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 800;
+  font-style: italic;
   color: white;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease;
 }

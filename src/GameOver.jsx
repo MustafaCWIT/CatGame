@@ -44,12 +44,12 @@ export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes 
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Bottom button */}
-      <button className="go-unlock-btn" onClick={onUnlockThemes}>
-        Unlock More Themes
-      </button>
+        {/* Bottom button moved inside container */}
+        <button className="go-unlock-btn" onClick={onUnlockThemes}>
+          Unlock More Themes
+        </button>
+      </div>
     </div>
   );
 }
