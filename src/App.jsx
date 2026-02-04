@@ -123,8 +123,12 @@ function App() {
   const playerLevel = getLevelForXP(progress.totalXP);
 
   const handlePlayClick = useCallback(() => {
-    setShowLoginModal(true);
-  }, []);
+    if (session) {
+      setScreen('starting');
+    } else {
+      setShowLoginModal(true);
+    }
+  }, [session]);
 
   const handleSignupClick = useCallback(() => {
     setScreen('signup');
