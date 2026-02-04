@@ -133,8 +133,8 @@
 }
 
 .modal-prize-card-top {
-  padding-left: 70px;
-  margin-left: 40px;
+  padding-left: 95px;
+  margin-left: 0;
   margin-top: 30px;
 }
 
@@ -178,8 +178,8 @@
 }
 
 .modal-prize-img-cat {
-  left: -50px;
-  top: -45px;
+  left: -4px;
+  top: -46.5px;
   width: 110px;
   height: auto;
 }
