@@ -56,6 +56,7 @@ function App() {
   const [userData, setUserData] = useState(loadUserData);
   const [sessionScore, setSessionScore] = useState(0);
   const [gameKey, setGameKey] = useState(0);
+  const [showGameOverModal, setShowGameOverModal] = useState(false);
 
   const playerLevel = getLevelForXP(progress.totalXP);
 
@@ -102,6 +103,7 @@ function App() {
     const latestProgress = loadProgress();
     setProgress(latestProgress);
     setGameKey(prev => prev + 1); // Force remount with updated props
+    setShowGameOverModal(false);
     setScreen('game');
   }, []);
 
@@ -122,8 +124,12 @@ function App() {
     setProgress(updated);
     saveProgress(updated);
     setSessionScore(score);
-    setScreen('gameover');
   }, [progress]);
+
+  const handleShowGameOver = useCallback((score) => {
+    handleEndGame(score);
+    setShowGameOverModal(true);
+  }, [handleEndGame]);
 
   const handleGoHome = useCallback(() => {
     // Reload progress to ensure we have the latest data
@@ -192,7 +198,35 @@ function App() {
   }
 
   if (screen === 'game') {
-    return <Game key={`game-${progress.totalXP}-${gameKey}`} playerLevel={playerLevel} totalXP={progress.totalXP} onEnd={handleEndGame} onRestart={handleStartGame} />;
+    return (
+      <>
+        <Game 
+          key={`game-${progress.totalXP}-${gameKey}`} 
+          playerLevel={playerLevel} 
+          totalXP={progress.totalXP} 
+          onEnd={handleEndGame} 
+          onRestart={handleStartGame}
+          onShowGameOver={handleShowGameOver}
+        />
+        {showGameOverModal && (
+          <GameOver
+            score={sessionScore}
+            onPlayAgain={() => {
+              setShowGameOverModal(false);
+              handleStartGame();
+            }}
+            onGoHome={() => {
+              setShowGameOverModal(false);
+              handleGoHome();
+            }}
+            onUnlockThemes={() => {
+              setShowGameOverModal(false);
+              handleUnlockThemes();
+            }}
+          />
+        )}
+      </>
+    );
   }
 
   if (screen === 'gameover') {
@@ -233,7 +267,7 @@ function App() {
     <>
       <Home onStartGame={handlePlayClick} onResetProgress={handleResetProgress} />
       {showModal && <HowToPlayModal onClose={handleCloseModal} />}
-      {showLoginModal && <LoginModal onClose={handleCloseLoginModal} onLogin={handleLogin} />}
+      {showLoginModal && <LoginModal onClose={handleCloseLoginModal} onLogin={handleLogin} onSignup={handleSignupClick} />}
     </>
   );
 }

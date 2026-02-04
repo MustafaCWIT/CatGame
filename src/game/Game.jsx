@@ -10,7 +10,7 @@ import Background, { BackgroundDefs } from './Background';
 
 const GAME_DURATION = 30; // seconds
 
-export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
+export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGameOver }) {
   const {
     score,
     objects,
@@ -35,8 +35,9 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
 
   const [timeLeft, setTimeLeft] = useState(GAME_DURATION);
   const [showEndBtn, setShowEndBtn] = useState(true);
-  const [showModal, setShowModal] = useState(false);
+  const [showGameOver, setShowGameOver] = useState(false);
   const scoreSavedRef = useRef(false);
+  const timerIntervalRef = useRef(null);
 
   const width = window.innerWidth;
   const height = window.innerHeight;
@@ -58,23 +59,31 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
 
   // Countdown timer
   useEffect(() => {
-    const interval = setInterval(() => {
+    if (showGameOver) return;
+    
+    timerIntervalRef.current = setInterval(() => {
       setTimeLeft(prev => {
         if (prev <= 1) {
-          clearInterval(interval);
+          clearInterval(timerIntervalRef.current);
           // Save score when time runs out (only once)
           if (onEnd && scoreRef.current > 0 && !scoreSavedRef.current) {
             onEnd(scoreRef.current);
             scoreSavedRef.current = true;
           }
-          setShowModal(true);
+          if (onShowGameOver) {
+            onShowGameOver(scoreRef.current);
+          }
           return 0;
         }
         return prev - 1;
       });
     }, 1000);
-    return () => clearInterval(interval);
-  }, [onEnd]);
+    return () => {
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current);
+      }
+    };
+  }, [onEnd, onShowGameOver, showGameOver]);
 
   // Initialize objects on mount and reset score saved flag
   useEffect(() => {
@@ -87,9 +96,11 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
 
   // Animation loop
   useEffect(() => {
+    if (showGameOver) return;
+    
     let running = true;
     function animate() {
-      if (!running) return;
+      if (!running || showGameOver) return;
       setObjects(prev => {
         // First, update positions
         const updated = prev.map(obj => {
@@ -162,14 +173,14 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
       running = false;
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
-  }, [width, height, setObjects]);
+  }, [width, height, setObjects, showGameOver]);
 
   const onTouch = useCallback((tx, ty) => {
-    if (showModal) return;
+    if (showGameOver) return;
     collectNearest(tx, ty);
     playChime(pitchCounter.current++);
     tryVibrate();
-  }, [collectNearest, showModal]);
+  }, [collectNearest, showGameOver]);
 
   const { handleTouchStart, handleTouchEnd, handleMouseDown } = useTouchHandler(onTouch);
 
@@ -221,7 +232,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
           touchAction: 'none', userSelect: 'none', WebkitUserSelect: 'none', cursor: 'none',
         }}
         onTouchStart={(e) => { 
-          if (!showModal) { 
+          if (!showGameOver) { 
             isTouchDevice.current = true;
             handleTouchStart(e); 
             handleResetStart(e); 
@@ -229,7 +240,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
         }}
         onTouchEnd={(e) => { handleTouchEnd(e); handleResetEnd(); }}
         onMouseDown={(e) => { 
-          if (!showModal && !isTouchDevice.current) { 
+          if (!showGameOver && !isTouchDevice.current) { 
             handleMouseDown(e); 
             handleResetStart(e); 
           } 
@@ -285,7 +296,19 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
         pointerEvents: 'auto', zIndex: 10,
       }}>
         <button
-          onClick={(e) => { e.stopPropagation(); handleEndGame(); }}
+          onClick={(e) => { 
+            e.stopPropagation();
+            // Pause the game and show GameOver modal
+            setShowGameOver(true);
+            // Save score and show GameOver modal
+            if (onEnd && !scoreSavedRef.current) {
+              onEnd(scoreRef.current);
+              scoreSavedRef.current = true;
+            }
+            if (onShowGameOver) {
+              onShowGameOver(scoreRef.current);
+            }
+          }}
           onTouchStart={(e) => e.stopPropagation()}
           style={{
             background: 'rgba(124, 58, 237, 0.9)',
@@ -346,126 +369,6 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart }) {
         </div>
       )}
 
-      {/* End-of-game Modal */}
-      {showModal && (
-        <div style={{
-          position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)',
-          backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100,
-          animation: 'modalFadeIn 0.4s ease-out', fontFamily: 'system-ui, -apple-system, sans-serif',
-        }}>
-          <div style={{
-            background: 'linear-gradient(145deg, rgba(30,27,75,0.95), rgba(15,10,26,0.95))',
-            border: '1px solid rgba(167,139,250,0.2)', borderRadius: 24,
-            padding: '40px 36px', maxWidth: 400, width: '90%', textAlign: 'center',
-            boxShadow: '0 25px 60px rgba(0,0,0,0.5), 0 0 80px rgba(124,58,237,0.15)',
-            animation: 'modalSlideUp 0.4s ease-out',
-          }}>
-            {/* Level Up Banner */}
-            {didLevelUp && (
-              <div style={{
-                background: 'linear-gradient(135deg, rgba(110,231,183,0.15), rgba(52,211,153,0.1))',
-                border: '1px solid rgba(110,231,183,0.25)', borderRadius: 14,
-                padding: '14px 20px', marginBottom: 20, animation: 'modalSlideUp 0.5s ease-out',
-              }}>
-                <div style={{ fontSize: 28, marginBottom: 4 }}>🎉</div>
-                <div style={{ fontSize: 20, fontWeight: 700, color: '#6ee7b7' }}>Level Up!</div>
-                <div style={{ fontSize: 13, color: 'rgba(110,231,183,0.7)', marginTop: 4 }}>
-                  {LEVELS[playerLevel].name} → {LEVELS[newLevel].name}
-                </div>
-                <div style={{ fontSize: 12, color: 'rgba(110,231,183,0.5)', marginTop: 2 }}>
-                  You unlocked Level {newLevel + 1}!
-                </div>
-              </div>
-            )}
-
-            <div style={{ fontSize: 48, marginBottom: 8 }}>🐾</div>
-            <h2 style={{ color: '#e0e7ff', fontSize: 24, fontWeight: 700, margin: '0 0 6px' }}>
-              Time's Up!
-            </h2>
-            <p style={{ color: 'rgba(165,180,252,0.6)', fontSize: 14, margin: '0 0 24px' }}>
-              Here's how your cat did
-            </p>
-
-            {/* Score */}
-            <div style={{
-              background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)',
-              borderRadius: 18, padding: '20px 20px', marginBottom: 16,
-              display: 'flex', justifyContent: 'center', gap: 28,
-            }}>
-              <div>
-                <div style={{ fontSize: 40, fontWeight: 700, color: level.primaryColor, lineHeight: 1 }}>{score}</div>
-                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 6 }}>Collected</div>
-              </div>
-              <div style={{ width: 1, background: 'rgba(255,255,255,0.08)' }} />
-              <div>
-                <div style={{ fontSize: 40, fontWeight: 700, color: level.secondaryColor, lineHeight: 1 }}>+{score}</div>
-                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 6 }}>XP Earned</div>
-              </div>
-            </div>
-
-            {/* XP bar */}
-            <div style={{ marginBottom: 24 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                <span style={{ fontSize: 12, color: 'rgba(165,180,252,0.5)' }}>Level {playerLevel + 1}</span>
-                {nextLevelXP ? (
-                  <span style={{ fontSize: 12, color: 'rgba(165,180,252,0.4)', fontVariantNumeric: 'tabular-nums' }}>
-                    {newTotalXP} / {nextLevelXP} XP
-                  </span>
-                ) : (
-                  <span style={{ fontSize: 12, color: 'rgba(110,231,183,0.6)' }}>MAX LEVEL</span>
-                )}
-              </div>
-              <div style={{ height: 6, background: 'rgba(255,255,255,0.06)', borderRadius: 3, overflow: 'hidden' }}>
-                <div style={{
-                  height: '100%', borderRadius: 3, transition: 'width 0.6s ease',
-                  width: `${Math.min(xpProgress, 1) * 100}%`,
-                  background: didLevelUp 
-                    ? 'linear-gradient(90deg, #6ee7b7, #34d399)' 
-                    : `linear-gradient(90deg, ${level.primaryColor}, ${level.secondaryColor})`,
-                }} />
-              </div>
-            </div>
-
-            <div style={{ color: level.primaryColor, fontSize: 14, fontWeight: 500, marginBottom: 24 }}>
-              World: {level.name}
-            </div>
-
-            {/* Buttons */}
-            <div style={{ display: 'flex', gap: 10 }}>
-              <button
-                onClick={() => { setShowModal(false); handleEndGame(); }}
-                style={{
-                  flex: 1, padding: '14px 20px', borderRadius: 14,
-                  border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.06)',
-                  color: '#a5b4fc', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
-                }}
-              >View Results</button>
-              <button
-                onClick={() => {
-                  // Score is already saved when time ran out
-                  // Navigate away and back to get updated props (new level)
-                  if (onRestart) {
-                    onRestart();
-                  } else {
-                    // Fallback: just reset if no restart callback
-                    setShowModal(false);
-                    setTimeLeft(GAME_DURATION);
-                    scoreSavedRef.current = false; // Reset for next game
-                    resetGame();
-                    initObjects(width, height);
-                  }
-                }}
-                style={{
-                  flex: 1, padding: '14px 20px', borderRadius: 14, border: 'none',
-                  background: 'linear-gradient(135deg, #7c3aed, #6366f1)', color: '#e0e7ff',
-                  fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
-                }}
-              >Play Again</button>
-            </div>
-          </div>
-        </div>
-      )}
 
       <style>{`
         @keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }

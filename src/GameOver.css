@@ -1,28 +1,24 @@
 .go-page {
-  position: relative;
+  position: fixed;
+  inset: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   padding: 20px;
-}
-
-.go-background {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 /* Modal container with cat */
 .go-modal-container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +54,9 @@
   align-items: center;
   min-width: 280px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 /* Dollar icon */

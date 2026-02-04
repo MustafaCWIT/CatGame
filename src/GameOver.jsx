@@ -1,12 +1,10 @@
 import './GameOver.css';
 import catViewingImg from './assets/catViewing.png';
-import gameBackgroundImg from './assets/gameBackground.png';
 import dollarImg from './assets/dollar.png';
 
 export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes }) {
   return (
     <div className="go-page">
-      <img src={gameBackgroundImg} alt="" className="go-background" />
 
       <div className="go-modal-container">
         {/* Cat peeking from top */}
