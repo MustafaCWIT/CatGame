@@ -53,26 +53,26 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
     // Vertical: Top to Bottom
     let range = screenW - (SPAWN_MARGIN * 2) - OBJECT_SIZE;
     x = range <= 0 ? (screenW - OBJECT_SIZE) / 2 : SPAWN_MARGIN + Math.random() * range;
-    y = -OBJECT_SIZE; // Start fully off-screen for complete appearance
+    y = -10; // Start at the edge to eliminate entry delay
     targetX = x;
-    targetY = screenH + OBJECT_SIZE;
+    targetY = screenH + OBJECT_SIZE / 2;
   } else {
     // Horizontal: Left to Right
     let range = screenH - (SPAWN_MARGIN * 2) - OBJECT_SIZE;
     y = range <= 0 ? (screenH - OBJECT_SIZE) / 2 : SPAWN_MARGIN + Math.random() * range;
-    x = -OBJECT_SIZE; // Start fully off-screen
-    targetX = screenW + OBJECT_SIZE;
+    x = -10; // Start at the edge to eliminate entry delay
+    targetX = screenW + OBJECT_SIZE / 2;
     targetY = y;
   }
 
-  // Define speed/duration (Decreased speed as requested)
+  // Define speed/duration (Balanced for clickability)
   let duration;
   if (type === 'clouds' || type === 'cloud') {
-    duration = randomBetween(4.5, 6.0);
+    duration = randomBetween(3.2, 4.5);
   } else if (type === 'leaf') {
-    duration = randomBetween(3.5, 5.0);
+    duration = randomBetween(2.5, 3.8);
   } else {
-    duration = randomBetween(2.8, 4.2);
+    duration = randomBetween(2.0, 3.0);
   }
 
   return {
