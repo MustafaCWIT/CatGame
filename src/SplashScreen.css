@@ -351,7 +351,7 @@
 }
 
 /* 423px width breakpoint */
-@media screen and (max-width: 423px) {
+@media screen and (max-width: 423px) and (min-width: 420px) {
   .splash-clouds-left {
     width: 165px;
     height: 180px;
@@ -409,7 +409,7 @@
 }
 
 /* 443px width breakpoint */
-@media screen and (max-width: 443px) {
+@media screen and (max-width: 443px) and (min-width: 431px) {
   .splash-clouds-left {
     width: 168px;
     height: 183px;

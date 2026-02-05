@@ -336,7 +336,7 @@
 }
 
 /* 423px width breakpoint */
-@media screen and (max-width: 423px) {
+@media screen and (max-width: 423px) and (min-width: 420px) {
   .upload-header {
     top: 11.5px;
     padding: 13px 15px;
@@ -399,7 +399,7 @@
 }
 
 /* 443px width breakpoint */
-@media screen and (max-width: 443px) {
+@media screen and (max-width: 443px) and (min-width: 431px) {
   .upload-header {
     top: 12px;
     padding: 13.5px 15px;

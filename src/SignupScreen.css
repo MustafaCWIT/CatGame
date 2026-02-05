@@ -283,7 +283,7 @@
 }
 
 /* 423px width breakpoint */
-@media screen and (max-width: 423px) {
+@media screen and (max-width: 423px) and (min-width: 420px) {
   .signup-cloud {
     width: 975px;
     bottom: -435px;
@@ -329,7 +329,7 @@
 }
 
 /* 443px width breakpoint */
-@media screen and (max-width: 443px) {
+@media screen and (max-width: 443px) and (min-width: 431px) {
   .signup-cloud {
     width: 987px;
     bottom: -427px;
