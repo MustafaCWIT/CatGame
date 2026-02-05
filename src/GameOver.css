@@ -334,7 +334,7 @@
 }
 
 /* 423px width breakpoint */
-@media screen and (max-width: 423px) {
+@media screen and (max-width: 423px) and (min-width: 420px) {
   .go-page {
     padding: 12px;
   }
@@ -399,7 +399,7 @@
 }
 
 /* 443px width breakpoint */
-@media screen and (max-width: 443px) {
+@media screen and (max-width: 443px) and (min-width: 431px) {
   .go-page {
     padding: 11.7px;
   }

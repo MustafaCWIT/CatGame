@@ -501,7 +501,7 @@
 }
 
 /* 443px width breakpoint */
-@media screen and (max-width: 443px) {
+@media screen and (max-width: 443px) and (min-width: 431px) {
   .starting-screen {
     padding-top: 23px;
   }
@@ -602,7 +602,7 @@
 }
 
 /* 423px width breakpoint */
-@media screen and (max-width: 423px) {
+@media screen and (max-width: 423px) and (min-width: 420px) {
   .starting-screen {
     padding-top: 22px;
   }

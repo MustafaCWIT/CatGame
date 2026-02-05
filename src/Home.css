@@ -449,7 +449,7 @@
 
   .home-content {
     max-width: 550px;
-    padding: 10px 15px 25px 15px;
+    padding: 10px 15px 0px 15px;
   }
 
   .home-logo {
@@ -563,7 +563,7 @@
 
   .home-content {
     max-width: 100%;
-    padding: 10px 12px 18px 12px;
+    padding: 10px 12px 0px 12px;
   }
 
   .home-logo {
@@ -608,7 +608,7 @@
   }
 
   .home-participate {
-    padding-bottom: 1px;
+    padding-bottom: 0px;
     margin-top: 0px;
   }
 
@@ -616,7 +616,7 @@
   .home-participate h2.home-participate-title {
     font-size: 20px !important;
     padding-top:50px;
-    margin-bottom: 12px;
+    margin-bottom: 0px;
   }
 
   .home-prize-buttons {
@@ -625,6 +625,7 @@
     padding: 0 8px;
     margin-left: 0;
     margin-top: 10px;
+    margin-bottom: 0px;
     box-sizing: border-box;
   }
 
@@ -684,7 +685,7 @@
 
   .home-content {
     max-width: 100%;
-    padding: 10px 14px 20px 14px;
+    padding: 10px 14px 0px 14px;
   }
 
   .home-logo {
@@ -729,15 +730,15 @@
   }
 
   .home-participate {
-    padding-bottom: 12px;
+    padding-bottom: 0px;
     margin-top: 12px;
   }
 
   .home-participate-title,
   .home-participate h2.home-participate-title {
     font-size: 24px !important;
-    padding-top: 92px;
-    margin-bottom: 14px;
+    padding-top: 122px;
+    margin-bottom: 0px;
   }
 
   .home-prize-buttons {
@@ -746,6 +747,7 @@
     padding: 0 13px;
     margin-left: 0;
     margin-top: 11px;
+    margin-bottom: 0px;
     box-sizing: border-box;
   }
 
@@ -783,7 +785,7 @@
 }
 
 /* 443px width breakpoint */
-@media screen and (max-width: 443px) {
+@media screen and (max-width: 443px) and (min-width: 431px) {
   .home-fish {
     width: 149px;
     left: -54.5px;
@@ -805,7 +807,7 @@
 
   .home-content {
     max-width: 100%;
-    padding: 10px 11.5px 17.5px 11.5px;
+    padding: 10px 11.5px 0px 11.5px;
   }
 
   .home-logo {
@@ -850,7 +852,7 @@
   }
 
   .home-participate {
-    padding-bottom: 1px;
+    padding-bottom: 0px;
     margin-top: 0px;
   }
 
@@ -904,7 +906,7 @@
 }
 
 /* 423px width breakpoint */
-@media screen and (max-width: 423px) {
+@media screen and (max-width: 423px) and (min-width: 420px) {
   .home-fish {
     width: 148px;
     left: -54px;
@@ -926,7 +928,7 @@
 
   .home-content {
     max-width: 100%;
-    padding: 10px 11px 17px 11px;
+    padding: 10px 11px 0px 11px;
   }
 
   .home-logo {
@@ -971,7 +973,7 @@
   }
 
   .home-participate {
-    padding-bottom: 0.5px;
+    padding-bottom: 0px;
     margin-top: 0px;
   }
 
@@ -1047,7 +1049,7 @@
 
   .home-content {
     max-width: 100%;
-    padding: 10px 12px 18px 12px;
+    padding: 10px 12px 0px 12px;
   }
 
   .home-logo {
@@ -1092,7 +1094,7 @@
   }
 
   .home-participate {
-    padding-bottom: 1px;
+    padding-bottom: 0px;
     margin-top: 0px;
   }
 
@@ -1168,7 +1170,7 @@
 
   .home-content {
     max-width: 100%;
-    padding: 8px 10px 15px 10px;
+    padding: 8px 10px 0px 10px;
   }
 
   .home-logo {
@@ -1213,7 +1215,7 @@
   }
 
   .home-participate {
-    padding-bottom: 8px;
+    padding-bottom: 0px;
     margin-top: 8px;
   }
 
@@ -1289,7 +1291,7 @@
 
   .home-content {
     max-width: 100%;
-    padding: 10px 14px 20px 14px;
+    padding: 10px 14px 0px 14px;
   }
 
   .home-logo {
@@ -1334,7 +1336,7 @@
   }
 
   .home-participate {
-    padding-bottom: 12px;
+    padding-bottom: 0px;
     margin-top: 12px;
   }
 
