@@ -67,8 +67,8 @@
 /* Profile icon */
 .home-profile {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 30px;
+  right: 30px;
   width: 60px;
   height: 60px;
   background: rgba(100, 200, 255, 0.9);
@@ -149,7 +149,7 @@
 .home-title {
   font-family: 'Poppins', sans-serif;
   font-size: 82px;
-  font-weight: 900;
+  font-weight: 800;
   color: white;
   margin: 20px 0 0 0;
   text-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
@@ -177,15 +177,15 @@
 
 .home-cat-circle {
   position: absolute;
-  width: 500px;
-  height: 150px;
-  background: radial-gradient(ellipse at 50% 50%, rgba(29, 113, 146, 0.8) 0%, rgba(164, 176, 182, 0.4) 50%, rgba(100, 200, 255, 0) 80%);
+  width: 420px;
+  height: 140px;
+  background: rgba(171, 244, 253, 0.747);
   border-radius: 50%;
-  bottom: 0px;
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 0;
-  filter: blur(25px);
+  filter: blur(15px);
 }
 
 .home-cat {
