@@ -316,3 +316,768 @@
   line-height: 1;
 
 }
+
+/* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
+
+/* Tablet breakpoint */
+@media screen and (max-width: 768px) {
+  .starting-screen {
+    padding-top: 30px;
+  }
+
+  .starting-nav {
+    top: 20px;
+    padding: 0 20px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 52px;
+    height: 52px;
+  }
+
+  .starting-title {
+    font-size: 65px;
+    margin-top: 40px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 420px;
+    margin-top: 150px;
+  }
+
+  .starting-tablet-frame {
+    width: 88%;
+    padding: 12px;
+    border-radius: 24px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 14px;
+  }
+
+  .preview-ui-top {
+    top: 12px;
+    padding: 0 15px;
+  }
+
+  .preview-pill {
+    padding: 2px 8px;
+    font-size: 9px;
+    border-radius: 16px;
+  }
+
+  .preview-pill-score {
+    font-size: 11px;
+  }
+
+  .starting-fish {
+    width: 180px;
+    left: -15px;
+    top: 8px;
+  }
+
+  .starting-star {
+    width: 80px;
+    top: 70px;
+    right: 100px;
+  }
+
+  .starting-bowl {
+    width: 110px;
+    bottom: 20px;
+  }
+
+  .starting-cat {
+    width: 200px;
+    top: -145px;
+  }
+
+  .starting-countdown {
+    margin-top: 45px;
+  }
+
+  .starting-label {
+    font-size: 24px;
+  }
+
+  .starting-number {
+    font-size: 140px;
+  }
+}
+
+/* Large phones: 430px width (iPhone 14 Pro Max) */
+@media screen and (max-width: 480px) and (min-width: 420px) {
+  .starting-screen {
+    padding-top: 22px;
+  }
+
+  .starting-nav {
+    top: 12px;
+    padding: 0 12px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 40px;
+    height: 40px;
+  }
+
+  .starting-loader-text {
+    font-size: 16px;
+  }
+
+  .starting-title {
+    font-size: 38px;
+    margin-top: 60px;
+    letter-spacing: -1px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 270px;
+    margin-top: 140px;
+  }
+
+  .starting-tablet-frame {
+    width: 93%;
+    padding: 8px;
+    border-radius: 18px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 10px;
+  }
+
+  .preview-ui-top {
+    top: 8px;
+    padding: 0 10px;
+  }
+
+  .preview-pill {
+    padding: 1px 4px;
+    font-size: 5px;
+    border-radius: 8px;
+  }
+
+  .preview-pill-score {
+    font-size: 7px;
+  }
+
+  .starting-fish {
+    width: 110px;
+    left: -10px;
+    top: 4px;
+  }
+
+  .starting-star {
+    width: 48px;
+    top: 45px;
+    right: 70px;
+  }
+
+  .starting-bowl {
+    width: 68px;
+    bottom: 10px;
+    left: 26%;
+  }
+
+  .starting-cat {
+    width: 125px;
+    top: -85px;
+  }
+
+  .starting-countdown {
+    margin-top: 25px;
+  }
+
+  .starting-label {
+    font-size: 16px;
+    margin-top: 150px;
+  }
+
+  .starting-number {
+    font-size: 85px;
+  }       
+}
+
+/* 443px width breakpoint */
+@media screen and (max-width: 443px) {
+  .starting-screen {
+    padding-top: 23px;
+  }
+
+  .starting-nav {
+    top: 13px;
+    padding: 0 13px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 41px;
+    height: 41px;
+  }
+
+  .starting-loader-text {
+    font-size: 16.5px;
+  }
+
+  .starting-title {
+    font-size: 41px;
+    margin-top: 52px;
+    letter-spacing: -1px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 292px;
+    margin-top: 132px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .starting-tablet-frame {
+    width: 91.5%;
+    padding: 9px;
+    border-radius: 19px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 10.5px;
+  }
+
+  .starting-game-bg {
+    top: 0;
+    bottom: -20px;
+  }
+
+  .preview-ui-top {
+    top: 8.5px;
+    padding: 0 11px;
+  }
+
+  .preview-pill {
+    padding: 1px 4.5px;
+    font-size: 6px;
+    border-radius: 9px;
+  }
+
+  .preview-pill-score {
+    font-size: 7.5px;
+  }
+
+  .starting-fish {
+    width: 127px;
+    left: -11px;
+    top: 4px;
+  }
+
+  .starting-star {
+    width: 56px;
+    top: 50px;
+    right: 75px;
+  }
+
+  .starting-bowl {
+    width: 79px;
+    bottom: 13px;
+    left: 26%;
+  }
+
+  .starting-cat {
+    width: 145px;
+    top: -100px;
+  }
+
+  .starting-countdown {
+    margin-top: 30px;
+  }
+
+  .starting-label {
+    font-size: 18px;
+    margin-top: 60px;
+  }
+
+  .starting-number {
+    font-size: 98px;
+  }
+}
+
+/* 423px width breakpoint */
+@media screen and (max-width: 423px) {
+  .starting-screen {
+    padding-top: 22px;
+  }
+
+  .starting-nav {
+    top: 12px;
+    padding: 0 12px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 40px;
+    height: 40px;
+  }
+
+  .starting-loader-text {
+    font-size: 16px;
+  }
+
+  .starting-title {
+    font-size: 38px;
+    margin-top: 60px;
+    letter-spacing: -1px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 270px;
+    margin-top: 140px;
+  }
+
+  .starting-tablet-frame {
+    width: 93%;
+    padding: 8px;
+    border-radius: 18px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 10px;
+  }
+
+  .preview-ui-top {
+    top: 8px;
+    padding: 0 10px;
+  }
+
+  .preview-pill {
+    padding: 1px 4px;
+    font-size: 5px;
+    border-radius: 8px;
+  }
+
+  .preview-pill-score {
+    font-size: 7px;
+  }
+
+  .starting-fish {
+    width: 110px;
+    left: -10px;
+    top: 4px;
+  }
+
+  .starting-star {
+    width: 48px;
+    top: 45px;
+    right: 70px;
+  }
+
+  .starting-bowl {
+    width: 68px;
+    bottom: 10px;
+    left: 26%;
+  }
+
+  .starting-cat {
+    width: 125px;
+    top: -85px;
+  }
+
+  .starting-countdown {
+    margin-top: 25px;
+  }
+
+  .starting-label {
+    font-size: 16px;
+    margin-top: 80px;
+  }
+
+  .starting-number {
+    font-size: 85px;
+  }       
+}
+
+/* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
+@media screen and (max-width: 419px) and (min-width: 400px) {
+  .starting-screen {
+    padding-top: 26px;
+  }
+
+  .starting-nav {
+    top: 16px;
+    padding: 0 16px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 46px;
+    height: 46px;
+  }
+
+  .starting-loader-text {
+    font-size: 19px;
+  }
+
+  .starting-title {
+    font-size: 52px;
+    margin-top: 32px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 340px;
+    margin-top: 130px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .starting-tablet-frame {
+    width: 91%;
+    padding: 10px;
+    border-radius: 21px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 12px;
+  }
+
+  .starting-game-bg {
+    top: 0;
+    bottom: -20px;
+  }
+
+  .preview-ui-top {
+    top: 10px;
+    padding: 0 13px;
+  }
+
+  .preview-pill {
+    padding: 1.5px 6px;
+    font-size: 7px;
+    border-radius: 12px;
+  }
+
+  .preview-pill-score {
+    font-size: 9px;
+  }
+
+  .starting-fish {
+    width: 150px;
+    left: -13px;
+    top: 5px;
+  }
+
+  .starting-star {
+    width: 65px;
+    top: 58px;
+    right: 82px;
+  }
+
+  .starting-bowl {
+    width: 92px;
+    bottom: 16px;
+  }
+
+  .starting-cat {
+    width: 170px;
+    bottom: 70px;
+    margin-top: 20px;
+  }
+
+  .starting-countdown {
+    margin-top: 38px;
+  }
+
+  .starting-label {
+    font-size: 21px;
+    margin-top: 170px;
+  }
+
+  .starting-number {
+    font-size: 118px;
+  }
+}
+
+/* Medium phones: 390px width (iPhone 12/13/14) */
+@media screen and (max-width: 399px) and (min-width: 385px) {
+  .starting-screen {
+    padding-top: 22px;
+  }
+
+  .starting-nav {
+    top: 12px;
+    padding: 0 12px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 40px;
+    height: 40px;
+  }
+
+  .starting-loader-text {
+    font-size: 16px;
+  }
+
+  .starting-title {
+    font-size: 38px;
+    margin-top: 60px;
+    letter-spacing: -1px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 270px;
+    margin-top: 140px;
+  }
+
+  .starting-tablet-frame {
+    width: 93%;
+    padding: 8px;
+    border-radius: 18px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 10px;
+  }
+
+  .preview-ui-top {
+    top: 8px;
+    padding: 0 10px;
+  }
+
+  .preview-pill {
+    padding: 1px 4px;
+    font-size: 5px;
+    border-radius: 8px;
+  }
+
+  .preview-pill-score {
+    font-size: 7px;
+  }
+
+  .starting-fish {
+    width: 110px;
+    left: -10px;
+    top: 4px;
+  }
+
+  .starting-star {
+    width: 48px;
+    top: 45px;
+    right: 70px;
+  }
+
+  .starting-bowl {
+    width: 68px;
+    bottom: 10px;
+    left: 26%;
+  }
+
+  .starting-cat {
+    width: 125px;
+    top: -85px;
+  }
+
+  .starting-countdown {
+    margin-top: 25px;
+  }
+
+  .starting-label {
+    font-size: 16px;
+    margin-top: 150px;
+  }
+
+  .starting-number {
+    font-size: 85px;
+  }       
+}
+
+/* Standard phones: 375px width (iPhone SE, 6/7/8) */
+@media screen and (max-width: 384px) and (min-width: 370px) {
+  .starting-screen {
+    padding-top: 22px;
+  }
+
+  .starting-nav {
+    top: 12px;
+    padding: 0 12px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 40px;
+    height: 40px;
+  }
+
+  .starting-loader-text {
+    font-size: 16px;
+  }
+
+  .starting-title {
+    font-size: 38px;
+    margin-top: 20px;
+    letter-spacing: -1px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 270px;
+    margin-top: 100px;
+  }
+
+  .starting-tablet-frame {
+    width: 93%;
+    padding: 8px;
+    border-radius: 18px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 10px;
+  }
+
+  .preview-ui-top {
+    top: 8px;
+    padding: 0 10px;
+  }
+
+  .preview-pill {
+    padding: 1px 4px;
+    font-size: 5px;
+    border-radius: 8px;
+  }
+
+  .preview-pill-score {
+    font-size: 7px;
+  }
+
+  .starting-fish {
+    width: 110px;
+    left: -10px;
+    top: 4px;
+  }
+
+  .starting-star {
+    width: 48px;
+    top: 45px;
+    right: 60px;
+  }
+
+  .starting-bowl {
+    width: 68px;
+    bottom: 10px;
+    left: 26%;
+  }
+
+  .starting-cat {
+    width: 125px;
+    top: -85px;
+  }
+
+  .starting-countdown {
+    margin-top: 25px;
+  }
+
+  .starting-label {
+    font-size: 16px;
+  }
+
+  .starting-number {
+    font-size: 85px;
+  }
+}
+
+/* Small phones: 360px width (Galaxy S5, etc.) */
+@media screen and (max-width: 369px) {
+  .starting-screen {
+    padding-top: 26px;
+  }
+
+  .starting-nav {
+    top: 16px;
+    padding: 0 16px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 46px;
+    height: 46px;
+  }
+
+  .starting-loader-text {
+    font-size: 19px;
+  }
+
+  .starting-title {
+    font-size: 52px;
+    margin-top: 32px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 300px;
+    margin-top: 130px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .starting-tablet-frame {
+    width: 91%;
+    padding: 10px;
+    border-radius: 21px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 12px;
+  }
+
+  .starting-game-bg {
+    top: 0;
+    bottom: -20px;
+  }
+
+  .preview-ui-top {
+    top: 10px;
+    padding: 0 13px;
+  }
+
+  .preview-pill {
+    padding: 1.5px 6px;
+    font-size: 7px;
+    border-radius: 12px;
+  }
+
+  .preview-pill-score {
+    font-size: 9px;
+  }
+
+  .starting-fish {
+    width: 130px;
+    left: -13px;
+    top: 10px;
+  }
+
+  .starting-star {
+    width: 65px;
+    top: 40px;
+    right: 60px;
+  }
+
+  .starting-bowl {
+    width: 92px;
+    bottom: 16px;
+  }
+
+  .starting-cat {
+    width: 140px;
+    bottom: 70px;
+    margin-top: 42px;
+  }
+
+  .starting-countdown {
+    margin-top: 38px;
+  }
+
+  .starting-label {
+    font-size: 21px;
+    margin-top: 10px;
+  }
+
+  .starting-number {
+    font-size: 118px;
+  }
+}

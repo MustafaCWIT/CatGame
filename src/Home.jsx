@@ -1,14 +1,18 @@
 import { useRef, useState, useEffect } from 'react';
 import './Home.css';
-import backgroundImg from './assets/background.png';
-import logoImg from './assets/logo.png';
-import catImg from './assets/cat.png';
-import fishImg from './assets/fish.png';
-import cloudsImg from './assets/clearClouds.png';
-import sleepCatImg from './assets/sleepCat.png';
-import foodBoxImg from './assets/foodBox.png';
+import { ALL_ASSETS, GAME_ASSETS } from './game/assets';
 
-const ASSETS = [backgroundImg, logoImg, catImg, fishImg, cloudsImg, sleepCatImg, foodBoxImg];
+const {
+  background: backgroundImg,
+  logo: logoImg,
+  cat: catImg,
+  fish: fishImg,
+  clearClouds: cloudsImg,
+  sleepCat: sleepCatImg,
+  foodBox: foodBoxImg
+} = GAME_ASSETS;
+
+const ASSETS = ALL_ASSETS;
 
 export default function Home({ onStartGame, onResetProgress, onLogout, user }) {
   const fileInputRef = useRef(null);

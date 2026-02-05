@@ -145,3 +145,397 @@
 .login-signup-link:hover {
   color: #FFC933;
 }
+
+/* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
+
+/* Tablet breakpoint */
+@media screen and (max-width: 768px) {
+  .login-overlay {
+    padding: 15px;
+    padding-top: 220px;
+  }
+
+  .login-container {
+    max-width: 520px;
+    padding: 65px 55px;
+    border-radius: 22px;
+    border-width: 6px;
+  }
+
+  .login-close {
+    width: 26px;
+    height: 26px;
+    top: 12px;
+    right: 12px;
+  }
+
+  .login-title {
+    font-size: 30px;
+  }
+
+  .login-subtitle {
+    font-size: 18px;
+    margin-bottom: 22px;
+  }
+
+  .login-form {
+    gap: 10px;
+  }
+
+  .login-input {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .login-btn {
+    width: 45%;
+    padding: 20px 20px;
+    font-size: 17px;
+    border-radius: 13px;
+  }
+
+  .login-signup-text {
+    font-size: 13px;
+    margin-top: 12px;
+  }
+}
+
+/* Large phones: 430px width (iPhone 14 Pro Max) */
+@media screen and (max-width: 480px) and (min-width: 420px) {
+  .login-overlay {
+    padding: 14px;
+    padding-top: 180px;
+  }
+
+  .login-container {
+    max-width: 100%;
+    padding: 55px 40px;
+    border-radius: 20px;
+    border-width: 5px;
+  }
+
+  .login-close {
+    width: 25px;
+    height: 25px;
+    top: 11px;
+    right: 11px;
+  }
+
+  .login-title {
+    font-size: 28px;
+  }
+
+  .login-subtitle {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .login-input {
+    padding: 13px 15px;
+    font-size: 14px;
+  }
+
+  .login-btn {
+    width: 50%;
+    padding: 18px 18px;
+    font-size: 16px;
+    border-radius: 13px;
+  }
+
+  .login-signup-text {
+    font-size: 13px;
+  }
+}
+
+/* 423px width breakpoint */
+@media screen and (max-width: 423px) {
+  .login-overlay {
+    padding: 13.5px;
+    padding-top: 172px;
+  }
+
+  .login-container {
+    max-width: 100%;
+    padding: 52px 37px;
+    border-radius: 19.5px;
+    border-width: 4.2px;
+  }
+
+  .login-close {
+    width: 24px;
+    height: 24px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .login-title {
+    font-size: 25px;
+  }
+
+  .login-subtitle {
+    font-size: 14.5px;
+    margin-bottom: 18.5px;
+  }
+
+  .login-input {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .login-btn {
+    width: 53%;
+    padding: 17px 17px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  .login-signup-text {
+    font-size: 12px;
+  }
+}
+
+/* 443px width breakpoint */
+@media screen and (max-width: 443px) {
+  .login-overlay {
+    padding: 13.7px;
+    padding-top: 168px;
+  }
+
+  .login-container {
+    max-width: 100%;
+    padding: 51px 36px;
+    border-radius: 19.7px;
+    border-width: 4.3px;
+  }
+
+  .login-close {
+    width: 24px;
+    height: 24px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .login-title {
+    font-size: 25.5px;
+  }
+
+  .login-subtitle {
+    font-size: 14.7px;
+    margin-bottom: 18.7px;
+  }
+
+  .login-input {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .login-btn {
+    width: 53%;
+    padding: 17px 17px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  .login-signup-text {
+    font-size: 12px;
+  }
+}
+
+/* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
+@media screen and (max-width: 419px) and (min-width: 400px) {
+  .login-overlay {
+    padding: 13px;
+    padding-top: 165px;
+  }
+
+  .login-container {
+    max-width: 100%;
+    padding: 50px 35px;
+    border-radius: 19px;
+    border-width: 4.5px;
+  }
+
+  .login-close {
+    width: 24px;
+    height: 24px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .login-title {
+    font-size: 26px;
+  }
+
+  .login-subtitle {
+    font-size: 15px;
+    margin-bottom: 19px;
+  }
+
+  .login-input {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .login-btn {
+    width: 52%;
+    padding: 17px 17px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  .login-signup-text {
+    font-size: 12px;
+  }
+}
+
+/* Medium phones: 390px width (iPhone 12/13/14) */
+@media screen and (max-width: 399px) and (min-width: 385px) {
+  .login-overlay {
+    padding: 12px;
+    padding-top: 150px;
+  }
+
+  .login-container {
+    max-width: 100%;
+    padding: 45px 30px;
+    border-radius: 18px;
+    border-width: 4px;
+  }
+
+  .login-close {
+    width: 24px;
+    height: 24px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .login-title {
+    font-size: 24px;
+    margin-bottom: 2px;
+  }
+
+  .login-subtitle {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+
+  .login-form {
+    gap: 10px;
+  }
+
+  .login-input {
+    padding: 12px 14px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  .login-btn {
+    width: 55%;
+    padding: 16px 18px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  .login-signup-text {
+    font-size: 12px;
+    margin-top: 12px;
+  }
+}
+
+/* Standard phones: 375px width (iPhone SE, 6/7/8) */
+@media screen and (max-width: 384px) and (min-width: 370px) {
+  .login-overlay {
+    padding: 10px;
+    padding-top: 130px;
+  }
+
+  .login-container {
+    max-width: 100%;
+    padding: 40px 25px;
+    border-radius: 16px;
+    border-width: 3.5px;
+  }
+
+  .login-close {
+    width: 22px;
+    height: 22px;
+    top: 9px;
+    right: 9px;
+  }
+
+  .login-title {
+    font-size: 22px;
+  }
+
+  .login-subtitle {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .login-input {
+    padding: 11px 12px;
+    font-size: 12px;
+    border-radius: 7px;
+  }
+
+  .login-btn {
+    width: 58%;
+    padding: 14px 16px;
+    font-size: 14px;
+    border-radius: 11px;
+  }
+
+  .login-signup-text {
+    font-size: 11px;
+    margin-top: 10px;
+  }
+}
+
+/* Small phones: 360px width (Galaxy S5, etc.) */
+@media screen and (max-width: 369px) {
+  .login-overlay {
+    padding: 8px;
+    padding-top: 110px;
+  }
+
+  .login-container {
+    max-width: 100%;
+    padding: 35px 20px;
+    border-radius: 14px;
+    border-width: 3px;
+  }
+
+  .login-close {
+    width: 20px;
+    height: 20px;
+    top: 8px;
+    right: 8px;
+  }
+
+  .login-title {
+    font-size: 20px;
+  }
+
+  .login-subtitle {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+
+  .login-input {
+    padding: 10px 10px;
+    font-size: 11px;
+    border-radius: 6px;
+  }
+
+  .login-btn {
+    width: 60%;
+    padding: 12px 14px;
+    font-size: 13px;
+    border-radius: 10px;
+  }
+
+  .login-signup-text {
+    font-size: 10px;
+    margin-top: 8px;
+  }
+}

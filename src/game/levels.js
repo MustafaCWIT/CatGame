@@ -88,11 +88,48 @@ export const OBJECT_SHAPES = {
   nebula: 'M 35 10 Q 55 10 55 25 Q 65 35 55 45 Q 55 60 35 55 Q 15 60 15 45 Q 5 35 15 25 Q 15 10 35 10 Z',
 };
 
+// Base object size for larger screens
 export const OBJECT_SIZE = 250; // Extra large for cat paws
+
+// Responsive object size based on screen dimensions
+export function getResponsiveObjectSize(screenWidth) {
+  // Device breakpoints for responsive sizing
+  if (screenWidth <= 360) {
+    return 120; // Very small phones (Galaxy S8, iPhone SE)
+  } else if (screenWidth <= 375) {
+    return 135; // iPhone 12 Mini, iPhone SE 2nd gen
+  } else if (screenWidth <= 390) {
+    return 150; // iPhone 12/13/14
+  } else if (screenWidth <= 414) {
+    return 170; // iPhone 6+/7+/8+, Pixel 5
+  } else if (screenWidth <= 430) {
+    return 185; // iPhone 14 Pro Max
+  } else if (screenWidth <= 540) {
+    return 200; // Large phones, small tablets
+  } else if (screenWidth <= 768) {
+    return 220; // Tablets
+  } else {
+    return 250; // Desktops and larger screens
+  }
+}
+
+// Responsive spawn margin based on object size
+export function getResponsiveSpawnMargin(screenWidth) {
+  const objectSize = getResponsiveObjectSize(screenWidth);
+  // Margin is proportional to object size
+  return Math.max(50, objectSize * 0.6);
+}
+
+// Responsive tap radius based on object size
+export function getResponsiveTapRadius(screenWidth) {
+  const objectSize = getResponsiveObjectSize(screenWidth);
+  return objectSize / 2;
+}
+
 export const MAX_OBJECTS = 1; // Only one object at a time, alternating directions
-export const SPAWN_MARGIN = 150; // Increased margin to center objects more
+export const SPAWN_MARGIN = 150; // Increased margin to center objects more (fallback)
 export const MIN_OBJECT_DISTANCE = 300;
-export const TAP_RADIUS = 125; // Strict touch area (half of OBJECT_SIZE)
+export const TAP_RADIUS = 125; // Strict touch area (half of OBJECT_SIZE) - fallback
 export const OBJECT_SPEED = 0.3;
 
 // Points for each object type

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { useGameState } from '../hooks/useGameState';
 import { useTouchHandler } from '../hooks/useTouchHandler';
-import { OBJECT_SIZE, LEVELS, getLevelForXP, getNextLevelXP, MIN_OBJECT_DISTANCE, TAP_RADIUS } from './levels';
+import { LEVELS, getLevelForXP, getNextLevelXP, MIN_OBJECT_DISTANCE, TAP_RADIUS, getResponsiveObjectSize } from './levels';
 import { playChime, tryVibrate } from './sounds';
 import FloatingObject from './FloatingObject';
 import Ripple from './Ripple';
@@ -46,6 +46,9 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
   const newTotalXP = totalXP + score;
   const newLevel = getLevelForXP(newTotalXP);
   const level = LEVELS[playerLevel];
+
+  // Calculate responsive object size based on screen width
+  const responsiveObjectSize = getResponsiveObjectSize(width);
 
   const currentLevelXP = LEVELS[playerLevel].xpRequired;
   const nextLevelXP = getNextLevelXP(playerLevel);
@@ -211,6 +214,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
             obj={obj}
             onOffScreen={replaceObject}
             registerRef={registerRef}
+            objectSize={responsiveObjectSize}
           />
         ))}
         {ripples.map(r => <Ripple key={r.id} ripple={r} onDone={clearRipple} />)}
@@ -220,42 +224,53 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
       {/* HUD */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0,
-        padding: '16px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
+        padding: width <= 390 ? '12px 14px' : width <= 430 ? '14px 16px' : '16px 20px',
+        display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
         pointerEvents: 'none', fontFamily: 'system-ui, -apple-system, sans-serif', zIndex: 10,
       }}>
         {/* Left: Score */}
         <div style={{
           ...glassStyle,
           background: 'rgba(124, 58, 237, 0.9)',
-          padding: '10px 18px',
-          borderRadius: 12,
+          padding: width <= 360 ? '6px 10px' : width <= 390 ? '7px 12px' : width <= 430 ? '8px 14px' : '10px 18px',
+          borderRadius: width <= 390 ? 8 : width <= 430 ? 10 : 12,
           display: 'flex',
           alignItems: 'center',
-          gap: 8
+          gap: width <= 390 ? 4 : 8
         }}>
-          <span style={{ fontSize: 22, fontWeight: 700, color: 'white', fontVariantNumeric: 'tabular-nums' }}>{score}</span>
+          <span style={{
+            fontSize: width <= 360 ? 14 : width <= 390 ? 16 : width <= 430 ? 18 : 22,
+            fontWeight: 700,
+            color: 'white',
+            fontVariantNumeric: 'tabular-nums'
+          }}>{score}</span>
         </div>
 
         {/* Right: Timer */}
         <div style={{
           ...glassStyle,
           background: 'rgba(124, 58, 237, 0.9)',
-          padding: '10px 18px',
-          borderRadius: 12,
+          padding: width <= 360 ? '6px 10px' : width <= 390 ? '7px 12px' : width <= 430 ? '8px 14px' : '10px 18px',
+          borderRadius: width <= 390 ? 8 : width <= 430 ? 10 : 12,
           display: 'flex',
           alignItems: 'center',
-          gap: 10
+          gap: width <= 390 ? 6 : 10
         }}>
           <span style={{
-            fontSize: 22, fontWeight: 700, fontVariantNumeric: 'tabular-nums',
-            color: timeLeft <= 10 ? '#f87171' : 'white', transition: 'color 0.3s',
+            fontSize: width <= 360 ? 14 : width <= 390 ? 16 : width <= 430 ? 18 : 22,
+            fontWeight: 700,
+            fontVariantNumeric: 'tabular-nums',
+            color: timeLeft <= 10 ? '#f87171' : 'white',
+            transition: 'color 0.3s',
           }}>{timeStr}</span>
         </div>
       </div>
 
       {/* Bottom Left: Pause Button */}
       <div style={{
-        position: 'absolute', bottom: 20, left: 20,
+        position: 'absolute',
+        bottom: width <= 390 ? 14 : 20,
+        left: width <= 390 ? 14 : 20,
         pointerEvents: 'auto', zIndex: 10,
       }}>
         <button
@@ -276,17 +291,22 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
           style={{
             background: 'rgba(124, 58, 237, 0.9)',
             border: '2px solid rgba(167, 139, 250, 0.5)',
-            borderRadius: 12,
-            padding: '10px 14px',
+            borderRadius: width <= 390 ? 8 : width <= 430 ? 10 : 12,
+            padding: width <= 390 ? '6px 8px' : width <= 430 ? '8px 10px' : '10px 14px',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: 44,
-            height: 44,
+            width: width <= 360 ? 32 : width <= 390 ? 36 : width <= 430 ? 40 : 44,
+            height: width <= 360 ? 32 : width <= 390 ? 36 : width <= 430 ? 40 : 44,
           }}
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <svg
+            width={width <= 360 ? 14 : width <= 390 ? 16 : 20}
+            height={width <= 360 ? 14 : width <= 390 ? 16 : 20}
+            viewBox="0 0 24 24"
+            fill="white"
+          >
             <rect x="6" y="4" width="4" height="16" />
             <rect x="14" y="4" width="4" height="16" />
           </svg>

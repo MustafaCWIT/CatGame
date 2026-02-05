@@ -1,20 +1,17 @@
 import { useState, useEffect } from 'react';
 import './StartingScreen.css';
-import backgroundImg from './assets/background.png';
-import gameBackgroundImg from './assets/gameBackground.png';
-import lyingCatImg from './assets/lyingCat.png';
-import fishImg from './assets/fish.png';
-import bowlImg from './assets/bowl.png';
-import starImg from './assets/star.png';
+import { ALL_ASSETS, GAME_ASSETS } from './game/assets';
 
-const ASSETS_TO_PRELOAD = [
-  backgroundImg,
-  gameBackgroundImg,
-  lyingCatImg,
-  fishImg,
-  bowlImg,
-  starImg
-];
+const {
+  background: backgroundImg,
+  gameBackground: gameBackgroundImg,
+  lyingCat: lyingCatImg,
+  fish: fishImg,
+  bowl: bowlImg,
+  star: starImg
+} = GAME_ASSETS;
+
+const ASSETS_TO_PRELOAD = ALL_ASSETS;
 
 export default function StartingScreen({ levelName, onCountdownComplete }) {
   const [count, setCount] = useState(1);
@@ -33,7 +30,7 @@ export default function StartingScreen({ levelName, onCountdownComplete }) {
     const timer = setTimeout(() => {
       // Safety timeout: if images take too long, just show anyway
       setIsReady(true);
-    }, 3000);
+    }, 12000);
 
     ASSETS_TO_PRELOAD.forEach(src => {
       const img = new Image();
@@ -65,6 +62,7 @@ export default function StartingScreen({ levelName, onCountdownComplete }) {
       const timer = setTimeout(() => setCount(count + 1), 1000);
       return () => clearTimeout(timer);
     } else if (count === 3) {
+      // Temporarily disabled - prevent auto-navigation on countdown completion
       const timer = setTimeout(() => {
         onCountdownComplete();
       }, 500);
