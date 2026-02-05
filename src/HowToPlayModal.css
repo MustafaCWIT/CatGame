@@ -1,7 +1,9 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(207, 102, 172, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,15 +14,17 @@
 .modal-container {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 980px;
+  min-height: 1020px;
   background: linear-gradient(180deg, #930F74 0%, #4D014B 100%);
-  border-radius: 24px;
-  padding: 25px 20px;
-  /* max-height: 90vh; */
+  border-radius: 32px;
+  padding: 20px 30px;
   overflow: visible;
-  border: 3px solid rgba(255, 255, 255, 0.5);
-  margin-top: 20px;
+  border: 7px solid rgba(255, 255, 255, 0.4);
+  margin-top: 10px;
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-close {
@@ -52,18 +56,18 @@
 
 .modal-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 700;
   color: white;
-  margin: 0 0 15px 0;
+  margin: 0 0 20px 0;
 }
 
 .modal-subtitle {
   font-family: 'Poppins', sans-serif;
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 700;
   color: white;
-  margin: 0 0 20px 0;
+  margin: 0 0 25px 0;
   text-align: center;
 }
 
@@ -98,7 +102,7 @@
 
 .modal-step-text {
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   color: white;
   line-height: 1.4;
   font-weight: 400;
@@ -106,7 +110,7 @@
 
 /* Participate section */
 .modal-participate {
-  background: rgba(255, 255, 255, 0.1);
+  /* background: rgba(255, 255, 255, 0.1); */
   border-radius: 16px;
   padding: 20px 15px;
   margin-left: -10px;
@@ -123,11 +127,11 @@
 .modal-prize-card {
   position: relative;
   background: #CF66AC;
-  border-radius: 12px;
-  padding: 15px;
+  border-radius: 16px;
+  padding: 20px;
   display: flex;
   align-items: center;
-  min-height: 70px;
+  min-height: 90px;
   overflow: visible;
   justify-content: space-between;
 }
@@ -158,7 +162,7 @@
 
 .modal-prize-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   color: white;
   line-height: 1.3;
@@ -166,10 +170,10 @@
 
 .modal-prize-desc {
   font-family: 'Poppins', sans-serif;
-  font-size: 9px;
+  font-size: 12px;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.3;
-  margin-top: 4px;
+  margin-top: 6px;
   font-weight: 400;
   display: block;
 }
@@ -181,26 +185,26 @@
 
 .modal-prize-img-cat {
   left: 0;
-  top: -36px;
-  width: 90px;
+  top: -45px;
+  width: 120px;
   height: auto;
 }
 
 .modal-prize-img-food {
   position: absolute;
-  right: -60px;
-  bottom: -30px;
-  width: 180px;
+  right: -70px;
+  bottom: -40px;
+  width: 220px;
   height: auto;
 }
 
 /* Let's Go button */
 .modal-btn {
   /* width: 100%; removed to allow auto width */
-  padding: 16px 48px;
+  padding: 16px 88px;
   background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
   border: none;
-  border-radius: 30px;
+  border-radius: 10px;
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: 700;
