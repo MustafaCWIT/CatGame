@@ -67,10 +67,10 @@
 /* Profile icon */
 .home-profile {
   position: fixed;
-  top: 15px;
-  right: 15px;
-  width: 40px;
-  height: 40px;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
   background: rgba(100, 200, 255, 0.9);
   border-radius: 50%;
   display: flex;
@@ -133,9 +133,8 @@
 /* Logo */
 .home-logo {
   width: 280px;
-  margin-top: 5px;
+  margin-top: 40px;
   height: auto;
-
 }
 
 /* Hero section - Title and Cat in same row */
@@ -344,7 +343,7 @@
 
 .home-prize-buttons {
   display: flex;
-  gap: 8px;
+  gap: 19px;
   width: 110%;
   margin-top: 20px;
   padding: 0 10px;
