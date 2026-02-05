@@ -398,6 +398,69 @@
   }
 }
 
+/* 443px width breakpoint */
+@media screen and (max-width: 443px) {
+  .upload-header {
+    top: 12px;
+    padding: 13.5px 15px;
+  }
+
+  .upload-home-btn,
+  .upload-profile-btn {
+    width: 37.5px;
+    height: 37.5px;
+  }
+
+  .upload-logo {
+    height: 49.5px;
+  }
+
+  .upload-content {
+    padding: 120px 15px 31px;
+    max-width: 100%;
+  }
+
+  .upload-card {
+    border-radius: 25.5px;
+    padding: 24.5px;
+    border-width: 2.1px;
+    margin-bottom: 21px;
+  }
+
+  .upload-card-title {
+    font-size: 21.5px;
+    margin-bottom: 17.5px;
+  }
+
+  .upload-select-btn {
+    padding: 15px;
+    font-size: 13px;
+    border-radius: 10px;
+    margin-bottom: 21px;
+  }
+
+  .upload-success-msg {
+    padding: 13px 17px;
+    font-size: 13px;
+  }
+
+  .upload-submit-btn {
+    padding: 9px 37px;
+    font-size: 15px;
+    border-radius: 9px;
+  }
+
+  .upload-instructions-title {
+    font-size: 23.5px;
+    margin-bottom: 11px;
+  }
+
+  .upload-instruction {
+    font-size: 13px;
+    margin-bottom: 6.5px;
+  }
+}
+
 /* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
 @media screen and (max-width: 419px) and (min-width: 400px) {
   .upload-header {

@@ -782,6 +782,127 @@
   }
 }
 
+/* 443px width breakpoint */
+@media screen and (max-width: 443px) {
+  .home-fish {
+    width: 149px;
+    left: -54.5px;
+    top: 17.5px;
+  }
+
+  .home-cloud {
+    width: 177px;
+    right: -79px;
+    top: 121px;
+  }
+
+  .home-profile {
+    width: 39.5px;
+    height: 39.5px;
+    top: 19.5px;
+    right: 19.5px;
+  }
+
+  .home-content {
+    max-width: 100%;
+    padding: 10px 11.5px 17.5px 11.5px;
+  }
+
+  .home-logo {
+    width: 169px;
+    margin-top: 29px;
+  }
+
+  .home-title {
+    font-size: 48px;
+    margin: 15.5px 0 0 0;
+  }
+
+  .home-cat-container {
+    max-width: 265px;
+    height: 205px;
+    margin-top: 170px;
+  }
+
+  .home-cat-circle {
+    width: 270px;
+    height: 91px;
+  }
+
+  .home-cat {
+    width: 232px;
+    margin-left: 232px;
+    margin-bottom: 8px;
+  }
+
+  .home-buttons {
+    max-width: 100%;
+    margin-top: -55px;
+    gap: 8px;
+    padding: 0 1px;
+  }
+
+  .home-btn {
+    padding: 12px 5px;
+    font-size: 13px;
+    border-width: 3px;
+    border-radius: 12px;
+  }
+
+  .home-participate {
+    padding-bottom: 1px;
+    margin-top: 0px;
+  }
+
+  .home-participate-title,
+  .home-participate h2.home-participate-title {
+    font-size: 21px !important;
+    padding-top: 20px;
+    margin-bottom: 12px;
+  }
+
+  .home-prize-buttons {
+    width: 100%;
+    gap: 10px;
+    padding: 0 10px;
+    margin-left: 0;
+    margin-top: 10px;
+    box-sizing: border-box;
+  }
+
+  .home-prize-btn {
+    padding: 11px 8.5px;
+    border-radius: 16px;
+    min-height: 56px;
+    gap: 10px;
+  }
+
+  .home-prize-btn-left {
+    padding-left: 49px;
+  }
+
+  .home-prize-btn-right {
+    padding-left: 23px;
+    padding-right: 9px;
+  }
+
+  .home-prize-text span {
+    font-size: 14px;
+  }
+
+  .home-prize-img-left {
+    width: 60px;
+    left: -17px;
+    top: -18px;
+  }
+
+  .home-prize-img-right {
+    width: 58px;
+    right: -4px;
+    bottom: -10px;
+  }
+}
+
 /* 423px width breakpoint */
 @media screen and (max-width: 423px) {
   .home-fish {

@@ -500,6 +500,107 @@
   }       
 }
 
+/* 443px width breakpoint */
+@media screen and (max-width: 443px) {
+  .starting-screen {
+    padding-top: 23px;
+  }
+
+  .starting-nav {
+    top: 13px;
+    padding: 0 13px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 41px;
+    height: 41px;
+  }
+
+  .starting-loader-text {
+    font-size: 16.5px;
+  }
+
+  .starting-title {
+    font-size: 41px;
+    margin-top: 52px;
+    letter-spacing: -1px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 292px;
+    margin-top: 132px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .starting-tablet-frame {
+    width: 91.5%;
+    padding: 9px;
+    border-radius: 19px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 10.5px;
+  }
+
+  .starting-game-bg {
+    top: 0;
+    bottom: -20px;
+  }
+
+  .preview-ui-top {
+    top: 8.5px;
+    padding: 0 11px;
+  }
+
+  .preview-pill {
+    padding: 1px 4.5px;
+    font-size: 6px;
+    border-radius: 9px;
+  }
+
+  .preview-pill-score {
+    font-size: 7.5px;
+  }
+
+  .starting-fish {
+    width: 127px;
+    left: -11px;
+    top: 4px;
+  }
+
+  .starting-star {
+    width: 56px;
+    top: 50px;
+    right: 75px;
+  }
+
+  .starting-bowl {
+    width: 79px;
+    bottom: 13px;
+    left: 26%;
+  }
+
+  .starting-cat {
+    width: 145px;
+    top: -100px;
+  }
+
+  .starting-countdown {
+    margin-top: 30px;
+  }
+
+  .starting-label {
+    font-size: 18px;
+    margin-top: 60px;
+  }
+
+  .starting-number {
+    font-size: 98px;
+  }
+}
+
 /* 423px width breakpoint */
 @media screen and (max-width: 423px) {
   .starting-screen {

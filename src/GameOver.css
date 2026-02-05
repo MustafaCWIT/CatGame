@@ -398,6 +398,71 @@
   }
 }
 
+/* 443px width breakpoint */
+@media screen and (max-width: 443px) {
+  .go-page {
+    padding: 11.7px;
+  }
+
+  .go-header {
+    top: 11.7px;
+    padding: 11.7px;
+  }
+
+  .go-home-btn,
+  .go-profile-btn {
+    width: 37.5px;
+    height: 37.5px;
+  }
+
+  .go-modal-container {
+    max-width: 357px;
+    margin-top: -60px;
+  }
+
+  .go-cat {
+    width: 197px;
+    margin-bottom: -79px;
+  }
+
+  .go-modal {
+    border-radius: 27.5px;
+    padding: 44px 21px 21px;
+    border-width: 4.7px;
+  }
+
+  .go-dollar {
+    width: 94px;
+    margin-bottom: 27.5px;
+  }
+
+  .go-label {
+    font-size: 16.5px;
+  }
+
+  .go-score {
+    font-size: 66px;
+    margin: -8px 0 15px 0;
+  }
+
+  .go-actions {
+    max-width: 240px;
+    gap: 10.5px;
+  }
+
+  .go-btn {
+    padding: 11.5px 20px;
+    border-radius: 12.5px;
+    font-size: 14.5px;
+  }
+
+  .go-unlock-btn {
+    margin-top: 80px;
+    padding: 13px 35px;
+    font-size: 15px;
+  }
+}
+
 /* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
 @media screen and (max-width: 419px) and (min-width: 400px) {
   .go-page {

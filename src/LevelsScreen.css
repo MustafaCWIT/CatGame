@@ -689,6 +689,156 @@
   }
 }
 
+/* 443px width breakpoint */
+@media screen and (max-width: 443px) {
+  .levels::before {
+    width: 207px;
+    height: 207px;
+    top: 15.3%;
+    right: -14.3%;
+  }
+
+  .levels-clouds-decoration {
+    width: 292px;
+    right: -124px;
+    top: 3.3%;
+  }
+
+  .levels-header {
+    padding: 13px 14.5px;
+  }
+
+  .levels-home-btn,
+  .levels-profile-btn {
+    width: 36.5px;
+    height: 36.5px;
+  }
+
+  .levels-logo {
+    height: 47.5px;
+    top: 23.5px;
+  }
+
+  .levels-content {
+    padding: 104px 14.5px 30px;
+    max-width: 100%;
+  }
+
+  .levels-user-section {
+    margin-bottom: 20px;
+  }
+
+  .levels-user-name {
+    font-size: 24.5px;
+  }
+
+  .levels-user-info {
+    font-size: 11.7px;
+    gap: 10px;
+  }
+
+  .levels-stats {
+    gap: 10.7px;
+    margin-bottom: 20px;
+  }
+
+  .levels-stat-card {
+    border-radius: 16px;
+    padding: 12px 10px;
+    height: 84px;
+    border-width: 2px;
+  }
+
+  .levels-stat-video-card {
+    border-radius: 18px;
+    padding: 12px 10px;
+    height: 84px;
+    padding-bottom: 26px;
+    border-width: 2px;
+  }
+
+  .levels-stat-img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .levels-stat-label {
+    font-size: 9.7px;
+  }
+
+  .levels-stat-value {
+    font-size: 19.5px;
+  }
+
+  .levels-upload-btn {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 12px;
+    margin-top: -19px;
+  }
+
+  .levels-section-title {
+    font-size: 19.5px;
+    margin-bottom: 14px;
+  }
+
+  .levels-theme-section {
+    margin-bottom: 25px;
+  }
+
+  .levels-theme-cards {
+    gap: 12px;
+  }
+
+  .levels-theme-card {
+    border-radius: 18px;
+    height: 146px;
+    border-width: 2.5px;
+  }
+
+  .levels-theme-check {
+    font-size: 36px;
+  }
+
+  .levels-theme-lock {
+    font-size: 28.5px;
+  }
+
+  .levels-theme-name {
+    font-size: 14px;
+  }
+
+  .levels-activity-title {
+    font-size: 19.5px;
+    margin-bottom: 14px;
+  }
+
+  .levels-activity-list {
+    max-height: 291px;
+    gap: 8px;
+    padding-right: 9px;
+  }
+
+  .levels-activity-item {
+    padding: 10px 13.5px;
+    border-radius: 12px;
+    gap: 10px;
+  }
+
+  .levels-activity-icon {
+    width: 31px;
+    height: 31px;
+  }
+
+  .levels-activity-text {
+    font-size: 11.7px;
+  }
+
+  .levels-activity-date {
+    font-size: 9.7px;
+  }
+}
+
 /* 423px width breakpoint */
 @media screen and (max-width: 423px) {
   .levels::before {
