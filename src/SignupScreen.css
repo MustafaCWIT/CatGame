@@ -282,6 +282,52 @@
   }
 }
 
+/* 423px width breakpoint */
+@media screen and (max-width: 423px) {
+  .signup-cloud {
+    width: 975px;
+    bottom: -435px;
+  }
+
+  .signup-home,
+  .signup-profile {
+    width: 35px;
+    height: 35px;
+  }
+
+  .signup-content {
+    max-width: 100%;
+    padding: 15.5px;
+    padding-top: 5.5px;
+  }
+
+  .signup-logo {
+    width: 171px;
+    margin-bottom: 21.5px;
+  }
+
+  .signup-title {
+    font-size: 23.5px;
+  }
+
+  .signup-subtitle {
+    font-size: 12.5px;
+    margin-bottom: 19.5px;
+  }
+
+  .signup-input {
+    padding: 12px 13.5px;
+    font-size: 13px;
+  }
+
+  .signup-btn {
+    width: 56%;
+    padding: 14.5px 19.5px;
+    font-size: 15.5px;
+    border-radius: 11.5px;
+  }
+}
+
 /* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
 @media screen and (max-width: 419px) and (min-width: 400px) {
   .signup-cloud {

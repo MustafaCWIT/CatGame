@@ -782,6 +782,127 @@
   }
 }
 
+/* 423px width breakpoint */
+@media screen and (max-width: 423px) {
+  .home-fish {
+    width: 148px;
+    left: -54px;
+    top: 17px;
+  }
+
+  .home-cloud {
+    width: 175px;
+    right: -78px;
+    top: 120px;
+  }
+
+  .home-profile {
+    width: 39px;
+    height: 39px;
+    top: 19px;
+    right: 19px;
+  }
+
+  .home-content {
+    max-width: 100%;
+    padding: 10px 11px 17px 11px;
+  }
+
+  .home-logo {
+    width: 168px;
+    margin-top: 28px;
+  }
+
+  .home-title {
+    font-size: 47px;
+    margin: 15px 0 0 0;
+  }
+
+  .home-cat-container {
+    max-width: 250px;
+    height: 205px;
+    margin-top: 100px;
+  }
+
+  .home-cat-circle {
+    width: 260px;
+    height: 88px;
+  }
+
+  .home-cat {
+    width: 200px;
+    margin-left: 200px;
+    margin-bottom: 8px;
+  }
+
+  .home-buttons {
+    max-width: 100%;
+    margin-top: -53px;
+    gap: 7.5px;
+    padding: 0 0.5px;
+  }
+
+  .home-btn {
+    padding: 12px 4.5px;
+    font-size: 12.5px;
+    border-width: 3px;
+    border-radius: 11.5px;
+  }
+
+  .home-participate {
+    padding-bottom: 0.5px;
+    margin-top: 0px;
+  }
+
+  .home-participate-title,
+  .home-participate h2.home-participate-title {
+    font-size: 19px !important;
+    padding-top: 48px;
+    margin-bottom: 11px;
+  }
+
+  .home-prize-buttons {
+    width: 100%;
+    gap: 9px;
+    padding: 0 7px;
+    margin-left: 0;
+    margin-top: 9px;
+    box-sizing: border-box;
+  }
+
+  .home-prize-btn {
+    padding: 11px 8px;
+    border-radius: 16px;
+    min-height: 50px;
+    gap: 10px;
+  }
+
+  .home-prize-btn-left {
+    padding-left: 48px;
+  }
+
+  .home-prize-btn-right {
+    padding-left: 22px;
+    padding-right: 8px;
+  }
+
+  .home-prize-text span {
+    font-size: 10px;
+  }
+
+  .home-prize-img-left {
+    width: 60px;
+    left: -17          px;
+    top: -24px;
+  }
+
+  .home-prize-img-right {
+    width: 53px;
+    right: -4px;
+    bottom: -10px;
+  }
+}
+
 /* Medium phones: 390px width (iPhone 12/13/14 - 390x844) */
 @media screen and (max-width: 399px) and (min-width: 385px) {
   .home-fish {

@@ -350,6 +350,64 @@
   }
 }
 
+/* 423px width breakpoint */
+@media screen and (max-width: 423px) {
+  .splash-clouds-left {
+    width: 165px;
+    height: 180px;
+    left: -58px;
+    top: 3.5%;
+  }
+
+  .splash-clouds-right {
+    width: 92px;
+    right: -33px;
+    top: 9.5%;
+  }
+
+  .splash-fish {
+    width: 102px;
+    left: -43px;
+    top: 31%;
+  }
+
+  .splash-bowl {
+    width: 53px;
+  }
+
+  .splash-content {
+    padding: 17px;
+  }
+
+  .splash-logo {
+    width: 88px;
+    top: 2.2%;
+  }
+
+  .splash-title {
+    font-size: 27px;
+    margin-bottom: 17px;
+  }
+
+  .splash-cat {
+    width: 195px;
+  }
+
+  .splash-name {
+    width: 175px;
+    margin-top: -43px;
+  }
+
+  .splash-loader {
+    width: 158px;
+    height: 8.5px;
+  }
+
+  .splash-loader-text {
+    font-size: 11.5px;
+  }
+}
+
 /* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
 @media screen and (max-width: 419px) and (min-width: 400px) {
   .splash-clouds-left {

@@ -247,6 +247,53 @@
   }
 }
 
+/* 423px width breakpoint */
+@media screen and (max-width: 423px) {
+  .login-overlay {
+    padding: 13.5px;
+    padding-top: 172px;
+  }
+
+  .login-container {
+    max-width: 100%;
+    padding: 52px 37px;
+    border-radius: 19.5px;
+    border-width: 4.2px;
+  }
+
+  .login-close {
+    width: 24px;
+    height: 24px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .login-title {
+    font-size: 25px;
+  }
+
+  .login-subtitle {
+    font-size: 14.5px;
+    margin-bottom: 18.5px;
+  }
+
+  .login-input {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .login-btn {
+    width: 53%;
+    padding: 17px 17px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  .login-signup-text {
+    font-size: 12px;
+  }
+}
+
 /* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
 @media screen and (max-width: 419px) and (min-width: 400px) {
   .login-overlay {
