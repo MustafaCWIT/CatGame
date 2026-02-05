@@ -85,27 +85,51 @@ export default function StartingScreen({ levelName, onCountdownComplete }) {
     <div className="starting-screen fade-in">
       <img src={backgroundImg} alt="" className="starting-background" />
 
+      {/* Top Navigation */}
+      <div className="starting-nav">
+        <button className="starting-home-btn">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+          </svg>
+        </button>
+        <div className="starting-profile">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+          </svg>
+        </div>
+      </div>
+
       {/* Level name */}
       <h1 className="starting-title">{levelName || 'Midnight Paws'}</h1>
 
-      {/* Game preview wrapper */}
+      {/* Game preview wrapper with Tablet Frame */}
       <div className="starting-preview-wrapper">
-        {/* Cat overlapping the preview */}
-        <img src={lyingCatImg} alt="" className="starting-cat" />
+        <div className="starting-tablet-frame">
+          <div className="starting-tablet-bezel">
+            {/* Game preview */}
+            <div className="starting-preview">
+              <img src={gameBackgroundImg} alt="" className="starting-game-bg" />
 
-        {/* Game preview */}
-        <div className="starting-preview">
-          <img src={gameBackgroundImg} alt="" className="starting-game-bg" />
+              {/* In-game UI pills */}
+              <div className="preview-ui-top">
+                <div className="preview-pill preview-pill-score">15000</div>
+                <div className="preview-pill preview-pill-time">00:25</div>
+              </div>
 
-          {/* Star inside preview near cat paw */}
-          <img src={starImg} alt="" className="starting-star" />
+              {/* Star inside preview */}
+              <img src={starImg} alt="" className="starting-star" />
 
-          {/* Fish */}
-          <img src={fishImg} alt="" className="starting-fish" />
+              {/* Fish */}
+              <img src={fishImg} alt="" className="starting-fish" />
 
-          {/* Bowl */}
-          <img src={bowlImg} alt="" className="starting-bowl" />
+              {/* Bowl */}
+              <img src={bowlImg} alt="" className="starting-bowl" />
+            </div>
+          </div>
         </div>
+
+        {/* Cat overlapping everything */}
+        <img src={lyingCatImg} alt="" className="starting-cat" />
       </div>
 
       {/* Countdown */}

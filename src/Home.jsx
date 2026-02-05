@@ -63,7 +63,7 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user }) {
 
       {/* Profile icon at top right */}
       <div className="home-profile">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
         </svg>
       </div>
@@ -77,41 +77,10 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user }) {
         </button>
       )}
 
-      {/* Logout button */}
-      {onLogout && (
-        <button
-          className="home-logout-btn"
-          onClick={onLogout}
-          title="Logout"
-          style={{
-            position: 'absolute',
-            top: 65,
-            right: 20,
-            background: 'rgba(255, 255, 255, 0.2)',
-            border: 'none',
-            borderRadius: '10px',
-            color: 'white',
-            padding: '5px 10px',
-            cursor: 'pointer',
-            fontSize: '12px',
-            fontWeight: '600',
-            zIndex: 10
-          }}
-        >
-          Logout
-        </button>
-      )}
 
       <div className="home-content">
         {/* Logo */}
         <img src={logoImg} alt="Whiskas" className="home-logo" />
-
-        {/* Welcome message for user */}
-        {user && (
-          <p style={{ color: 'white', fontWeight: '600', margin: '0 0 10px 0' }}>
-            Welcome back, {user.user_metadata?.full_name || 'Cat Hunter'}!
-          </p>
-        )}
 
         {/* Title and Cat in same row */}
         <div className="home-hero">

@@ -122,10 +122,19 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
       }
     });
 
-    if (nearestId !== null && minDist < TAP_RADIUS) {
-      collectById(nearestId, tx, ty);
-      playChime(pitchCounter.current++);
-      tryVibrate();
+    if (nearestId !== null) {
+      const el = objectRefs.current[nearestId];
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        // Check if the touch is within the actual rectangular bounds of the object
+        if (tx >= rect.left && tx <= rect.right && ty >= rect.top && ty <= rect.bottom) {
+          const success = collectById(nearestId, tx, ty);
+          if (success) {
+            playChime(pitchCounter.current++);
+            tryVibrate();
+          }
+        }
+      }
     }
   }, [objects, showGameOver, collectById]);
 

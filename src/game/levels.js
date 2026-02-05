@@ -6,7 +6,7 @@ export const LEVELS = [
     name: 'Soft Sky',
     xpRequired: 0,       // unlocked from start
     background: ['#2d1b69', '#1a1040', '#3b2d80'],
-    objects: ['fish', 'star', 'clouds', 'bowl'],
+    objects: ['fish', 'star', 'stars', 'sparrow', 'bowl', 'clouds', 'leaf'],
     objectColors: ['#c4b5fd', '#a78bfa', '#7dd3fc', '#e0e7ff'],
     primaryColor: '#c4b5fd', // Purple for UI elements
     secondaryColor: '#a78bfa',
@@ -15,9 +15,9 @@ export const LEVELS = [
   },
   {
     name: 'Cozy Bowl World',
-    xpRequired: 200,
+    xpRequired: 3000,
     background: ['#7c2d12', '#451a03', '#c2410c'],
-    objects: ['bowl', 'treat', 'paw'],
+    objects: ['bowl', 'treat', 'foodBox', 'foodBoxes', 'paw', 'dollar', 'clouds', 'leaf', 'stars'],
     objectColors: ['#fdba74', '#fb923c', '#fbbf24', '#fde68a'],
     primaryColor: '#fb923c', // Orange for UI elements
     secondaryColor: '#fdba74',
@@ -25,9 +25,9 @@ export const LEVELS = [
   },
   {
     name: 'Starry Dream',
-    xpRequired: 600,
+    xpRequired: 8000,
     background: ['#0c4a6e', '#075985', '#0369a1'], // Teal/cyan tones
-    objects: ['star', 'moon', 'comet'],
+    objects: ['star', 'moon', 'comet', 'sparrow', 'stars'],
     objectColors: ['#67e8f9', '#22d3ee', '#a5f3fc', '#cffafe'],
     primaryColor: '#22d3ee', // Bright cyan for UI elements
     secondaryColor: '#67e8f9',
@@ -35,9 +35,9 @@ export const LEVELS = [
   },
   {
     name: 'Garden Glow',
-    xpRequired: 1400,
+    xpRequired: 15000,
     background: ['#831843', '#9f1239', '#be185d'], // Changed to pink/rose tones
-    objects: ['flower', 'leaf', 'butterfly'],
+    objects: ['flower', 'leaf', 'butterfly', 'fish', 'stars'],
     objectColors: ['#f9a8d4', '#f472b6', '#ec4899', '#fbcfe8'],
     primaryColor: '#f472b6', // Pink for UI elements
     secondaryColor: '#f9a8d4',
@@ -45,9 +45,9 @@ export const LEVELS = [
   },
   {
     name: 'Aurora Drift',
-    xpRequired: 2800,
+    xpRequired: 30000,
     background: ['#1e1b4b', '#312e81', '#4c1d95'],
-    objects: ['nebula', 'orb', 'sparkle'],
+    objects: ['nebula', 'orb', 'sparkle', 'comet', 'stars'],
     objectColors: ['#c084fc', '#a78bfa', '#67e8f9', '#f0abfc'],
     primaryColor: '#c084fc', // Purple for UI elements
     secondaryColor: '#f0abfc',
@@ -89,10 +89,10 @@ export const OBJECT_SHAPES = {
 };
 
 export const OBJECT_SIZE = 250; // Extra large for cat paws
-export const MAX_OBJECTS = 1; // Only one object at a time
+export const MAX_OBJECTS = 1; // Only one object at a time, alternating directions
 export const SPAWN_MARGIN = 150; // Increased margin to center objects more
 export const MIN_OBJECT_DISTANCE = 300;
-export const TAP_RADIUS = 400; // Very generous touch area for cats
+export const TAP_RADIUS = 125; // Strict touch area (half of OBJECT_SIZE)
 export const OBJECT_SPEED = 0.3;
 
 // Points for each object type
@@ -109,6 +109,12 @@ export const OBJECT_POINTS = {
   butterfly: 3,
   nebula: 2,
   orb: 1,
+  sparkle: 2,
+  sparrow: 3,
+  foodBox: 2,
+  foodBoxes: 4,
+  dollar: 5,
+  stars: 4,
   sparkle: 2,
   // Fallback for any other types
   cloud: 1,
