@@ -9,25 +9,64 @@ function randomBetween(min, max) {
 
 export function createObject(levelIndex, screenW, screenH, existingObjects = [], isInitial = false, index = 0) {
   const level = LEVELS[levelIndex];
-  const type = level.objects[Math.floor(Math.random() * level.objects.length)];
+
+  // Define direction types
+  const verticalTypes = ['clouds', 'cloud', 'bowl', 'star', 'stars', 'leaf', 'flower', 'paw', 'foodBox', 'foodBoxes', 'treat', 'moon', 'orb'];
+  const horizontalTypes = ['fish', 'sparrow', 'butterfly', 'comet', 'dollar', 'nebula'];
+
+  // Alternate direction based on the global counter: 0 = Horizontal, 1 = Vertical
+  // We use objectIdCounter % 2 to ensure they alternate strictly one after another
+  const desiredDirection = (objectIdCounter % 2);
+
+  // Filter level objects to match the desired direction
+  const matchingTypes = level.objects.filter(t => {
+    // 0 = Horizontal, 1 = Vertical (as per "HORIZONTAL AND THEN VERTICAL" request)
+    if (desiredDirection === 1) return verticalTypes.includes(t);
+    return horizontalTypes.includes(t);
+  });
+
+  // Fallback to all objects if no match (to avoid crashes if a level is missing a type)
+  const pool = matchingTypes.length > 0 ? matchingTypes : level.objects;
+
+  // Filter out the last spawned object type to avoid repetition
+  const lastType = existingObjects.length > 0 ? existingObjects[existingObjects.length - 1].type : null;
+  const availableObjects = (lastType && pool.length > 1)
+    ? pool.filter(t => t !== lastType)
+    : pool;
+
+  const type = availableObjects[Math.floor(Math.random() * availableObjects.length)];
   const color = level.objectColors[Math.floor(Math.random() * level.objectColors.length)];
 
-  // Always drop from top to bottom for "one at a time" flow
+  // Set direction based on actual selected type for movement logic
+  const direction = verticalTypes.includes(type) ? 0 : 1;
 
-  // Ensure objects are well-centered and not clumped at the left
-  let range = screenW - (SPAWN_MARGIN * 2) - OBJECT_SIZE;
-  let x;
-  if (range <= 0) {
-    // If screen is narrow, just center it
-    x = (screenW - OBJECT_SIZE) / 2;
+  let x, y, targetX, targetY;
+
+  if (direction === 0) {
+    // Vertical: Top to Bottom
+    let range = screenW - (SPAWN_MARGIN * 2) - OBJECT_SIZE;
+    x = range <= 0 ? (screenW - OBJECT_SIZE) / 2 : SPAWN_MARGIN + Math.random() * range;
+    y = -OBJECT_SIZE; // Start fully off-screen for complete appearance
+    targetX = x;
+    targetY = screenH + OBJECT_SIZE;
   } else {
-    // Randomly place within the safe middle area
-    x = SPAWN_MARGIN + Math.random() * range;
+    // Horizontal: Left to Right
+    let range = screenH - (SPAWN_MARGIN * 2) - OBJECT_SIZE;
+    y = range <= 0 ? (screenH - OBJECT_SIZE) / 2 : SPAWN_MARGIN + Math.random() * range;
+    x = -OBJECT_SIZE; // Start fully off-screen
+    targetX = screenW + OBJECT_SIZE;
+    targetY = y;
   }
 
-  const y = -OBJECT_SIZE;
-  const targetX = x;
-  const targetY = screenH + OBJECT_SIZE;
+  // Define speed/duration (Decreased speed as requested)
+  let duration;
+  if (type === 'clouds' || type === 'cloud') {
+    duration = randomBetween(4.5, 6.0);
+  } else if (type === 'leaf') {
+    duration = randomBetween(3.5, 5.0);
+  } else {
+    duration = randomBetween(2.8, 4.2);
+  }
 
   return {
     id: ++objectIdCounter,
@@ -37,12 +76,14 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
     y,
     targetX,
     targetY,
-    duration: randomBetween(1.5, 2.8), // Slower and more varied for easier catching
+    duration,
     scale: randomBetween(1.0, 1.4),
-    rotation: randomBetween(0, 360),
-    rotationSpeed: randomBetween(-0.2, 0.2),
+    // Straight movement check including bowl, stars, and leaf
+    rotation: (type === 'fish' || type === 'sparrow' || type === 'clouds' || type === 'cloud' || type === 'bowl' || type === 'star' || type === 'stars' || type === 'leaf') ? 0 : randomBetween(0, 360),
+    rotationSpeed: (type === 'fish' || type === 'sparrow' || type === 'clouds' || type === 'cloud' || type === 'bowl' || type === 'star' || type === 'stars' || type === 'leaf') ? 0 : randomBetween(-0.2, 0.2),
     opacity: 1,
     spawning: true,
+    moveIndex: index
   };
 }
 
@@ -89,7 +130,7 @@ export function useGameState(playerLevel = 0) {
       if (idx === -1) return prev;
 
       const { w, h } = screenSize.current;
-      const newObj = createObject(playerLevel, w, h, prev);
+      const newObj = createObject(playerLevel, w, h, prev, false, prev[idx].moveIndex);
       const next = [...prev];
       next[idx] = newObj;
       return next;
@@ -166,7 +207,7 @@ export function useGameState(playerLevel = 0) {
       }]);
 
       const { w, h } = screenSize.current;
-      const newObj = createObject(playerLevel, w, h, prev);
+      const newObj = createObject(playerLevel, w, h, prev, false, collected.moveIndex);
 
       const next = [...prev];
       next[nearestIdx] = newObj;
@@ -181,23 +222,25 @@ export function useGameState(playerLevel = 0) {
   }, [playerLevel]);
 
   const collectById = useCallback((id, touchX, touchY) => {
-    if (isCollectingRef.current) return;
-    isCollectingRef.current = true;
+    // Basic debounce to prevent rapid fire accidental taps
+    if (isCollectingRef.current) return false;
+
+    let captureSuccess = false;
 
     setObjects(prev => {
       const idx = prev.findIndex(o => o.id === id);
-      if (idx === -1) {
-        isCollectingRef.current = false;
-        return prev;
-      }
+      if (idx === -1) return prev;
 
       const collected = prev[idx];
-      if (lastCollectedIdRef.current === collected.id) {
-        isCollectingRef.current = false;
+      // Second layer of protection: Check if this specific object was already tapped
+      if (collected.collected || lastCollectedIdRef.current === collected.id) {
         return prev;
       }
 
+      isCollectingRef.current = true;
       lastCollectedIdRef.current = collected.id;
+      captureSuccess = true;
+
       const pointsEarned = OBJECT_POINTS[collected.type] ?? 1;
 
       setRipples(r => [...r, {
@@ -219,17 +262,25 @@ export function useGameState(playerLevel = 0) {
       }]);
 
       const { w, h } = screenSize.current;
-      const newObj = createObject(playerLevel, w, h, prev);
+      const newObj = createObject(playerLevel, w, h, prev, false, collected.moveIndex);
+
       const next = [...prev];
+      // Mark current object as collected just in case state update lags
+      next[idx] = { ...collected, collected: true };
+
+      // We replace it with the new object after a tiny delay or immediately
+      // For sequential feel, we replace immediately but use the 'collected' flag to prevent double taps
       next[idx] = newObj;
 
       setTimeout(() => {
         isCollectingRef.current = false;
         lastCollectedIdRef.current = null;
-      }, 300);
+      }, 250);
 
       return next;
     });
+
+    return captureSuccess;
   }, [playerLevel]);
 
   const clearRipple = useCallback((id) => {

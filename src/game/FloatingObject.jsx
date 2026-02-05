@@ -5,6 +5,12 @@ import fishImg from '../assets/fish.png';
 import starImg from '../assets/star.png';
 import bowlImg from '../assets/bowl.png';
 import cloudsImg from '../assets/clouds.png';
+import sparrowImg from '../assets/sparrow.png';
+import foodBoxImg from '../assets/foodBox.png';
+import foodBoxesImg from '../assets/foodBoxes.png';
+import leafImg from '../assets/leaf.png';
+import dollarImg from '../assets/dollar.png';
+import starsImg from '../assets/stars.png';
 
 const FloatingObject = memo(function FloatingObject({ obj, onOffScreen, registerRef }) {
   const outerRef = useRef(null);
@@ -17,6 +23,12 @@ const FloatingObject = memo(function FloatingObject({ obj, onOffScreen, register
     star: starImg,
     bowl: bowlImg,
     clouds: cloudsImg,
+    sparrow: sparrowImg,
+    foodBox: foodBoxImg,
+    foodBoxes: foodBoxesImg,
+    leaf: leafImg,
+    dollar: dollarImg,
+    stars: starsImg,
   };
 
   const imageSrc = imageMap[obj.type];
@@ -62,17 +74,20 @@ const FloatingObject = memo(function FloatingObject({ obj, onOffScreen, register
     });
 
     // Rotation animation
-    const rotateTween = gsap.to(innerRef.current, {
-      rotation: `+=${obj.rotationSpeed * 360}`,
-      duration: 10 + Math.random() * 5,
-      repeat: -1,
-      ease: "none"
-    });
+    let rotateTween;
+    if (obj.rotationSpeed !== 0) {
+      rotateTween = gsap.to(innerRef.current, {
+        rotation: `+=${obj.rotationSpeed * 360}`,
+        duration: 10 + Math.random() * 5,
+        repeat: -1,
+        ease: "none"
+      });
+    }
 
     return () => {
       transitTween.kill();
       floatTween.kill();
-      rotateTween.kill();
+      if (rotateTween) rotateTween.kill();
       if (registerRef) registerRef(obj.id, null);
     };
   }, [obj.id, obj.x, obj.y, obj.scale, obj.rotation, obj.targetX, obj.targetY, obj.duration, obj.rotationSpeed, onOffScreen, registerRef]);
