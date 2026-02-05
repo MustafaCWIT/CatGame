@@ -394,3 +394,931 @@
   color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
 }
+
+/* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
+
+/* Tablet breakpoint */
+@media screen and (max-width: 768px) {
+  .levels-clouds-decoration {
+    width: 380px;
+    right: -150px;
+  }
+
+  .levels-header {
+    padding: 15px;
+  }
+
+  .levels-home-btn,
+  .levels-profile-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .levels-logo {
+    height: 55px;
+    top: 28px;
+  }
+
+  .levels-content {
+    padding: 120px 18px 35px;
+    max-width: 450px;
+  }
+
+  .levels-user-section {
+    margin-bottom: 25px;
+  }
+
+  .levels-user-name {
+    font-size: 28px;
+  }
+
+  .levels-user-info {
+    font-size: 14px;
+    gap: 12px;
+  }
+
+  .levels-stats {
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+
+  .levels-stat-card {
+    border-radius: 18px;
+    padding: 12px 8px;
+    height: 95px;
+    border-width: 2.5px;
+  }
+
+  .levels-stat-video-card {
+    border-radius: 20px;
+    padding: 12px 10px;
+    height: 95px;
+    padding-bottom: 22px;
+    border-width: 2.5px;
+  }
+
+  .levels-stat-img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .levels-stat-label {
+    font-size: 10px;
+  }
+
+  .levels-stat-value {
+    font-size: 22px;
+  }
+
+  .levels-upload-btn {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 12px;
+    margin-top: -22px;
+  }
+
+  .levels-section-title {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .levels-theme-section {
+    margin-bottom: 30px;
+  }
+
+  .levels-theme-cards {
+    gap: 15px;
+  }
+
+  .levels-theme-card {
+    border-radius: 20px;
+    height: 170px;
+    border-width: 3px;
+  }
+
+  .levels-theme-check {
+    font-size: 42px;
+  }
+
+  .levels-theme-lock {
+    font-size: 34px;
+  }
+
+  .levels-theme-name {
+    font-size: 16px;
+  }
+
+  .levels-activity-title {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .levels-activity-list {
+    max-height: 350px;
+    gap: 8px;
+    padding-right: 12px;
+  }
+
+  .levels-activity-item {
+    padding: 10px 16px;
+    border-radius: 12px;
+    gap: 12px;
+  }
+
+  .levels-activity-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .levels-activity-text {
+    font-size: 13px;
+  }
+
+  .levels-activity-date {
+    font-size: 11px;
+  }
+}
+
+/* Large phones: 430px width (iPhone 14 Pro Max) */
+@media screen and (max-width: 480px) and (min-width: 420px) {
+  .levels::before {
+    width: 220px;
+    height: 220px;
+    top: 16%;
+    right: -14%;
+  }
+
+  .levels-clouds-decoration {
+    width: 310px;
+    right: -130px;
+    top: 4%;
+  }
+
+  .levels-header {
+    padding: 14px 16px;
+  }
+
+  .levels-home-btn,
+  .levels-profile-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .levels-logo {
+    height: 50px;
+    top: 25px;
+  }
+
+  .levels-content {
+    padding: 110px 16px 32px;
+    max-width: 100%;
+  }
+
+  .levels-user-section {
+    margin-bottom: 22px;
+  }
+
+  .levels-user-name {
+    font-size: 26px;
+  }
+
+  .levels-user-info {
+    font-size: 13px;
+    gap: 11px;
+  }
+
+  .levels-stats {
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+
+  .levels-stat-card {
+    border-radius: 17px;
+    padding: 12px 10px;
+    height: 88px;
+    border-width: 2.2px;
+  }
+
+  .levels-stat-video-card {
+    border-radius: 19px;
+    padding: 12px 10px;
+    height: 88px;
+    padding-bottom: 25px;
+    border-width: 2.2px;
+  }
+
+  .levels-stat-img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .levels-stat-label {
+    font-size: 10px;
+  }
+
+  .levels-stat-value {
+    font-size: 21px;
+  }
+
+  .levels-upload-btn {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 12px;
+    margin-top: -21px;
+  }
+
+  .levels-section-title {
+    font-size: 21px;
+    margin-bottom: 15px;
+  }
+
+  .levels-theme-section {
+    margin-bottom: 27px;
+  }
+
+  .levels-theme-cards {
+    gap: 13px;
+  }
+
+  .levels-theme-card {
+    border-radius: 19px;
+    height: 155px;
+    border-width: 2.7px;
+  }
+
+  .levels-theme-check {
+    font-size: 38px;
+  }
+
+  .levels-theme-lock {
+    font-size: 30px;
+  }
+
+  .levels-theme-name {
+    font-size: 15px;
+  }
+
+  .levels-activity-title {
+    font-size: 21px;
+    margin-bottom: 15px;
+  }
+
+  .levels-activity-list {
+    max-height: 310px;
+    gap: 8px;
+    padding-right: 10px;
+  }
+
+  .levels-activity-item {
+    padding: 10px 15px;
+    border-radius: 12px;
+    gap: 11px;
+  }
+
+  .levels-activity-icon {
+    width: 33px;
+    height: 33px;
+  }
+
+  .levels-activity-text {
+    font-size: 12px;
+  }
+
+  .levels-activity-date {
+    font-size: 10px;
+  }
+}
+
+/* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
+@media screen and (max-width: 419px) and (min-width: 400px) {
+  .levels::before {
+    width: 210px;
+    height: 210px;
+    top: 15.5%;
+    right: -14.5%;
+  }
+
+  .levels-clouds-decoration {
+    width: 295px;
+    right: -125px;
+    top: 3.5%;
+  }
+
+  .levels-header {
+    padding: 13px 15px;
+  }
+
+  .levels-home-btn,
+  .levels-profile-btn {
+    width: 37px;
+    height: 37px;
+  }
+
+  .levels-logo {
+    height: 48px;
+    top: 24px;
+  }
+
+  .levels-content {
+    padding: 105px 15px 31px;
+    max-width: 100%;
+  }
+
+  .levels-user-section {
+    margin-bottom: 21px;
+  }
+
+  .levels-user-name {
+    font-size: 25px;
+  }
+
+  .levels-user-info {
+    font-size: 12px;
+    gap: 10px;
+  }
+
+  .levels-stats {
+    gap: 11px;
+    margin-bottom: 21px;
+  }
+
+  .levels-stat-card {
+    border-radius: 16px;
+    padding: 12px 10px;
+    height: 85px;
+    border-width: 2.1px;
+  }
+
+  .levels-stat-video-card {
+    border-radius: 18px;
+    padding: 12px 10px;
+    height: 85px;
+    padding-bottom: 27px;
+    border-width: 2.1px;
+  }
+
+  .levels-stat-img {
+    width: 51px;
+    height: 51px;
+  }
+
+  .levels-stat-label {
+    font-size: 10px;
+  }
+
+  .levels-stat-value {
+    font-size: 20px;
+  }
+
+  .levels-upload-btn {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 12px;
+    margin-top: -20px;
+  }
+
+  .levels-section-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .levels-theme-section {
+    margin-bottom: 26px;
+  }
+
+  .levels-theme-cards {
+    gap: 12px;
+  }
+
+  .levels-theme-card {
+    border-radius: 18px;
+    height: 148px;
+    border-width: 2.6px;
+  }
+
+  .levels-theme-check {
+    font-size: 37px;
+  }
+
+  .levels-theme-lock {
+    font-size: 29px;
+  }
+
+  .levels-theme-name {
+    font-size: 14px;
+  }
+
+  .levels-activity-title {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .levels-activity-list {
+    max-height: 295px;
+    gap: 8px;
+    padding-right: 9px;
+  }
+
+  .levels-activity-item {
+    padding: 10px 14px;
+    border-radius: 12px;
+    gap: 10px;
+  }
+
+  .levels-activity-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .levels-activity-text {
+    font-size: 12px;
+  }
+
+  .levels-activity-date {
+    font-size: 10px;
+  }
+}
+
+/* Medium phones: 390px width (iPhone 12/13/14) */
+@media screen and (max-width: 399px) and (min-width: 385px) {
+  .levels::before {
+    width: 200px;
+    height: 200px;
+    top: 15%;
+    right: -15%;
+  }
+
+  .levels-clouds-decoration {
+    width: 280px;
+    right: -120px;
+    top: 3%;
+  }
+
+  .levels-header {
+    padding: 12px 15px;
+  }
+
+  .levels-home-btn,
+  .levels-profile-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .levels-logo {
+    height: 45px;
+    top: 22px;
+  }
+
+  .levels-content {
+    padding: 100px 15px 30px;
+    max-width: 100%;
+  }
+
+  .levels-user-section {
+    margin-bottom: 20px;
+  }
+
+  .levels-user-name {
+    font-size: 24px;
+  }
+
+  .levels-user-info {
+    font-size: 12px;
+    gap: 10px;
+  }
+
+  .levels-stats {
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-direction: column;
+  }
+
+  .levels-stat-card {
+    border-radius: 16px;
+    padding: 12px 15px;
+    height: auto;
+    min-height: 80px;
+    border-width: 2px;
+    justify-content: flex-start;
+  }
+
+  .levels-stat-column {
+    width: 100%;
+  }
+
+  .levels-stat-video-card {
+    border-radius: 18px;
+    padding: 12px 15px;
+    height: auto;
+    min-height: 80px;
+    padding-bottom: 30px;
+    border-width: 2px;
+  }
+
+  .levels-stat-img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .levels-stat-label {
+    font-size: 10px;
+  }
+
+  .levels-stat-value {
+    font-size: 20px;
+  }
+
+  .levels-upload-btn {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 12px;
+    margin-top: -20px;
+  }
+
+  .levels-section-title {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .levels-theme-section {
+    margin-bottom: 25px;
+  }
+
+  .levels-theme-cards {
+    gap: 12px;
+  }
+
+  .levels-theme-card {
+    border-radius: 18px;
+    height: 140px;
+    border-width: 2.5px;
+  }
+
+  .levels-theme-check {
+    font-size: 36px;
+  }
+
+  .levels-theme-lock {
+    font-size: 28px;
+  }
+
+  .levels-theme-footer {
+    padding: 8px;
+  }
+
+  .levels-theme-name {
+    font-size: 14px;
+  }
+
+  .levels-activity-title {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .levels-activity-list {
+    max-height: 280px;
+    gap: 8px;
+    padding-right: 8px;
+  }
+
+  .levels-activity-list::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .levels-activity-item {
+    padding: 10px 14px;
+    border-radius: 12px;
+    gap: 10px;
+  }
+
+  .levels-activity-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .levels-activity-text {
+    font-size: 12px;
+  }
+
+  .levels-activity-date {
+    font-size: 10px;
+  }
+}
+
+/* Standard phones: 375px width (iPhone SE, 6/7/8) */
+@media screen and (max-width: 384px) and (min-width: 370px) {
+  .levels::before {
+    width: 180px;
+    height: 180px;
+    top: 14%;
+    right: -16%;
+  }
+
+  .levels-clouds-decoration {
+    width: 250px;
+    right: -110px;
+    top: 2.5%;
+  }
+
+  .levels-header {
+    padding: 10px 12px;
+  }
+
+  .levels-home-btn,
+  .levels-profile-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .levels-logo {
+    height: 42px;
+    top: 20px;
+  }
+
+  .levels-content {
+    padding: 92px 12px 25px;
+    max-width: 100%;
+  }
+
+  .levels-user-section {
+    margin-bottom: 18px;
+  }
+
+  .levels-user-name {
+    font-size: 22px;
+  }
+
+  .levels-user-info {
+    font-size: 11px;
+    gap: 9px;
+  }
+
+  .levels-stats {
+    gap: 9px;
+    margin-bottom: 18px;
+    flex-direction: column;
+  }
+
+  .levels-stat-card {
+    border-radius: 14px;
+    padding: 10px 12px;
+    min-height: 72px;
+    border-width: 1.8px;
+  }
+
+  .levels-stat-video-card {
+    border-radius: 16px;
+    padding: 10px 12px;
+    min-height: 72px;
+    padding-bottom: 26px;
+    border-width: 1.8px;
+  }
+
+  .levels-stat-img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .levels-stat-label {
+    font-size: 9px;
+  }
+
+  .levels-stat-value {
+    font-size: 18px;
+  }
+
+  .levels-upload-btn {
+    padding: 9px;
+    font-size: 13px;
+    border-radius: 10px;
+    margin-top: -18px;
+  }
+
+  .levels-section-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .levels-theme-section {
+    margin-bottom: 22px;
+  }
+
+  .levels-theme-cards {
+    gap: 10px;
+  }
+
+  .levels-theme-card {
+    border-radius: 16px;
+    height: 125px;
+    border-width: 2.2px;
+  }
+
+  .levels-theme-check {
+    font-size: 32px;
+  }
+
+  .levels-theme-lock {
+    font-size: 25px;
+  }
+
+  .levels-theme-footer {
+    padding: 7px;
+  }
+
+  .levels-theme-name {
+    font-size: 12px;
+  }
+
+  .levels-activity-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .levels-activity-list {
+    max-height: 250px;
+    gap: 7px;
+    padding-right: 6px;
+  }
+
+  .levels-activity-list::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .levels-activity-item {
+    padding: 9px 12px;
+    border-radius: 10px;
+    gap: 9px;
+  }
+
+  .levels-activity-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .levels-activity-text {
+    font-size: 11px;
+  }
+
+  .levels-activity-date {
+    font-size: 9px;
+  }
+}
+
+/* Small phones: 360px width (Galaxy S5, etc.) */
+@media screen and (max-width: 369px) {
+  .levels::before {
+    width: 160px;
+    height: 160px;
+    top: 13%;
+    right: -17%;
+  }
+
+  .levels-clouds-decoration {
+    width: 220px;
+    right: -100px;
+    top: 2%;
+  }
+
+  .levels-header {
+    padding: 8px 10px;
+  }
+
+  .levels-home-btn,
+  .levels-profile-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .levels-logo {
+    height: 38px;
+    top: 18px;
+  }
+
+  .levels-content {
+    padding: 85px 10px 20px;
+    max-width: 100%;
+  }
+
+  .levels-user-section {
+    margin-bottom: 15px;
+  }
+
+  .levels-user-name {
+    font-size: 20px;
+  }
+
+  .levels-user-info {
+    font-size: 10px;
+    gap: 8px;
+  }
+
+  .levels-stats {
+    gap: 8px;
+    margin-bottom: 15px;
+    flex-direction: column;
+  }
+
+  .levels-stat-card {
+    border-radius: 12px;
+    padding: 8px 10px;
+    min-height: 65px;
+    border-width: 1.5px;
+  }
+
+  .levels-stat-video-card {
+    border-radius: 14px;
+    padding: 8px 10px;
+    min-height: 65px;
+    padding-bottom: 22px;
+    border-width: 1.5px;
+  }
+
+  .levels-stat-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .levels-stat-label {
+    font-size: 8px;
+  }
+
+  .levels-stat-value {
+    font-size: 16px;
+  }
+
+  .levels-upload-btn {
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 9px;
+    margin-top: -16px;
+  }
+
+  .levels-section-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .levels-theme-section {
+    margin-bottom: 18px;
+  }
+
+  .levels-theme-cards {
+    gap: 8px;
+  }
+
+  .levels-theme-card {
+    border-radius: 14px;
+    height: 110px;
+    border-width: 2px;
+  }
+
+  .levels-theme-check {
+    font-size: 28px;
+  }
+
+  .levels-theme-lock {
+    font-size: 22px;
+  }
+
+  .levels-theme-footer {
+    padding: 6px;
+  }
+
+  .levels-theme-name {
+    font-size: 11px;
+  }
+
+  .levels-activity-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .levels-activity-list {
+    max-height: 220px;
+    gap: 6px;
+    padding-right: 5px;
+  }
+
+  .levels-activity-list::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .levels-activity-item {
+    padding: 8px 10px;
+    border-radius: 9px;
+    gap: 8px;
+  }
+
+  .levels-activity-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .levels-activity-text {
+    font-size: 10px;
+  }
+
+  .levels-activity-date {
+    font-size: 8px;
+  }
+}

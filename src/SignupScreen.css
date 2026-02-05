@@ -183,3 +183,327 @@
 .signup-btn:active {
   transform: scale(0.97);
 }
+
+/* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
+
+/* Tablet breakpoint */
+@media screen and (max-width: 768px) {
+  .signup-cloud {
+    width: 1200px;
+    bottom: -500px;
+  }
+
+  .signup-home,
+  .signup-profile {
+    width: 36px;
+    height: 36px;
+  }
+
+  .signup-content {
+    max-width: 320px;
+    padding: 18px;
+    padding-top: 8px;
+  }
+
+  .signup-logo {
+    width: 190px;
+    margin-bottom: 25px;
+  }
+
+  .signup-title {
+    font-size: 24px;
+  }
+
+  .signup-subtitle {
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+
+  .signup-form {
+    gap: 10px;
+  }
+
+  .signup-input {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .signup-btn {
+    width: 55%;
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+  }
+}
+
+/* Large phones: 430px width (iPhone 14 Pro Max) */
+@media screen and (max-width: 480px) and (min-width: 420px) {
+  .signup-cloud {
+    width: 1000px;
+    bottom: -450px;
+  }
+
+  .signup-home,
+  .signup-profile {
+    width: 35px;
+    height: 35px;
+  }
+
+  .signup-content {
+    max-width: 100%;
+    padding: 16px;
+    padding-top: 6px;
+  }
+
+  .signup-logo {
+    width: 175px;
+    margin-bottom: 22px;
+  }
+
+  .signup-title {
+    font-size: 24px;
+  }
+
+  .signup-subtitle {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .signup-input {
+    padding: 13px 14px;
+    font-size: 14px;
+  }
+
+  .signup-btn {
+    width: 55%;
+    padding: 15px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+  }
+}
+
+/* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
+@media screen and (max-width: 419px) and (min-width: 400px) {
+  .signup-cloud {
+    width: 950px;
+    bottom: -420px;
+  }
+
+  .signup-home {
+    top: 12px;
+    left: 12px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .signup-profile {
+    top: 12px;
+    right: 12px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .signup-content {
+    max-width: 100%;
+    padding: 15px;
+    padding-top: 5px;
+  }
+
+  .signup-logo {
+    width: 168px;
+    margin-bottom: 21px;
+  }
+
+  .signup-title {
+    font-size: 23px;
+  }
+
+  .signup-subtitle {
+    font-size: 12px;
+    margin-bottom: 19px;
+  }
+
+  .signup-input {
+    padding: 12px 13px;
+    font-size: 13px;
+  }
+
+  .signup-btn {
+    width: 57%;
+    padding: 14px 19px;
+    font-size: 15px;
+    border-radius: 11px;
+  }
+}
+
+/* Medium phones: 390px width (iPhone 12/13/14) */
+@media screen and (max-width: 399px) and (min-width: 385px) {
+  .signup-cloud {
+    width: 900px;
+    bottom: -400px;
+  }
+
+  .signup-home {
+    top: 12px;
+    left: 12px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .signup-profile {
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .signup-content {
+    max-width: 100%;
+    padding: 15px;
+    padding-top: 5px;
+  }
+
+  .signup-logo {
+    width: 160px;
+    margin-bottom: 20px;
+  }
+
+  .signup-title {
+    font-size: 22px;
+  }
+
+  .signup-subtitle {
+    font-size: 12px;
+    margin-bottom: 18px;
+  }
+
+  .signup-form {
+    gap: 10px;
+  }
+
+  .signup-input {
+    padding: 12px 12px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  .signup-btn {
+    width: 60%;
+    padding: 14px 18px;
+    font-size: 15px;
+    border-radius: 11px;
+    margin-top: 8px;
+  }
+}
+
+/* Standard phones: 375px width (iPhone SE, 6/7/8) */
+@media screen and (max-width: 384px) and (min-width: 370px) {
+  .signup-cloud {
+    width: 850px;
+    bottom: -380px;
+  }
+
+  .signup-home {
+    top: 10px;
+    left: 10px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .signup-profile {
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .signup-content {
+    max-width: 100%;
+    padding: 12px;
+    padding-top: 4px;
+  }
+
+  .signup-logo {
+    width: 148px;
+    margin-bottom: 18px;
+  }
+
+  .signup-title {
+    font-size: 20px;
+  }
+
+  .signup-subtitle {
+    font-size: 11px;
+    margin-bottom: 16px;
+  }
+
+  .signup-input {
+    padding: 11px 10px;
+    font-size: 12px;
+    border-radius: 7px;
+  }
+
+  .signup-btn {
+    width: 62%;
+    padding: 12px 16px;
+    font-size: 14px;
+    border-radius: 10px;
+    margin-top: 6px;
+  }
+}
+
+/* Small phones: 360px width (Galaxy S5, etc.) */
+@media screen and (max-width: 369px) {
+  .signup-cloud {
+    width: 800px;
+    bottom: -360px;
+  }
+
+  .signup-home {
+    top: 8px;
+    left: 8px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .signup-profile {
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .signup-content {
+    max-width: 100%;
+    padding: 10px;
+    padding-top: 3px;
+  }
+
+  .signup-logo {
+    width: 135px;
+    margin-bottom: 15px;
+  }
+
+  .signup-title {
+    font-size: 18px;
+  }
+
+  .signup-subtitle {
+    font-size: 10px;
+    margin-bottom: 14px;
+  }
+
+  .signup-input {
+    padding: 10px 9px;
+    font-size: 11px;
+    border-radius: 6px;
+  }
+
+  .signup-btn {
+    width: 65%;
+    padding: 11px 14px;
+    font-size: 13px;
+    border-radius: 9px;
+    margin-top: 5px;
+  }
+}

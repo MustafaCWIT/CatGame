@@ -230,3 +230,614 @@
 .modal-btn:active {
   transform: scale(0.97);
 }
+
+/* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
+
+/* Tablet breakpoint */
+@media screen and (max-width: 768px) {
+  .modal-overlay {
+    padding: 15px;
+  }
+
+  .modal-container {
+    max-width: 580px;
+    border-radius: 35px;
+    padding: 40px 25px 70px 25px;
+    border-width: 3px;
+  }
+
+  .modal-close {
+    width: 42px;
+    height: 42px;
+    top: 20px;
+    right: 20px;
+  }
+
+  .modal-close svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .modal-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .modal-subtitle {
+    font-size: 24px;
+    margin-bottom: 28px;
+  }
+
+  .modal-steps {
+    gap: 12px;
+  }
+
+  .modal-step {
+    gap: 12px;
+  }
+
+  .modal-step-number {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .modal-step-text {
+    font-size: 14px;
+  }
+
+  .modal-prize-card {
+    border-radius: 22px;
+    padding: 18px 22px;
+    min-height: 95px;
+  }
+
+  .modal-prize-card-top {
+    padding-left: 100px;
+    margin-top: 12px;
+  }
+
+  .modal-prize-card-bottom {
+    padding-right: 120px;
+  }
+
+  .modal-prize-title {
+    font-size: 18px;
+  }
+
+  .modal-prize-card-bottom .modal-prize-title {
+    font-size: 17px;
+  }
+
+  .modal-prize-desc {
+    font-size: 10px;
+  }
+
+  .modal-prize-img-cat {
+    width: 100px;
+    top: -36px;
+  }
+
+  .modal-prize-img-food {
+    width: 220px;
+    right: -15px;
+    top: -20px;
+  }
+
+  .modal-btn {
+    padding: 12px 60px;
+    font-size: 18px;
+    bottom: -25px;
+  }
+}
+
+/* Large phones: 430px width (iPhone 14 Pro Max) */
+@media screen and (max-width: 480px) and (min-width: 420px) {
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-container {
+    width: 95%;
+    max-width: 400px;
+    border-radius: 30px;
+    padding: 38px 20px 65px 20px;
+    border-width: 3px;
+  }
+
+  .modal-close {
+    width: 38px;
+    height: 38px;
+    top: 17px;
+    right: 17px;
+  }
+
+  .modal-close svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .modal-section {
+    margin-bottom: 25px;
+  }
+
+  .modal-title {
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
+  .modal-subtitle {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+
+  .modal-step-number {
+    width: 26px;
+    height: 26px;
+    font-size: 13px;
+  }
+
+  .modal-step-text {
+    font-size: 14px;
+  }
+
+  .modal-prize-card {
+    border-radius: 20px;
+    padding: 16px 20px;
+    min-height: 88px;
+  }
+
+  .modal-prize-card-top {
+    padding-left: 90px;
+    margin-top: 11px;
+  }
+
+  .modal-prize-card-bottom {
+    padding-right: 110px;
+  }
+
+  .modal-prize-title {
+    font-size: 16px;
+  }
+
+  .modal-prize-card-bottom .modal-prize-title {
+    font-size: 15px;
+  }
+
+  .modal-prize-desc {
+    font-size: 10px;
+  }
+
+  .modal-prize-img-cat {
+    width: 88px;
+    top: -32px;
+    left: -2px;
+  }
+
+  .modal-prize-img-food {
+    width: 180px;
+    right: -14px;
+    top: -18px;
+  }
+
+  .modal-btn {
+    padding: 11px 52px;
+    font-size: 17px;
+    bottom: -24px;
+  }
+}
+
+/* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
+@media screen and (max-width: 419px) and (min-width: 400px) {
+  .modal-overlay {
+    padding: 11px;
+  }
+
+  .modal-container {
+    width: 95%;
+    max-width: 380px;
+    border-radius: 28px;
+    padding: 36px 19px 62px 19px;
+    border-width: 3px;
+  }
+
+  .modal-close {
+    width: 37px;
+    height: 37px;
+    top: 16px;
+    right: 16px;
+  }
+
+  .modal-close svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .modal-section {
+    margin-bottom: 23px;
+  }
+
+  .modal-title {
+    font-size: 21px;
+    margin-bottom: 17px;
+  }
+
+  .modal-subtitle {
+    font-size: 21px;
+    margin-bottom: 24px;
+  }
+
+  .modal-step-number {
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+  }
+
+  .modal-step-text {
+    font-size: 13px;
+  }
+
+  .modal-prize-card {
+    border-radius: 19px;
+    padding: 15px 19px;
+    min-height: 85px;
+  }
+
+  .modal-prize-card-top {
+    padding-left: 85px;
+    margin-top: 10px;
+  }
+
+  .modal-prize-card-bottom {
+    padding-right: 105px;
+  }
+
+  .modal-prize-title {
+    font-size: 15px;
+  }
+
+  .modal-prize-card-bottom .modal-prize-title {
+    font-size: 14px;
+  }
+
+  .modal-prize-desc {
+    font-size: 9px;
+  }
+
+  .modal-prize-img-cat {
+    width: 82px;
+    top: -30px;
+    left: -3px;
+  }
+
+  .modal-prize-img-food {
+    width: 170px;
+    right: -13px;
+    top: -17px;
+  }
+
+  .modal-btn {
+    padding: 10px 48px;
+    font-size: 16px;
+    bottom: -23px;
+  }
+}
+
+/* Medium phones: 390px width (iPhone 12/13/14) */
+@media screen and (max-width: 399px) and (min-width: 385px) {
+  .modal-overlay {
+    padding: 10px;
+  }
+
+  .modal-container {
+    width: 95%;
+    max-width: 360px;
+    border-radius: 28px;
+    padding: 35px 18px 60px 18px;
+    border-width: 3px;
+  }
+
+  .modal-close {
+    width: 36px;
+    height: 36px;
+    top: 15px;
+    right: 15px;
+  }
+
+  .modal-close svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .modal-section {
+    margin-bottom: 20px;
+  }
+
+  .modal-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .modal-subtitle {
+    font-size: 20px;
+    margin-bottom: 22px;
+  }
+
+  .modal-steps {
+    gap: 10px;
+  }
+
+  .modal-step {
+    gap: 10px;
+  }
+
+  .modal-step-number {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    border-width: 1.5px;
+  }
+
+  .modal-step-text {
+    font-size: 13px;
+  }
+
+  .modal-prizes {
+    gap: 15px;
+  }
+
+  .modal-prize-card {
+    border-radius: 18px;
+    padding: 15px 18px;
+    min-height: 80px;
+  }
+
+  .modal-prize-card-top {
+    padding-left: 80px;
+    padding-right: 15px;
+    margin-top: 10px;
+  }
+
+  .modal-prize-card-bottom {
+    padding-right: 100px;
+    margin-top: 5px;
+  }
+
+  .modal-prize-title {
+    font-size: 15px;
+  }
+
+  .modal-prize-card-bottom .modal-prize-title {
+    font-size: 14px;
+  }
+
+  .modal-prize-desc {
+    font-size: 9px;
+  }
+
+  .modal-prize-img-cat {
+    width: 80px;
+    top: -28px;
+    left: -5px;
+    margin-left: 5px;
+  }
+
+  .modal-prize-img-food {
+    width: 160px;
+    right: -12px;
+    top: -16px;
+  }
+
+  .modal-btn {
+    padding: 10px 45px;
+    font-size: 16px;
+    border-radius: 10px;
+    bottom: -22px;
+  }
+}
+
+/* Standard phones: 375px width (iPhone SE, 6/7/8) */
+@media screen and (max-width: 384px) and (min-width: 370px) {
+  .modal-overlay {
+    padding: 8px;
+  }
+
+  .modal-container {
+    width: 96%;
+    max-width: 340px;
+    border-radius: 24px;
+    padding: 30px 15px 55px 15px;
+    border-width: 2.5px;
+  }
+
+  .modal-close {
+    width: 32px;
+    height: 32px;
+    top: 12px;
+    right: 12px;
+  }
+
+  .modal-close svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .modal-section {
+    margin-bottom: 18px;
+  }
+
+  .modal-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .modal-subtitle {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .modal-step-number {
+    width: 22px;
+    height: 22px;
+    font-size: 11px;
+  }
+
+  .modal-step-text {
+    font-size: 12px;
+  }
+
+  .modal-prize-card {
+    border-radius: 16px;
+    padding: 12px 18px;
+    min-height: 70px;
+  }
+
+  .modal-prize-card-top {
+    padding-left: 88px;
+    margin-top: 8px;
+  }
+
+  .modal-prize-card-bottom {
+    padding-right: 88px;
+  }
+
+  .modal-prize-title {
+    font-size: 13px;
+  }
+
+  .modal-prize-card-bottom .modal-prize-title {
+    font-size: 12px;
+  }
+
+  .modal-prize-desc {
+    font-size: 8px;
+  }
+
+  .modal-prize-img-cat {
+    width: 76px;
+    top: -27px;
+    left: -7px;
+  }
+
+  .modal-prize-img-food {
+    width: 140px;
+    right: -10px;
+    top: -14px;
+  }
+
+  .modal-btn {
+    padding: 9px 38px;
+    font-size: 14px;
+    border-radius: 9px;
+    bottom: -20px;
+  }
+}
+
+/* Small phones: 360px width (Galaxy S5, etc.) */
+@media screen and (max-width: 369px) {
+  .modal-overlay {
+    padding: 6px;
+  }
+
+  .modal-container {
+    width: 97%;
+    max-width: 320px;
+    border-radius: 22px;
+    padding: 28px 12px 50px 12px;
+    border-width: 2px;
+  }
+
+  .modal-close {
+    width: 28px;
+    height: 28px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .modal-close svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .modal-section {
+    margin-bottom: 15px;
+  }
+
+  .modal-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .modal-subtitle {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .modal-steps {
+    gap: 8px;
+  }
+
+  .modal-step {
+    gap: 8px;
+  }
+
+  .modal-step-number {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+  }
+
+  .modal-step-text {
+    font-size: 11px;
+  }
+
+  .modal-prizes {
+    gap: 12px;
+  }
+
+  .modal-prize-card {
+    border-radius: 14px;
+    padding: 10px 12px;
+    min-height: 60px;
+  }
+
+  .modal-prize-card-top {
+    padding-left: 58px;
+    margin-top: 6px;
+  }
+
+  .modal-prize-card-bottom {
+    padding-right: 75px;
+  }
+
+  .modal-prize-title {
+    font-size: 11px;
+  }
+
+  .modal-prize-card-bottom .modal-prize-title {
+    font-size: 10px;
+  }
+
+  .modal-prize-desc {
+    font-size: 7px;
+  }
+
+  .modal-prize-img-cat {
+    width: 58px;
+    top: -20px;
+    left: -3px;
+  }
+
+  .modal-prize-img-food {
+    width: 120px;
+    right: -8px;
+    top: -12px;
+  }
+
+  .modal-btn {
+    padding: 8px 32px;
+    font-size: 13px;
+    border-radius: 8px;
+    bottom: -18px;
+  }
+}

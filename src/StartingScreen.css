@@ -316,3 +316,553 @@
   line-height: 1;
 
 }
+
+/* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
+
+/* Tablet breakpoint */
+@media screen and (max-width: 768px) {
+  .starting-screen {
+    padding-top: 30px;
+  }
+
+  .starting-nav {
+    top: 20px;
+    padding: 0 20px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 52px;
+    height: 52px;
+  }
+
+  .starting-title {
+    font-size: 65px;
+    margin-top: 40px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 420px;
+    margin-top: 150px;
+  }
+
+  .starting-tablet-frame {
+    width: 88%;
+    padding: 12px;
+    border-radius: 24px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 14px;
+  }
+
+  .preview-ui-top {
+    top: 12px;
+    padding: 0 15px;
+  }
+
+  .preview-pill {
+    padding: 2px 8px;
+    font-size: 9px;
+    border-radius: 16px;
+  }
+
+  .preview-pill-score {
+    font-size: 11px;
+  }
+
+  .starting-fish {
+    width: 180px;
+    left: -15px;
+    top: 8px;
+  }
+
+  .starting-star {
+    width: 80px;
+    top: 70px;
+    right: 100px;
+  }
+
+  .starting-bowl {
+    width: 110px;
+    bottom: 20px;
+  }
+
+  .starting-cat {
+    width: 200px;
+    top: -145px;
+  }
+
+  .starting-countdown {
+    margin-top: 45px;
+  }
+
+  .starting-label {
+    font-size: 24px;
+  }
+
+  .starting-number {
+    font-size: 140px;
+  }
+}
+
+/* Large phones: 430px width (iPhone 14 Pro Max) */
+@media screen and (max-width: 480px) and (min-width: 420px) {
+  .starting-screen {
+    padding-top: 28px;
+  }
+
+  .starting-nav {
+    top: 18px;
+    padding: 0 18px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 48px;
+    height: 48px;
+  }
+
+  .starting-loader-text {
+    font-size: 20px;
+  }
+
+  .starting-title {
+    font-size: 55px;
+    margin-top: 35px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 360px;
+    margin-top: 120px;
+  }
+
+  .starting-tablet-frame {
+    width: 90%;
+    padding: 11px;
+    border-radius: 22px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 13px;
+  }
+
+  .preview-ui-top {
+    top: 11px;
+    padding: 0 14px;
+  }
+
+  .preview-pill {
+    padding: 2px 7px;
+    font-size: 8px;
+    border-radius: 14px;
+  }
+
+  .preview-pill-score {
+    font-size: 10px;
+  }
+
+  .starting-fish {
+    width: 160px;
+    left: -14px;
+    top: 6px;
+  }
+
+  .starting-star {
+    width: 70px;
+    top: 62px;
+    right: 88px;
+  }
+
+  .starting-bowl {
+    width: 98px;
+    bottom: 18px;
+  }
+
+  .starting-cat {
+    width: 180px;
+    top: -130px;
+  }
+
+  .starting-countdown {
+    margin-top: 40px;
+  }
+
+  .starting-label {
+    font-size: 22px;
+  }
+
+  .starting-number {
+    font-size: 125px;
+  }
+}
+
+/* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
+@media screen and (max-width: 419px) and (min-width: 400px) {
+  .starting-screen {
+    padding-top: 26px;
+  }
+
+  .starting-nav {
+    top: 16px;
+    padding: 0 16px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 46px;
+    height: 46px;
+  }
+
+  .starting-loader-text {
+    font-size: 19px;
+  }
+
+  .starting-title {
+    font-size: 52px;
+    margin-top: 32px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 340px;
+    margin-top: 110px;
+  }
+
+  .starting-tablet-frame {
+    width: 91%;
+    padding: 10px;
+    border-radius: 21px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 12px;
+  }
+
+  .preview-ui-top {
+    top: 10px;
+    padding: 0 13px;
+  }
+
+  .preview-pill {
+    padding: 1.5px 6px;
+    font-size: 7px;
+    border-radius: 12px;
+  }
+
+  .preview-pill-score {
+    font-size: 9px;
+  }
+
+  .starting-fish {
+    width: 150px;
+    left: -13px;
+    top: 5px;
+  }
+
+  .starting-star {
+    width: 65px;
+    top: 58px;
+    right: 82px;
+  }
+
+  .starting-bowl {
+    width: 92px;
+    bottom: 16px;
+  }
+
+  .starting-cat {
+    width: 170px;
+    top: -122px;
+  }
+
+  .starting-countdown {
+    margin-top: 38px;
+  }
+
+  .starting-label {
+    font-size: 21px;
+  }
+
+  .starting-number {
+    font-size: 118px;
+  }
+}
+
+/* Medium phones: 390px width (iPhone 12/13/14) */
+@media screen and (max-width: 399px) and (min-width: 385px) {
+  .starting-screen {
+    padding-top: 25px;
+  }
+
+  .starting-nav {
+    top: 15px;
+    padding: 0 15px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 44px;
+    height: 44px;
+  }
+
+  .starting-loader-text {
+    font-size: 18px;
+  }
+
+  .starting-title {
+    font-size: 48px;
+    margin-top: 30px;
+    letter-spacing: -1px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 320px;
+    margin-top: 100px;
+  }
+
+  .starting-tablet-frame {
+    width: 92%;
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 12px;
+  }
+
+  .preview-ui-top {
+    top: 10px;
+    padding: 0 12px;
+  }
+
+  .preview-pill {
+    padding: 1.5px 5px;
+    font-size: 6px;
+    border-radius: 10px;
+  }
+
+  .preview-pill-score {
+    font-size: 8px;
+  }
+
+  .starting-fish {
+    width: 140px;
+    left: -12px;
+    top: 5px;
+  }
+
+  .starting-star {
+    width: 60px;
+    top: 55px;
+    right: 75px;
+  }
+
+  .starting-bowl {
+    width: 85px;
+    bottom: 15px;
+    left: 28%;
+  }
+
+  .starting-cat {
+    width: 160px;
+    top: -115px;
+  }
+
+  .starting-countdown {
+    margin-top: 35px;
+  }
+
+  .starting-label {
+    font-size: 20px;
+  }
+
+  .starting-number {
+    font-size: 110px;
+  }
+}
+
+/* Standard phones: 375px width (iPhone SE, 6/7/8) */
+@media screen and (max-width: 384px) and (min-width: 370px) {
+  .starting-screen {
+    padding-top: 22px;
+  }
+
+  .starting-nav {
+    top: 12px;
+    padding: 0 12px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 40px;
+    height: 40px;
+  }
+
+  .starting-loader-text {
+    font-size: 16px;
+  }
+
+  .starting-title {
+    font-size: 38px;
+    margin-top: 20px;
+    letter-spacing: -1px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 270px;
+    margin-top: 100px;
+  }
+
+  .starting-tablet-frame {
+    width: 93%;
+    padding: 8px;
+    border-radius: 18px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 10px;
+  }
+
+  .preview-ui-top {
+    top: 8px;
+    padding: 0 10px;
+  }
+
+  .preview-pill {
+    padding: 1px 4px;
+    font-size: 5px;
+    border-radius: 8px;
+  }
+
+  .preview-pill-score {
+    font-size: 7px;
+  }
+
+  .starting-fish {
+    width: 110px;
+    left: -10px;
+    top: 4px;
+  }
+
+  .starting-star {
+    width: 48px;
+    top: 45px;
+    right: 60px;
+  }
+
+  .starting-bowl {
+    width: 68px;
+    bottom: 10px;
+    left: 26%;
+  }
+
+  .starting-cat {
+    width: 125px;
+    top: -85px;
+  }
+
+  .starting-countdown {
+    margin-top: 25px;
+  }
+
+  .starting-label {
+    font-size: 16px;
+  }
+
+  .starting-number {
+    font-size: 85px;
+  }
+}
+
+/* Small phones: 360px width (Galaxy S5, etc.) */
+@media screen and (max-width: 369px) {
+  .starting-screen {
+    padding-top: 20px;
+  }
+
+  .starting-nav {
+    top: 10px;
+    padding: 0 10px;
+  }
+
+  .starting-home-btn,
+  .starting-profile {
+    width: 36px;
+    height: 36px;
+  }
+
+  .starting-loader-text {
+    font-size: 14px;
+  }
+
+  .starting-title {
+    font-size: 36px;
+    margin-top: 20px;
+    letter-spacing: -1px;
+  }
+
+  .starting-preview-wrapper {
+    max-width: 260px;
+    margin-top: 70px;
+  }
+
+  .starting-tablet-frame {
+    width: 94%;
+    padding: 7px;
+    border-radius: 16px;
+  }
+
+  .starting-tablet-bezel {
+    border-radius: 9px;
+  }
+
+  .preview-ui-top {
+    top: 7px;
+    padding: 0 8px;
+  }
+
+  .preview-pill {
+    padding: 1px 3px;
+    font-size: 4px;
+    border-radius: 6px;
+  }
+
+  .preview-pill-score {
+    font-size: 6px;
+  }
+
+  .starting-fish {
+    width: 100px;
+    left: -8px;
+    top: 3px;
+  }
+
+  .starting-star {
+    width: 45px;
+    top: 42px;
+    right: 55px;
+  }
+
+  .starting-bowl {
+    width: 65px;
+    bottom: 10px;
+    left: 24%;
+  }
+
+  .starting-cat {
+    width: 120px;
+    top: -85px;
+  }
+
+  .starting-countdown {
+    margin-top: 25px;
+  }
+
+  .starting-label {
+    font-size: 16px;
+  }
+
+  .starting-number {
+    font-size: 80px;
+  }
+}

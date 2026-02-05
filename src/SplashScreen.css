@@ -239,3 +239,345 @@
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
+
+/* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
+
+/* Tablet breakpoint */
+@media screen and (max-width: 768px) {
+  .splash-clouds-left {
+    width: 200px;
+    height: 220px;
+    left: -70px;
+  }
+
+  .splash-clouds-right {
+    width: 110px;
+    right: -40px;
+  }
+
+  .splash-fish {
+    width: 120px;
+    left: -50px;
+  }
+
+  .splash-bowl {
+    width: 60px;
+  }
+
+  .splash-logo {
+    width: 100px;
+  }
+
+  .splash-title {
+    font-size: 30px;
+  }
+
+  .splash-cat {
+    width: 220px;
+    left: 50%;
+  }
+
+  .splash-name {
+    width: 200px;
+    margin-top: -50px;
+  }
+
+  .splash-loader {
+    width: 170px;
+    height: 10px;
+  }
+
+  .splash-loader-text {
+    font-size: 12px;
+  }
+}
+
+/* Large phones: 430px width (iPhone 14 Pro Max) */
+@media screen and (max-width: 480px) and (min-width: 420px) {
+  .splash-clouds-left {
+    width: 170px;
+    height: 185px;
+    left: -60px;
+    top: 4%;
+  }
+
+  .splash-clouds-right {
+    width: 95px;
+    right: -35px;
+    top: 10%;
+  }
+
+  .splash-fish {
+    width: 105px;
+    left: -45px;
+    top: 32%;
+  }
+
+  .splash-bowl {
+    width: 55px;
+  }
+
+  .splash-content {
+    padding: 18px;
+  }
+
+  .splash-logo {
+    width: 90px;
+    top: 2.5%;
+  }
+
+  .splash-title {
+    font-size: 28px;
+    margin-bottom: 18px;
+  }
+
+  .splash-cat {
+    width: 200px;
+  }
+
+  .splash-name {
+    width: 180px;
+    margin-top: -45px;
+  }
+
+  .splash-loader {
+    width: 160px;
+    height: 9px;
+  }
+
+  .splash-loader-text {
+    font-size: 12px;
+  }
+}
+
+/* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
+@media screen and (max-width: 419px) and (min-width: 400px) {
+  .splash-clouds-left {
+    width: 160px;
+    height: 175px;
+    left: -55px;
+    top: 3.5%;
+  }
+
+  .splash-clouds-right {
+    width: 88px;
+    right: -32px;
+    top: 9%;
+  }
+
+  .splash-fish {
+    width: 98px;
+    left: -42px;
+    top: 31%;
+  }
+
+  .splash-bowl {
+    width: 52px;
+  }
+
+  .splash-content {
+    padding: 16px;
+  }
+
+  .splash-logo {
+    width: 85px;
+    top: 2.2%;
+  }
+
+  .splash-title {
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+
+  .splash-cat {
+    width: 190px;
+  }
+
+  .splash-name {
+    width: 170px;
+    margin-top: -42px;
+  }
+
+  .splash-loader {
+    width: 150px;
+    height: 9px;
+  }
+
+  .splash-loader-text {
+    font-size: 11px;
+  }
+}
+
+/* Medium phones: 390px width (iPhone 12/13/14) */
+@media screen and (max-width: 399px) and (min-width: 385px) {
+  .splash-clouds-left {
+    width: 150px;
+    height: 160px;
+    left: -50px;
+    top: 3%;
+  }
+
+  .splash-clouds-right {
+    width: 80px;
+    right: -30px;
+    top: 8%;
+  }
+
+  .splash-fish {
+    width: 90px;
+    left: -40px;
+    top: 30%;
+  }
+
+  .splash-bowl {
+    width: 50px;
+  }
+
+  .splash-content {
+    padding: 15px;
+  }
+
+  .splash-logo {
+    width: 80px;
+    top: 2%;
+  }
+
+  .splash-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .splash-cat {
+    width: 180px;
+  }
+
+  .splash-name {
+    width: 160px;
+    margin-top: -40px;
+  }
+
+  .splash-loader {
+    width: 140px;
+    height: 8px;
+  }
+
+  .splash-loader-text {
+    font-size: 11px;
+  }
+}
+
+/* Standard phones: 375px width (iPhone SE, 6/7/8) */
+@media screen and (max-width: 384px) and (min-width: 370px) {
+  .splash-clouds-left {
+    width: 140px;
+    height: 150px;
+    left: -48px;
+    top: 2.5%;
+  }
+
+  .splash-clouds-right {
+    width: 75px;
+    right: -28px;
+    top: 7%;
+  }
+
+  .splash-fish {
+    width: 82px;
+    left: -38px;
+    top: 28%;
+  }
+
+  .splash-bowl {
+    width: 45px;
+  }
+
+  .splash-content {
+    padding: 12px;
+  }
+
+  .splash-logo {
+    width: 72px;
+    top: 1.8%;
+  }
+
+  .splash-title {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .splash-cat {
+    width: 165px;
+  }
+
+  .splash-name {
+    width: 145px;
+    margin-top: -36px;
+  }
+
+  .splash-loader {
+    width: 125px;
+    height: 7px;
+  }
+
+  .splash-loader-text {
+    font-size: 10px;
+  }
+}
+
+/* Small phones: 360px width (Galaxy S5, etc.) */
+@media screen and (max-width: 369px) {
+  .splash-clouds-left {
+    width: 130px;
+    height: 140px;
+    left: -45px;
+    top: 2%;
+  }
+
+  .splash-clouds-right {
+    width: 68px;
+    right: -25px;
+    top: 6%;
+  }
+
+  .splash-fish {
+    width: 75px;
+    left: -35px;
+    top: 26%;
+  }
+
+  .splash-bowl {
+    width: 40px;
+  }
+
+  .splash-content {
+    padding: 10px;
+  }
+
+  .splash-logo {
+    width: 65px;
+    top: 1.5%;
+  }
+
+  .splash-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .splash-cat {
+    width: 150px;
+  }
+
+  .splash-name {
+    width: 130px;
+    margin-top: -32px;
+  }
+
+  .splash-loader {
+    width: 110px;
+    height: 6px;
+  }
+
+  .splash-loader-text {
+    font-size: 9px;
+  }
+}

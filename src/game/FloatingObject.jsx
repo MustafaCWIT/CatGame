@@ -12,10 +12,13 @@ import leafImg from '../assets/leaf.png';
 import dollarImg from '../assets/dollar.png';
 import starsImg from '../assets/stars.png';
 
-const FloatingObject = memo(function FloatingObject({ obj, onOffScreen, registerRef }) {
+const FloatingObject = memo(function FloatingObject({ obj, onOffScreen, registerRef, objectSize }) {
   const outerRef = useRef(null);
   const innerRef = useRef(null);
   const path = OBJECT_SHAPES[obj.type] || OBJECT_SHAPES.orb;
+
+  // Use responsive object size prop, fallback to constant
+  const size = objectSize || OBJECT_SIZE;
 
   // Map object types to images
   const imageMap = {
@@ -101,8 +104,8 @@ const FloatingObject = memo(function FloatingObject({ obj, onOffScreen, register
             href={imageSrc}
             x={0}
             y={0}
-            width={(obj.type === 'star' || obj.type === 'stars' || obj.type === 'leaf') ? OBJECT_SIZE * 0.7 : OBJECT_SIZE}
-            height={(obj.type === 'star' || obj.type === 'stars' || obj.type === 'leaf') ? OBJECT_SIZE * 0.7 : OBJECT_SIZE}
+            width={(obj.type === 'star' || obj.type === 'stars' || obj.type === 'leaf') ? size * 0.7 : size}
+            height={(obj.type === 'star' || obj.type === 'stars' || obj.type === 'leaf') ? size * 0.7 : size}
             preserveAspectRatio="xMidYMid meet"
           />
         ) : (
@@ -114,9 +117,9 @@ const FloatingObject = memo(function FloatingObject({ obj, onOffScreen, register
               </radialGradient>
             </defs>
             <circle
-              cx={OBJECT_SIZE / 2}
-              cy={OBJECT_SIZE / 2}
-              r={OBJECT_SIZE * 0.6}
+              cx={size / 2}
+              cy={size / 2}
+              r={size * 0.6}
               fill={`url(#glow-${obj.id})`}
             />
             <path
@@ -126,7 +129,7 @@ const FloatingObject = memo(function FloatingObject({ obj, onOffScreen, register
               stroke={obj.color}
               strokeWidth="1"
               strokeOpacity="0.4"
-              transform={`scale(${OBJECT_SIZE / 70})`}
+              transform={`scale(${size / 70})`}
             />
           </>
         )}

@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react';
-import { LEVELS, MAX_OBJECTS, SPAWN_MARGIN, OBJECT_SIZE, OBJECT_POINTS, MIN_OBJECT_DISTANCE } from '../game/levels';
+import { LEVELS, MAX_OBJECTS, OBJECT_POINTS, MIN_OBJECT_DISTANCE, getResponsiveObjectSize, getResponsiveSpawnMargin } from '../game/levels';
 
 let objectIdCounter = 0;
 
@@ -49,19 +49,23 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
 
   let x, y, targetX, targetY;
 
+  // Get responsive sizes based on screen width
+  const responsiveObjectSize = getResponsiveObjectSize(screenW);
+  const responsiveSpawnMargin = getResponsiveSpawnMargin(screenW);
+
   if (direction === 0) {
     // Vertical: Top to Bottom
-    let range = screenW - (SPAWN_MARGIN * 2) - OBJECT_SIZE;
-    x = range <= 0 ? (screenW - OBJECT_SIZE) / 2 : SPAWN_MARGIN + Math.random() * range;
+    let range = screenW - (responsiveSpawnMargin * 2) - responsiveObjectSize;
+    x = range <= 0 ? (screenW - responsiveObjectSize) / 2 : responsiveSpawnMargin + Math.random() * range;
     y = -10; // Start at the edge to eliminate entry delay
     targetX = x;
-    targetY = screenH + OBJECT_SIZE / 2;
+    targetY = screenH + responsiveObjectSize / 2;
   } else {
     // Horizontal: Left to Right
-    let range = screenH - (SPAWN_MARGIN * 2) - OBJECT_SIZE;
-    y = range <= 0 ? (screenH - OBJECT_SIZE) / 2 : SPAWN_MARGIN + Math.random() * range;
+    let range = screenH - (responsiveSpawnMargin * 2) - responsiveObjectSize;
+    y = range <= 0 ? (screenH - responsiveObjectSize) / 2 : responsiveSpawnMargin + Math.random() * range;
     x = -10; // Start at the edge to eliminate entry delay
-    targetX = screenW + OBJECT_SIZE / 2;
+    targetX = screenW + responsiveObjectSize / 2;
     targetY = y;
   }
 
@@ -159,12 +163,14 @@ export function useGameState(playerLevel = 0) {
 
       let minDist = Infinity;
       let nearestIdx = -1;
+      const { w } = screenSize.current;
+      const currentObjectSize = getResponsiveObjectSize(w);
       prev.forEach((obj, i) => {
         // We use the object's CURRENT position (from React state)
         // Note: For GSAP, we might need a way to get the actual visual position if we want perfect accuracy
         // but since we update state on collection, it's usually reasonable to use state.
-        const cx = obj.x + OBJECT_SIZE / 2;
-        const cy = obj.y + OBJECT_SIZE / 2;
+        const cx = obj.x + currentObjectSize / 2;
+        const cy = obj.y + currentObjectSize / 2;
         const d = Math.hypot(touchX - cx, touchY - cy);
         if (d < minDist) {
           minDist = d;
@@ -213,8 +219,8 @@ export function useGameState(playerLevel = 0) {
         type: collected.type,
       }]);
 
-      const { w, h } = screenSize.current;
-      const newObj = createObject(playerLevel, w, h, prev, false, collected.moveIndex);
+      const { w: screenW, h: screenH } = screenSize.current;
+      const newObj = createObject(playerLevel, screenW, screenH, prev, false, collected.moveIndex);
 
       const next = [...prev];
       next[nearestIdx] = newObj;
