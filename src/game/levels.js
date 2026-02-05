@@ -27,7 +27,7 @@ export const LEVELS = [
     name: 'Starry Dream',
     xpRequired: 8000,
     background: ['#0c4a6e', '#075985', '#0369a1'], // Teal/cyan tones
-    objects: ['star', 'moon', 'comet', 'sparrow'],
+    objects: ['star', 'moon', 'comet', 'sparrow', 'stars'],
     objectColors: ['#67e8f9', '#22d3ee', '#a5f3fc', '#cffafe'],
     primaryColor: '#22d3ee', // Bright cyan for UI elements
     secondaryColor: '#67e8f9',
@@ -37,7 +37,7 @@ export const LEVELS = [
     name: 'Garden Glow',
     xpRequired: 15000,
     background: ['#831843', '#9f1239', '#be185d'], // Changed to pink/rose tones
-    objects: ['flower', 'leaf', 'butterfly', 'fish'],
+    objects: ['flower', 'leaf', 'butterfly', 'fish', 'stars'],
     objectColors: ['#f9a8d4', '#f472b6', '#ec4899', '#fbcfe8'],
     primaryColor: '#f472b6', // Pink for UI elements
     secondaryColor: '#f9a8d4',
@@ -47,7 +47,7 @@ export const LEVELS = [
     name: 'Aurora Drift',
     xpRequired: 30000,
     background: ['#1e1b4b', '#312e81', '#4c1d95'],
-    objects: ['nebula', 'orb', 'sparkle', 'comet'],
+    objects: ['nebula', 'orb', 'sparkle', 'comet', 'stars'],
     objectColors: ['#c084fc', '#a78bfa', '#67e8f9', '#f0abfc'],
     primaryColor: '#c084fc', // Purple for UI elements
     secondaryColor: '#f0abfc',

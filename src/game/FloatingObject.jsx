@@ -4,7 +4,7 @@ import { OBJECT_SHAPES, OBJECT_SIZE } from './levels';
 import fishImg from '../assets/fish.png';
 import starImg from '../assets/star.png';
 import bowlImg from '../assets/bowl.png';
-import cloudsImg from '../assets/clouds.png';
+import gameCloudImg from '../assets/gameCloud.png';
 import sparrowImg from '../assets/sparrow.png';
 import foodBoxImg from '../assets/foodBox.png';
 import foodBoxesImg from '../assets/foodBoxes.png';
@@ -22,7 +22,8 @@ const FloatingObject = memo(function FloatingObject({ obj, onOffScreen, register
     fish: fishImg,
     star: starImg,
     bowl: bowlImg,
-    clouds: cloudsImg,
+    clouds: gameCloudImg,
+    cloud: gameCloudImg,
     sparrow: sparrowImg,
     foodBox: foodBoxImg,
     foodBoxes: foodBoxesImg,
@@ -100,8 +101,8 @@ const FloatingObject = memo(function FloatingObject({ obj, onOffScreen, register
             href={imageSrc}
             x={0}
             y={0}
-            width={OBJECT_SIZE}
-            height={OBJECT_SIZE}
+            width={(obj.type === 'star' || obj.type === 'stars' || obj.type === 'leaf') ? OBJECT_SIZE * 0.7 : OBJECT_SIZE}
+            height={(obj.type === 'star' || obj.type === 'stars' || obj.type === 'leaf') ? OBJECT_SIZE * 0.7 : OBJECT_SIZE}
             preserveAspectRatio="xMidYMid meet"
           />
         ) : (
