@@ -77,41 +77,10 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user }) {
         </button>
       )}
 
-      {/* Logout button */}
-      {onLogout && (
-        <button
-          className="home-logout-btn"
-          onClick={onLogout}
-          title="Logout"
-          style={{
-            position: 'absolute',
-            top: 65,
-            right: 20,
-            background: 'rgba(255, 255, 255, 0.2)',
-            border: 'none',
-            borderRadius: '10px',
-            color: 'white',
-            padding: '5px 10px',
-            cursor: 'pointer',
-            fontSize: '12px',
-            fontWeight: '600',
-            zIndex: 10
-          }}
-        >
-          Logout
-        </button>
-      )}
 
       <div className="home-content">
         {/* Logo */}
         <img src={logoImg} alt="Whiskas" className="home-logo" />
-
-        {/* Welcome message for user */}
-        {user && (
-          <p style={{ color: 'white', fontWeight: '600', margin: '0 0 10px 0' }}>
-            Welcome back, {user.user_metadata?.full_name || 'Cat Hunter'}!
-          </p>
-        )}
 
         {/* Title and Cat in same row */}
         <div className="home-hero">

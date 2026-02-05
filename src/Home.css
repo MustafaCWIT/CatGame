@@ -21,9 +21,9 @@
 /* Fish at top left */
 .home-fish {
   position: fixed;
-  top: 3px;
-  left: -60px;
-  width: 160px;
+  top: 1px;
+  left: -90px;
+  width: 310px;
   height: auto;
   z-index: 2;
   animation: swim 2s ease-in-out infinite;
@@ -44,9 +44,9 @@
 /* Cloud at top right */
 .home-cloud {
   position: fixed;
-  top: 70px;
-  right: -90px;
-  width: 220px;
+  top: 160px;
+  right: -120px;
+  width: 320px;
   height: auto;
   z-index: 2;
   animation: float 3s ease-in-out infinite;
@@ -124,17 +124,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  padding-top: 10px;
+  padding: 10px 0 25px 0;
   width: 100%;
-  max-width: 480px;
+  max-width: 650px;
+  min-height: 100vh;
 }
 
 /* Logo */
 .home-logo {
-  width: 200px;
+  width: 280px;
+  margin-top: 5px;
   height: auto;
-  margin-bottom: 2px;
+
 }
 
 /* Hero section - Title and Cat in same row */
@@ -148,56 +149,55 @@
 /* Title */
 .home-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 52px;
-  font-weight: 800;
+  font-size: 82px;
+  font-weight: 900;
   color: white;
-  margin: 0 0 0 0;
-  text-shadow: 2px 2px 4px #000000;
-  letter-spacing: 1px;
+  margin: 20px 0 0 0;
+  text-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  letter-spacing: -2px;
   order: 1;
+  text-align: center;
+  width: 100%;
 }
 
 /* Cat container */
 .home-cat-container {
   position: relative;
-  width: 160px;
-  height: 200px;
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   order: 2;
-  margin-top: 150px;
+  margin-top: 250px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .home-cat-circle {
   position: absolute;
-  width: 260px;
-  height: 80px;
-  background: radial-gradient(ellipse at 50% 50%, #718f9b 0%, #7e9eac 40%, #96b8c9 70%, #ade8ff 100%);
+  width: 320px;
+  height: 120px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0, 212, 255, 0.6) 0%, rgba(0, 212, 255, 0.2) 60%, rgba(0, 212, 255, 0) 100%);
   border-radius: 50%;
-  bottom: 5px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  box-shadow:
-    0 10px 30px rgba(218, 237, 245, 0.5),
-    0 5px 15px rgba(160, 164, 167, 0.3),
-    inset 0 -10px 20px rgba(204, 236, 250, 0.4),
-    inset 0 10px 20px rgba(155, 153, 153, 0.3);
   z-index: 0;
-  filter: blur(8px);
+  filter: blur(15px);
 }
 
 .home-cat {
-  position: absolute;
-  width: 240px;
+  position: relative;
+  width: 370px;
   height: auto;
   z-index: 1;
-  left: 50%;
-  bottom: 10px;
-  transform: translateX(-50%);
   display: block;
-  animation: catBounce 2s ease-in-out infinite;
+  animation: catBounce 2.5s ease-in-out infinite;
+  margin-bottom: 20px;
+  margin-left: 420px;
 }
 
 @keyframes catBounce {
@@ -215,26 +215,27 @@
 /* Action buttons */
 .home-buttons {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   width: 100%;
+  max-width: 940px;
+  margin-top: -90px;
   margin-bottom: 10px;
-  margin-top: -40px;
   position: relative;
   z-index: 10;
 }
 
 .home-btn {
   flex: 1;
-  padding: 14px 20px;
-  border: none;
-  border-radius: 13px;
+  padding: 22px 5px;
+  border: 4px solid #FFBC00;
+  border-radius: 16px;
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 900;
   font-style: italic;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-shadow: 1px 1px 2px #000000;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .home-btn:active {
@@ -242,23 +243,23 @@
 }
 
 .home-btn-play {
-  background: linear-gradient(180deg, #DC6900 0%, #FFBA0A 100%);
+  background: linear-gradient(180deg, #FF9500 0%, #FFB400 100%);
   color: white;
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 30px rgba(255, 149, 0, 0.5), inset 0 2px 5px rgba(255, 255, 255, 0.4);
 }
 
 .home-btn-play:hover {
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 12px 35px rgba(255, 149, 0, 0.6), inset 0 2px 5px rgba(255, 255, 255, 0.4);
 }
 
 .home-btn-upload {
-  background: linear-gradient(180deg, #DC6900 0%, #FFBA0A 100%);
+  background: linear-gradient(180deg, #FF9500 0%, #FFB400 100%);
   color: white;
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 30px rgba(255, 149, 0, 0.5), inset 0 2px 5px rgba(255, 255, 255, 0.4);
 }
 
 .home-btn-upload:hover {
-  box-shadow: 0 6px 16px rgba(255, 140, 0, 0.5);
+  box-shadow: 0 12px 35px rgba(255, 149, 0, 0.6), inset 0 2px 5px rgba(255, 255, 255, 0.4);
 }
 
 /* Hidden file input */
@@ -325,42 +326,45 @@
 .home-participate {
   width: 100%;
   text-align: center;
+  margin-top: auto;
+  padding-bottom: 5px;
 }
 
 .home-participate-title,
 .home-participate h2.home-participate-title {
   font-family: 'Poppins', sans-serif !important;
-  font-size: 22px !important;
+  font-size: 39px !important;
   font-weight: 700 !important;
   font-style: normal !important;
   color: white;
-  margin: 0 0 10px 0;
-  padding-top: 35px;
+  margin: 0 0 15px 0;
+  padding-top: 25px;
   text-transform: none !important;
 }
 
 .home-prize-buttons {
   display: flex;
-  gap: 25px;
-  width: 100%;
-  margin-top: 15px;
+  gap: 8px;
+  width: 110%;
+  margin-top: 20px;
+  padding: 0 10px;
 }
 
 .home-prize-btn {
-  flex: 1;
+  flex: 2.4;
   position: relative;
-  padding: 10px 13px;
+  padding: 20px 15px;
   border: none;
-  border-radius: 16px;
+  border-radius: 24px;
   background: #66065A;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 12px rgba(102, 6, 90, 0.3);
+  box-shadow: 0 12px 24px rgba(37, 34, 34, 0.5);
   overflow: visible;
-  min-height: 71px;
+  min-height: 130px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 23px;
 }
 
 .home-prize-btn:active {
@@ -368,18 +372,19 @@
 }
 
 .home-prize-btn:hover {
-  box-shadow: 0 6px 16px rgba(102, 6, 90, 0.4);
+  box-shadow: 0 6px 16px rgba(151, 13, 133, 0.4);
 }
 
 .home-prize-btn-left {
-  padding-left: 50px;
-  margin-left: 20px;
-  flex: 1.4;
+  padding-left: 75px;
+  margin-left: 0;
+  flex: 1.3;
 }
 
 .home-prize-btn-right {
-  padding-left: 12px;
-  padding-right: 70px;
+  padding-left: 28px;
+  padding-right: 75px;
+  margin-right: 0;
 }
 
 .home-prize-text {
@@ -394,11 +399,11 @@
 
 .home-prize-text span {
   font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 27px;
+  font-weight: 700;
   color: white;
-  line-height: 1.4;
-  white-space: nowrap;
+  line-height: 1.1;
+  white-space: normal;
 }
 
 .home-prize-img {
@@ -408,14 +413,14 @@
 
 .home-prize-img-left {
   position: absolute;
-  left: -60px;
-  top: -42px;
-  width: 90px;
+  left: -70px;
+  top: -47px;
+  width: 140px;
 }
 
 .home-prize-img-right {
   position: absolute;
-  right: 1px;
-  bottom: -10px;
-  width: 70px;
+  right: -5px;
+  bottom: -15px;
+  width: 130px;
 }
