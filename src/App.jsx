@@ -12,6 +12,17 @@ import UploadScreen from './UploadScreen';
 import { getLevelForXP } from './game/levels';
 import { supabase } from './lib/supabase';
 import { useEffect } from 'react';
+import { ALL_ASSETS } from './game/assets';
+
+function AssetPreloader() {
+  return (
+    <div style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden', opacity: 0.01, pointerEvents: 'none', zIndex: -1 }}>
+      {ALL_ASSETS.map((src, i) => (
+        <img key={i} src={src} alt="" />
+      ))}
+    </div>
+  );
+}
 
 function loadProgress() {
   try {
@@ -315,20 +326,15 @@ function App() {
     });
   }, [progress, session, updateProfile]);
 
+  let content;
   if (screen === 'splash') {
-    return <SplashScreen onLoadingComplete={handleSplashComplete} />;
-  }
-
-  if (screen === 'signup') {
-    return <SignupScreen onSignup={handleSignup} onGoHome={handleGoHome} isLoading={authLoading} />;
-  }
-
-  if (screen === 'starting') {
-    return <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} />;
-  }
-
-  if (screen === 'game') {
-    return (
+    content = <SplashScreen onLoadingComplete={handleSplashComplete} />;
+  } else if (screen === 'signup') {
+    content = <SignupScreen onSignup={handleSignup} onGoHome={handleGoHome} isLoading={authLoading} />;
+  } else if (screen === 'starting') {
+    content = <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} />;
+  } else if (screen === 'game') {
+    content = (
       <>
         <Game
           key={`game-${progress.totalXP}-${gameKey}`}
@@ -357,10 +363,8 @@ function App() {
         )}
       </>
     );
-  }
-
-  if (screen === 'gameover') {
-    return (
+  } else if (screen === 'gameover') {
+    content = (
       <GameOver
         score={sessionScore}
         onPlayAgain={handleStartGame}
@@ -368,10 +372,8 @@ function App() {
         onUnlockThemes={handleUnlockThemes}
       />
     );
-  }
-
-  if (screen === 'levels') {
-    return (
+  } else if (screen === 'levels') {
+    content = (
       <LevelsScreen
         totalXP={progress.totalXP}
         videosCount={progress.videosCount || 0}
@@ -382,35 +384,40 @@ function App() {
         onVideoUpload={handleGoToUpload}
       />
     );
-  }
-
-  if (screen === 'upload') {
-    return (
+  } else if (screen === 'upload') {
+    content = (
       <UploadScreen
         onGoHome={handleGoHome}
         onUpload={handleVideoUpload}
       />
     );
+  } else {
+    content = (
+      <>
+        <Home
+          onStartGame={handlePlayClick}
+          onResetProgress={handleResetProgress}
+          onLogout={session ? handleLogout : null}
+          user={session?.user}
+        />
+        {showModal && <HowToPlayModal onClose={handleCloseModal} />}
+        {showLoginModal && (
+          <LoginModal
+            onClose={handleCloseLoginModal}
+            onLogin={handleLogin}
+            onSignup={handleSignupClick}
+            isLoading={authLoading}
+          />
+        )}
+      </>
+    );
   }
 
   return (
-    <>
-      <Home
-        onStartGame={handlePlayClick}
-        onResetProgress={handleResetProgress}
-        onLogout={session ? handleLogout : null}
-        user={session?.user}
-      />
-      {showModal && <HowToPlayModal onClose={handleCloseModal} />}
-      {showLoginModal && (
-        <LoginModal
-          onClose={handleCloseLoginModal}
-          onLogin={handleLogin}
-          onSignup={handleSignupClick}
-          isLoading={authLoading}
-        />
-      )}
-    </>
+    <div className="app-main-container">
+      <AssetPreloader />
+      {content}
+    </div>
   );
 }
 

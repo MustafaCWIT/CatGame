@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import './SignupScreen.css';
-import logoImg from './assets/logo.png';
-import backgroundImg from './assets/background.png';
-import signUpCloudImg from './assets/signUpCloud.png';
+import { ALL_ASSETS, GAME_ASSETS } from './game/assets';
 
-const ASSETS = [logoImg, backgroundImg, signUpCloudImg];
+const {
+  logo: logoImg,
+  background: backgroundImg,
+  signUpCloud: signUpCloudImg
+} = GAME_ASSETS;
+
+const ASSETS = ALL_ASSETS;
 
 export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
   const [formData, setFormData] = useState({

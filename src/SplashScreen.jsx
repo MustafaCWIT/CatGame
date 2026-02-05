@@ -1,33 +1,17 @@
 import { useState, useEffect } from 'react';
 import './SplashScreen.css';
-import logoImg from './assets/logo.png';
-import catImg from './assets/cat.png';
-import nameImg from './assets/name.png';
-import fishImg from './assets/fish.png';
-import bowlImg from './assets/bowl.png';
-import cloudsImg from './assets/clouds.png';
-import backgroundImg from './assets/background.png';
-import gameBackgroundImg from './assets/gameBackground.png';
-import lyingCatImg from './assets/lyingCat.png';
-import starImg from './assets/star.png';
-import dollarImg from './assets/dollar.png';
-import gameImg from './assets/game.png';
-import catViewingImg from './assets/catViewing.png';
-import clearCloudsImg from './assets/clearClouds.png';
-import foodBoxImg from './assets/foodBox.png';
-import foodBoxesImg from './assets/foodBoxes.png';
-import signUpCloudImg from './assets/signUpCloud.png';
-import sleepCatImg from './assets/sleepCat.png';
+import { ALL_ASSETS, preloadImage, GAME_ASSETS } from './game/assets';
 
-// Helper function to preload an image
-function preloadImage(src) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = () => resolve(img);
-    img.onerror = reject;
-    img.src = src;
-  });
-}
+// Destructure common images for use in local render
+const {
+  background: backgroundImg,
+  logo: logoImg,
+  cat: catImg,
+  name: nameImg,
+  fish: fishImg,
+  bowl: bowlImg,
+  gameCloud: cloudsImg,
+} = GAME_ASSETS;
 
 export default function SplashScreen({ onLoadingComplete }) {
   const [progress, setProgress] = useState(0);
@@ -35,26 +19,7 @@ export default function SplashScreen({ onLoadingComplete }) {
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   // List of all images to preload
-  const imagesToLoad = [
-    backgroundImg,
-    logoImg,
-    catImg,
-    nameImg,
-    fishImg,
-    bowlImg,
-    cloudsImg,
-    gameBackgroundImg,
-    lyingCatImg,
-    starImg,
-    dollarImg,
-    gameImg,
-    catViewingImg,
-    clearCloudsImg,
-    foodBoxImg,
-    foodBoxesImg,
-    signUpCloudImg,
-    sleepCatImg
-  ];
+  const imagesToLoad = ALL_ASSETS;
 
   useEffect(() => {
     let isMounted = true;
@@ -128,74 +93,54 @@ export default function SplashScreen({ onLoadingComplete }) {
 
   return (
     <div className={`splash-screen ${isLoaded ? 'splash-fade-out' : ''}`}>
-      <img
-        src={backgroundImg}
-        alt=""
-        className={`splash-background ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
-      />
-
-      {/* Clouds */}
-      <img
-        src={cloudsImg}
-        alt=""
-        className={`splash-clouds splash-clouds-left ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
-      />
-      <img
-        src={cloudsImg}
-        alt=""
-        className={`splash-clouds splash-clouds-right ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
-      />
-
-      {/* Logo */}
-      <img
-        src={logoImg}
-        alt="Whiskas"
-        className={`splash-logo ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
-      />
-
-      {/* Fish */}
-      <img
-        src={fishImg}
-        alt=""
-        className={`splash-fish ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
-      />
-
-      {/* Main content */}
-      <div className="splash-content">
-        {/* Title */}
-        <h1 className={`splash-title ${imagesLoaded ? 'splash-content-visible' : 'splash-content-hidden'}`}>
-          Tap To Purr
-        </h1>
-
-        {/* Cat */}
+      {/* Background - Show only when loaded to avoid flash */}
+      {imagesLoaded && (
         <img
-          src={catImg}
-          alt="Cat"
-          className={`splash-cat ${imagesLoaded ? 'splash-image-loaded splash-content-visible' : 'splash-image-loading splash-content-hidden'}`}
+          src={backgroundImg}
+          alt=""
+          className="splash-background splash-image-loaded"
         />
+      )}
 
-        {/* Name/Purradise */}
-        <img
-          src={nameImg}
-          alt="Purradise"
-          className={`splash-name ${imagesLoaded ? 'splash-image-loaded splash-content-visible' : 'splash-image-loading splash-content-hidden'}`}
-        />
+      {/* Hero elements - Show all at once when loaded */}
+      {imagesLoaded && (
+        <>
+          {/* Clouds */}
+          <img src={cloudsImg} alt="" className="splash-clouds splash-clouds-left" />
+          <img src={cloudsImg} alt="" className="splash-clouds splash-clouds-right" />
 
-        {/* Loader - always visible */}
+          {/* Logo */}
+          <img src={logoImg} alt="Whiskas" className="splash-logo" />
+
+          {/* Fish */}
+          <img src={fishImg} alt="" className="splash-fish" />
+
+          {/* Bowl */}
+          <img src={bowlImg} alt="" className="splash-bowl" />
+        </>
+      )}
+
+      {/* Main content - structure always visible, images conditional */}
+      <div className="splash-content splash-content-visible">
+        <h1 className="splash-title">Tap To Purr</h1>
+
+        {imagesLoaded && (
+          <>
+            <img src={catImg} alt="Cat" className="splash-cat" />
+            <img src={nameImg} alt="Purradise" className="splash-name" />
+          </>
+        )}
+
+        {/* Loader - keeps user updated */}
         <div className="splash-loader-container">
           <div className="splash-loader">
             <div className="splash-loader-fill" style={{ width: `${progress}%` }} />
           </div>
-          <span className="splash-loader-text">{progress}%</span>
+          <span className="splash-loader-text">
+            {/* {imagesLoaded ? 'Ready!' : `Loading Purradise... ${progress}%`} */}
+          </span>
         </div>
       </div>
-
-      {/* Bowl */}
-      <img
-        src={bowlImg}
-        alt=""
-        className={`splash-bowl ${imagesLoaded ? 'splash-image-loaded' : 'splash-image-loading'}`}
-      />
     </div>
   );
 }

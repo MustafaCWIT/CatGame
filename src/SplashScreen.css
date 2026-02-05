@@ -7,6 +7,7 @@
   justify-content: center;
   overflow: hidden;
   z-index: 9999;
+  background: linear-gradient(135deg, #1a1040 0%, #2d1b69 100%);
   transition: opacity 0.5s ease-out;
 }
 
@@ -56,18 +57,24 @@
 }
 
 @keyframes floatLeft {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-8px);
   }
 }
 
 @keyframes floatRight {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scaleX(-1) translateY(0);
   }
+
   50% {
     transform: scaleX(-1) translateY(-8px);
   }
@@ -86,9 +93,12 @@
 }
 
 @keyframes swim {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(-50%) translateX(0) rotate(-5deg);
   }
+
   50% {
     transform: translateY(-50%) translateX(10px) rotate(5deg);
   }
@@ -165,9 +175,12 @@
 }
 
 @keyframes catBounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-5px);
   }
@@ -213,6 +226,7 @@
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
