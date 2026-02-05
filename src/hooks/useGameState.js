@@ -10,17 +10,24 @@ function randomBetween(min, max) {
 export function createObject(levelIndex, screenW, screenH, existingObjects = [], isInitial = false, index = 0) {
   const level = LEVELS[levelIndex];
 
-  // Define direction types
-  const verticalTypes = ['clouds', 'cloud', 'bowl', 'star', 'stars', 'leaf', 'flower', 'paw', 'foodBox', 'foodBoxes', 'treat', 'moon', 'orb'];
+  // Map object types to directions: 0 = Vertical, 1 = Horizontal
+  const verticalTypes = ['clouds', 'cloud', 'bowl', 'star', 'stars', 'leaf', 'flower', 'paw', 'foodBox', 'foodBoxes', 'treat', 'moon', 'orb', 'sparkle'];
   const horizontalTypes = ['fish', 'sparrow', 'butterfly', 'comet', 'dollar', 'nebula'];
 
-  // Alternate direction based on the global counter: 0 = Horizontal, 1 = Vertical
-  // We use objectIdCounter % 2 to ensure they alternate strictly one after another
-  const desiredDirection = (objectIdCounter % 2);
+  // Determine the direction of the last spawned object to ensure strict alternation
+  let lastDirection = null; // null means no last object, 0 = Horizontal, 1 = Vertical
+  if (existingObjects.length > 0) {
+    const lastObj = existingObjects[existingObjects.length - 1];
+    lastDirection = verticalTypes.includes(lastObj.type) ? 1 : 0;
+  }
+
+  // Force direction: 0 = Horizontal, 1 = Vertical
+  // If no last object, start with Horizontal (0). Otherwise, switch.
+  const desiredDirection = (lastDirection !== null) ? (1 - lastDirection) : 0;
 
   // Filter level objects to match the desired direction
   const matchingTypes = level.objects.filter(t => {
-    // 0 = Horizontal, 1 = Vertical (as per "HORIZONTAL AND THEN VERTICAL" request)
+    // 0 = Horizontal, 1 = Vertical
     if (desiredDirection === 1) return verticalTypes.includes(t);
     return horizontalTypes.includes(t);
   });
