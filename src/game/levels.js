@@ -15,7 +15,7 @@ export const LEVELS = [
   },
   {
     name: 'Cozy Bowl World',
-    xpRequired: 200,
+    xpRequired: 3000,
     background: ['#7c2d12', '#451a03', '#c2410c'],
     objects: ['bowl', 'treat', 'foodBox', 'foodBoxes', 'paw', 'dollar', 'clouds', 'leaf', 'stars'],
     objectColors: ['#fdba74', '#fb923c', '#fbbf24', '#fde68a'],
@@ -25,7 +25,7 @@ export const LEVELS = [
   },
   {
     name: 'Starry Dream',
-    xpRequired: 600,
+    xpRequired: 8000,
     background: ['#0c4a6e', '#075985', '#0369a1'], // Teal/cyan tones
     objects: ['star', 'moon', 'comet', 'sparrow'],
     objectColors: ['#67e8f9', '#22d3ee', '#a5f3fc', '#cffafe'],
@@ -35,7 +35,7 @@ export const LEVELS = [
   },
   {
     name: 'Garden Glow',
-    xpRequired: 1400,
+    xpRequired: 15000,
     background: ['#831843', '#9f1239', '#be185d'], // Changed to pink/rose tones
     objects: ['flower', 'leaf', 'butterfly', 'fish'],
     objectColors: ['#f9a8d4', '#f472b6', '#ec4899', '#fbcfe8'],
@@ -45,7 +45,7 @@ export const LEVELS = [
   },
   {
     name: 'Aurora Drift',
-    xpRequired: 2800,
+    xpRequired: 30000,
     background: ['#1e1b4b', '#312e81', '#4c1d95'],
     objects: ['nebula', 'orb', 'sparkle', 'comet'],
     objectColors: ['#c084fc', '#a78bfa', '#67e8f9', '#f0abfc'],
