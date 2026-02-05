@@ -785,9 +785,9 @@
 /* Medium phones: 390px width (iPhone 12/13/14 - 390x844) */
 @media screen and (max-width: 399px) and (min-width: 385px) {
   .home-fish {
-    width: 180px;
+    width: 140px;
     left: -55px;
-    top: -14px;
+    top: 18px;
   }
 
   .home-cloud {
@@ -797,8 +797,8 @@
   }
 
   .home-profile {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     top: 20px;
     right: 20px;
   }
@@ -809,19 +809,19 @@
   }
 
   .home-logo {
-    width: 180px;
+    width: 150px;
     margin-top: 30px;
   }
 
   .home-title {
     font-size: 44px;
-    margin: 12px 0 0 0;
+    margin: 16                                   px 0 0 0;
   }
 
   .home-cat-container {
     max-width: 285px;
     height: 210px;
-    margin-top: 115px;
+    margin-top: 160px;
   }
 
   .home-cat-circle {
@@ -832,14 +832,14 @@
   .home-cat {
     width: 240px;
     margin-left: 270px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
   }
 
   .home-buttons {
     max-width: 100%;
     margin-top: -55px;
     gap: 8px;
-    padding: 0 10px;
+    padding: 0 1px;
   }
 
   .home-btn {
@@ -850,14 +850,14 @@
   }
 
   .home-participate {
-    padding-bottom: 10px;
-    margin-top: 10px;
+    padding-bottom: 1px;
+    margin-top: 0px;
   }
 
   .home-participate-title,
   .home-participate h2.home-participate-title {
-    font-size: 22px !important;
-    padding-top: 10px;
+    font-size: 20px !important;
+    padding-top:70px;
     margin-bottom: 12px;
   }
 
@@ -873,7 +873,7 @@
   .home-prize-btn {
     padding: 11px 8px;
     border-radius: 16px;
-    min-height: 78px;
+    min-height: 64px;
     gap: 10px;
   }
 
@@ -887,13 +887,13 @@
   }
 
   .home-prize-text span {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .home-prize-img-left {
-    width: 72px;
-    left: -26px;
-    top: -20px;
+    width: 60px;
+    left: -20px;
+    top: -11px;
   }
 
   .home-prize-img-right {

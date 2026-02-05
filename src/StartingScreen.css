@@ -600,94 +600,95 @@
 /* Medium phones: 390px width (iPhone 12/13/14) */
 @media screen and (max-width: 399px) and (min-width: 385px) {
   .starting-screen {
-    padding-top: 25px;
+    padding-top: 22px;
   }
 
   .starting-nav {
-    top: 15px;
-    padding: 0 15px;
+    top: 12px;
+    padding: 0 12px;
   }
 
   .starting-home-btn,
   .starting-profile {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
   }
 
   .starting-loader-text {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .starting-title {
-    font-size: 48px;
-    margin-top: 30px;
+    font-size: 38px;
+    margin-top: 60px;
     letter-spacing: -1px;
   }
 
   .starting-preview-wrapper {
-    max-width: 320px;
-    margin-top: 100px;
+    max-width: 270px;
+    margin-top: 140px;
   }
 
   .starting-tablet-frame {
-    width: 92%;
-    padding: 10px;
-    border-radius: 20px;
+    width: 93%;
+    padding: 8px;
+    border-radius: 18px;
   }
 
   .starting-tablet-bezel {
-    border-radius: 12px;
-  }
-
-  .preview-ui-top {
-    top: 10px;
-    padding: 0 12px;
-  }
-
-  .preview-pill {
-    padding: 1.5px 5px;
-    font-size: 6px;
     border-radius: 10px;
   }
 
+  .preview-ui-top {
+    top: 8px;
+    padding: 0 10px;
+  }
+
+  .preview-pill {
+    padding: 1px 4px;
+    font-size: 5px;
+    border-radius: 8px;
+  }
+
   .preview-pill-score {
-    font-size: 8px;
+    font-size: 7px;
   }
 
   .starting-fish {
-    width: 140px;
-    left: -12px;
-    top: 5px;
+    width: 110px;
+    left: -10px;
+    top: 4px;
   }
 
   .starting-star {
-    width: 60px;
-    top: 55px;
-    right: 75px;
+    width: 48px;
+    top: 45px;
+    right: 70px;
   }
 
   .starting-bowl {
-    width: 85px;
-    bottom: 15px;
-    left: 28%;
+    width: 68px;
+    bottom: 10px;
+    left: 26%;
   }
 
   .starting-cat {
-    width: 160px;
-    top: -115px;
+    width: 125px;
+    top: -85px;
   }
 
   .starting-countdown {
-    margin-top: 35px;
+    margin-top: 25px;
   }
 
   .starting-label {
-    font-size: 20px;
+    font-size: 16px;
+    margin-top: 150px;
   }
 
   .starting-number {
-    font-size: 110px;
-  }
+    font-size: 85px;
+  }       
 }
 
 /* Standard phones: 375px width (iPhone SE, 6/7/8) */
