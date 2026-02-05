@@ -62,6 +62,7 @@ export default function StartingScreen({ levelName, onCountdownComplete }) {
       const timer = setTimeout(() => setCount(count + 1), 1000);
       return () => clearTimeout(timer);
     } else if (count === 3) {
+      // Temporarily disabled - prevent auto-navigation on countdown completion
       const timer = setTimeout(() => {
         onCountdownComplete();
       }, 500);

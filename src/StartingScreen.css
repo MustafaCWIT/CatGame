@@ -525,7 +525,9 @@
 
   .starting-preview-wrapper {
     max-width: 340px;
-    margin-top: 110px;
+    margin-top: 130px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .starting-tablet-frame {
@@ -536,6 +538,11 @@
 
   .starting-tablet-bezel {
     border-radius: 12px;
+  }
+
+  .starting-game-bg {
+    top: 0;
+    bottom: -20px;
   }
 
   .preview-ui-top {
@@ -572,7 +579,8 @@
 
   .starting-cat {
     width: 170px;
-    top: -122px;
+    bottom: 70px;
+    margin-top: 20px;
   }
 
   .starting-countdown {
@@ -581,6 +589,7 @@
 
   .starting-label {
     font-size: 21px;
+    margin-top: 170px;
   }
 
   .starting-number {

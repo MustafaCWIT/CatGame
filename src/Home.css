@@ -700,7 +700,7 @@
   .home-cat-container {
     max-width: 300px;
     height: 225px;
-    margin-top: 125px;
+    margin-top: 160px;
   }
 
   .home-cat-circle {
@@ -709,9 +709,9 @@
   }
 
   .home-cat {
-    width: 255px;
-    margin-left: 285px;
-    margin-bottom: 17px;
+    width: 230px;
+    margin-left: 230px;
+    margin-bottom: 0px;
   }
 
   .home-buttons {
@@ -736,14 +736,14 @@
   .home-participate-title,
   .home-participate h2.home-participate-title {
     font-size: 24px !important;
-    padding-top: 12px;
+    padding-top: 92px;
     margin-bottom: 14px;
   }
 
   .home-prize-buttons {
     width: 100%;
     gap: 11px;
-    padding: 0 9px;
+    padding: 0 13px;
     margin-left: 0;
     margin-top: 11px;
     box-sizing: border-box;
@@ -752,33 +752,33 @@
   .home-prize-btn {
     padding: 12px 9px;
     border-radius: 17px;
-    min-height: 85px;
+    min-height: 65px;
     gap: 11px;
   }
 
   .home-prize-btn-left {
-    padding-left: 52px;
+    padding-left: 50px;
   }
 
   .home-prize-btn-right {
-    padding-left: 14px;
-    padding-right: 48px;
+    padding-left: 24px;
+    padding-right: 10px;
   }
 
   .home-prize-text span {
-    font-size: 14px;
+    font-size: 11px;
   }
 
   .home-prize-img-left {
-    width: 78px;
-    left: -30px;
-    top: -22px;
+    width: 65px;
+    left: -24px;
+    top: -17px;
   }
 
   .home-prize-img-right {
-    width: 75px;
+    width: 65px;
     right: -4px;
-    bottom: -9px;
+    bottom: -11px;
   }
 }
 
