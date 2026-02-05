@@ -14,11 +14,11 @@
 .login-container {
   position: relative;
   width: 100%;
-  max-width: 420px;
+  max-width: 650px;
   background: linear-gradient(180deg, #930F74 0%, #4D014B 100%);
   border-radius: 24px;
-  padding: 30px 25px;
-  border: 5px solid rgba(255, 255, 255, 0.5);
+  padding: 80px 75px;
+  border: 8px solid rgba(255, 255, 255, 0.671);
 }
 
 .login-close {
@@ -45,16 +45,16 @@
 
 .login-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 26px;
-  font-weight: 700;
+  font-size: 36px;
+  font-weight: 6700;
   color: white;
-  margin: 0 0 8px 0;
+  margin: 0 0 4px 0;
 }
 
 .login-subtitle {
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 300;
   color: rgba(255, 255, 255, 0.8);
   margin: 0 0 25px 0;
 }
@@ -91,7 +91,7 @@
 
 .login-btn {
   width: 40%;
-  padding: 14px 24px;
+  padding: 24px 24px;
   background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
   border: none;
   border-radius: 15px;
