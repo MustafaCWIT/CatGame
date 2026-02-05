@@ -409,92 +409,95 @@
 /* Large phones: 430px width (iPhone 14 Pro Max) */
 @media screen and (max-width: 480px) and (min-width: 420px) {
   .starting-screen {
-    padding-top: 28px;
+    padding-top: 22px;
   }
 
   .starting-nav {
-    top: 18px;
-    padding: 0 18px;
+    top: 12px;
+    padding: 0 12px;
   }
 
   .starting-home-btn,
   .starting-profile {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
   }
 
   .starting-loader-text {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .starting-title {
-    font-size: 55px;
-    margin-top: 35px;
+    font-size: 38px;
+    margin-top: 60px;
+    letter-spacing: -1px;
   }
 
   .starting-preview-wrapper {
-    max-width: 360px;
-    margin-top: 120px;
+    max-width: 270px;
+    margin-top: 140px;
   }
 
   .starting-tablet-frame {
-    width: 90%;
-    padding: 11px;
-    border-radius: 22px;
+    width: 93%;
+    padding: 8px;
+    border-radius: 18px;
   }
 
   .starting-tablet-bezel {
-    border-radius: 13px;
+    border-radius: 10px;
   }
 
   .preview-ui-top {
-    top: 11px;
-    padding: 0 14px;
+    top: 8px;
+    padding: 0 10px;
   }
 
   .preview-pill {
-    padding: 2px 7px;
-    font-size: 8px;
-    border-radius: 14px;
+    padding: 1px 4px;
+    font-size: 5px;
+    border-radius: 8px;
   }
 
   .preview-pill-score {
-    font-size: 10px;
+    font-size: 7px;
   }
 
   .starting-fish {
-    width: 160px;
-    left: -14px;
-    top: 6px;
+    width: 110px;
+    left: -10px;
+    top: 4px;
   }
 
   .starting-star {
-    width: 70px;
-    top: 62px;
-    right: 88px;
+    width: 48px;
+    top: 45px;
+    right: 70px;
   }
 
   .starting-bowl {
-    width: 98px;
-    bottom: 18px;
+    width: 68px;
+    bottom: 10px;
+    left: 26%;
   }
 
   .starting-cat {
-    width: 180px;
-    top: -130px;
+    width: 125px;
+    top: -85px;
   }
 
   .starting-countdown {
-    margin-top: 40px;
+    margin-top: 25px;
   }
 
   .starting-label {
-    font-size: 22px;
+    font-size: 16px;
+    margin-top: 150px;
   }
 
   .starting-number {
-    font-size: 125px;
-  }
+    font-size: 85px;
+  }       
 }
 
 /* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
