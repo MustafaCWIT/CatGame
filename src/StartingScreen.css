@@ -790,92 +790,99 @@
 /* Small phones: 360px width (Galaxy S5, etc.) */
 @media screen and (max-width: 369px) {
   .starting-screen {
-    padding-top: 20px;
+    padding-top: 26px;
   }
 
   .starting-nav {
-    top: 10px;
-    padding: 0 10px;
+    top: 16px;
+    padding: 0 16px;
   }
 
   .starting-home-btn,
   .starting-profile {
-    width: 36px;
-    height: 36px;
+    width: 46px;
+    height: 46px;
   }
 
   .starting-loader-text {
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .starting-title {
-    font-size: 36px;
-    margin-top: 20px;
-    letter-spacing: -1px;
+    font-size: 52px;
+    margin-top: 32px;
   }
 
   .starting-preview-wrapper {
-    max-width: 260px;
-    margin-top: 70px;
+    max-width: 300px;
+    margin-top: 130px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .starting-tablet-frame {
-    width: 94%;
-    padding: 7px;
-    border-radius: 16px;
+    width: 91%;
+    padding: 10px;
+    border-radius: 21px;
   }
 
   .starting-tablet-bezel {
-    border-radius: 9px;
+    border-radius: 12px;
+  }
+
+  .starting-game-bg {
+    top: 0;
+    bottom: -20px;
   }
 
   .preview-ui-top {
-    top: 7px;
-    padding: 0 8px;
+    top: 10px;
+    padding: 0 13px;
   }
 
   .preview-pill {
-    padding: 1px 3px;
-    font-size: 4px;
-    border-radius: 6px;
+    padding: 1.5px 6px;
+    font-size: 7px;
+    border-radius: 12px;
   }
 
   .preview-pill-score {
-    font-size: 6px;
+    font-size: 9px;
   }
 
   .starting-fish {
-    width: 100px;
-    left: -8px;
-    top: 3px;
+    width: 130px;
+    left: -13px;
+    top: 10px;
   }
 
   .starting-star {
-    width: 45px;
-    top: 42px;
-    right: 55px;
+    width: 65px;
+    top: 40px;
+    right: 60px;
   }
 
   .starting-bowl {
-    width: 65px;
-    bottom: 10px;
-    left: 24%;
+    width: 92px;
+    bottom: 16px;
   }
 
   .starting-cat {
-    width: 120px;
-    top: -85px;
+    width: 140px;
+    bottom: 70px;
+    margin-top: 42px;
   }
 
   .starting-countdown {
-    margin-top: 25px;
+    margin-top: 38px;
   }
 
   .starting-label {
-    font-size: 16px;
+    font-size: 21px;
+    margin-top: 10px;
   }
 
   .starting-number {
-    font-size: 80px;
+    font-size: 118px;
   }
 }

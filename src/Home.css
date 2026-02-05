@@ -1027,121 +1027,120 @@
 /* Small phones: 360px width (Galaxy S5, etc. - 360x740) */
 @media screen and (max-width: 369px) {
   .home-fish {
-    width: 160px;
-    left: -50px;
-    top: -18px;
+    width: 140px;
+    left: -58px;
+    top: 10px;
   }
 
   .home-cloud {
-    width: 160px;
-    right: -75px;
-    top: 115px;
+    width: 190px;
+    right: -82px;
+    top: 125px;
   }
 
   .home-profile {
-    width: 40px;
-    height: 40px;
-    top: 16px;
-    right: 16px;
+    width: 29px;
+    height: 29px;
+    top: 21px;
+    right: 21px;
   }
 
   .home-content {
     max-width: 100%;
-    padding: 8px 8px 12px 8px;
+    padding: 10px 14px 20px 14px;
   }
 
   .home-logo {
-    width: 150px;
-    margin-top: 22px;
+    width: 120px;
+    margin-top: 32px;
   }
 
   .home-title {
-    font-size: 36px;
-    margin: 8px 0 0 0;
-    letter-spacing: -1px;
+    font-size: 40px;
+    margin: 14px 0 0 0;
   }
 
   .home-cat-container {
-    max-width: 245px;
-    height: 180px;
-    margin-top: 90px;
+    max-width: 300px;
+    height: 225px;
+    margin-top: 40px;
   }
 
   .home-cat-circle {
-    width: 225px;
-    height: 80px;
+    width: 280px;
+    height: 95px;
   }
 
   .home-cat {
-    width: 200px;
-    margin-left: 230px;
-    margin-bottom: 12px;
+    width: 190px;
+    margin-left: 190px;
+    margin-bottom: 10px;
   }
 
   .home-buttons {
     max-width: 100%;
-    margin-top: -45px;
-    gap: 6px;
-    padding: 0 6px;
+    margin-top: -58px;
+    gap: 9px;
+    padding: 0 11px;
   }
 
   .home-btn {
-    padding: 9px 3px;
-    font-size: 11px;
-    border-width: 2px;
-    border-radius: 10px;
+    padding: 13px 6px;
+    font-size: 14px;
+    border-width: 3px;
+    border-radius: 13px;
   }
 
   .home-participate {
-    padding-bottom: 6px;
-    margin-top: 6px;
+    padding-bottom: 12px;
+    margin-top: 12px;
   }
 
   .home-participate-title,
   .home-participate h2.home-participate-title {
-    font-size: 18px !important;
-    padding-top: 6px;
-    margin-bottom: 8px;
+    font-size: 24px !important;
+    padding-top: 70px;
+    margin-bottom: 14px;
   }
 
   .home-prize-buttons {
     width: 100%;
-    gap: 6px;
-    padding: 0 5px;
+    gap: 11px;
+    padding: 0 13px;
     margin-left: 0;
-    margin-top: 6px;
+    margin-top: 11px;
     box-sizing: border-box;
   }
 
   .home-prize-btn {
-    padding: 8px 6px;
-    border-radius: 12px;
+    padding: 12px 9px;
+    border-radius: 17px;
     min-height: 65px;
-    gap: 8px;
+    gap: 11px;
   }
 
   .home-prize-btn-left {
-    padding-left: 38px;
+    padding-left: 50px;
   }
 
   .home-prize-btn-right {
-    padding-left: 8px;
-    padding-right: 38px;
+    padding-left: 24px;
+    padding-right: 10px;
   }
 
   .home-prize-text span {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .home-prize-img-left {
-    width: 55px;
-    left: -18px;
-    top: -13px;
+    width: 65px;
+    left: -24px;
+    top: -17px;
   }
 
   .home-prize-img-right {
-    width: 55px;
-    right: -2px;
-    bottom: -5px;
+    width: 65px;
+    right: -4px;
+    bottom: -11px;
   }
 }
