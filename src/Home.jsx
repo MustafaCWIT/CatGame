@@ -14,7 +14,7 @@ const {
 
 const ASSETS = ALL_ASSETS;
 
-export default function Home({ onStartGame, onResetProgress, onLogout, user }) {
+export default function Home({ onStartGame, onResetProgress, onLogout, user, onProfileClick }) {
   const fileInputRef = useRef(null);
   const [video, setVideo] = useState(null);
   const [videoName, setVideoName] = useState('');
@@ -66,7 +66,7 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user }) {
       <img src={cloudsImg} alt="" className="home-cloud" />
 
       {/* Profile icon at top right */}
-      <div className="home-profile">
+      <div className="home-profile" onClick={onProfileClick} style={{ cursor: 'pointer' }}>
         <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
         </svg>

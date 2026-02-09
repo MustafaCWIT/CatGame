@@ -6,9 +6,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   background: #9C27B0;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.levels::-webkit-scrollbar {
+  display: none;
 }
 
 .levels-background {
@@ -109,10 +115,8 @@
   /* Increased top padding to account for logo position */
   width: 130%;
   max-width: 850px;
-  height: 100%;
-  overflow-y: auto;
-  scrollbar-width: none;
-  /* Firefox */
+  height: auto;
+  overflow: visible;
 }
 
 .levels-content::-webkit-scrollbar {

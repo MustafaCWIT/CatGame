@@ -24,10 +24,22 @@ export default function LevelsScreen({
   const contentRef = useRef(null);
 
   useEffect(() => {
-    if (isReady && autoScrollToThemes && themeSectionRef.current) {
-      setTimeout(() => {
-        themeSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 300);
+    if (isReady && autoScrollToThemes && themeSectionRef.current && contentRef.current) {
+      const scrollTimer = setTimeout(() => {
+        const container = contentRef.current;
+        const target = themeSectionRef.current;
+
+        // Calculate position relative to the main scroll container
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        const relativeTop = targetRect.top - containerRect.top;
+
+        container.scrollTo({
+          top: container.scrollTop + relativeTop + 100, // 100px extra to scroll deeper
+          behavior: 'smooth'
+        });
+      }, 700);
+      return () => clearTimeout(scrollTimer);
     }
   }, [isReady, autoScrollToThemes]);
 
@@ -59,7 +71,7 @@ export default function LevelsScreen({
   };
 
   return (
-    <div className="levels">
+    <div className="levels" ref={contentRef}>
       <img src={backgroundImg} alt="" className="levels-background" />
       <img src={cloudsImg} alt="" className="levels-clouds-decoration" />
       {/* Header */}
@@ -77,7 +89,7 @@ export default function LevelsScreen({
         </div>
       </div>
 
-      <div className="levels-content" ref={contentRef}>
+      <div className="levels-content">
         {/* User Profile */}
         <div className="levels-user-section">
           <h1 className="levels-user-name">{userData.fullName || 'Stella Metthew'}</h1>

@@ -300,6 +300,14 @@ function App() {
     setScreen('levels');
   }, []);
 
+  const handleViewProfile = useCallback(() => {
+    // Reload progress to ensure we have the latest data
+    const latestProgress = loadProgress();
+    setProgress(latestProgress);
+    setAutoScrollThemes(false);
+    setScreen('levels');
+  }, []);
+
   const handleResetProgress = useCallback(async () => {
     if (window.confirm('Reset all progress? This will set XP to 0 and cannot be undone.')) {
       localStorage.removeItem('tap-to-purr-progress');
@@ -350,7 +358,7 @@ function App() {
   } else if (screen === 'signup') {
     content = <SignupScreen onSignup={handleSignup} onGoHome={handleGoHome} isLoading={authLoading} />;
   } else if (screen === 'starting') {
-    content = <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} />;
+    content = <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} onProfileClick={handleViewProfile} onGoHome={handleGoHome} />;
   } else if (screen === 'game') {
     content = (
       <>
@@ -386,6 +394,11 @@ function App() {
               setIsPaused(false);
               handleUnlockThemes();
             }}
+            onProfileClick={() => {
+              setShowGameOverModal(false);
+              setIsPaused(false);
+              handleViewProfile();
+            }}
           />
         )}
       </>
@@ -397,6 +410,7 @@ function App() {
         onPlayAgain={handleStartGame}
         onGoHome={handleGoHome}
         onUnlockThemes={handleUnlockThemes}
+        onProfileClick={handleViewProfile}
       />
     );
   } else if (screen === 'levels') {
@@ -427,6 +441,7 @@ function App() {
           onResetProgress={handleResetProgress}
           onLogout={session ? handleLogout : null}
           user={session?.user}
+          onProfileClick={handleViewProfile}
         />
         {showModal && <HowToPlayModal onClose={handleCloseModal} />}
         {showLoginModal && (

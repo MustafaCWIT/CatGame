@@ -232,7 +232,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
         {/* Left: Score */}
         <div style={{
           ...glassStyle,
-          background: 'rgba(124, 58, 237, 0.9)',
+          background: 'rgba(200, 24, 235, 0.9)',
           padding: width <= 360 ? '6px 10px' : width <= 390 ? '7px 12px' : width <= 430 ? '8px 14px' : '10px 18px',
           borderRadius: width <= 390 ? 8 : width <= 430 ? 10 : 12,
           display: 'flex',
@@ -250,7 +250,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
         {/* Right: Timer */}
         <div style={{
           ...glassStyle,
-          background: 'rgba(124, 58, 237, 0.9)',
+          background: 'rgba(200, 24, 235, 0.9)',
           padding: width <= 360 ? '6px 10px' : width <= 390 ? '7px 12px' : width <= 430 ? '8px 14px' : '10px 18px',
           borderRadius: width <= 390 ? 8 : width <= 430 ? 10 : 12,
           display: 'flex',
@@ -288,8 +288,8 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: width <= 360 ? 32 : width <= 390 ? 36 : width <= 430 ? 40 : 44,
-            height: width <= 360 ? 32 : width <= 390 ? 36 : width <= 430 ? 40 : 44,
+            width: width <= 360 ? 44 : width <= 390 ? 52 : width <= 430 ? 60 : 66,
+            height: width <= 360 ? 44 : width <= 390 ? 52 : width <= 430 ? 60 : 66,
             overflow: 'hidden',
           }}
         >
