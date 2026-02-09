@@ -83,10 +83,10 @@ export default function SplashScreen({ onLoadingComplete }) {
     if (imagesLoaded && progress === 100) {
       // Wait a bit before transitioning after all images are loaded
       const timeout = setTimeout(() => {
-        // setIsLoaded(true);
-        // setTimeout(() => {
-        //   onLoadingComplete();
-        // }, 500);
+        setIsLoaded(true);
+        setTimeout(() => {
+          onLoadingComplete();
+        }, 500);
       }, 2000); // Increased from 300ms to 2000ms (2 seconds)
       return () => clearTimeout(timeout);
     }

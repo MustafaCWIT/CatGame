@@ -163,14 +163,13 @@
 }
 
 .splash-cat {
-  width: 3 80px;
+  width: 380px;
   height: auto;
   display: block;
   animation: catBounce 1.5s ease-in-out infinite;
   order: 2;
   flex-shrink: 0;
   position: relative;
-  left: 50%;
   transition: opacity 0.5s ease-in;
 }
 
@@ -337,6 +336,7 @@
 
   .splash-cat {
     width: 200px;
+    left: 50%;
   }
 
   .splash-name {
@@ -395,6 +395,7 @@
 
   .splash-cat {
     width: 195px;
+    left: 50%;
   }
 
   .splash-name {
@@ -453,6 +454,7 @@
 
   .splash-cat {
     width: 197px;
+    left: 50%;
   }
 
   .splash-name {
@@ -511,6 +513,7 @@
 
   .splash-cat {
     width: 190px;
+    left: 50%;
   }
 
   .splash-name {
@@ -569,6 +572,7 @@
 
   .splash-cat {
     width: 180px;
+    left: 50%;
   }
 
   .splash-name {
@@ -627,6 +631,7 @@
 
   .splash-cat {
     width: 165px;
+    left: 50%;
   }
 
   .splash-name {
@@ -685,6 +690,7 @@
 
   .splash-cat {
     width: 150px;
+    left: 50%;
   }
 
   .splash-name {
