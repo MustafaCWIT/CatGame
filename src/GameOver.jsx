@@ -63,7 +63,7 @@ export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes,
             <button className="go-btn go-btn-play" onClick={onPlayAgain}>
               {isPaused ? "Resume" : "Play Again"}
             </button>
-            <button className="go-btn go-btn-end" onClick={onUnlockThemes}>
+            <button className="go-btn go-btn-end" onClick={onGoHome}>
               End Game
             </button>
           </div>

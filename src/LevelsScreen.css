@@ -107,8 +107,8 @@
   align-items: center;
   padding: 140px 20px 40px;
   /* Increased top padding to account for logo position */
-  width: 100%;
-  max-width: 500px;
+  width: 130%;
+  max-width: 850px;
   height: 100%;
   overflow-y: auto;
   scrollbar-width: none;
@@ -194,9 +194,9 @@
 }
 
 .levels-stat-img {
-  width: 65px;
+  width: 75px;
   /* Increased size */
-  height: 65px;
+  height: 75px;
   object-fit: contain;
 }
 
@@ -215,7 +215,7 @@
 
 .levels-stat-value {
   font-family: 'Poppins', sans-serif;
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 900;
   color: #F88C08;
   line-height: 1;
@@ -270,7 +270,7 @@
   border: 4px solid #A74C8E;
   /* Slightly thicker and correct color */
   border-radius: 24px;
-  height: 200px;
+  height: 220px;
   /* Adjusted height for better aspect ratio */
   position: relative;
   overflow: hidden;
@@ -421,7 +421,7 @@
 
   .levels-content {
     padding: 120px 18px 35px;
-    max-width: 450px;
+    max-width: 750px;
   }
 
   .levels-user-section {
@@ -445,14 +445,14 @@
   .levels-stat-card {
     border-radius: 18px;
     padding: 12px 8px;
-    height: 95px;
+    height: 100px;
     border-width: 2.5px;
   }
 
   .levels-stat-video-card {
     border-radius: 20px;
     padding: 12px 10px;
-    height: 95px;
+    height: 120px;
     padding-bottom: 22px;
     border-width: 2.5px;
   }
@@ -492,7 +492,7 @@
 
   .levels-theme-card {
     border-radius: 20px;
-    height: 170px;
+    height: 200px;
     border-width: 3px;
   }
 
@@ -595,14 +595,14 @@
   .levels-stat-card {
     border-radius: 17px;
     padding: 12px 10px;
-    height: 88px;
+    height: 95px;
     border-width: 2.2px;
   }
 
   .levels-stat-video-card {
     border-radius: 19px;
     padding: 12px 10px;
-    height: 88px;
+    height: 95px;
     padding-bottom: 25px;
     border-width: 2.2px;
   }
@@ -642,7 +642,7 @@
 
   .levels-theme-card {
     border-radius: 19px;
-    height: 155px;
+    height: 220px;
     border-width: 2.7px;
   }
 

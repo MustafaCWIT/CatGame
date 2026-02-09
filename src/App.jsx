@@ -73,6 +73,7 @@ function App() {
   const [session, setSession] = useState(null);
   const [authLoading, setAuthLoading] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [autoScrollThemes, setAutoScrollThemes] = useState(false);
 
   // Initialize Supabase session and fetch profile
   useEffect(() => {
@@ -228,6 +229,7 @@ function App() {
     setGameKey(prev => prev + 1); // Force remount with updated props
     setShowGameOverModal(false);
     setIsPaused(false);
+    setAutoScrollThemes(false);
     setScreen('game');
   }, []);
 
@@ -277,6 +279,7 @@ function App() {
     // Reload progress to ensure we have the latest data
     const latestProgress = loadProgress();
     setProgress(latestProgress);
+    setAutoScrollThemes(false);
     setScreen('home');
   }, []);
 
@@ -293,6 +296,7 @@ function App() {
     // Reload progress to ensure we have the latest data
     const latestProgress = loadProgress();
     setProgress(latestProgress);
+    setAutoScrollThemes(true);
     setScreen('levels');
   }, []);
 
@@ -405,6 +409,7 @@ function App() {
         onStartGame={handleStartGame}
         onGoBack={handleGoHome}
         onVideoUpload={handleGoToUpload}
+        autoScrollToThemes={autoScrollThemes}
       />
     );
   } else if (screen === 'upload') {

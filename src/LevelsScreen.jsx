@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './LevelsScreen.css';
 import logoImg from './assets/logo.png';
 import dollarImg from './assets/dollar.png';
@@ -15,10 +15,21 @@ export default function LevelsScreen({
   userData = {},
   onStartGame,
   onGoBack,
-  onVideoUpload
+  onVideoUpload,
+  autoScrollToThemes = false
 }) {
   const [selectedTheme, setSelectedTheme] = useState('midnight');
   const [isReady, setIsReady] = useState(false);
+  const themeSectionRef = useRef(null);
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    if (isReady && autoScrollToThemes && themeSectionRef.current) {
+      setTimeout(() => {
+        themeSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+  }, [isReady, autoScrollToThemes]);
 
   useEffect(() => {
     let loaded = 0;
@@ -66,7 +77,7 @@ export default function LevelsScreen({
         </div>
       </div>
 
-      <div className="levels-content">
+      <div className="levels-content" ref={contentRef}>
         {/* User Profile */}
         <div className="levels-user-section">
           <h1 className="levels-user-name">{userData.fullName || 'Stella Metthew'}</h1>
@@ -100,7 +111,7 @@ export default function LevelsScreen({
         </div>
 
         {/* Select Theme Section */}
-        <div className="levels-theme-section">
+        <div className="levels-theme-section" ref={themeSectionRef}>
           <h2 className="levels-section-title">Select theme</h2>
           <div className="levels-theme-cards">
             <div
