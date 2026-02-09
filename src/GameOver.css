@@ -204,7 +204,7 @@
 /* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
 
 /* Tablet breakpoint */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .go-page {
     padding: 15px;
   }
@@ -222,7 +222,7 @@
 
   .go-modal-container {
     max-width: 400px;
-    margin-top: -150px;
+    margin-top: -70px;
   }
 
   .go-cat {
@@ -357,7 +357,7 @@
 
   .go-cat {
     width: 200px;
-    margin-bottom: -7   0px;
+    margin-bottom: -7 0px;
   }
 
   .go-modal {

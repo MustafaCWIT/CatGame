@@ -6,7 +6,7 @@ import gameBackgroundImg from './assets/gameBackground.png';
 
 const ASSETS = [catViewingImg, dollarImg, gameBackgroundImg];
 
-export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes }) {
+export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes, isPaused }) {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -61,9 +61,9 @@ export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes 
           {/* Action buttons */}
           <div className="go-actions">
             <button className="go-btn go-btn-play" onClick={onPlayAgain}>
-              Play Again
+              {isPaused ? "Resume" : "Play Again"}
             </button>
-            <button className="go-btn go-btn-end" onClick={onGoHome}>
+            <button className="go-btn go-btn-end" onClick={onUnlockThemes}>
               End Game
             </button>
           </div>
