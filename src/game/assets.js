@@ -19,6 +19,9 @@ import foodBoxImg from '../assets/foodBox.png';
 import foodBoxesImg from '../assets/foodBoxes.png';
 import signUpCloudImg from '../assets/signUpCloud.png';
 import sleepCatImg from '../assets/sleepCat.png';
+import blurCloudsImg from '../assets/clouds.png';
+import gameScoreImg from '../assets/gameScore.png';
+import gameTimeImg from '../assets/gameTime.png';
 
 export const GAME_ASSETS = {
     logo: logoImg,
@@ -41,7 +44,10 @@ export const GAME_ASSETS = {
     foodBox: foodBoxImg,
     foodBoxes: foodBoxesImg,
     signUpCloud: signUpCloudImg,
-    sleepCat: sleepCatImg
+    sleepCat: sleepCatImg,
+    blurClouds: blurCloudsImg,
+    gameScore: gameScoreImg,
+    gameTime: gameTimeImg
 };
 
 export const ALL_ASSETS = Object.values(GAME_ASSETS);

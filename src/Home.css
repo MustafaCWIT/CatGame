@@ -429,20 +429,20 @@
 /* Tablet breakpoint */
 @media screen and (max-width: 900px) {
   .home-fish {
-    width: 160px;
+    width: 190px;
     left: -55px;
     top: -5px;
   }
 
   .home-cloud {
-    width: 170px;
-    right: -80px;
+    width: 390px;
+    right: -180px;
     top: 79px;
   }
 
   .home-profile {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     top: 20px;
     right: 20px;
   }
@@ -453,12 +453,12 @@
   }
 
   .home-logo {
-    width: 150px;
+    width: 190px;
     margin-top: 10px;
   }
 
   .home-title {
-    font-size: 51px;
+    font-size: 58px;
     margin: 16 px 0 0 0;
   }
 
@@ -488,7 +488,7 @@
   }
 
   .home-btn {
-    padding: 12px 39px;
+    padding: 20px 39px;
     font-size: 17px;
     border-width: 3px;
     border-radius: 12px;
@@ -502,8 +502,8 @@
   .home-participate-title,
   .home-participate h2.home-participate-title {
     font-size: 30px !important;
-    padding-top: 100px;
-    margin-top: 20px;
+    padding-top: 6 0px;
+    margin-top: 2px;
     margin-bottom: 10px;
   }
 

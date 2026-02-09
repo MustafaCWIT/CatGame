@@ -506,6 +506,14 @@
   .starting-number {
     font-size: 85px;
   }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
+  }
 }
 
 /* 443px width breakpoint */
@@ -607,6 +615,14 @@
   .starting-number {
     font-size: 98px;
   }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
+  }
 }
 
 /* 423px width breakpoint */
@@ -700,6 +716,14 @@
 
   .starting-number {
     font-size: 85px;
+  }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
   }
 }
 
@@ -801,6 +825,14 @@
   .starting-number {
     font-size: 118px;
   }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
+  }
 }
 
 /* Medium phones: 390px width (iPhone 12/13/14) */
@@ -895,6 +927,14 @@
   .starting-number {
     font-size: 85px;
   }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
+  }
 }
 
 /* Standard phones: 375px width (iPhone SE, 6/7/8) */
@@ -987,6 +1027,14 @@
 
   .starting-number {
     font-size: 85px;
+  }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
   }
 }
 
@@ -1087,5 +1135,13 @@
 
   .starting-number {
     font-size: 118px;
+  }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
   }
 }

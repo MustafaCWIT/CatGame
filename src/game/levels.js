@@ -126,7 +126,8 @@ export function getResponsiveTapRadius(screenWidth) {
   return objectSize / 2;
 }
 
-export const MAX_OBJECTS = 1; // Only one object at a time, alternating directions
+export const MAX_OBJECTS = 6; // Three horizontal and three vertical objects at a time
+
 export const SPAWN_MARGIN = 150; // Increased margin to center objects more (fallback)
 export const MIN_OBJECT_DISTANCE = 300;
 export const TAP_RADIUS = 125; // Strict touch area (half of OBJECT_SIZE) - fallback

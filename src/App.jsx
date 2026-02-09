@@ -72,6 +72,7 @@ function App() {
   const [showGameOverModal, setShowGameOverModal] = useState(false);
   const [session, setSession] = useState(null);
   const [authLoading, setAuthLoading] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   // Initialize Supabase session and fetch profile
   useEffect(() => {
@@ -226,6 +227,7 @@ function App() {
     setProgress(latestProgress);
     setGameKey(prev => prev + 1); // Force remount with updated props
     setShowGameOverModal(false);
+    setIsPaused(false);
     setScreen('game');
   }, []);
 
@@ -256,8 +258,20 @@ function App() {
 
   const handleShowGameOver = useCallback((score) => {
     handleEndGame(score);
+    setIsPaused(false);
     setShowGameOverModal(true);
   }, [handleEndGame]);
+
+  const handlePause = useCallback((score) => {
+    setSessionScore(score);
+    setIsPaused(true);
+    setShowGameOverModal(true);
+  }, []);
+
+  const handleResume = useCallback(() => {
+    setIsPaused(false);
+    setShowGameOverModal(false);
+  }, []);
 
   const handleGoHome = useCallback(() => {
     // Reload progress to ensure we have the latest data
@@ -343,20 +357,29 @@ function App() {
           onEnd={handleEndGame}
           onRestart={handleStartGame}
           onShowGameOver={handleShowGameOver}
+          isPaused={isPaused}
+          onPause={handlePause}
         />
         {showGameOverModal && (
           <GameOver
             score={sessionScore}
+            isPaused={isPaused}
             onPlayAgain={() => {
-              setShowGameOverModal(false);
-              handleStartGame();
+              if (isPaused) {
+                handleResume();
+              } else {
+                setShowGameOverModal(false);
+                handleStartGame();
+              }
             }}
             onGoHome={() => {
               setShowGameOverModal(false);
+              setIsPaused(false);
               handleGoHome();
             }}
             onUnlockThemes={() => {
               setShowGameOverModal(false);
+              setIsPaused(false);
               handleUnlockThemes();
             }}
           />
