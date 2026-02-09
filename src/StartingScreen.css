@@ -320,7 +320,7 @@
 /* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
 
 /* Tablet breakpoint */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .starting-screen {
     padding-top: 30px;
   }
@@ -374,7 +374,7 @@
   .starting-fish {
     width: 180px;
     left: -15px;
-    top: 8px;
+    top: 19px;
   }
 
   .starting-star {
@@ -394,7 +394,7 @@
   }
 
   .starting-countdown {
-    margin-top: 45px;
+    margin-top: 18 5px;
   }
 
   .starting-label {
@@ -403,6 +403,14 @@
 
   .starting-number {
     font-size: 140px;
+  }
+
+  .starting-score-img {
+    width: 70px;
+  }
+
+  .starting-time-img {
+    width: 70px;
   }
 }
 
@@ -466,7 +474,7 @@
   .starting-fish {
     width: 110px;
     left: -10px;
-    top: 4px;
+    top: 19px;
   }
 
   .starting-star {
@@ -497,7 +505,15 @@
 
   .starting-number {
     font-size: 85px;
-  }       
+  }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
+  }
 }
 
 /* 443px width breakpoint */
@@ -599,6 +615,14 @@
   .starting-number {
     font-size: 98px;
   }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
+  }
 }
 
 /* 423px width breakpoint */
@@ -692,7 +716,15 @@
 
   .starting-number {
     font-size: 85px;
-  }       
+  }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
+  }
 }
 
 /* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
@@ -793,6 +825,14 @@
   .starting-number {
     font-size: 118px;
   }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
+  }
 }
 
 /* Medium phones: 390px width (iPhone 12/13/14) */
@@ -886,7 +926,15 @@
 
   .starting-number {
     font-size: 85px;
-  }       
+  }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
+  }
 }
 
 /* Standard phones: 375px width (iPhone SE, 6/7/8) */
@@ -979,6 +1027,14 @@
 
   .starting-number {
     font-size: 85px;
+  }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
   }
 }
 
@@ -1079,5 +1135,13 @@
 
   .starting-number {
     font-size: 118px;
+  }
+
+  .starting-score-img {
+    width: 50px;
+  }
+
+  .starting-time-img {
+    width: 50px;
   }
 }

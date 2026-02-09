@@ -11,6 +11,7 @@ const {
   fish: fishImg,
   bowl: bowlImg,
   gameCloud: cloudsImg,
+  blurClouds: blurCloudsImg,
 } = GAME_ASSETS;
 
 export default function SplashScreen({ onLoadingComplete }) {
@@ -106,7 +107,7 @@ export default function SplashScreen({ onLoadingComplete }) {
       {imagesLoaded && (
         <>
           {/* Clouds */}
-          <img src={cloudsImg} alt="" className="splash-clouds splash-clouds-left" />
+          <img src={blurCloudsImg} alt="" className="splash-clouds splash-clouds-left" />
           <img src={cloudsImg} alt="" className="splash-clouds splash-clouds-right" />
 
           {/* Logo */}

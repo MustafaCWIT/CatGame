@@ -8,10 +8,11 @@ import Ripple from './Ripple';
 import PointPopup from './PointPopup';
 import Background, { BackgroundDefs } from './Background';
 import { createObject } from '../hooks/useGameState';
+import pauseImg from '../assets/pauseImg.png';
 
 const GAME_DURATION = 120; // 2 minutes
 
-export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGameOver }) {
+export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGameOver, isPaused, onPause }) {
   const {
     score,
     objects,
@@ -57,7 +58,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
     : 1;
 
   useEffect(() => {
-    if (showGameOver) return;
+    if (showGameOver || isPaused) return;
 
     timerIntervalRef.current = setInterval(() => {
       setTimeLeft(prev => {
@@ -104,7 +105,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
   }, []);
 
   const onTouch = useCallback((tx, ty) => {
-    if (showGameOver) return;
+    if (showGameOver || isPaused) return;
 
     // Find nearest object by checking the ACTUAL screen position of the animated elements
     let minDist = Infinity;
@@ -180,7 +181,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
   };
 
   return (
-    <div style={{ position: 'fixed', inset: 0, background: '#0f0a1a' }}>
+    <div style={{ position: 'fixed', inset: 0, background: '#0f0a1a', overflow: 'hidden' }}>
       <svg
         ref={svgRef}
         width={width}
@@ -191,7 +192,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
           touchAction: 'none', userSelect: 'none', WebkitUserSelect: 'none', cursor: 'none',
         }}
         onTouchStart={(e) => {
-          if (!showGameOver) {
+          if (!showGameOver && !isPaused) {
             isTouchDevice.current = true;
             handleTouchStart(e);
             handleResetStart(e);
@@ -199,7 +200,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
         }}
         onTouchEnd={(e) => { handleTouchEnd(e); handleResetEnd(); }}
         onMouseDown={(e) => {
-          if (!showGameOver && !isTouchDevice.current) {
+          if (!showGameOver && !isPaused && !isTouchDevice.current) {
             handleMouseDown(e);
             handleResetStart(e);
           }
@@ -231,7 +232,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
         {/* Left: Score */}
         <div style={{
           ...glassStyle,
-          background: 'rgba(124, 58, 237, 0.9)',
+          background: 'rgba(200, 24, 235, 0.9)',
           padding: width <= 360 ? '6px 10px' : width <= 390 ? '7px 12px' : width <= 430 ? '8px 14px' : '10px 18px',
           borderRadius: width <= 390 ? 8 : width <= 430 ? 10 : 12,
           display: 'flex',
@@ -249,7 +250,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
         {/* Right: Timer */}
         <div style={{
           ...glassStyle,
-          background: 'rgba(124, 58, 237, 0.9)',
+          background: 'rgba(200, 24, 235, 0.9)',
           padding: width <= 360 ? '6px 10px' : width <= 390 ? '7px 12px' : width <= 430 ? '8px 14px' : '10px 18px',
           borderRadius: width <= 390 ? 8 : width <= 430 ? 10 : 12,
           display: 'flex',
@@ -276,40 +277,32 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
         <button
           onClick={(e) => {
             e.stopPropagation();
-            // Pause the game and show GameOver modal
-            setShowGameOver(true);
-            // Save score and show GameOver modal
-            if (onEnd && !scoreSavedRef.current) {
-              onEnd(scoreRef.current);
-              scoreSavedRef.current = true;
-            }
-            if (onShowGameOver) {
-              onShowGameOver(scoreRef.current);
-            }
+            if (onPause) onPause(score);
           }}
           onTouchStart={(e) => e.stopPropagation()}
           style={{
-            background: 'rgba(124, 58, 237, 0.9)',
-            border: '2px solid rgba(167, 139, 250, 0.5)',
-            borderRadius: width <= 390 ? 8 : width <= 430 ? 10 : 12,
-            padding: width <= 390 ? '6px 8px' : width <= 430 ? '8px 10px' : '10px 14px',
+            background: 'transparent',
+            border: 'none',
+            padding: 0, // Remove padding for image
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: width <= 360 ? 32 : width <= 390 ? 36 : width <= 430 ? 40 : 44,
-            height: width <= 360 ? 32 : width <= 390 ? 36 : width <= 430 ? 40 : 44,
+            width: width <= 360 ? 44 : width <= 390 ? 52 : width <= 430 ? 60 : 66,
+            height: width <= 360 ? 44 : width <= 390 ? 52 : width <= 430 ? 60 : 66,
+            overflow: 'hidden',
           }}
         >
-          <svg
-            width={width <= 360 ? 14 : width <= 390 ? 16 : 20}
-            height={width <= 360 ? 14 : width <= 390 ? 16 : 20}
-            viewBox="0 0 24 24"
-            fill="white"
-          >
-            <rect x="6" y="4" width="4" height="16" />
-            <rect x="14" y="4" width="4" height="16" />
-          </svg>
+          <img
+            src={pauseImg}
+            alt="Pause"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              pointerEvents: 'none'
+            }}
+          />
         </button>
       </div>
 

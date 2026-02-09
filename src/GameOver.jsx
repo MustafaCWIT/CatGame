@@ -6,7 +6,7 @@ import gameBackgroundImg from './assets/gameBackground.png';
 
 const ASSETS = [catViewingImg, dollarImg, gameBackgroundImg];
 
-export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes }) {
+export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes, onProfileClick, isPaused }) {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes 
             <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
           </svg>
         </button>
-        <div className="go-profile-btn">
+        <div className="go-profile-btn" onClick={onProfileClick} style={{ cursor: 'pointer' }}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
           </svg>
@@ -61,9 +61,9 @@ export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes 
           {/* Action buttons */}
           <div className="go-actions">
             <button className="go-btn go-btn-play" onClick={onPlayAgain}>
-              Play Again
+              {isPaused ? "Resume" : "Play Again"}
             </button>
-            <button className="go-btn go-btn-end" onClick={onGoHome}>
+            <button className="go-btn go-btn-end" onClick={onUnlockThemes}>
               End Game
             </button>
           </div>

@@ -72,6 +72,8 @@ function App() {
   const [showGameOverModal, setShowGameOverModal] = useState(false);
   const [session, setSession] = useState(null);
   const [authLoading, setAuthLoading] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [autoScrollThemes, setAutoScrollThemes] = useState(false);
 
   // Initialize Supabase session and fetch profile
   useEffect(() => {
@@ -226,6 +228,8 @@ function App() {
     setProgress(latestProgress);
     setGameKey(prev => prev + 1); // Force remount with updated props
     setShowGameOverModal(false);
+    setIsPaused(false);
+    setAutoScrollThemes(false);
     setScreen('game');
   }, []);
 
@@ -256,13 +260,26 @@ function App() {
 
   const handleShowGameOver = useCallback((score) => {
     handleEndGame(score);
+    setIsPaused(false);
     setShowGameOverModal(true);
   }, [handleEndGame]);
+
+  const handlePause = useCallback((score) => {
+    setSessionScore(score);
+    setIsPaused(true);
+    setShowGameOverModal(true);
+  }, []);
+
+  const handleResume = useCallback(() => {
+    setIsPaused(false);
+    setShowGameOverModal(false);
+  }, []);
 
   const handleGoHome = useCallback(() => {
     // Reload progress to ensure we have the latest data
     const latestProgress = loadProgress();
     setProgress(latestProgress);
+    setAutoScrollThemes(false);
     setScreen('home');
   }, []);
 
@@ -279,6 +296,15 @@ function App() {
     // Reload progress to ensure we have the latest data
     const latestProgress = loadProgress();
     setProgress(latestProgress);
+    setAutoScrollThemes(true);
+    setScreen('levels');
+  }, []);
+
+  const handleViewProfile = useCallback(() => {
+    // Reload progress to ensure we have the latest data
+    const latestProgress = loadProgress();
+    setProgress(latestProgress);
+    setAutoScrollThemes(false);
     setScreen('levels');
   }, []);
 
@@ -332,7 +358,7 @@ function App() {
   } else if (screen === 'signup') {
     content = <SignupScreen onSignup={handleSignup} onGoHome={handleGoHome} isLoading={authLoading} />;
   } else if (screen === 'starting') {
-    content = <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} />;
+    content = <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} onProfileClick={handleViewProfile} onGoHome={handleGoHome} />;
   } else if (screen === 'game') {
     content = (
       <>
@@ -343,21 +369,35 @@ function App() {
           onEnd={handleEndGame}
           onRestart={handleStartGame}
           onShowGameOver={handleShowGameOver}
+          isPaused={isPaused}
+          onPause={handlePause}
         />
         {showGameOverModal && (
           <GameOver
             score={sessionScore}
+            isPaused={isPaused}
             onPlayAgain={() => {
-              setShowGameOverModal(false);
-              handleStartGame();
+              if (isPaused) {
+                handleResume();
+              } else {
+                setShowGameOverModal(false);
+                handleStartGame();
+              }
             }}
             onGoHome={() => {
               setShowGameOverModal(false);
+              setIsPaused(false);
               handleGoHome();
             }}
             onUnlockThemes={() => {
               setShowGameOverModal(false);
+              setIsPaused(false);
               handleUnlockThemes();
+            }}
+            onProfileClick={() => {
+              setShowGameOverModal(false);
+              setIsPaused(false);
+              handleViewProfile();
             }}
           />
         )}
@@ -370,6 +410,7 @@ function App() {
         onPlayAgain={handleStartGame}
         onGoHome={handleGoHome}
         onUnlockThemes={handleUnlockThemes}
+        onProfileClick={handleViewProfile}
       />
     );
   } else if (screen === 'levels') {
@@ -382,6 +423,7 @@ function App() {
         onStartGame={handleStartGame}
         onGoBack={handleGoHome}
         onVideoUpload={handleGoToUpload}
+        autoScrollToThemes={autoScrollThemes}
       />
     );
   } else if (screen === 'upload') {
@@ -399,6 +441,7 @@ function App() {
           onResetProgress={handleResetProgress}
           onLogout={session ? handleLogout : null}
           user={session?.user}
+          onProfileClick={handleViewProfile}
         />
         {showModal && <HowToPlayModal onClose={handleCloseModal} />}
         {showLoginModal && (

@@ -14,69 +14,87 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
   const verticalTypes = ['clouds', 'cloud', 'bowl', 'star', 'stars', 'leaf', 'flower', 'paw', 'foodBox', 'foodBoxes', 'treat', 'moon', 'orb', 'sparkle'];
   const horizontalTypes = ['fish', 'sparrow', 'butterfly', 'comet', 'dollar', 'nebula'];
 
-  // Determine the direction of the last spawned object to ensure strict alternation
-  let lastDirection = null; // null means no last object, 0 = Horizontal, 1 = Vertical
-  if (existingObjects.length > 0) {
-    const lastObj = existingObjects[existingObjects.length - 1];
-    lastDirection = verticalTypes.includes(lastObj.type) ? 1 : 0;
-  }
+  // Determine direction based on index to ensure 3 Horizontal (0,1,2) and 3 Vertical (3,4,5)
+  // if MAX_OBJECTS = 6
+  const direction = (index < 3) ? 1 : 0; // 0-2 -> Horizontal (1), 3-5 -> Vertical (0)
 
-  // Force direction: 0 = Horizontal, 1 = Vertical
-  // If no last object, start with Horizontal (0). Otherwise, switch.
-  const desiredDirection = (lastDirection !== null) ? (1 - lastDirection) : 0;
-
-  // Filter level objects to match the desired direction
-  const matchingTypes = level.objects.filter(t => {
-    // 0 = Horizontal, 1 = Vertical
-    if (desiredDirection === 1) return verticalTypes.includes(t);
-    return horizontalTypes.includes(t);
+  // Filter level objects to match the determined direction
+  let matchingTypes = level.objects.filter(t => {
+    const isVertical = verticalTypes.includes(t);
+    return direction === 0 ? isVertical : !isVertical;
   });
 
-  // Fallback to all objects if no match (to avoid crashes if a level is missing a type)
-  const pool = matchingTypes.length > 0 ? matchingTypes : level.objects;
+  // Fallback: If level has no objects of desired direction, use whatever is in the level
+  if (matchingTypes.length === 0) {
+    matchingTypes = level.objects;
+  }
 
-  // Filter out the last spawned object type to avoid repetition
-  const lastType = existingObjects.length > 0 ? existingObjects[existingObjects.length - 1].type : null;
-  const availableObjects = (lastType && pool.length > 1)
-    ? pool.filter(t => t !== lastType)
-    : pool;
+  const pool = matchingTypes;
 
-  const type = availableObjects[Math.floor(Math.random() * availableObjects.length)];
+  // Filter out ALL currently visible object types (from the same direction) to ensure uniqueness
+  const visibleTypes = existingObjects.map(o => o.type);
+  const availableObjects = pool.filter(t => !visibleTypes.includes(t));
+
+  // Safety fallback: if we filtered everything out, go back to the pool
+  const finalPool = availableObjects.length > 0 ? availableObjects : pool;
+
+  const type = finalPool[Math.floor(Math.random() * finalPool.length)];
   const color = level.objectColors[Math.floor(Math.random() * level.objectColors.length)];
-
-  // Set direction based on actual selected type for movement logic
-  const direction = verticalTypes.includes(type) ? 0 : 1;
 
   let x, y, targetX, targetY;
 
-  // Get responsive sizes based on screen width
+  // Get responsive sizes
   const responsiveObjectSize = getResponsiveObjectSize(screenW);
-  const responsiveSpawnMargin = getResponsiveSpawnMargin(screenW);
+  const objectsPerDirection = 3; // We want 3H and 3V
 
   if (direction === 0) {
-    // Vertical: Top to Bottom
-    let range = screenW - (responsiveSpawnMargin * 2) - responsiveObjectSize;
-    x = range <= 0 ? (screenW - responsiveObjectSize) / 2 : responsiveSpawnMargin + Math.random() * range;
-    y = -10; // Start at the edge to eliminate entry delay
+    // Vertical: Top to Bottom (Indices 3, 4, 5)
+    // Divide screen into 3 horizontal slots
+    const slotIndex = (index - 3) % objectsPerDirection;
+    const slotWidth = screenW / objectsPerDirection;
+
+    const padding = responsiveObjectSize * 0.15;
+    let slotStart = slotIndex * slotWidth + padding;
+    let slotEnd = (slotIndex + 1) * slotWidth - responsiveObjectSize - padding;
+
+    if (slotEnd < slotStart) {
+      x = slotIndex * slotWidth + (slotWidth - responsiveObjectSize) / 2;
+    } else {
+      x = slotStart + Math.random() * (slotEnd - slotStart);
+    }
+
+    y = -responsiveObjectSize; // Start fully off-screen
     targetX = x;
-    targetY = screenH + responsiveObjectSize / 2;
+    targetY = screenH + responsiveObjectSize;
   } else {
-    // Horizontal: Left to Right
-    let range = screenH - (responsiveSpawnMargin * 2) - responsiveObjectSize;
-    y = range <= 0 ? (screenH - responsiveObjectSize) / 2 : responsiveSpawnMargin + Math.random() * range;
-    x = -10; // Start at the edge to eliminate entry delay
-    targetX = screenW + responsiveObjectSize / 2;
+    // Horizontal: Left to Right (Indices 0, 1, 2)
+    // Divide screen into 3 vertical slots
+    const slotIndex = index % objectsPerDirection;
+    const slotHeight = screenH / objectsPerDirection;
+
+    const padding = responsiveObjectSize * 0.15;
+    let slotStart = slotIndex * slotHeight + padding;
+    let slotEnd = (slotIndex + 1) * slotHeight - responsiveObjectSize - padding;
+
+    if (slotEnd < slotStart) {
+      y = slotIndex * slotHeight + (slotHeight - responsiveObjectSize) / 2;
+    } else {
+      y = slotStart + Math.random() * (slotEnd - slotStart);
+    }
+
+    x = -responsiveObjectSize; // Start fully off-screen
+    targetX = screenW + responsiveObjectSize;
     targetY = y;
   }
 
-  // Define speed/duration (Balanced for clickability)
+  // Define speed/duration
   let duration;
   if (type === 'clouds' || type === 'cloud') {
-    duration = randomBetween(3.2, 4.5);
+    duration = randomBetween(10.0, 15.0); // Slow moving clouds
   } else if (type === 'leaf') {
-    duration = randomBetween(2.5, 3.8);
+    duration = randomBetween(8.0, 12.0);
   } else {
-    duration = randomBetween(2.0, 3.0);
+    duration = randomBetween(6.0, 10.0);
   }
 
   return {
@@ -88,10 +106,9 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
     targetX,
     targetY,
     duration,
-    scale: randomBetween(1.0, 1.4),
-    // Straight movement check including bowl, stars, and leaf
-    rotation: (type === 'fish' || type === 'sparrow' || type === 'clouds' || type === 'cloud' || type === 'bowl' || type === 'star' || type === 'stars' || type === 'leaf') ? 0 : randomBetween(0, 360),
-    rotationSpeed: (type === 'fish' || type === 'sparrow' || type === 'clouds' || type === 'cloud' || type === 'bowl' || type === 'star' || type === 'stars' || type === 'leaf') ? 0 : randomBetween(-0.2, 0.2),
+    scale: randomBetween(1.0, 1.3),
+    rotation: (type === 'fish' || type === 'sparrow' || type === 'clouds' || type === 'cloud') ? 0 : randomBetween(0, 360),
+    rotationSpeed: (type === 'fish' || type === 'sparrow' || type === 'clouds' || type === 'cloud') ? 0 : randomBetween(-0.1, 0.1),
     opacity: 1,
     spawning: true,
     moveIndex: index

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './LevelsScreen.css';
 import logoImg from './assets/logo.png';
 import dollarImg from './assets/dollar.png';
@@ -15,10 +15,33 @@ export default function LevelsScreen({
   userData = {},
   onStartGame,
   onGoBack,
-  onVideoUpload
+  onVideoUpload,
+  autoScrollToThemes = false
 }) {
   const [selectedTheme, setSelectedTheme] = useState('midnight');
   const [isReady, setIsReady] = useState(false);
+  const themeSectionRef = useRef(null);
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    if (isReady && autoScrollToThemes && themeSectionRef.current && contentRef.current) {
+      const scrollTimer = setTimeout(() => {
+        const container = contentRef.current;
+        const target = themeSectionRef.current;
+
+        // Calculate position relative to the main scroll container
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        const relativeTop = targetRect.top - containerRect.top;
+
+        container.scrollTo({
+          top: container.scrollTop + relativeTop + 100, // 100px extra to scroll deeper
+          behavior: 'smooth'
+        });
+      }, 700);
+      return () => clearTimeout(scrollTimer);
+    }
+  }, [isReady, autoScrollToThemes]);
 
   useEffect(() => {
     let loaded = 0;
@@ -48,7 +71,7 @@ export default function LevelsScreen({
   };
 
   return (
-    <div className="levels">
+    <div className="levels" ref={contentRef}>
       <img src={backgroundImg} alt="" className="levels-background" />
       <img src={cloudsImg} alt="" className="levels-clouds-decoration" />
       {/* Header */}
@@ -100,7 +123,7 @@ export default function LevelsScreen({
         </div>
 
         {/* Select Theme Section */}
-        <div className="levels-theme-section">
+        <div className="levels-theme-section" ref={themeSectionRef}>
           <h2 className="levels-section-title">Select theme</h2>
           <div className="levels-theme-cards">
             <div

@@ -8,12 +8,14 @@ const {
   lyingCat: lyingCatImg,
   fish: fishImg,
   bowl: bowlImg,
-  star: starImg
+  star: starImg,
+  gameScore: gameScoreImg,
+  gameTime: gameTimeImg
 } = GAME_ASSETS;
 
 const ASSETS_TO_PRELOAD = ALL_ASSETS;
 
-export default function StartingScreen({ levelName, onCountdownComplete }) {
+export default function StartingScreen({ levelName, onCountdownComplete, onProfileClick, onGoHome }) {
   const [count, setCount] = useState(1);
   const [isReady, setIsReady] = useState(false);
 
@@ -85,12 +87,12 @@ export default function StartingScreen({ levelName, onCountdownComplete }) {
 
       {/* Top Navigation */}
       <div className="starting-nav">
-        <button className="starting-home-btn">
+        <button className="starting-home-btn" onClick={onGoHome}>
           <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
             <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
           </svg>
         </button>
-        <div className="starting-profile">
+        <div className="starting-profile" onClick={onProfileClick} style={{ cursor: 'pointer' }}>
           <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
           </svg>
@@ -110,8 +112,8 @@ export default function StartingScreen({ levelName, onCountdownComplete }) {
 
               {/* In-game UI pills */}
               <div className="preview-ui-top">
-                <div className="preview-pill preview-pill-score">15000</div>
-                <div className="preview-pill preview-pill-time">00:25</div>
+                <img src={gameScoreImg} alt="Score" className="starting-score-img" />
+                <img src={gameTimeImg} alt="Time" className="starting-time-img" />
               </div>
 
               {/* Star inside preview */}
