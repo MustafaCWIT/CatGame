@@ -427,115 +427,125 @@
 /* ==================== RESPONSIVE STYLES ==================== */
 
 /* Tablet breakpoint */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .home-fish {
-    width: 170px;
+    width: 160px;
     left: -55px;
-    top: -10px;
+    top: -5px;
   }
 
   .home-cloud {
-    width: 180px;
+    width: 170px;
     right: -80px;
-    top: 100px;
+    top: 79px;
   }
 
   .home-profile {
     width: 40px;
     height: 40px;
-    top: 25px;
-    right: 25px;
+    top: 20px;
+    right: 20px;
   }
 
   .home-content {
-    max-width: 550px;
-    padding: 10px 15px 0px 15px;
+    max-width: 100%;
+    padding: 10px 12px 0px 12px;
   }
 
   .home-logo {
-    width: 140px;
-    margin-top: 15px;
+    width: 150px;
+    margin-top: 10px;
   }
 
   .home-title {
-    font-size: 45px;
-    margin: 15px 0 0 0;
+    font-size: 51px;
+    margin: 16 px 0 0 0;
   }
 
   .home-cat-container {
-    max-width: 350px;
-    height: 260px;
-    margin-top: 70px;
+    max-width: 285px;
+    height: 210px;
+    margin-top: 250px;
   }
 
   .home-cat-circle {
-    width: 340px;
-    height: 120px;
+    width: 265px;
+    height: 90px;
   }
 
   .home-cat {
-    width: 200px;
-    margin-left: 200px;
+    width: 300px;
+    margin-left: 300px;
+    margin-bottom: 1px;
   }
 
   .home-buttons {
-    max-width: 990px;
-    margin-top: -70px;
-    padding: 0 40px;
-    gap: 12px;
+    max-width: 90%;
+    max-height: 20%;
+    margin-top: -65px;
+    gap: 8px;
+    padding: 0 5px;
   }
 
   .home-btn {
-    padding: 12px 5px;
-    font-size: 12px;
-    border-width: 2px;
+    padding: 12px 15px;
+    font-size: 13px;
+    border-width: 3px;
     border-radius: 12px;
+  }
+
+  .home-participate {
+    padding-bottom: 0px;
+    margin-top: 80px;
   }
 
   .home-participate-title,
   .home-participate h2.home-participate-title {
-    font-size: 22px !important;
-    padding-top: 20px;
+    font-size: 30px !important;
+    padding-top: 100px;
+    margin-top: 20px;
   }
 
   .home-prize-buttons {
     width: 100%;
-    gap: 12px;
+    gap: 10px;
+    padding: 0 18px;
     margin-left: 0;
-    padding: 0 10px;
+    margin-top: 10px;
+    margin-bottom: 0px;
     box-sizing: border-box;
   }
 
   .home-prize-btn {
-    padding: 10px 12px;
-    border-radius: 20px;
-    min-height: 70px;
-    gap: 15px;
+    padding: 11px 8px;
+    border-radius: 16px;
+    min-height: 94px;
+    gap: 10px;
   }
 
   .home-prize-btn-left {
-    padding-left: 65px;
+    padding-left: 98px;
   }
 
   .home-prize-btn-right {
-    padding-left: 18px;
-    padding-right: 55px;
+    padding-left: 22px;
+    padding-right: 45px;
   }
 
   .home-prize-text span {
-    font-size: 14px;
+    font-size: 20px;
   }
 
   .home-prize-img-left {
-    width: 80px;
-    left: -25px;
+    width: 100px;
+    left: -40px;
     top: -32px;
   }
 
   .home-prize-img-right {
-    width: 65px;
-    right: -5px;
-    bottom: -10px;
+    width: 90px;
+    right: -3px;
+    bottom: -8px;
   }
 }
 
