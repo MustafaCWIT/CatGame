@@ -320,7 +320,7 @@
 /* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
 
 /* Tablet breakpoint */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .starting-screen {
     padding-top: 30px;
   }
@@ -394,7 +394,7 @@
   }
 
   .starting-countdown {
-    margin-top: 45px;
+    margin-top: 18 5px;
   }
 
   .starting-label {
@@ -403,6 +403,14 @@
 
   .starting-number {
     font-size: 140px;
+  }
+
+  .starting-score-img {
+    width: 70px;
+  }
+
+  .starting-time-img {
+    width: 70px;
   }
 }
 
@@ -497,7 +505,7 @@
 
   .starting-number {
     font-size: 85px;
-  }       
+  }
 }
 
 /* 443px width breakpoint */
@@ -692,7 +700,7 @@
 
   .starting-number {
     font-size: 85px;
-  }       
+  }
 }
 
 /* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
@@ -886,7 +894,7 @@
 
   .starting-number {
     font-size: 85px;
-  }       
+  }
 }
 
 /* Standard phones: 375px width (iPhone SE, 6/7/8) */

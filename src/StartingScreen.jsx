@@ -8,7 +8,9 @@ const {
   lyingCat: lyingCatImg,
   fish: fishImg,
   bowl: bowlImg,
-  star: starImg
+  star: starImg,
+  gameScore: gameScoreImg,
+  gameTime: gameTimeImg
 } = GAME_ASSETS;
 
 const ASSETS_TO_PRELOAD = ALL_ASSETS;
@@ -110,8 +112,8 @@ export default function StartingScreen({ levelName, onCountdownComplete }) {
 
               {/* In-game UI pills */}
               <div className="preview-ui-top">
-                <div className="preview-pill preview-pill-score">15000</div>
-                <div className="preview-pill preview-pill-time">00:25</div>
+                <img src={gameScoreImg} alt="Score" className="starting-score-img" />
+                <img src={gameTimeImg} alt="Time" className="starting-time-img" />
               </div>
 
               {/* Star inside preview */}
