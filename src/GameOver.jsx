@@ -71,7 +71,7 @@ export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes,
 
         {/* Bottom button moved inside container */}
         <button className="go-unlock-btn" onClick={onUnlockThemes}>
-          Unlock More Themes
+         Upload Video & Win 
         </button>
       </div>
     </div>
