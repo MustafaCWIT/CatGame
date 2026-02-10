@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import './UploadScreen.css';
 import backgroundImg from './assets/background.png';
 import logoImg from './assets/logo.png';
+import { supabase } from './lib/supabase';
 
 const ASSETS = [backgroundImg, logoImg];
 
@@ -55,16 +56,63 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
       return;
     }
 
+    if (!userId) {
+      setUploadError('You must be logged in to upload files.');
+      return;
+    }
+
     setUploading(true);
     setUploadError(null);
 
     try {
-      // Simulate upload process (no actual file storage)
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      let videoUrl = null;
+      let receiptUrl = null;
 
-      // Call the onUpload callback without file URLs (since we're not storing)
+      // Upload video to Supabase storage
+      const videoPath = `${userId}/video.mp4`;
+      const { data: videoData, error: videoError } = await supabase.storage
+        .from('Videos')
+        .upload(videoPath, selectedVideoFile, {
+          cacheControl: '3600',
+          upsert: true // Allow overwriting if video already exists
+        });
+
+      if (videoError) {
+        throw new Error(`Video upload failed: ${videoError.message}`);
+      }
+
+      // Get public URL for video
+      const { data: videoUrlData } = supabase.storage
+        .from('Videos')
+        .getPublicUrl(videoPath);
+      
+      videoUrl = videoUrlData.publicUrl;
+
+      // Upload receipt if provided
+      if (selectedReceiptFile) {
+        const receiptPath = `${userId}/receipt_${Date.now()}.${selectedReceiptFile.name.split('.').pop()}`;
+        const { data: receiptData, error: receiptError } = await supabase.storage
+          .from('Videos')
+          .upload(receiptPath, selectedReceiptFile, {
+            cacheControl: '3600',
+            upsert: false
+          });
+
+        if (receiptError) {
+          throw new Error(`Receipt upload failed: ${receiptError.message}`);
+        }
+
+        // Get public URL for receipt
+        const { data: receiptUrlData } = supabase.storage
+          .from('Videos')
+          .getPublicUrl(receiptPath);
+        
+        receiptUrl = receiptUrlData.publicUrl;
+      }
+
+      // Call the onUpload callback with file URLs
       if (onUpload) {
-        await onUpload(null, null, storeName);
+        await onUpload(videoUrl, receiptUrl, storeName);
       }
 
       // Redirect to thank you screen

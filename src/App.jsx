@@ -402,7 +402,7 @@ function App() {
           videos_count: 0,
           activities: [],
           game_time_spent: 0,
-          video_url: [] // Clear all video URLs
+          video_url: [] // Clear all video URLs (JSONB array)
         });
       }
     }
@@ -413,6 +413,8 @@ function App() {
   }, []);
 
   const handleVideoUpload = useCallback(async (videoUrl, receiptUrl = null, storeName = null) => {
+    if (!session?.user) return;
+
     // Use helper function to get current date
     const dateStr = getCurrentDateString();
     
@@ -429,9 +431,48 @@ function App() {
     setProgress(updated);
     saveProgress(updated);
 
-    // No database updates since we're not storing files
-    console.log('Upload submitted (files not stored):', { videoUrl, receiptUrl, storeName });
-  }, [progress]);
+    try {
+      // Fetch current profile to get existing receipt_data and video_url
+      const { data: currentProfile, error: fetchError } = await supabase
+        .from('profiles')
+        .select('receipt_data, video_url')
+        .eq('id', session.user.id)
+        .single();
+
+      if (fetchError && fetchError.code !== 'PGRST116') {
+        throw fetchError;
+      }
+
+      // Prepare receipt_data array - append new receipt if provided (store all receipts)
+      let receiptData = currentProfile?.receipt_data || [];
+      if (receiptUrl) {
+        receiptData = [...receiptData, receiptUrl];
+      }
+
+      // Prepare video_url array - append new video URL (store all videos as JSONB array)
+      let videoUrls = currentProfile?.video_url || [];
+      if (videoUrl) {
+        videoUrls = [...videoUrls, videoUrl];
+      }
+
+      // Update profile with video URL, receipt data, and store name
+      const updates = {
+        videos_count: updated.videosCount,
+        activities: updated.activities,
+        video_url: videoUrls, // Store all video URLs as JSONB array
+        receipt_data: receiptData // Store all receipts as JSONB array
+      };
+
+      // Only add store_name if provided
+      if (storeName) {
+        updates.store_name = storeName;
+      }
+
+      await updateProfile(updates);
+    } catch (err) {
+      console.error('Error updating profile with upload data:', err);
+    }
+  }, [progress, session, updateProfile]);
 
   let content;
   if (screen === 'splash') {
