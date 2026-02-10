@@ -6,9 +6,11 @@ export default function HowToPlayModal({ onClose }) {
   return (
     <div className="modal-overlay">
       <div className="modal-container">
+        {/* How to play heading */}
+        <h2 className="modal-title">How to play</h2>
+        
         {/* How to play section */}
         <div className="modal-section">
-          <h2 className="modal-title">How to play</h2>
           <div className="modal-steps">
             <div className="modal-step">
               <span className="modal-step-number">1</span>

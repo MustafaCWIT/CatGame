@@ -22,7 +22,7 @@
   border: none;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 /* Sections */
@@ -32,16 +32,17 @@
 
 .modal-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 28px;
+  font-size: 40px;
   font-weight: 700;
   color: white;
   margin: 0 0 25px 0;
-  text-align: left;
+  text-align: center;
+  width: 100%;
 }
 
 .modal-subtitle {
   font-family: 'Poppins', sans-serif;
-  font-size: 28px;
+  font-size: 40px;
   font-weight: 700;
   color: white;
   margin: 0 0 35px 0;
@@ -184,9 +185,10 @@
   color: white;
   line-height: 1.5;
   font-weight: 400;
-  text-align: center;
+  text-align: left;
   margin-top: 25px;
-  padding: 0 20px;
+  padding: 0;
+  width: 100%;
 }
 
 /* Let's Go button */
@@ -234,12 +236,13 @@
   }
 
   .modal-title {
-    font-size: 24px;
+    font-size: 34px;
     margin-bottom: 20px;
+    text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 24px;
+    font-size: 34px;
     margin-bottom: 28px;
   }
 
@@ -302,7 +305,8 @@
   .modal-qualification-text {
     font-size: 12px;
     margin-top: 20px;
-    padding: 0 15px;
+    padding: 0;
+    text-align: left;
   }
 
   .modal-btn {
@@ -332,12 +336,13 @@
   }
 
   .modal-title {
-    font-size: 22px;
+    font-size: 32px;
     margin-bottom: 18px;
+    text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 22px;
+    font-size: 32px;
     margin-bottom: 25px;
   }
 
@@ -397,7 +402,8 @@
   .modal-qualification-text {
     font-size: 11px;
     margin-top: 18px;
-    padding: 0 15px;
+    padding: 0;
+    text-align: left;
   }
 
   .modal-btn {
@@ -427,12 +433,13 @@
   }
 
   .modal-title {
-    font-size: 20.5px;
+    font-size: 30px;
     margin-bottom: 17px;
+    text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 20.5px;
+    font-size: 30px;
     margin-bottom: 24px;
   }
 
@@ -488,7 +495,8 @@
   .modal-qualification-text {
     font-size: 10px;
     margin-top: 18px;
-    padding: 0 12px;
+    padding: 0;
+    text-align: left;
   }
 
   .modal-btn {
@@ -518,12 +526,13 @@
   }
 
   .modal-title {
-    font-size: 21px;
+    font-size: 30px;
     margin-bottom: 17px;
+    text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 21px;
+    font-size: 30px;
     margin-bottom: 24px;
   }
 
@@ -579,7 +588,8 @@
   .modal-qualification-text {
     font-size: 10px;
     margin-top: 18px;
-    padding: 0 12px;
+    padding: 0;
+    text-align: left;
   }
 
   .modal-btn {
@@ -609,12 +619,13 @@
   }
 
   .modal-title {
-    font-size: 21px;
+    font-size: 30px;
     margin-bottom: 17px;
+    text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 21px;
+    font-size: 30px;
     margin-bottom: 24px;
   }
 
@@ -700,12 +711,13 @@
   }
 
   .modal-title {
-    font-size: 20px;
+    font-size: 28px;
     margin-bottom: 15px;
+    text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 20px;
+    font-size: 28px;
     margin-bottom: 22px;
   }
 
@@ -777,7 +789,8 @@
   .modal-qualification-text {
     font-size: 10px;
     margin-top: 15px;
-    padding: 0 10px;
+    padding: 0;
+    text-align: left;
   }
 
   .modal-btn {
@@ -808,12 +821,13 @@
   }
 
   .modal-title {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 12px;
+    text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 18px;
   }
 
@@ -869,7 +883,8 @@
   .modal-qualification-text {
     font-size: 9px;
     margin-top: 12px;
-    padding: 0 8px;
+    padding: 0;
+    text-align: left;
   }
 
   .modal-btn {
@@ -900,12 +915,13 @@
   }
 
   .modal-title {
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 10px;
+    text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 15px;
   }
 
@@ -973,7 +989,8 @@
   .modal-qualification-text {
     font-size: 8px;
     margin-top: 10px;
-    padding: 0 6px;
+    padding: 0;
+    text-align: left;
   }
 
   .modal-btn {
