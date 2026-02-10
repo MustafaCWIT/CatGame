@@ -119,7 +119,7 @@
 }
 
 .modal-prize-card-top {
-  padding-left: 120px;
+  padding-left: 180px;
   padding-right: 20px;
   margin-top: 15px;
   justify-content: center;
@@ -169,11 +169,13 @@
 }
 
 .modal-prize-img-cat {
-  left: 0px;
-  top: -44px;
-  width: 120px;
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+  width: 160px;
   height: auto;
-  margin-left: 10px;
+  z-index: 2;
+  object-fit: contain;
 }
 
 .modal-prize-img-food {
@@ -278,7 +280,7 @@
   }
 
   .modal-prize-card-top {
-    padding-left: 100px;
+    padding-left: 155px;
     margin-top: 12px;
   }
 
@@ -299,8 +301,9 @@
   }
 
   .modal-prize-img-cat {
-    width: 100px;
-    top: -36px;
+    width: 135px;
+    left: 10px;
+    bottom: 0;
   }
 
   .modal-prize-img-food {
@@ -370,7 +373,7 @@
   }
 
   .modal-prize-card-top {
-    padding-left: 90px;
+    padding-left: 140px;
     margin-top: 11px;
   }
 
@@ -395,9 +398,9 @@
   }
 
   .modal-prize-img-cat {
-    width: 105px;
-    top: -53px;
-    left: -5px;
+    width: 120px;
+    left: 10px;
+    bottom: 0;
   }
 
   .modal-prize-img-food {
@@ -467,7 +470,7 @@
   }
 
   .modal-prize-card-top {
-    padding-left: 84px;
+    padding-left: 130px;
     margin-top: 10px;
   }
 
@@ -488,9 +491,9 @@
   }
 
   .modal-prize-img-cat {
-    width: 81px;
-    top: -29px;
-    left: -3px;
+    width: 110px;
+    left: 8px;
+    bottom: 0;
   }
 
   .modal-prize-img-food {
@@ -560,7 +563,7 @@
   }
 
   .modal-prize-card-top {
-    padding-left: 84px;
+    padding-left: 130px;
     margin-top: 10px;
   }
 
@@ -581,9 +584,9 @@
   }
 
   .modal-prize-img-cat {
-    width: 81px;
-    top: -29px;
-    left: -3px;
+    width: 110px;
+    left: 8px;
+    bottom: 0;
   }
 
   .modal-prize-img-food {
@@ -653,7 +656,7 @@
   }
 
   .modal-prize-card-top {
-    padding-left: 85px;
+    padding-left: 130px;
     margin-top: 10px;
   }
 
@@ -674,9 +677,9 @@
   }
 
   .modal-prize-img-cat {
-    width: 82px;
-    top: -30px;
-    left: -3px;
+    width: 110px;
+    left: 8px;
+    bottom: 0;
   }
 
   .modal-prize-img-food {
@@ -759,7 +762,7 @@
   }
 
   .modal-prize-card-top {
-    padding-left: 80px;
+    padding-left: 120px;
     padding-right: 15px;
     margin-top: 10px;
   }
@@ -782,10 +785,9 @@
   }
 
   .modal-prize-img-cat {
-    width: 80px;
-    top: -28px;
-    left: -5px;
-    margin-left: 5px;
+    width: 100px;
+    left: 8px;
+    bottom: 0;
   }
 
   .modal-prize-img-food {
@@ -856,7 +858,7 @@
   }
 
   .modal-prize-card-top {
-    padding-left: 88px;
+    padding-left: 115px;
     margin-top: 8px;
   }
 
@@ -877,9 +879,9 @@
   }
 
   .modal-prize-img-cat {
-    width: 76px;
-    top: -27px;
-    left: -7px;
+    width: 95px;
+    left: 8px;
+    bottom: 0;
   }
 
   .modal-prize-img-food {
@@ -962,7 +964,7 @@
   }
 
   .modal-prize-card-top {
-    padding-left: 58px;
+    padding-left: 100px;
     margin-top: 6px;
   }
 
@@ -983,9 +985,9 @@
   }
 
   .modal-prize-img-cat {
-    width: 58px;
-    top: -20px;
-    left: -3px;
+    width: 80px;
+    left: 6px;
+    bottom: 0;
   }
 
   .modal-prize-img-food {
