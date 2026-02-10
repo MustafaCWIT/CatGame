@@ -9,6 +9,7 @@ import Game from './game/Game';
 import GameOver from './GameOver';
 import LevelsScreen from './LevelsScreen';
 import UploadScreen from './UploadScreen';
+import ThankYouScreen from './ThankYouScreen';
 import { getLevelForXP } from './game/levels';
 import { supabase } from './lib/supabase';
 import { useEffect } from 'react';
@@ -50,6 +51,16 @@ function saveUserData(data) {
   try {
     localStorage.setItem('tap-to-purr-user', JSON.stringify(data));
   } catch { /* ignore */ }
+}
+
+// Helper function to format current date correctly
+function getCurrentDateString() {
+  const now = new Date();
+  // Use local timezone to get correct date
+  const day = String(now.getDate()).padStart(2, '0');
+  const month = String(now.getMonth() + 1).padStart(2, '0'); // getMonth() returns 0-11, so add 1
+  const year = now.getFullYear();
+  return `${day}/${month}/${year}`;
 }
 
 // Reset progress function - call this before building for client
@@ -271,8 +282,9 @@ function App() {
 
   const handleEndGame = useCallback((score) => {
     const newXP = progress.totalXP + score;
-    const now = new Date();
-    const dateStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
+    // Use helper function to get current date
+    const dateStr = getCurrentDateString();
+    
     const newActivity = {
       text: `You earned ${score} points playing midnight paws`,
       date: dateStr
@@ -389,7 +401,8 @@ function App() {
           total_xp: 0,
           videos_count: 0,
           activities: [],
-          game_time_spent: 0
+          game_time_spent: 0,
+          video_url: [] // Clear all video URLs
         });
       }
     }
@@ -399,9 +412,10 @@ function App() {
     setScreen('upload');
   }, []);
 
-  const handleVideoUpload = useCallback(async (videoUrl) => {
-    const now = new Date();
-    const dateStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
+  const handleVideoUpload = useCallback(async (videoUrl, receiptUrl = null, storeName = null) => {
+    // Use helper function to get current date
+    const dateStr = getCurrentDateString();
+    
     const newActivity = {
       text: 'You uploaded a video',
       date: dateStr
@@ -415,13 +429,9 @@ function App() {
     setProgress(updated);
     saveProgress(updated);
 
-    // Sync to Supabase with video URL
-    await updateProfile({
-      videos_count: updated.videosCount,
-      activities: updated.activities,
-      video_url: videoUrl
-    });
-  }, [progress, session, updateProfile]);
+    // No database updates since we're not storing files
+    console.log('Upload submitted (files not stored):', { videoUrl, receiptUrl, storeName });
+  }, [progress]);
 
   let content;
   if (screen === 'splash') {
@@ -470,6 +480,11 @@ function App() {
               setIsPaused(false);
               handleViewProfile();
             }}
+            onGoToUpload={() => {
+              setShowGameOverModal(false);
+              setIsPaused(false);
+              handleGoToUpload();
+            }}
           />
         )}
       </>
@@ -482,6 +497,7 @@ function App() {
         onGoHome={handleGoHome}
         onUnlockThemes={handleUnlockThemes}
         onProfileClick={handleViewProfile}
+        onGoToUpload={handleGoToUpload}
       />
     );
   } else if (screen === 'levels') {
@@ -503,6 +519,14 @@ function App() {
         onGoHome={handleGoHome}
         onUpload={handleVideoUpload}
         userId={session?.user?.id}
+        onGoToThankYou={() => setScreen('thankyou')}
+      />
+    );
+  } else if (screen === 'thankyou') {
+    content = (
+      <ThankYouScreen
+        onGoHome={handleGoHome}
+        onProfileClick={handleViewProfile}
       />
     );
   } else {

@@ -2,14 +2,15 @@ import { useRef, useState, useEffect } from 'react';
 import './UploadScreen.css';
 import backgroundImg from './assets/background.png';
 import logoImg from './assets/logo.png';
-import { supabase } from './lib/supabase';
 
 const ASSETS = [backgroundImg, logoImg];
 
-export default function UploadScreen({ onGoHome, onUpload, userId }) {
-  const fileInputRef = useRef(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [uploadSuccess, setUploadSuccess] = useState(false);
+export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYou }) {
+  const videoInputRef = useRef(null);
+  const receiptInputRef = useRef(null);
+  const [selectedVideoFile, setSelectedVideoFile] = useState(null);
+  const [selectedReceiptFile, setSelectedReceiptFile] = useState(null);
+  const [storeName, setStoreName] = useState('');
   const [isReady, setIsReady] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
@@ -34,16 +35,23 @@ export default function UploadScreen({ onGoHome, onUpload, userId }) {
 
   if (!isReady) return <div className="upload loading" style={{ background: '#9C27B0', height: '100vh', width: '100vw' }} />;
 
-  const handleFileSelect = (e) => {
+  const handleVideoFileSelect = (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      setSelectedFile(file);
+      setSelectedVideoFile(file);
+    }
+  };
+
+  const handleReceiptFileSelect = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedReceiptFile(file);
     }
   };
 
   const handleUpload = async () => {
-    if (!selectedFile || !userId) {
-      setUploadError('Please select a file and make sure you are logged in.');
+    if (!selectedVideoFile) {
+      setUploadError('Please select a video file.');
       return;
     }
 
@@ -51,59 +59,21 @@ export default function UploadScreen({ onGoHome, onUpload, userId }) {
     setUploadError(null);
 
     try {
-      // Verify user is authenticated
-      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-      if (sessionError || !session) {
-        throw new Error('You must be logged in to upload videos. Please log in and try again.');
-      }
+      // Simulate upload process (no actual file storage)
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // Verify the session user ID matches the userId prop
-      if (session.user.id !== userId) {
-        throw new Error('Session mismatch. Please log in again.');
-      }
-
-      // Generate a unique filename
-      const fileExt = selectedFile.name.split('.').pop();
-      const fileName = `${userId}/${Date.now()}.${fileExt}`;
-      const filePath = fileName;
-
-      // Upload file to Supabase Storage
-      const { error: uploadError } = await supabase.storage
-        .from('Videos')
-        .upload(filePath, selectedFile, {
-          cacheControl: '3600',
-          upsert: false
-        });
-
-      if (uploadError) {
-        // If bucket doesn't exist, try to create it or handle the error
-        if (uploadError.message.includes('Bucket not found')) {
-          throw new Error('Storage bucket not configured. Please create a "Videos" bucket in Supabase Storage.');
-        }
-        if (uploadError.message.includes('row-level security policy') || uploadError.statusCode === '403') {
-          throw new Error('Permission denied. Please make sure storage policies are set up correctly in Supabase. Check the SQL setup file.');
-        }
-        throw uploadError;
-      }
-
-      // Get public URL
-      const { data: urlData } = supabase.storage
-        .from('Videos')
-        .getPublicUrl(filePath);
-
-      const videoUrl = urlData.publicUrl;
-
-      // Call the onUpload callback with the video URL
+      // Call the onUpload callback without file URLs (since we're not storing)
       if (onUpload) {
-        await onUpload(videoUrl);
+        await onUpload(null, null, storeName);
       }
 
-      setUploadSuccess(true);
-      setSelectedFile(null);
-      if (fileInputRef.current) fileInputRef.current.value = '';
+      // Redirect to thank you screen
+      if (onGoToThankYou) {
+        onGoToThankYou();
+      }
     } catch (err) {
-      console.error('Error uploading video:', err);
-      setUploadError(err.message || 'Failed to upload video. Please try again.');
+      console.error('Error processing upload:', err);
+      setUploadError(err.message || 'Failed to process upload. Please try again.');
     } finally {
       setUploading(false);
     }
@@ -138,50 +108,69 @@ export default function UploadScreen({ onGoHome, onUpload, userId }) {
               {uploadError}
             </div>
           )}
-          {uploadSuccess ? (
-            <div className="upload-success-msg">
-              Uploaded successfully
-            </div>
-          ) : (
-            <>
-              <button
-                className="upload-select-btn"
-                onClick={() => fileInputRef.current?.click()}
-                disabled={uploading}
-              >
-                {selectedFile ? selectedFile.name : 'Select file'}
-              </button>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="video/*"
-                className="hidden-input"
-                onChange={handleFileSelect}
-                disabled={uploading}
-              />
-            </>
-          )}
+
+          {/* Section 1: Upload Cat video playing game */}
+          <div className="upload-section">
+            <h3 className="upload-section-title">Upload Cat video playing game</h3>
+            <p className="upload-section-instruction">Please make sure the cat is visible playing the game in the video</p>
+            <button
+              className="upload-select-btn"
+              onClick={() => videoInputRef.current?.click()}
+              disabled={uploading}
+            >
+              {selectedVideoFile ? selectedVideoFile.name : 'Select file'}
+            </button>
+            <input
+              ref={videoInputRef}
+              type="file"
+              accept="video/*"
+              className="hidden-input"
+              onChange={handleVideoFileSelect}
+              disabled={uploading}
+            />
+          </div>
+
+          {/* Section 2: Upload Receipt / Proof of Purchase */}
+          <div className="upload-section">
+            <h3 className="upload-section-title">Upload Recipt / Proof of Purchase of Whiskas product</h3>
+            <p className="upload-section-instruction">Please upload a clear picture of the reciept</p>
+            <button
+              className="upload-select-btn"
+              onClick={() => receiptInputRef.current?.click()}
+              disabled={uploading}
+            >
+              {selectedReceiptFile ? selectedReceiptFile.name : 'Select file'}
+            </button>
+            <input
+              ref={receiptInputRef}
+              type="file"
+              accept="image/*"
+              className="hidden-input"
+              onChange={handleReceiptFileSelect}
+              disabled={uploading}
+            />
+          </div>
+
+          {/* Section 3: Name of the Store of Purchase */}
+          <div className="upload-section">
+            <h3 className="upload-section-title">Name of the Store of Purchase</h3>
+            <input
+              type="text"
+              className="upload-text-input"
+              placeholder="Store Name"
+              value={storeName}
+              onChange={(e) => setStoreName(e.target.value)}
+              disabled={uploading}
+            />
+          </div>
 
           <button
             className="upload-submit-btn"
-            onClick={uploadSuccess ? () => {
-              setUploadSuccess(false);
-              setSelectedFile(null);
-              setUploadError(null);
-              if (fileInputRef.current) fileInputRef.current.value = '';
-              onGoHome?.();
-            } : handleUpload}
-            disabled={uploading || (!selectedFile && !uploadSuccess)}
+            onClick={handleUpload}
+            disabled={uploading || !selectedVideoFile}
           >
-            {uploading ? 'Uploading...' : uploadSuccess ? 'Back to Home' : 'Upload'}
+            {uploading ? 'Uploading...' : 'Upload'}
           </button>
-        </div>
-
-        {/* Instructions */}
-        <div className="upload-instructions">
-          <h3 className="upload-instructions-title">Make sure:</h3>
-          <p className="upload-instruction">Your cat is visible playing the game in the video</p>
-          <p className="upload-instruction">The score of the game is visible in the video</p>
         </div>
       </div>
     </div>

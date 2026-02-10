@@ -28,14 +28,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 20px 30px;
   width: 100%;
   box-sizing: border-box;
 }
 
 .thankyou-home-btn {
-  width: 44px;
-  height: 44px;
+  width: 54px;
+  height: 54px;
   background: #FFB300;
   border: none;
   border-radius: 50%;
@@ -53,7 +53,7 @@
 }
 
 .thankyou-logo {
-  height: 70px;
+  height: 85px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -61,8 +61,8 @@
 }
 
 .thankyou-profile-btn {
-  width: 44px;
-  height: 44px;
+  width: 54px;
+  height: 54px;
   background: #64B5F6;
   border: none;
   border-radius: 50%;
@@ -91,8 +91,11 @@
 .thankyou-cat {
   width: 280px;
   height: auto;
-  margin-bottom: 30px;
+  margin: 0;
+  padding: 0;
+  display: block;
   object-fit: contain;
+  line-height: 0;
 }
 
 /* Text */
@@ -101,8 +104,10 @@
   font-size: 48px;
   font-weight: 800;
   color: white;
-  margin: 0 0 20px 0;
+  margin: -20px 0 20px 0;
+  padding: 0;
   text-align: center;
+  line-height: 1.2;
 }
 
 .thankyou-message {
@@ -127,21 +132,23 @@
 
 .thankyou-btn {
   flex: 1;
-  padding: 15px 30px;
+  padding: 20px 30px;
+  min-height: 60px;
   background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
-  /* border: 1px solid white; */
+  border: none;
   border-radius: 12px;
   font-family: 'Poppins', sans-serif;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
+  font-style: italic;
   color: white;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 186, 10, 0.4);
+  box-shadow: 0 4px 15px rgba(255, 186, 10, 0.6), 0 0 25px rgba(255, 186, 10, 0.5);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .thankyou-btn:hover {
-  box-shadow: 0 6px 20px rgba(220, 105, 0, 0.5), 0 0 25px rgba(255, 186, 10, 0.5);
+  box-shadow: 0 6px 20px rgba(255, 186, 10, 0.7), 0 0 30px rgba(255, 186, 10, 0.6);
 }
 
 .thankyou-btn:active {
@@ -154,17 +161,17 @@
 @media screen and (max-width: 900px) {
   .thankyou-header {
     top: 38px;
-    padding: 10px;
+    padding: 10px 25px;
   }
 
   .thankyou-home-btn,
   .thankyou-profile-btn {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
   }
 
   .thankyou-logo {
-    height: 55px;
+    height: 70px;
   }
 
   .thankyou-content {
@@ -174,12 +181,16 @@
 
   .thankyou-cat {
     width: 340px;
-    margin-bottom: 2px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 0;
   }
 
   .thankyou-title {
     font-size: 70px;
-    margin-bottom: 1px;
+    margin: -20px 0 1px 0;
+    padding: 0;
   }
 
   .thankyou-message {
@@ -192,8 +203,9 @@
   }
 
   .thankyou-btn {
-    padding: 14px 25px;
-    font-size: 16px;
+    padding: 18px 25px;
+    min-height: 56px;
+    font-size: 20px;
   }
 }
 
@@ -201,17 +213,17 @@
 @media screen and (max-width: 480px) and (min-width: 420px) {
   .thankyou-header {
     top: 12px;
-    padding: 14px 16px;
+    padding: 14px 24px;
   }
 
   .thankyou-home-btn,
   .thankyou-profile-btn {
-    width: 38px;
-    height: 38px;
+    width: 48px;
+    height: 48px;
   }
 
   .thankyou-logo {
-    height: 50px;
+    height: 65px;
   }
 
   .thankyou-content {
@@ -221,12 +233,16 @@
 
   .thankyou-cat {
     width: 220px;
-    margin-bottom: 22px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 0;
   }
 
   .thankyou-title {
     font-size: 36px;
-    margin-bottom: 16px;
+    margin: -20px 0 16px 0;
+    padding: 0;
   }
 
   .thankyou-message {
@@ -239,8 +255,9 @@
   }
 
   .thankyou-btn {
-    padding: 12px 20px;
-    font-size: 15px;
+    padding: 16px 20px;
+    min-height: 52px;
+    font-size: 19px;
   }
 }
 
@@ -248,17 +265,17 @@
 @media screen and (max-width: 399px) and (min-width: 385px) {
   .thankyou-header {
     top: 10px;
-    padding: 12px 15px;
+    padding: 12px 22px;
   }
 
   .thankyou-home-btn,
   .thankyou-profile-btn {
-    width: 36px;
-    height: 36px;
+    width: 46px;
+    height: 46px;
   }
 
   .thankyou-logo {
-    height: 45px;
+    height: 60px;
   }
 
   .thankyou-content {
@@ -268,12 +285,16 @@
 
   .thankyou-cat {
     width: 200px;
-    margin-bottom: 20px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 0;
   }
 
   .thankyou-title {
     font-size: 32px;
-    margin-bottom: 14px;
+    margin: -20px 0 14px 0;
+    padding: 0;
   }
 
   .thankyou-message {
@@ -287,8 +308,9 @@
   }
 
   .thankyou-btn {
-    padding: 12px 20px;
-    font-size: 14px;
+    padding: 16px 20px;
+    min-height: 52px;
+    font-size: 18px;
   }
 }
 
@@ -296,17 +318,17 @@
 @media screen and (max-width: 384px) and (min-width: 370px) {
   .thankyou-header {
     top: 9px;
-    padding: 10px 12px;
+    padding: 10px 20px;
   }
 
   .thankyou-home-btn,
   .thankyou-profile-btn {
-    width: 34px;
-    height: 34px;
+    width: 44px;
+    height: 44px;
   }
 
   .thankyou-logo {
-    height: 42px;
+    height: 55px;
   }
 
   .thankyou-content {
@@ -316,12 +338,16 @@
 
   .thankyou-cat {
     width: 180px;
-    margin-bottom: 18px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 0;
   }
 
   .thankyou-title {
     font-size: 28px;
-    margin-bottom: 12px;
+    margin: -20px 0 12px 0;
+    padding: 0;
   }
 
   .thankyou-message {
@@ -335,8 +361,9 @@
   }
 
   .thankyou-btn {
-    padding: 11px 18px;
-    font-size: 14px;
+    padding: 15px 18px;
+    min-height: 50px;
+    font-size: 18px;
   }
 }
 
@@ -344,17 +371,17 @@
 @media screen and (max-width: 369px) {
   .thankyou-header {
     top: 8px;
-    padding: 8px 10px;
+    padding: 8px 18px;
   }
 
   .thankyou-home-btn,
   .thankyou-profile-btn {
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
   }
 
   .thankyou-logo {
-    height: 38px;
+    height: 50px;
   }
 
   .thankyou-content {
@@ -364,12 +391,16 @@
 
   .thankyou-cat {
     width: 160px;
-    margin-bottom: 15px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 0;
   }
 
   .thankyou-title {
     font-size: 24px;
-    margin-bottom: 10px;
+    margin: -20px 0 10px 0;
+    padding: 0;
   }
 
   .thankyou-message {
@@ -383,8 +414,9 @@
   }
 
   .thankyou-btn {
-    padding: 10px 16px;
-    font-size: 13px;
+    padding: 14px 16px;
+    min-height: 48px;
+    font-size: 17px;
   }
 }
 

@@ -101,7 +101,7 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user, onP
             Play Tap-To-Purr
           </button>
           <button className="home-btn home-btn-upload" onClick={() => fileInputRef.current?.click()}>
-            Upload Cat Video
+            Upload Cat Video & Win
           </button>
           <input
             ref={fileInputRef}

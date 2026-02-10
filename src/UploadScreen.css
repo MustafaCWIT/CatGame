@@ -94,13 +94,11 @@
   background: radial-gradient(circle at center, #930F74 0%, #4D014B 100%);
   border: 3px solid rgba(255, 255, 255, 0.5);
   border-radius: 32px;
-  /* Increased roundedness to match image */
   padding: 35px;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* Aligned left like the image */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   margin-bottom: 30px;
   box-sizing: border-box;
@@ -111,7 +109,30 @@
   font-size: 28px;
   font-weight: 800;
   color: white;
-  margin: 0 0 25px 0;
+  margin: 0 0 30px 0;
+}
+
+/* Upload Sections */
+.upload-section {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.upload-section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 8px 0;
+}
+
+.upload-section-instruction {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 12px 0;
+  line-height: 1.4;
 }
 
 .upload-select-btn {
@@ -126,8 +147,30 @@
   color: white;
   cursor: pointer;
   transition: all 0.2s ease;
-  margin-bottom: 25px;
   text-align: center;
+}
+
+.upload-text-input {
+  width: 100%;
+  padding: 20px;
+  background: #4D014E;
+  border: 1px solid rgba(255, 255, 255, 0.29);
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.upload-text-input::placeholder {
+  color: white;
+  opacity: 0.7;
+}
+
+.upload-text-input:focus {
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .upload-select-btn:hover {
@@ -157,18 +200,20 @@
 }
 
 .upload-submit-btn {
-  padding: 12px 45px;
-  background: linear-gradient(180deg, #FF9800 0%, #FFB300 100%);
-  border: none;
-  border-radius: 10px;
+  width: auto;
+  padding: 15px 80px;
+  background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
+  border: 1px solid white;
+  border-radius: 12px;
   font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-weight: 800;
-  font-style: italic;
+  font-size: 22px;
+  font-weight: 700;
   color: white;
   cursor: pointer;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 10px;
+  align-self: flex-start;
 }
 
 .upload-submit-btn:hover:not(:disabled) {
@@ -176,7 +221,7 @@
 }
 
 .upload-submit-btn:active:not(:disabled) {
-  transform: scale(0.95);
+  transform: scale(0.97);
 }
 
 .upload-submit-btn:disabled {
@@ -184,28 +229,6 @@
   cursor: pointer;
 }
 
-/* Instructions */
-.upload-instructions {
-  width: 100%;
-  padding: 0 10px;
-}
-
-.upload-instructions-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: white;
-  margin: 0 0 15px 0;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.upload-instruction {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0 0 8px 0;
-  line-height: 1.5;
-}
 
 /* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
 
@@ -234,7 +257,7 @@
   .upload-card {
     border-radius: 28px;
     padding: 28px;
-    border-width: 2.5px;
+    border: 2.5px solid rgba(255, 255, 255, 0.5);
     margin-bottom: 25px;
   }
 
@@ -256,19 +279,22 @@
   }
 
   .upload-submit-btn {
-    padding: 10px 38px;
-    font-size: 16px;
-    border-radius: 9px;
+    width: auto;
+    padding: 12px 60px;
+    font-size: 18px;
+    border-radius: 10px;
   }
 
-  .upload-instructions-title {
-    font-size: 24px;
-    margin-bottom: 12px;
+  .upload-section {
+    margin-bottom: 25px;
   }
 
-  .upload-instruction {
-    font-size: 13px;
-    margin-bottom: 7px;
+  .upload-section-title {
+    font-size: 15px;
+  }
+
+  .upload-section-instruction {
+    font-size: 11px;
   }
 }
 
@@ -297,7 +323,7 @@
   .upload-card {
     border-radius: 26px;
     padding: 25px;
-    border-width: 2.2px;
+    border: 2.2px solid rgba(255, 255, 255, 0.5);
     margin-bottom: 22px;
   }
 
@@ -319,19 +345,22 @@
   }
 
   .upload-submit-btn {
-    padding: 10px 35px;
-    font-size: 15px;
-    border-radius: 9px;
+    width: auto;
+    padding: 12px 55px;
+    font-size: 17px;
+    border-radius: 10px;
   }
 
-  .upload-instructions-title {
-    font-size: 22px;
-    margin-bottom: 11px;
+  .upload-section {
+    margin-bottom: 22px;
   }
 
-  .upload-instruction {
-    font-size: 12px;
-    margin-bottom: 6px;
+  .upload-section-title {
+    font-size: 14px;
+  }
+
+  .upload-section-instruction {
+    font-size: 11px;
   }
 }
 
@@ -360,7 +389,7 @@
   .upload-card {
     border-radius: 25px;
     padding: 24px;
-    border-width: 2.1px;
+    border: 2.1px solid rgba(255, 255, 255, 0.5);
     margin-bottom: 21px;
   }
 
@@ -382,19 +411,22 @@
   }
 
   .upload-submit-btn {
-    padding: 9px 36px;
-    font-size: 15px;
-    border-radius: 8.5px;
+    width: auto;
+    padding: 11px 50px;
+    font-size: 16px;
+    border-radius: 9px;
   }
 
-  .upload-instructions-title {
-    font-size: 23px;
-    margin-bottom: 11px;
+  .upload-section {
+    margin-bottom: 21px;
   }
 
-  .upload-instruction {
-    font-size: 12.5px;
-    margin-bottom: 6.5px;
+  .upload-section-title {
+    font-size: 14px;
+  }
+
+  .upload-section-instruction {
+    font-size: 11px;
   }
 }
 
@@ -423,7 +455,7 @@
   .upload-card {
     border-radius: 25.5px;
     padding: 24.5px;
-    border-width: 2.1px;
+    border: 2.1px solid rgba(255, 255, 255, 0.5);
     margin-bottom: 21px;
   }
 
@@ -445,19 +477,22 @@
   }
 
   .upload-submit-btn {
-    padding: 9px 37px;
-    font-size: 15px;
+    width: auto;
+    padding: 11px 50px;
+    font-size: 16px;
     border-radius: 9px;
   }
 
-  .upload-instructions-title {
-    font-size: 23.5px;
-    margin-bottom: 11px;
+  .upload-section {
+    margin-bottom: 21px;
   }
 
-  .upload-instruction {
-    font-size: 13px;
-    margin-bottom: 6.5px;
+  .upload-section-title {
+    font-size: 14px;
+  }
+
+  .upload-section-instruction {
+    font-size: 11px;
   }
 }
 
@@ -486,7 +521,7 @@
   .upload-card {
     border-radius: 25px;
     padding: 23px;
-    border-width: 2px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
     margin-bottom: 21px;
   }
 
@@ -508,19 +543,22 @@
   }
 
   .upload-submit-btn {
-    padding: 10px 33px;
-    font-size: 14px;
-    border-radius: 8px;
+    width: auto;
+    padding: 11px 48px;
+    font-size: 15px;
+    border-radius: 9px;
   }
 
-  .upload-instructions-title {
-    font-size: 21px;
-    margin-bottom: 10px;
+  .upload-section {
+    margin-bottom: 20px;
   }
 
-  .upload-instruction {
-    font-size: 12px;
-    margin-bottom: 6px;
+  .upload-section-title {
+    font-size: 13px;
+  }
+
+  .upload-section-instruction {
+    font-size: 10px;
   }
 }
 
@@ -549,7 +587,7 @@
   .upload-card {
     border-radius: 24px;
     padding: 22px;
-    border-width: 2px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
     margin-bottom: 20px;
   }
 
@@ -573,23 +611,22 @@
   }
 
   .upload-submit-btn {
-    padding: 10px 32px;
-    font-size: 14px;
-    border-radius: 8px;
+    width: auto;
+    padding: 10px 45px;
+    font-size: 15px;
+    border-radius: 9px;
   }
 
-  .upload-instructions {
-    padding: 0 5px;
+  .upload-section {
+    margin-bottom: 18px;
   }
 
-  .upload-instructions-title {
-    font-size: 20px;
-    margin-bottom: 10px;
+  .upload-section-title {
+    font-size: 13px;
   }
 
-  .upload-instruction {
-    font-size: 12px;
-    margin-bottom: 6px;
+  .upload-section-instruction {
+    font-size: 10px;
   }
 }
 
@@ -618,7 +655,7 @@
   .upload-card {
     border-radius: 22px;
     padding: 20px;
-    border-width: 1.8px;
+    border: 1.8px solid rgba(255, 255, 255, 0.5);
     margin-bottom: 18px;
   }
 
@@ -642,23 +679,22 @@
   }
 
   .upload-submit-btn {
-    padding: 9px 28px;
-    font-size: 13px;
-    border-radius: 7px;
+    width: auto;
+    padding: 9px 38px;
+    font-size: 14px;
+    border-radius: 8px;
   }
 
-  .upload-instructions {
-    padding: 0 4px;
+  .upload-section {
+    margin-bottom: 16px;
   }
 
-  .upload-instructions-title {
-    font-size: 18px;
-    margin-bottom: 8px;
+  .upload-section-title {
+    font-size: 12px;
   }
 
-  .upload-instruction {
-    font-size: 11px;
-    margin-bottom: 5px;
+  .upload-section-instruction {
+    font-size: 9px;
   }
 }
 
@@ -687,7 +723,7 @@
   .upload-card {
     border-radius: 20px;
     padding: 18px;
-    border-width: 1.5px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
     margin-bottom: 15px;
   }
 
@@ -711,22 +747,21 @@
   }
 
   .upload-submit-btn {
-    padding: 8px 24px;
-    font-size: 12px;
-    border-radius: 6px;
+    width: auto;
+    padding: 8px 32px;
+    font-size: 13px;
+    border-radius: 7px;
   }
 
-  .upload-instructions {
-    padding: 0 3px;
+  .upload-section {
+    margin-bottom: 14px;
   }
 
-  .upload-instructions-title {
-    font-size: 16px;
-    margin-bottom: 6px;
+  .upload-section-title {
+    font-size: 11px;
   }
 
-  .upload-instruction {
-    font-size: 10px;
-    margin-bottom: 4px;
+  .upload-section-instruction {
+    font-size: 9px;
   }
 }
