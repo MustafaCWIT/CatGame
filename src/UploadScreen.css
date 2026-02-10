@@ -203,21 +203,22 @@
   width: auto;
   padding: 15px 80px;
   background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
-  border: 1px solid white;
+  border: none;
   border-radius: 12px;
   font-family: 'Poppins', sans-serif;
   font-size: 22px;
   font-weight: 700;
+  font-style: italic;
   color: white;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 186, 10, 0.6), 0 0 25px rgba(255, 186, 10, 0.5);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   margin-top: 10px;
   align-self: flex-start;
 }
 
 .upload-submit-btn:hover:not(:disabled) {
-  box-shadow: 0 6px 20px rgba(220, 105, 0, 0.5);
+  box-shadow: 0 6px 20px rgba(255, 186, 10, 0.7), 0 0 30px rgba(255, 186, 10, 0.6);
 }
 
 .upload-submit-btn:active:not(:disabled) {
