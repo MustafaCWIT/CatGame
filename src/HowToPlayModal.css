@@ -1,54 +1,28 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(207, 102, 172, 0.35);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, #930F74 0%, #4D014B 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 20px;
+  padding: 0;
+  overflow-y: auto;
 }
 
 .modal-container {
   position: relative;
-  width: 90%;
-  max-width: 700px;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
   background: linear-gradient(180deg, #930F74 0%, #4D014B 100%);
-  border-radius: 40px;
-  padding: 50px 30px 80px 30px;
+  border-radius: 0;
+  padding: 50px 30px 100px 30px;
   overflow: visible;
-  border: 4px solid white;
+  border: none;
   display: flex;
   flex-direction: column;
-}
-
-.modal-close {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  width: 50px;
-  height: 50px;
-  background: white;
-  border: none;
-  border-radius: 50%;
-  color: #930F74;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease;
-  z-index: 10;
-}
-
-.modal-close svg {
-  width: 30px;
-  height: 30px;
-}
-
-.modal-close:hover {
-  transform: scale(1.1);
 }
 
 /* Sections */
@@ -203,6 +177,18 @@
   height: auto;
 }
 
+/* Qualification text */
+.modal-qualification-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: white;
+  line-height: 1.5;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 25px;
+  padding: 0 20px;
+}
+
 /* Let's Go button */
 .modal-btn {
   padding: 15px 80px;
@@ -216,11 +202,10 @@
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  margin: 30px auto 0;
   white-space: nowrap;
+  display: block;
 }
 
 .modal-btn:hover {
@@ -236,26 +221,16 @@
 /* Tablet breakpoint */
 @media screen and (max-width: 768px) {
   .modal-overlay {
-    padding: 15px;
+    padding: 0;
   }
 
   .modal-container {
-    max-width: 580px;
-    border-radius: 35px;
-    padding: 40px 25px 70px 25px;
-    border-width: 3px;
-  }
-
-  .modal-close {
-    width: 42px;
-    height: 42px;
-    top: 20px;
-    right: 20px;
-  }
-
-  .modal-close svg {
-    width: 24px;
-    height: 24px;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 40px 25px 80px 25px;
+    border: none;
   }
 
   .modal-title {
@@ -324,37 +299,32 @@
     top: -20px;
   }
 
+  .modal-qualification-text {
+    font-size: 12px;
+    margin-top: 20px;
+    padding: 0 15px;
+  }
+
   .modal-btn {
     padding: 12px 60px;
     font-size: 18px;
-    bottom: -25px;
+    margin-top: 25px;
   }
 }
 
 /* Large phones: 430px width (iPhone 14 Pro Max) */
 @media screen and (max-width: 480px) and (min-width: 420px) {
   .modal-overlay {
-    padding: 12px;
+    padding: 0;
   }
 
   .modal-container {
-    width: 95%;
-    max-width: 400px;
-    border-radius: 30px;
-    padding: 38px 20px 65px 20px;
-    border-width: 3px;
-  }
-
-  .modal-close {
-    width: 38px;
-    height: 38px;
-    top: 17px;
-    right: 17px;
-  }
-
-  .modal-close svg {
-    width: 22px;
-    height: 22px;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 38px 20px 70px 20px;
+    border: none;
   }
 
   .modal-section {
@@ -424,37 +394,32 @@
     top: -13px;
   }
 
+  .modal-qualification-text {
+    font-size: 11px;
+    margin-top: 18px;
+    padding: 0 15px;
+  }
+
   .modal-btn {
     padding: 11px 52px;
     font-size: 17px;
-    bottom: -24px;
+    margin-top: 22px;
   }
 }
 
 /* 423px width breakpoint */
 @media screen and (max-width: 423px) and (min-width: 420px) {
   .modal-overlay {
-    padding: 11.5px;
+    padding: 0;
   }
 
   .modal-container {
-    width: 95%;
-    max-width: 390px;
-    border-radius: 27.5px;
-    padding: 37px 19px 61px 19px;
-    border-width: 3px;
-  }
-
-  .modal-close {
-    width: 37px;
-    height: 37px;
-    top: 16px;
-    right: 16px;
-  }
-
-  .modal-close svg {
-    width: 21px;
-    height: 21px;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 37px 19px 65px 19px;
+    border: none;
   }
 
   .modal-section {
@@ -520,37 +485,32 @@
     top: -17px;
   }
 
+  .modal-qualification-text {
+    font-size: 10px;
+    margin-top: 18px;
+    padding: 0 12px;
+  }
+
   .modal-btn {
     padding: 10px 47px;
     font-size: 16px;
-    bottom: -23px;
+    margin-top: 20px;
   }
 }
 
 /* 443px width breakpoint */
 @media screen and (max-width: 443px) and (min-width: 431px) {
   .modal-overlay {
-    padding: 11.7px;
+    padding: 0;
   }
 
   .modal-container {
-    width: 95%;
-    max-width: 385px;
-    border-radius: 28px;
-    padding: 36.5px 19px 61px 19px;
-    border-width: 3px;
-  }
-
-  .modal-close {
-    width: 37px;
-    height: 37px;
-    top: 16px;
-    right: 16px;
-  }
-
-  .modal-close svg {
-    width: 21px;
-    height: 21px;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 36.5px 19px 65px 19px;
+    border: none;
   }
 
   .modal-section {
@@ -616,37 +576,32 @@
     top: -17px;
   }
 
+  .modal-qualification-text {
+    font-size: 10px;
+    margin-top: 18px;
+    padding: 0 12px;
+  }
+
   .modal-btn {
     padding: 10px 47px;
     font-size: 16px;
-    bottom: -23px;
+    margin-top: 20px;
   }
 }
 
 /* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
 @media screen and (max-width: 419px) and (min-width: 400px) {
   .modal-overlay {
-    padding: 11px;
+    padding: 0;
   }
 
   .modal-container {
-    width: 95%;
-    max-width: 380px;
-    border-radius: 28px;
-    padding: 36px 19px 62px 19px;
-    border-width: 3px;
-  }
-
-  .modal-close {
-    width: 37px;
-    height: 37px;
-    top: 16px;
-    right: 16px;
-  }
-
-  .modal-close svg {
-    width: 21px;
-    height: 21px;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 36px 19px 65px 19px;
+    border: none;
   }
 
   .modal-section {
@@ -712,37 +667,32 @@
     top: -17px;
   }
 
+  .modal-qualification-text {
+    font-size: 10px;
+    margin-top: 18px;
+    padding: 0 12px;
+  }
+
   .modal-btn {
     padding: 10px 48px;
     font-size: 16px;
-    bottom: -23px;
+    margin-top: 20px;
   }
 }
 
 /* Medium phones: 390px width (iPhone 12/13/14) */
 @media screen and (max-width: 399px) and (min-width: 385px) {
   .modal-overlay {
-    padding: 10px;
+    padding: 0;
   }
 
   .modal-container {
-    width: 95%;
-    max-width: 360px;
-    border-radius: 28px;
-    padding: 35px 18px 60px 18px;
-    border-width: 3px;
-  }
-
-  .modal-close {
-    width: 36px;
-    height: 36px;
-    top: 15px;
-    right: 15px;
-  }
-
-  .modal-close svg {
-    width: 20px;
-    height: 20px;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 35px 18px 65px 18px;
+    border: none;
   }
 
   .modal-section {
@@ -824,38 +774,33 @@
     top: -16px;
   }
 
+  .modal-qualification-text {
+    font-size: 10px;
+    margin-top: 15px;
+    padding: 0 10px;
+  }
+
   .modal-btn {
     padding: 10px 45px;
     font-size: 16px;
     border-radius: 10px;
-    bottom: -22px;
+    margin-top: 18px;
   }
 }
 
 /* Standard phones: 375px width (iPhone SE, 6/7/8) */
 @media screen and (max-width: 384px) and (min-width: 370px) {
   .modal-overlay {
-    padding: 8px;
+    padding: 0;
   }
 
   .modal-container {
-    width: 96%;
-    max-width: 340px;
-    border-radius: 24px;
-    padding: 30px 15px 55px 15px;
-    border-width: 2.5px;
-  }
-
-  .modal-close {
-    width: 32px;
-    height: 32px;
-    top: 12px;
-    right: 12px;
-  }
-
-  .modal-close svg {
-    width: 18px;
-    height: 18px;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 30px 15px 60px 15px;
+    border: none;
   }
 
   .modal-section {
@@ -921,38 +866,33 @@
     top: -14px;
   }
 
+  .modal-qualification-text {
+    font-size: 9px;
+    margin-top: 12px;
+    padding: 0 8px;
+  }
+
   .modal-btn {
     padding: 9px 38px;
     font-size: 14px;
     border-radius: 9px;
-    bottom: -20px;
+    margin-top: 15px;
   }
 }
 
 /* Small phones: 360px width (Galaxy S5, etc.) */
 @media screen and (max-width: 369px) {
   .modal-overlay {
-    padding: 6px;
+    padding: 0;
   }
 
   .modal-container {
-    width: 97%;
-    max-width: 320px;
-    border-radius: 22px;
-    padding: 28px 12px 50px 12px;
-    border-width: 2px;
-  }
-
-  .modal-close {
-    width: 28px;
-    height: 28px;
-    top: 10px;
-    right: 10px;
-  }
-
-  .modal-close svg {
-    width: 16px;
-    height: 16px;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 28px 12px 55px 12px;
+    border: none;
   }
 
   .modal-section {
@@ -1030,10 +970,16 @@
     top: -12px;
   }
 
+  .modal-qualification-text {
+    font-size: 8px;
+    margin-top: 10px;
+    padding: 0 6px;
+  }
+
   .modal-btn {
     padding: 8px 32px;
     font-size: 13px;
     border-radius: 8px;
-    bottom: -18px;
+    margin-top: 12px;
   }
 }

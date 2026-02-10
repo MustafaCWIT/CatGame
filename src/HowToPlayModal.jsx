@@ -6,20 +6,13 @@ export default function HowToPlayModal({ onClose }) {
   return (
     <div className="modal-overlay">
       <div className="modal-container">
-        {/* Close button */}
-        <button className="modal-close" onClick={onClose}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-        </button>
-
         {/* How to play section */}
         <div className="modal-section">
           <h2 className="modal-title">How to play</h2>
           <div className="modal-steps">
             <div className="modal-step">
               <span className="modal-step-number">1</span>
-              <span className="modal-step-text">Place the tablet on the floor and play the game</span>
+              <span className="modal-step-text">Place the tablet on the floor and let the cat interact and play the game</span>
             </div>
             <div className="modal-step">
               <span className="modal-step-number">2</span>
@@ -27,7 +20,11 @@ export default function HowToPlayModal({ onClose }) {
             </div>
             <div className="modal-step">
               <span className="modal-step-number">3</span>
-              <span className="modal-step-text">Record and upload video of cat playing</span>
+              <span className="modal-step-text">Cat owner records the cat playing and upload the video along with proof of Whiskas product purchase.</span>
+            </div>
+            <div className="modal-step">
+              <span className="modal-step-number">4</span>
+              <span className="modal-step-text">Lucky winners will be announced at the end of the campaign</span>
             </div>
           </div>
         </div>
@@ -49,12 +46,16 @@ export default function HowToPlayModal({ onClose }) {
             {/* A Year of Whiskas */}
             <div className="modal-prize-card modal-prize-card-bottom">
               <div className="modal-prize-content">
-                <span className="modal-prize-title">A Year of Whiskas</span>
-                <span className="modal-prize-title">Wet & Dry Food</span>
+                <span className="modal-prize-title">A Year of Whiskas Wet & Dry Food</span>
               </div>
               <img src={foodBoxesImg} alt="" className="modal-prize-img modal-prize-img-food" />
             </div>
           </div>
+
+          {/* Qualification text */}
+          <p className="modal-qualification-text">
+            To qualify for the participation and chance to win the prizes, it is required to upload the video along with proof of Whiskas product purchase.
+          </p>
         </div>
 
         {/* Let's Go button */}
