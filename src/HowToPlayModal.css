@@ -131,7 +131,7 @@
 }
 
 .modal-prize-card-bottom {
-  padding-right: 140px;
+  padding-right: 200px;
   margin-top: 5px;
 }
 
@@ -181,9 +181,11 @@
 .modal-prize-img-food {
   position: absolute;
   right: -18px;
-  top: -24px;
-  width: 270px;
+  bottom: 0;
+  width: 360px;
   height: auto;
+  z-index: 2;
+  object-fit: contain;
 }
 
 /* Qualification text */
@@ -230,7 +232,7 @@
 /* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
 
 /* Tablet breakpoint */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .modal-overlay {
     padding: 0;
   }
@@ -285,19 +287,19 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 120px;
+    padding-right: 160px;
   }
 
   .modal-prize-title {
-    font-size: 18px;
+    font-size: 24px;
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .modal-prize-desc {
-    font-size: 10px;
+    font-size: 17px;
   }
 
   .modal-prize-img-cat {
@@ -307,14 +309,14 @@
   }
 
   .modal-prize-img-food {
-    width: 220px;
+    width: 290px;
     right: -15px;
-    top: -20px;
+    bottom: -39px;
   }
 
   .modal-qualification-text {
-    font-size: 12px;
-    margin-top: 35px;
+    font-size: 16px;
+    margin-top: 95px;
     padding: 0;
     text-align: left;
   }
@@ -378,7 +380,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 100px;
+    padding-right: 135px;
   }
 
   .modal-prize-title {
@@ -404,9 +406,9 @@
   }
 
   .modal-prize-img-food {
-    width: 185px;
+    width: 245px;
     right: -14px;
-    top: -13px;
+    bottom: 0;
   }
 
   .modal-qualification-text {
@@ -475,7 +477,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 104px;
+    padding-right: 140px;
   }
 
   .modal-prize-title {
@@ -497,9 +499,9 @@
   }
 
   .modal-prize-img-food {
-    width: 168px;
+    width: 220px;
     right: -13px;
-    top: -17px;
+    bottom: 0;
   }
 
   .modal-qualification-text {
@@ -568,7 +570,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 104px;
+    padding-right: 140px;
   }
 
   .modal-prize-title {
@@ -590,9 +592,9 @@
   }
 
   .modal-prize-img-food {
-    width: 169px;
+    width: 220px;
     right: -13px;
-    top: -17px;
+    bottom: 0;
   }
 
   .modal-qualification-text {
@@ -661,7 +663,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 105px;
+    padding-right: 145px;
   }
 
   .modal-prize-title {
@@ -683,9 +685,9 @@
   }
 
   .modal-prize-img-food {
-    width: 170px;
+    width: 225px;
     right: -13px;
-    top: -17px;
+    bottom: 0;
   }
 
   .modal-qualification-text {
@@ -768,7 +770,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 100px;
+    padding-right: 135px;
     margin-top: 5px;
   }
 
@@ -791,9 +793,9 @@
   }
 
   .modal-prize-img-food {
-    width: 160px;
+    width: 210px;
     right: -12px;
-    top: -16px;
+    bottom: 0;
   }
 
   .modal-qualification-text {
@@ -863,7 +865,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 88px;
+    padding-right: 120px;
   }
 
   .modal-prize-title {
@@ -885,9 +887,9 @@
   }
 
   .modal-prize-img-food {
-    width: 140px;
+    width: 185px;
     right: -10px;
-    top: -14px;
+    bottom: 0;
   }
 
   .modal-qualification-text {
@@ -969,7 +971,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 75px;
+    padding-right: 100px;
   }
 
   .modal-prize-title {
@@ -991,9 +993,9 @@
   }
 
   .modal-prize-img-food {
-    width: 120px;
+    width: 160px;
     right: -8px;
-    top: -12px;
+    bottom: 0;
   }
 
   .modal-qualification-text {
