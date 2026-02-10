@@ -1,0 +1,422 @@
+.thankyou-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.thankyou-background {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Header */
+.thankyou-header {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.thankyou-home-btn {
+  width: 54px;
+  height: 54px;
+  background: #FFB300;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.thankyou-home-btn:active {
+  transform: scale(0.95);
+}
+
+.thankyou-logo {
+  height: 85px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 20px;
+}
+
+.thankyou-profile-btn {
+  width: 54px;
+  height: 54px;
+  background: #64B5F6;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Content */
+.thankyou-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160px 20px 40px;
+  width: 100%;
+  max-width: 600px;
+  flex: 1;
+}
+
+/* Cat Image */
+.thankyou-cat {
+  width: 280px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  display: block;
+  object-fit: contain;
+  line-height: 0;
+}
+
+/* Text */
+.thankyou-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: white;
+  margin: -20px 0 20px 0;
+  padding: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.thankyou-message {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  line-height: 1.6;
+  margin: 0 0 40px 0;
+  max-width: 500px;
+}
+
+/* Action Buttons */
+.thankyou-actions {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 500px;
+  justify-content: center;
+}
+
+.thankyou-btn {
+  flex: 1;
+  padding: 20px 30px;
+  min-height: 60px;
+  background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  font-style: italic;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 186, 10, 0.6), 0 0 25px rgba(255, 186, 10, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.thankyou-btn:hover {
+  box-shadow: 0 6px 20px rgba(255, 186, 10, 0.7), 0 0 30px rgba(255, 186, 10, 0.6);
+}
+
+.thankyou-btn:active {
+  transform: scale(0.97);
+}
+
+/* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
+
+/* Tablet breakpoint */
+@media screen and (max-width: 900px) {
+  .thankyou-header {
+    top: 38px;
+    padding: 10px 25px;
+  }
+
+  .thankyou-home-btn,
+  .thankyou-profile-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .thankyou-logo {
+    height: 70px;
+  }
+
+  .thankyou-content {
+    padding: 10px 18px 35px;
+    max-width: 520px;
+  }
+
+  .thankyou-cat {
+    width: 340px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 0;
+  }
+
+  .thankyou-title {
+    font-size: 70px;
+    margin: -20px 0 1px 0;
+    padding: 0;
+  }
+
+  .thankyou-message {
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+
+  .thankyou-actions {
+    gap: 15px;
+  }
+
+  .thankyou-btn {
+    padding: 18px 25px;
+    min-height: 56px;
+    font-size: 20px;
+  }
+}
+
+/* Large phones: 430px width (iPhone 14 Pro Max) */
+@media screen and (max-width: 480px) and (min-width: 420px) {
+  .thankyou-header {
+    top: 12px;
+    padding: 14px 24px;
+  }
+
+  .thankyou-home-btn,
+  .thankyou-profile-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .thankyou-logo {
+    height: 65px;
+  }
+
+  .thankyou-content {
+    padding: 125px 16px 32px;
+    max-width: 100%;
+  }
+
+  .thankyou-cat {
+    width: 220px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 0;
+  }
+
+  .thankyou-title {
+    font-size: 36px;
+    margin: -20px 0 16px 0;
+    padding: 0;
+  }
+
+  .thankyou-message {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .thankyou-actions {
+    gap: 12px;
+  }
+
+  .thankyou-btn {
+    padding: 16px 20px;
+    min-height: 52px;
+    font-size: 19px;
+  }
+}
+
+/* Medium phones: 390px width (iPhone 12/13/14) */
+@media screen and (max-width: 399px) and (min-width: 385px) {
+  .thankyou-header {
+    top: 10px;
+    padding: 12px 22px;
+  }
+
+  .thankyou-home-btn,
+  .thankyou-profile-btn {
+    width: 46px;
+    height: 46px;
+  }
+
+  .thankyou-logo {
+    height: 60px;
+  }
+
+  .thankyou-content {
+    padding: 110px 15px 30px;
+    max-width: 100%;
+  }
+
+  .thankyou-cat {
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 0;
+  }
+
+  .thankyou-title {
+    font-size: 32px;
+    margin: -20px 0 14px 0;
+    padding: 0;
+  }
+
+  .thankyou-message {
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+
+  .thankyou-actions {
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .thankyou-btn {
+    padding: 16px 20px;
+    min-height: 52px;
+    font-size: 18px;
+  }
+}
+
+/* Standard phones: 375px width (iPhone SE, 6/7/8) */
+@media screen and (max-width: 384px) and (min-width: 370px) {
+  .thankyou-header {
+    top: 9px;
+    padding: 10px 20px;
+  }
+
+  .thankyou-home-btn,
+  .thankyou-profile-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .thankyou-logo {
+    height: 55px;
+  }
+
+  .thankyou-content {
+    padding: 100px 12px 25px;
+    max-width: 100%;
+  }
+
+  .thankyou-cat {
+    width: 180px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 0;
+  }
+
+  .thankyou-title {
+    font-size: 28px;
+    margin: -20px 0 12px 0;
+    padding: 0;
+  }
+
+  .thankyou-message {
+    font-size: 12px;
+    margin-bottom: 25px;
+  }
+
+  .thankyou-actions {
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .thankyou-btn {
+    padding: 15px 18px;
+    min-height: 50px;
+    font-size: 18px;
+  }
+}
+
+/* Small phones: 360px width (Galaxy S5, etc.) */
+@media screen and (max-width: 369px) {
+  .thankyou-header {
+    top: 8px;
+    padding: 8px 18px;
+  }
+
+  .thankyou-home-btn,
+  .thankyou-profile-btn {
+    width: 42px;
+    height: 42px;
+  }
+
+  .thankyou-logo {
+    height: 50px;
+  }
+
+  .thankyou-content {
+    padding: 90px 10px 20px;
+    max-width: 100%;
+  }
+
+  .thankyou-cat {
+    width: 160px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 0;
+  }
+
+  .thankyou-title {
+    font-size: 24px;
+    margin: -20px 0 10px 0;
+    padding: 0;
+  }
+
+  .thankyou-message {
+    font-size: 11px;
+    margin-bottom: 20px;
+  }
+
+  .thankyou-actions {
+    gap: 8px;
+    flex-direction: column;
+  }
+
+  .thankyou-btn {
+    padding: 14px 16px;
+    min-height: 48px;
+    font-size: 17px;
+  }
+}
+

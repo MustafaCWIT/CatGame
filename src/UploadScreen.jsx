@@ -5,11 +5,15 @@ import logoImg from './assets/logo.png';
 
 const ASSETS = [backgroundImg, logoImg];
 
-export default function UploadScreen({ onGoHome, onUpload }) {
-  const fileInputRef = useRef(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [uploadSuccess, setUploadSuccess] = useState(false);
+export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYou }) {
+  const videoInputRef = useRef(null);
+  const receiptInputRef = useRef(null);
+  const [selectedVideoFile, setSelectedVideoFile] = useState(null);
+  const [selectedReceiptFile, setSelectedReceiptFile] = useState(null);
+  const [storeName, setStoreName] = useState('');
   const [isReady, setIsReady] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState(null);
 
   useEffect(() => {
     let loaded = 0;
@@ -31,19 +35,47 @@ export default function UploadScreen({ onGoHome, onUpload }) {
 
   if (!isReady) return <div className="upload loading" style={{ background: '#9C27B0', height: '100vh', width: '100vw' }} />;
 
-  const handleFileSelect = (e) => {
+  const handleVideoFileSelect = (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      setSelectedFile(file);
+      setSelectedVideoFile(file);
     }
   };
 
-  const handleUpload = () => {
-    if (selectedFile) {
-      onUpload?.(selectedFile);
-      setUploadSuccess(true);
-      setSelectedFile(null);
-      if (fileInputRef.current) fileInputRef.current.value = '';
+  const handleReceiptFileSelect = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedReceiptFile(file);
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!selectedVideoFile) {
+      setUploadError('Please select a video file.');
+      return;
+    }
+
+    setUploading(true);
+    setUploadError(null);
+
+    try {
+      // Simulate upload process (no actual file storage)
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Call the onUpload callback without file URLs (since we're not storing)
+      if (onUpload) {
+        await onUpload(null, null, storeName);
+      }
+
+      // Redirect to thank you screen
+      if (onGoToThankYou) {
+        onGoToThankYou();
+      }
+    } catch (err) {
+      console.error('Error processing upload:', err);
+      setUploadError(err.message || 'Failed to process upload. Please try again.');
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -71,41 +103,74 @@ export default function UploadScreen({ onGoHome, onUpload }) {
         <div className="upload-card">
           <h2 className="upload-card-title">Upload video</h2>
 
-          {uploadSuccess ? (
-            <div className="upload-success-msg">
-              Uploaded successfully
+          {uploadError && (
+            <div className="upload-error-msg" style={{ color: '#f87171', marginBottom: '12px', fontSize: '14px' }}>
+              {uploadError}
             </div>
-          ) : (
-            <>
-              <button
-                className="upload-select-btn"
-                onClick={() => fileInputRef.current?.click()}
-              >
-                {selectedFile ? selectedFile.name : 'Select file'}
-              </button>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="video/*"
-                className="hidden-input"
-                onChange={handleFileSelect}
-              />
-            </>
           )}
+
+          {/* Section 1: Upload Cat video playing game */}
+          <div className="upload-section">
+            <h3 className="upload-section-title">Upload Cat video playing game</h3>
+            <p className="upload-section-instruction">Please make sure the cat is visible playing the game in the video</p>
+            <button
+              className="upload-select-btn"
+              onClick={() => videoInputRef.current?.click()}
+              disabled={uploading}
+            >
+              {selectedVideoFile ? selectedVideoFile.name : 'Select file'}
+            </button>
+            <input
+              ref={videoInputRef}
+              type="file"
+              accept="video/*"
+              className="hidden-input"
+              onChange={handleVideoFileSelect}
+              disabled={uploading}
+            />
+          </div>
+
+          {/* Section 2: Upload Receipt / Proof of Purchase */}
+          <div className="upload-section">
+            <h3 className="upload-section-title">Upload Recipt / Proof of Purchase of Whiskas product</h3>
+            <p className="upload-section-instruction">Please upload a clear picture of the reciept</p>
+            <button
+              className="upload-select-btn"
+              onClick={() => receiptInputRef.current?.click()}
+              disabled={uploading}
+            >
+              {selectedReceiptFile ? selectedReceiptFile.name : 'Select file'}
+            </button>
+            <input
+              ref={receiptInputRef}
+              type="file"
+              accept="image/*"
+              className="hidden-input"
+              onChange={handleReceiptFileSelect}
+              disabled={uploading}
+            />
+          </div>
+
+          {/* Section 3: Name of the Store of Purchase */}
+          <div className="upload-section">
+            <h3 className="upload-section-title">Name of the Store of Purchase</h3>
+            <input
+              type="text"
+              className="upload-text-input"
+              placeholder="Store Name"
+              value={storeName}
+              onChange={(e) => setStoreName(e.target.value)}
+              disabled={uploading}
+            />
+          </div>
 
           <button
             className="upload-submit-btn"
-            onClick={uploadSuccess ? onGoHome : handleUpload}
+            onClick={handleUpload}
+            disabled={uploading || !selectedVideoFile}
           >
-            {uploadSuccess ? 'Back to Home' : 'Upload'}
+            {uploading ? 'Uploading...' : 'Upload'}
           </button>
-        </div>
-
-        {/* Instructions */}
-        <div className="upload-instructions">
-          <h3 className="upload-instructions-title">Make sure:</h3>
-          <p className="upload-instruction">Your cat is visible playing the game in the video</p>
-          <p className="upload-instruction">The score of the game is visible in the video</p>
         </div>
       </div>
     </div>
