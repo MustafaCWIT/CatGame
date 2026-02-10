@@ -164,8 +164,14 @@ export default function UploadScreen({ onGoHome, onUpload, userId }) {
 
           <button
             className="upload-submit-btn"
-            onClick={uploadSuccess ? onGoHome : handleUpload}
-            disabled={uploading || !selectedFile}
+            onClick={uploadSuccess ? () => {
+              setUploadSuccess(false);
+              setSelectedFile(null);
+              setUploadError(null);
+              if (fileInputRef.current) fileInputRef.current.value = '';
+              onGoHome?.();
+            } : handleUpload}
+            disabled={uploading || (!selectedFile && !uploadSuccess)}
           >
             {uploading ? 'Uploading...' : uploadSuccess ? 'Back to Home' : 'Upload'}
           </button>
