@@ -6,7 +6,7 @@ import gameBackgroundImg from './assets/gameBackground.png';
 
 const ASSETS = [catViewingImg, dollarImg, gameBackgroundImg];
 
-export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes, onProfileClick, isPaused }) {
+export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes, onProfileClick, isPaused, onGoToUpload }) {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes,
         </div>
 
         {/* Bottom button moved inside container */}
-        <button className="go-unlock-btn" onClick={onUnlockThemes}>
+        <button className="go-unlock-btn" onClick={onGoToUpload || onUnlockThemes}>
          Upload Video & Win 
         </button>
       </div>
