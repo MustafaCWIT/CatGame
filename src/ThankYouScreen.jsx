@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import './ThankYouScreen.css';
-import backgroundImg from './assets/background.png';
-import logoImg from './assets/logo.png';
-import catImg from './assets/cat.png';
+import { ALL_ASSETS, GAME_ASSETS } from './game/assets';
 
-const ASSETS = [backgroundImg, logoImg, catImg];
+const {
+  background: backgroundImg,
+  logo: logoImg,
+  cat: catImg
+} = GAME_ASSETS;
+
+const ASSETS = ALL_ASSETS;
 
 export default function ThankYouScreen({ onGoHome, onProfileClick }) {
   const [isReady, setIsReady] = useState(false);

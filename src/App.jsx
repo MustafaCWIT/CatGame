@@ -142,7 +142,13 @@ function App() {
         .eq('id', session.user.id);
       if (error) throw error;
     } catch (err) {
-      console.error('Error updating profile:', err);
+      console.error('Supabase Profile Update Error:', {
+        message: err.message,
+        code: err.code,
+        details: err.details,
+        hint: err.hint
+      });
+      throw err; // Re-throw so callers know it failed
     }
   }, [session]);
 
@@ -284,19 +290,19 @@ function App() {
     const newXP = progress.totalXP + score;
     // Use helper function to get current date
     const dateStr = getCurrentDateString();
-    
+
     const newActivity = {
       text: `You earned ${score} points playing midnight paws`,
       date: dateStr
     };
-    
+
     // Calculate game time spent in this session (in seconds)
     let sessionTime = 0;
     if (gameStartTime) {
       sessionTime = Math.floor((Date.now() - gameStartTime) / 1000);
     }
     const totalGameTime = (progress.gameTimeSpent || 0) + sessionTime;
-    
+
     const activities = progress.activities || [];
     const updated = {
       totalXP: newXP,
@@ -402,7 +408,7 @@ function App() {
           videos_count: 0,
           activities: [],
           game_time_spent: 0,
-          video_url: [] // Clear all video URLs
+          video_url: [] // Clear all video URLs (JSONB array)
         });
       }
     }
@@ -413,9 +419,11 @@ function App() {
   }, []);
 
   const handleVideoUpload = useCallback(async (videoUrl, receiptUrl = null, storeName = null) => {
+    if (!session?.user) return;
+
     // Use helper function to get current date
     const dateStr = getCurrentDateString();
-    
+
     const newActivity = {
       text: 'You uploaded a video',
       date: dateStr
@@ -429,9 +437,38 @@ function App() {
     setProgress(updated);
     saveProgress(updated);
 
-    // No database updates since we're not storing files
-    console.log('Upload submitted (files not stored):', { videoUrl, receiptUrl, storeName });
-  }, [progress]);
+    try {
+      // Fetch current profile to get existing records
+      const { data: currentProfile, error: fetchError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', session.user.id)
+        .single();
+
+      if (fetchError && fetchError.code !== 'PGRST116') {
+        throw fetchError;
+      }
+
+      // Prepare updated arrays - only update store_name as requested
+      const storeNames = [...(currentProfile?.store_name || []), storeName || ''];
+
+      // Update profile with synced JSONB arrays
+      const updates = {
+        videos_count: updated.videosCount,
+        activities: updated.activities,
+        store_name: storeNames
+      };
+
+      await updateProfile(updates);
+    } catch (err) {
+      console.error('CRITICAL: Error updating profile with upload data:', {
+        message: err.message,
+        details: err.details,
+        hint: err.hint,
+        code: err.code
+      });
+    }
+  }, [progress, session, updateProfile]);
 
   let content;
   if (screen === 'splash') {

@@ -1192,14 +1192,14 @@
   }
 
   .home-title {
-    font-size: 49px;
+    font-size: 39px;
     margin: 10px 0 0 0;
   }
 
   .home-cat-container {
-    max-width: 265px;
+    max-width: 205px;
     height: 195px;
-    margin-top: 240px;
+    margin-top: 80px;
   }
 
   .home-cat-circle {
@@ -1208,8 +1208,8 @@
   }
 
   .home-cat {
-    width: 290px;
-    margin-left: 290px;
+    width: 200px;
+    margin-left: 200px;
     margin-bottom: 14px;
   }
 
@@ -1235,7 +1235,7 @@
   .home-participate-title,
   .home-participate h2.home-participate-title {
     font-size: 24px !important;
-    padding-top: 78px;
+    padding-top: 7px;
     margin-bottom: 10px;
   }
 

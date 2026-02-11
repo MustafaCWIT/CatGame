@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import './UploadScreen.css';
 import backgroundImg from './assets/background.png';
 import logoImg from './assets/logo.png';
+import { supabase } from './lib/supabase';
 
 const ASSETS = [backgroundImg, logoImg];
 
@@ -55,15 +56,20 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
       return;
     }
 
+    if (!userId) {
+      setUploadError('You must be logged in to upload metadata.');
+      return;
+    }
+
     setUploading(true);
     setUploadError(null);
 
     try {
-      // Simulate upload process (no actual file storage)
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Skip uploading files to Supabase Storage as requested
+      // We only pass the store name to the parent component
 
-      // Call the onUpload callback without file URLs (since we're not storing)
       if (onUpload) {
+        // Pass nulls for file URLs since we are no longer uploading them
         await onUpload(null, null, storeName);
       }
 
@@ -72,7 +78,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
         onGoToThankYou();
       }
     } catch (err) {
-      console.error('Error processing upload:', err);
+      console.error('Error processing upload metadata:', err);
       setUploadError(err.message || 'Failed to process upload. Please try again.');
     } finally {
       setUploading(false);
@@ -161,6 +167,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
               value={storeName}
               onChange={(e) => setStoreName(e.target.value)}
               disabled={uploading}
+              autoComplete="off"
             />
           </div>
 
