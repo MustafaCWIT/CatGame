@@ -14,10 +14,7 @@ const {
 
 const ASSETS = ALL_ASSETS;
 
-export default function Home({ onStartGame, onResetProgress, onLogout, user, onProfileClick }) {
-  const fileInputRef = useRef(null);
-  const [video, setVideo] = useState(null);
-  const [videoName, setVideoName] = useState('');
+export default function Home({ onStartGame, onResetProgress, onLogout, user, onProfileClick, onGoToUpload }) {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -41,19 +38,6 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user, onP
 
   if (!isReady) return <div className="home loading" style={{ background: '#9C27B0', height: '100vh', width: '100vw' }} />;
 
-  const handleUpload = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setVideoName(file.name);
-    setVideo(URL.createObjectURL(file));
-  };
-
-  const handleRemoveVideo = () => {
-    if (video) URL.revokeObjectURL(video);
-    setVideo(null);
-    setVideoName('');
-    if (fileInputRef.current) fileInputRef.current.value = '';
-  };
 
   return (
     <div className="home">
@@ -97,35 +81,20 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user, onP
 
         {/* Action buttons */}
         <div className="home-buttons">
-          <button className="home-btn home-btn-play" onClick={onStartGame}>
-            Play Tap-To-Purr
-          </button>
-          <button className="home-btn home-btn-upload" onClick={() => fileInputRef.current?.click()}>
-            Upload Cat Video & Win
-          </button>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="video/*"
-            className="hidden-input"
-            onChange={handleUpload}
-          />
+          <div className="home-btn-wrapper">
+            <div className="home-step-tag">STEP 1</div>
+            <button className="home-btn home-btn-play" onClick={onStartGame}>
+              Play Tap-To-Purr
+            </button>
+          </div>
+          <div className="home-btn-wrapper">
+            <div className="home-step-tag">STEP 2</div>
+            <button className="home-btn home-btn-upload" onClick={onGoToUpload}>
+              Upload Cat Video & Win
+            </button>
+          </div>
         </div>
 
-        {/* Video preview */}
-        {video && (
-          <div className="video-preview">
-            <div className="video-header">
-              <span className="video-name">{videoName}</span>
-              <button className="video-remove" onClick={handleRemoveVideo}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                  <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </button>
-            </div>
-            <video src={video} controls className="video-player" playsInline />
-          </div>
-        )}
 
         {/* Participate section */}
         <div className="home-participate">

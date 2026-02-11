@@ -575,6 +575,7 @@ function App() {
           onLogout={session ? handleLogout : null}
           user={session?.user}
           onProfileClick={handleViewProfile}
+          onGoToUpload={handleGoToUpload}
         />
         {showModal && <HowToPlayModal onClose={handleCloseModal} />}
         {showLoginModal && (

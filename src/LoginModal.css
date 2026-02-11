@@ -9,6 +9,8 @@
   z-index: 1000;
   padding: 20px;
   padding-top: 290px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .login-container {
