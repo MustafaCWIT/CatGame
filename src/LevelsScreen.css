@@ -99,9 +99,10 @@
   /* Increased from 50px */
   position: absolute;
   left: 50%;
-  top: 35px;
-  /* Added space from top */
+  top: 60px;
+  /* Increased from 35px to prevent shadow clipping */
   transform: translateX(-50%);
+  overflow: visible;
 }
 
 /* Content */
@@ -111,7 +112,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 140px 20px 40px;
+  padding: 180px 20px 40px;
   /* Increased top padding to account for logo position */
   width: 130%;
   max-width: 850px;
@@ -419,8 +420,8 @@
   }
 
   .levels-logo {
-    height: 55px;
-    top: 28px;
+    height: 75px;
+    top: 20px;
   }
 
   .levels-content {
