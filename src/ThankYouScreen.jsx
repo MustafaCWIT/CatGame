@@ -59,7 +59,7 @@ export default function ThankYouScreen({ onGoHome, onProfileClick }) {
         {/* Thank You Text */}
         <h1 className="thankyou-title">Thank you</h1>
         <p className="thankyou-message">
-          Your submission is successfull. We will reach out to you if you are one the winners.
+        Your submission is successful. We will reach out to you if you are one of the winners.
         </p>
 
         {/* Action Buttons */}
