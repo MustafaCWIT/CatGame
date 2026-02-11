@@ -1,12 +1,13 @@
 .home {
-  position: relative;
+  position: fixed;
+  inset: 0;
   width: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .home-background {
@@ -240,7 +241,7 @@
   justify-content: center;
   background: #6D0466;
   color: white;
-  border-radius: 15px 15px 0 0;
+  border-radius: 40px 40px 0 0;
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
   font-weight: 800;
@@ -547,7 +548,7 @@
     align-items: center;
     justify-content: center;
     font-size: 19px;
-    border-radius: 10px 10px 0 0;
+    border-radius: 30px 30px 0 0;
   }
 
   .home-btn-icon-w {
@@ -686,6 +687,17 @@
     border-radius: 12px;
   }
 
+  .home-step-tag {
+    top: -35px;
+    width: 65%;
+    padding: 4% 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: 25px 25px 0 0;
+  }
+
   .home-participate {
     padding-bottom: 0px;
     margin-top: 80px;
@@ -806,6 +818,18 @@
     font-size: 14px;
     border-width: 3px;
     border-radius: 13px;
+  }
+
+
+  .home-step-tag {
+    top: -32px;
+    width: 65%;
+    padding: 2% 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    border-radius: 25px 25px 0 0;
   }
 
   .home-participate {
@@ -930,6 +954,17 @@
     border-radius: 12px;
   }
 
+  .home-step-tag {
+    top: -35px;
+    width: 65%;
+    padding: 2% 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: 25px 25px 0 0;
+  }
+
   .home-participate {
     padding-bottom: 0px;
     margin-top: 0px;
@@ -1049,6 +1084,17 @@
     font-size: 13px;
     border-width: 3px;
     border-radius: 12px;
+  }
+
+  .home-step-tag {
+    top: -35px;
+    width: 65%;
+    padding: 2% 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: 25px 25px 0 0;
   }
 
   .home-participate {
@@ -1301,7 +1347,7 @@
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    border-radius: 8px 8px 0 0;
+    border-radius: 30px 30px 0 0;
   }
 
   .home-btn-icon-w {
@@ -1432,6 +1478,17 @@
     font-size: 14px;
     border-width: 3px;
     border-radius: 13px;
+  }
+
+  .home-step-tag {
+    top: -32px;
+    width: 65%;
+    padding: 2% 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border-radius: 25px 25px 0 0;
   }
 
   .home-participate {
