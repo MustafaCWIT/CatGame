@@ -1475,7 +1475,7 @@
 
   .home-btn {
     padding: 13px 6px;
-    font-size: 14px;
+    font-size: 10px;
     border-width: 3px;
     border-radius: 13px;
   }
@@ -1483,7 +1483,7 @@
   .home-step-tag {
     top: -32px;
     width: 65%;
-    padding: 2% 0;
+    padding: 5% 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1515,12 +1515,12 @@
   .home-prize-btn {
     padding: 12px 9px;
     border-radius: 17px;
-    min-height: 65px;
+    min-height: 55px;
     gap: 11px;
   }
 
   .home-prize-btn-left {
-    padding-left: 50px;
+    padding-left: 40px;
   }
 
   .home-prize-btn-right {
@@ -1529,18 +1529,18 @@
   }
 
   .home-prize-text span {
-    font-size: 11px;
+    font-size: 9px;
   }
 
   .home-prize-img-left {
-    width: 65px;
+    width: 55px;
     left: -24px;
     top: -17px;
   }
 
   .home-prize-img-right {
-    width: 65px;
+    width: 55px;
     right: -4px;
-    bottom: -11px;
+    bottom: -10px;
   }
 }
