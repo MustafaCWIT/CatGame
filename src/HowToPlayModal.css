@@ -250,7 +250,7 @@
     font-size: 34px;
     margin-bottom: 20px;
     text-align: center;
-    margin-top: 50px;          
+    margin-top: 50px;
   }
 
   .modal-subtitle {
@@ -314,8 +314,8 @@
     width: min(290px, 45vw);
     right: -20px;
     bottom: -39px;
-  
-    
+
+
   }
 
   .modal-qualification-text {
@@ -343,7 +343,7 @@
     height: 100%;
     min-height: 100vh;
     border-radius: 0;
-    padding: 38px 20px 70px 20px;
+    padding: 2px 20px 70px 20px;
     border: none;
   }
 
@@ -353,7 +353,7 @@
 
   .modal-title {
     font-size: 32px;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
     text-align: center;
   }
 
@@ -374,8 +374,8 @@
 
   .modal-prize-card {
     border-radius: 20px;
-    padding: 22px 23px;
-    min-height: 110px;
+    padding: 27px 23px;
+    min-height: 80px;
   }
 
   .modal-prize-card-top {
@@ -393,8 +393,8 @@
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 10px;
-    padding-left: 25px;
+    font-size: 13px;
+    padding-left: 1px;
 
   }
 
@@ -404,15 +404,16 @@
   }
 
   .modal-prize-img-cat {
-    width: 120px;
+    width: 100px;
     left: 10px;
     bottom: 0;
   }
 
   .modal-prize-img-food {
-    width: min(225px, 50vw);
-    right: 0;
-    bottom: 0;
+    width: 39%;
+    right: 1;
+    top: 0;
+
   }
 
   .modal-qualification-text {
@@ -440,84 +441,89 @@
     height: 100%;
     min-height: 100vh;
     border-radius: 0;
-    padding: 37px 19px 65px 19px;
+    padding: 2px 20px 70px 20px;
     border: none;
   }
 
   .modal-section {
-    margin-bottom: 23px;
+    margin-bottom: 25px;
   }
 
   .modal-title {
-    font-size: 30px;
-    margin-bottom: 17px;
+    font-size: 32px;
+    margin-bottom: 10px;
     text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 30px;
-    margin-bottom: 24px;
+    font-size: 32px;
+    margin-bottom: 25px;
   }
 
   .modal-step-number {
-    width: 25px;
-    height: 25px;
-    font-size: 12px;
-  }
-
-  .modal-step-text {
+    width: 26px;
+    height: 26px;
     font-size: 13px;
   }
 
+  .modal-step-text {
+    font-size: 14px;
+  }
+
   .modal-prize-card {
-    border-radius: 18.5px;
-    padding: 20px 19px;
-    min-height: 110px;
+    border-radius: 20px;
+    padding: 27px 23px;
+    min-height: 80px;
   }
 
   .modal-prize-card-top {
-    padding-left: 130px;
-    margin-top: 10px;
+    padding-left: 140px;
+    margin-top: 11px;
   }
 
   .modal-prize-card-bottom {
-    padding-right: 15px;
+    padding-right: 16px;
   }
 
   .modal-prize-title {
-    font-size: 14.5px;
+    font-size: 16px;
+    padding-left: 25px;
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 11px;
+    font-size: 13px;
+    padding-left: 1px;
+
   }
 
   .modal-prize-desc {
-    font-size: 9px;
+    font-size: 7px;
+    padding-left: 25px;
   }
 
   .modal-prize-img-cat {
-    width: 110px;
-    left: 8px;
+    width: 100px;
+    left: 10px;
     bottom: 0;
   }
 
   .modal-prize-img-food {
-    width: min(220px, 50vw);
-    right: 0;
-    bottom: 0;
+    width: 39%;
+    right: 1;
+    top: 0;
+
   }
 
   .modal-qualification-text {
-    font-size: 10px;
-    margin-top: 30px;
+    font-size: 11px;
+    margin-top: 32px;
     padding: 0;
     text-align: left;
   }
 
   .modal-btn {
-    padding: 10px 47px;
-    font-size: 16px;
+    padding: 11px 52px;
+    font-size: 17px;
     margin: 0 auto 30px;
   }
 }
@@ -574,7 +580,7 @@
   }
 
   .modal-prize-card-bottom {
-   padding-left: 10px;
+    padding-left: 10px;
   }
 
   .modal-prize-card-bottom .modal-prize-content {
@@ -589,7 +595,7 @@
 
   .modal-prize-card-bottom .modal-prize-title {
     font-size: 12px;
-  
+
   }
 
   .modal-prize-desc {
@@ -633,84 +639,89 @@
     height: 100%;
     min-height: 100vh;
     border-radius: 0;
-    padding: 36px 19px 65px 19px;
+    padding: 2px 20px 70px 20px;
     border: none;
   }
 
   .modal-section {
-    margin-bottom: 23px;
+    margin-bottom: 25px;
   }
 
   .modal-title {
-    font-size: 30px;
-    margin-bottom: 17px;
+    font-size: 32px;
+    margin-bottom: 10px;
     text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 30px;
-    margin-bottom: 24px;
+    font-size: 32px;
+    margin-bottom: 25px;
   }
 
   .modal-step-number {
-    width: 25px;
-    height: 25px;
-    font-size: 12px;
-  }
-
-  .modal-step-text {
+    width: 26px;
+    height: 26px;
     font-size: 13px;
   }
 
+  .modal-step-text {
+    font-size: 14px;
+  }
+
   .modal-prize-card {
-    border-radius: 19px;
-    padding: 20px 19px;
-    min-height: 110px;
+    border-radius: 20px;
+    padding: 27px 23px;
+    min-height: 80px;
   }
 
   .modal-prize-card-top {
-    padding-left: 130px;
-    margin-top: 10px;
+    padding-left: 140px;
+    margin-top: 11px;
   }
 
   .modal-prize-card-bottom {
-    padding-right: 15px;
+    padding-right: 16px;
   }
 
   .modal-prize-title {
-    font-size: 15px;
+    font-size: 16px;
+    padding-left: 25px;
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 11px;
+    font-size: 13px;
+    padding-left: 1px;
+
   }
 
   .modal-prize-desc {
-    font-size: 9px;
+    font-size: 7px;
+    padding-left: 25px;
   }
 
   .modal-prize-img-cat {
-    width: 110px;
-    left: 8px;
+    width: 100px;
+    left: 10px;
     bottom: 0;
   }
 
   .modal-prize-img-food {
-    width: min(225px, 50vw);
-    right: 0;
-    bottom: 0;
+    width: 39%;
+    right: 1;
+    top: 0;
+
   }
 
   .modal-qualification-text {
-    font-size: 10px;
-    margin-top: 30px;
+    font-size: 11px;
+    margin-top: 32px;
     padding: 0;
     text-align: left;
   }
 
   .modal-btn {
-    padding: 10px 48px;
-    font-size: 16px;
+    padding: 11px 52px;
+    font-size: 17px;
     margin: 0 auto 30px;
   }
 }
@@ -726,101 +737,90 @@
     height: 100%;
     min-height: 100vh;
     border-radius: 0;
-    padding: 35px 18px 65px 18px;
+    padding: 2px 20px 70px 20px;
     border: none;
   }
 
   .modal-section {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
 
   .modal-title {
-    font-size: 28px;
-    margin-bottom: 15px;
+    font-size: 32px;
+    margin-bottom: 10px;
     text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 28px;
-    margin-bottom: 22px;
-  }
-
-  .modal-steps {
-    gap: 10px;
-  }
-
-  .modal-step {
-    gap: 10px;
+    font-size: 32px;
+    margin-bottom: 25px;
   }
 
   .modal-step-number {
-    width: 24px;
-    height: 24px;
-    font-size: 12px;
-    border-width: 1.5px;
-  }
-
-  .modal-step-text {
+    width: 26px;
+    height: 26px;
     font-size: 13px;
   }
 
-  .modal-prizes {
-    gap: 15px;
+  .modal-step-text {
+    font-size: 14px;
   }
 
   .modal-prize-card {
-    border-radius: 18px;
-    padding: 20px 18px;
-    min-height: 100px;
+    border-radius: 20px;
+    padding: 27px 23px;
+    min-height: 80px;
   }
 
   .modal-prize-card-top {
-    padding-left: 120px;
-    padding-right: 15px;
-    margin-top: 10px;
+    padding-left: 100px;
+    margin-top: 11px;
   }
 
   .modal-prize-card-bottom {
-    padding-right: 14px;
-    margin-top: 5px;
+    padding-right: 16px;
   }
 
   .modal-prize-title {
-    font-size: 15px;
+    font-size: 16px;
+    padding-left: 25px;
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 11px;
+    font-size: 10px;
+    padding-left: 1px;
+
   }
 
   .modal-prize-desc {
-    font-size: 9px;
+    font-size: 7px;
+    padding-left: 25px;
   }
 
   .modal-prize-img-cat {
     width: 100px;
-    left: 8px;
+    left: 10px;
     bottom: 0;
   }
 
   .modal-prize-img-food {
-    width: min(210px, 50vw);
-    right: 0;
-    bottom: 0;
+    width: 39%;
+    right: 1;
+    top: 0;
+
   }
 
   .modal-qualification-text {
-    font-size: 10px;
-    margin-top: 28px;
+    font-size: 11px;
+    margin-top: 32px;
     padding: 0;
     text-align: left;
   }
 
   .modal-btn {
-    padding: 10px 45px;
-    font-size: 16px;
-    border-radius: 10px;
-    margin: 0 auto 25px;
+    padding: 11px 52px;
+    font-size: 17px;
+    margin: 0 auto 30px;
   }
 }
 
@@ -835,86 +835,90 @@
     height: 100%;
     min-height: 100vh;
     border-radius: 0;
-    padding: 30px 15px 60px 15px;
+    padding: 2px 20px 70px 20px;
     border: none;
   }
 
   .modal-section {
-    margin-bottom: 18px;
+    margin-bottom: 25px;
   }
 
   .modal-title {
-    font-size: 24px;
-    margin-bottom: 12px;
+    font-size: 29px;
+    margin-bottom: 10px;
     text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 24px;
-    margin-bottom: 18px;
+    font-size: 22px;
+    margin-bottom: 25px;
   }
 
   .modal-step-number {
-    width: 22px;
-    height: 22px;
-    font-size: 11px;
+    width: 26px;
+    height: 26px;
+    font-size: 13px;
   }
 
   .modal-step-text {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .modal-prize-card {
-    border-radius: 16px;
-    padding: 18px 18px;
-    min-height: 90px;
+    border-radius: 20px;
+    padding: 27px 23px;
+    min-height: 80px;
   }
 
   .modal-prize-card-top {
-    padding-left: 115px;
-    margin-top: 8px;
+    padding-left: 100px;
+    margin-top: 11px;
   }
 
   .modal-prize-card-bottom {
-    padding-right: 12px;
+    padding-right: 16px;
   }
 
   .modal-prize-title {
-    font-size: 13px;
+    font-size: 16px;
+    padding-left: 25px;
   }
 
   .modal-prize-card-bottom .modal-prize-title {
     font-size: 10px;
+    padding-left: 1px;
+
   }
 
   .modal-prize-desc {
-    font-size: 8px;
+    font-size: 7px;
+    padding-left: 25px;
   }
 
   .modal-prize-img-cat {
-    width: 95px;
-    left: 8px;
+    width: 100px;
+    left: 10px;
     bottom: 0;
   }
 
   .modal-prize-img-food {
-    width: min(185px, 50vw);
-    right: 0;
-    bottom: 0;
+    width: 39%;
+    right: 1;
+    top: 0;
+
   }
 
   .modal-qualification-text {
-    font-size: 9px;
-    margin-top: 25px;
+    font-size: 11px;
+    margin-top: 32px;
     padding: 0;
     text-align: left;
   }
 
   .modal-btn {
-    padding: 9px 38px;
-    font-size: 14px;
-    border-radius: 9px;
-    margin: 0 auto 20px;
+    padding: 11px 52px;
+    font-size: 17px;
+    margin: 0 auto 30px;
   }
 }
 
@@ -973,7 +977,7 @@
   .modal-prize-card {
     border-radius: 14px;
     padding: 15px 12px;
-    min-height: 75px;
+    min-height: 60px;
   }
 
   .modal-prize-card-top {
@@ -986,15 +990,15 @@
   }
 
   .modal-prize-title {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 9px;
+    font-size: 8px;
   }
 
   .modal-prize-desc {
-    font-size: 7px;
+    font-size: 6px;
   }
 
   .modal-prize-img-cat {
@@ -1004,9 +1008,11 @@
   }
 
   .modal-prize-img-food {
-    width: min(160px, 50vw);
-    right: 0;
-    bottom: 0;
+    width: 49%;
+    right: -9px;
+
+    position: absolute;
+    top: -10px;
   }
 
   .modal-qualification-text {
