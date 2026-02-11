@@ -142,7 +142,13 @@ function App() {
         .eq('id', session.user.id);
       if (error) throw error;
     } catch (err) {
-      console.error('Error updating profile:', err);
+      console.error('Supabase Profile Update Error:', {
+        message: err.message,
+        code: err.code,
+        details: err.details,
+        hint: err.hint
+      });
+      throw err; // Re-throw so callers know it failed
     }
   }, [session]);
 
@@ -284,19 +290,19 @@ function App() {
     const newXP = progress.totalXP + score;
     // Use helper function to get current date
     const dateStr = getCurrentDateString();
-    
+
     const newActivity = {
       text: `You earned ${score} points playing midnight paws`,
       date: dateStr
     };
-    
+
     // Calculate game time spent in this session (in seconds)
     let sessionTime = 0;
     if (gameStartTime) {
       sessionTime = Math.floor((Date.now() - gameStartTime) / 1000);
     }
     const totalGameTime = (progress.gameTimeSpent || 0) + sessionTime;
-    
+
     const activities = progress.activities || [];
     const updated = {
       totalXP: newXP,
@@ -417,7 +423,7 @@ function App() {
 
     // Use helper function to get current date
     const dateStr = getCurrentDateString();
-    
+
     const newActivity = {
       text: 'You uploaded a video',
       date: dateStr
@@ -432,10 +438,10 @@ function App() {
     saveProgress(updated);
 
     try {
-      // Fetch current profile to get existing receipt_data and video_url
+      // Fetch current profile to get existing records
       const { data: currentProfile, error: fetchError } = await supabase
         .from('profiles')
-        .select('receipt_data, video_url')
+        .select('*')
         .eq('id', session.user.id)
         .single();
 
@@ -443,34 +449,24 @@ function App() {
         throw fetchError;
       }
 
-      // Prepare receipt_data array - append new receipt if provided (store all receipts)
-      let receiptData = currentProfile?.receipt_data || [];
-      if (receiptUrl) {
-        receiptData = [...receiptData, receiptUrl];
-      }
+      // Prepare updated arrays - only update store_name as requested
+      const storeNames = [...(currentProfile?.store_name || []), storeName || ''];
 
-      // Prepare video_url array - append new video URL (store all videos as JSONB array)
-      let videoUrls = currentProfile?.video_url || [];
-      if (videoUrl) {
-        videoUrls = [...videoUrls, videoUrl];
-      }
-
-      // Update profile with video URL, receipt data, and store name
+      // Update profile with synced JSONB arrays
       const updates = {
         videos_count: updated.videosCount,
         activities: updated.activities,
-        video_url: videoUrls, // Store all video URLs as JSONB array
-        receipt_data: receiptData // Store all receipts as JSONB array
+        store_name: storeNames
       };
-
-      // Only add store_name if provided
-      if (storeName) {
-        updates.store_name = storeName;
-      }
 
       await updateProfile(updates);
     } catch (err) {
-      console.error('Error updating profile with upload data:', err);
+      console.error('CRITICAL: Error updating profile with upload data:', {
+        message: err.message,
+        details: err.details,
+        hint: err.hint,
+        code: err.code
+      });
     }
   }, [progress, session, updateProfile]);
 

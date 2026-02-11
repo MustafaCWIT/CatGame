@@ -348,7 +348,7 @@
   }
 
   .modal-section {
-    margin-bottom: 25px;
+    margin-bottom: 2px;
   }
 
   .modal-title {
@@ -374,8 +374,8 @@
 
   .modal-prize-card {
     border-radius: 20px;
-    padding: 27px 23px;
-    min-height: 80px;
+    padding: 20px 23px;
+    min-height: 70px;
   }
 
   .modal-prize-card-top {
@@ -393,7 +393,7 @@
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 13px;
+    font-size: 12px;
     padding-left: 1px;
 
   }
@@ -410,9 +410,12 @@
   }
 
   .modal-prize-img-food {
-    width: 39%;
-    right: 1;
-    top: 0;
+    width: 40%;
+    right: -9px;
+
+    position: absolute;
+    top: -10px;
+
 
   }
 

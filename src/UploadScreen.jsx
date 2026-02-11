@@ -57,7 +57,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
     }
 
     if (!userId) {
-      setUploadError('You must be logged in to upload files.');
+      setUploadError('You must be logged in to upload metadata.');
       return;
     }
 
@@ -65,54 +65,12 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
     setUploadError(null);
 
     try {
-      let videoUrl = null;
-      let receiptUrl = null;
+      // Skip uploading files to Supabase Storage as requested
+      // We only pass the store name to the parent component
 
-      // Upload video to Supabase storage
-      const videoPath = `${userId}/video.mp4`;
-      const { data: videoData, error: videoError } = await supabase.storage
-        .from('Videos')
-        .upload(videoPath, selectedVideoFile, {
-          cacheControl: '3600',
-          upsert: true // Allow overwriting if video already exists
-        });
-
-      if (videoError) {
-        throw new Error(`Video upload failed: ${videoError.message}`);
-      }
-
-      // Get public URL for video
-      const { data: videoUrlData } = supabase.storage
-        .from('Videos')
-        .getPublicUrl(videoPath);
-      
-      videoUrl = videoUrlData.publicUrl;
-
-      // Upload receipt if provided
-      if (selectedReceiptFile) {
-        const receiptPath = `${userId}/receipt_${Date.now()}.${selectedReceiptFile.name.split('.').pop()}`;
-        const { data: receiptData, error: receiptError } = await supabase.storage
-          .from('Videos')
-          .upload(receiptPath, selectedReceiptFile, {
-            cacheControl: '3600',
-            upsert: false
-          });
-
-        if (receiptError) {
-          throw new Error(`Receipt upload failed: ${receiptError.message}`);
-        }
-
-        // Get public URL for receipt
-        const { data: receiptUrlData } = supabase.storage
-          .from('Videos')
-          .getPublicUrl(receiptPath);
-        
-        receiptUrl = receiptUrlData.publicUrl;
-      }
-
-      // Call the onUpload callback with file URLs
       if (onUpload) {
-        await onUpload(videoUrl, receiptUrl, storeName);
+        // Pass nulls for file URLs since we are no longer uploading them
+        await onUpload(null, null, storeName);
       }
 
       // Redirect to thank you screen
@@ -120,7 +78,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
         onGoToThankYou();
       }
     } catch (err) {
-      console.error('Error processing upload:', err);
+      console.error('Error processing upload metadata:', err);
       setUploadError(err.message || 'Failed to process upload. Please try again.');
     } finally {
       setUploading(false);
@@ -209,6 +167,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
               value={storeName}
               onChange={(e) => setStoreName(e.target.value)}
               disabled={uploading}
+              autoComplete="off"
             />
           </div>
 
