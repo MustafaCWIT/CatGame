@@ -131,12 +131,12 @@
 }
 
 .modal-prize-card-bottom {
-  padding-right: 200px;
+  padding-right: 20px;
   margin-top: 5px;
 }
 
 .modal-prize-card-bottom .modal-prize-title {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .modal-prize-content {
@@ -180,9 +180,9 @@
 
 .modal-prize-img-food {
   position: absolute;
-  right: -18px;
+  right: 0;
   bottom: 0;
-  width: 360px;
+  width: min(360px, 50vw);
   height: auto;
   z-index: 2;
   object-fit: contain;
@@ -289,7 +289,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 160px;
+    padding-right: 1px;
   }
 
   .modal-prize-title {
@@ -297,7 +297,7 @@
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 18px;
+    font-size: 19px;
   }
 
   .modal-prize-desc {
@@ -311,9 +311,11 @@
   }
 
   .modal-prize-img-food {
-    width: 290px;
-    right: -15px;
+    width: min(290px, 45vw);
+    right: -20px;
     bottom: -39px;
+  
+    
   }
 
   .modal-qualification-text {
@@ -382,7 +384,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 135px;
+    padding-right: 16px;
   }
 
   .modal-prize-title {
@@ -391,7 +393,7 @@
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 12px;
+    font-size: 10px;
     padding-left: 25px;
 
   }
@@ -408,8 +410,8 @@
   }
 
   .modal-prize-img-food {
-    width: 245px;
-    right: -14px;
+    width: min(225px, 50vw);
+    right: 0;
     bottom: 0;
   }
 
@@ -479,7 +481,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 140px;
+    padding-right: 15px;
   }
 
   .modal-prize-title {
@@ -487,7 +489,7 @@
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 14px;
+    font-size: 11px;
   }
 
   .modal-prize-desc {
@@ -501,8 +503,8 @@
   }
 
   .modal-prize-img-food {
-    width: 220px;
-    right: -13px;
+    width: min(220px, 50vw);
+    right: 0;
     bottom: 0;
   }
 
@@ -541,13 +543,13 @@
 
   .modal-title {
     font-size: 30px;
-    margin-bottom: 17px;
+    margin-bottom: 10px;
     text-align: center;
   }
 
   .modal-subtitle {
     font-size: 30px;
-    margin-bottom: 24px;
+    margin-bottom: 49px;
   }
 
   .modal-step-number {
@@ -562,17 +564,23 @@
 
   .modal-prize-card {
     border-radius: 19px;
-    padding: 15px 19px;
-    min-height: 84px;
+    padding: 15px 1px;
+    min-height: 76px;
   }
 
   .modal-prize-card-top {
-    padding-left: 130px;
+    padding-left: 110px;
     margin-top: 10px;
   }
 
   .modal-prize-card-bottom {
-    padding-right: 140px;
+   padding-left: 10px;
+  }
+
+  .modal-prize-card-bottom .modal-prize-content {
+    text-align: left;
+    align-items: flex-start;
+    margin-right: 10px;
   }
 
   .modal-prize-title {
@@ -580,7 +588,8 @@
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 14px;
+    font-size: 12px;
+  
   }
 
   .modal-prize-desc {
@@ -594,9 +603,9 @@
   }
 
   .modal-prize-img-food {
-    width: 220px;
-    right: -13px;
-    bottom: 0;
+    width: min(180px, 90vw);
+    right: -14px;
+    bottom: -28px;
   }
 
   .modal-qualification-text {
@@ -665,7 +674,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 145px;
+    padding-right: 15px;
   }
 
   .modal-prize-title {
@@ -673,7 +682,7 @@
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 14px;
+    font-size: 11px;
   }
 
   .modal-prize-desc {
@@ -687,8 +696,8 @@
   }
 
   .modal-prize-img-food {
-    width: 225px;
-    right: -13px;
+    width: min(225px, 50vw);
+    right: 0;
     bottom: 0;
   }
 
@@ -772,7 +781,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 135px;
+    padding-right: 14px;
     margin-top: 5px;
   }
 
@@ -781,7 +790,7 @@
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 14px;
+    font-size: 11px;
   }
 
   .modal-prize-desc {
@@ -795,8 +804,8 @@
   }
 
   .modal-prize-img-food {
-    width: 210px;
-    right: -12px;
+    width: min(210px, 50vw);
+    right: 0;
     bottom: 0;
   }
 
@@ -867,7 +876,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 120px;
+    padding-right: 12px;
   }
 
   .modal-prize-title {
@@ -875,7 +884,7 @@
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .modal-prize-desc {
@@ -889,8 +898,8 @@
   }
 
   .modal-prize-img-food {
-    width: 185px;
-    right: -10px;
+    width: min(185px, 50vw);
+    right: 0;
     bottom: 0;
   }
 
@@ -973,7 +982,7 @@
   }
 
   .modal-prize-card-bottom {
-    padding-right: 100px;
+    padding-right: 10px;
   }
 
   .modal-prize-title {
@@ -981,7 +990,7 @@
   }
 
   .modal-prize-card-bottom .modal-prize-title {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   .modal-prize-desc {
@@ -995,8 +1004,8 @@
   }
 
   .modal-prize-img-food {
-    width: 160px;
-    right: -8px;
+    width: min(160px, 50vw);
+    right: 0;
     bottom: 0;
   }
 
