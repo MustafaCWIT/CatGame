@@ -250,7 +250,7 @@
     font-size: 34px;
     margin-bottom: 20px;
     text-align: center;
-    margin-top: 10px;          
+    margin-top: 100px;          
   }
 
   .modal-subtitle {
@@ -642,7 +642,7 @@
   }
 
   .modal-title {
-    font-size: 20px;
+    font-size: 26px;
     margin-bottom: 17px;
     text-align: center;
   }
@@ -697,10 +697,8 @@
 
   .modal-prize-img-food {
     width: 44%;
-    right: 0;
-    bottom: 0;
-    margin-top: 0px;
-
+    right: -11px;
+    margin-bottom: 20px;
   }
 
   .modal-qualification-text {
