@@ -311,11 +311,9 @@
   }
 
   .modal-prize-img-food {
-    width: 45%;
-    right: -20px;
-    bottom: -39px;
-  
-    
+    width: 25%;
+    right: -1px;
+    bottom: -2px;
   }
 
   .modal-qualification-text {
@@ -410,7 +408,7 @@
   }
 
   .modal-prize-img-food {
-    width: 50%;
+    width: 35%;
     right: 0;
     bottom: 0;
   }
@@ -503,7 +501,7 @@
   }
 
   .modal-prize-img-food {
-    width: 50%;
+    width: 35%;
     right: 0;
     bottom: 0;
   }
@@ -603,7 +601,7 @@
   }
 
   .modal-prize-img-food {
-    width: 45%;
+    width: 32%;
     right: -14px;
     bottom: -28px;
   }
@@ -696,9 +694,9 @@
   }
 
   .modal-prize-img-food {
-    width: 44%;
-    right: -11px;
-    margin-bottom: 20px;
+    width: 36%;
+    right: -1px;
+    margin-bottom: 1px;
   }
 
   .modal-qualification-text {
@@ -810,7 +808,7 @@
   }
 
   .modal-prize-img-food {
-    width: 44%;
+    width: 32%;
     right: -11px;
     margin-bottom: 20px;
   }
@@ -906,7 +904,7 @@
   }
 
   .modal-prize-img-food {
-    width: 50%;
+    width: 35%;
     right: 0;
     bottom: 0;
   }
@@ -1012,7 +1010,7 @@
   }
 
   .modal-prize-img-food {
-    width: 50%;
+    width: 35%;
     right: 0;
     bottom: 0;
   }

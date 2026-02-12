@@ -10,6 +10,52 @@ const {
 
 const ASSETS = ALL_ASSETS;
 
+// Common country codes
+const countryCodes = [
+  { code: '+1', country: 'US/CA' },
+  { code: '+44', country: 'UK' },
+  { code: '+61', country: 'AU' },
+  { code: '+971', country: 'UAE' },
+  { code: '+966', country: 'SA' },
+  { code: '+974', country: 'QA' },
+  { code: '+965', country: 'KW' },
+  { code: '+973', country: 'BH' },
+  { code: '+968', country: 'OM' },
+  { code: '+961', country: 'LB' },
+  { code: '+962', country: 'JO' },
+  { code: '+20', country: 'EG' },
+  { code: '+91', country: 'IN' },
+  { code: '+86', country: 'CN' },
+  { code: '+81', country: 'JP' },
+  { code: '+82', country: 'KR' },
+  { code: '+33', country: 'FR' },
+  { code: '+49', country: 'DE' },
+  { code: '+39', country: 'IT' },
+  { code: '+34', country: 'ES' },
+  { code: '+31', country: 'NL' },
+  { code: '+32', country: 'BE' },
+  { code: '+41', country: 'CH' },
+  { code: '+46', country: 'SE' },
+  { code: '+47', country: 'NO' },
+  { code: '+45', country: 'DK' },
+  { code: '+358', country: 'FI' },
+  { code: '+351', country: 'PT' },
+  { code: '+353', country: 'IE' },
+  { code: '+48', country: 'PL' },
+  { code: '+7', country: 'RU' },
+  { code: '+90', country: 'TR' },
+  { code: '+27', country: 'ZA' },
+  { code: '+55', country: 'BR' },
+  { code: '+52', country: 'MX' },
+  { code: '+54', country: 'AR' },
+  { code: '+65', country: 'SG' },
+  { code: '+60', country: 'MY' },
+  { code: '+66', country: 'TH' },
+  { code: '+84', country: 'VN' },
+  { code: '+62', country: 'ID' },
+  { code: '+63', country: 'PH' },
+];
+
 export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -18,6 +64,7 @@ export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
     phone: '',
     catName: ''
   });
+  const [countryCode, setCountryCode] = useState('+971'); 
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -47,7 +94,11 @@ export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isLoading) onSignup(formData);
+    if (!isLoading) {
+      // Combine country code with phone number
+      const phoneWithCode = countryCode + formData.phone;
+      onSignup({ ...formData, phone: phoneWithCode });
+    }
   };
 
   return (
@@ -111,16 +162,30 @@ export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
             required
             disabled={isLoading}
           />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone Number"
-            value={formData.phone}
-            onChange={handleChange}
-            className="signup-input"
-            required
-            disabled={isLoading}
-          />
+          <div className="signup-phone-wrapper">
+            <select
+              className="signup-phone-code"
+              value={countryCode}
+              onChange={(e) => setCountryCode(e.target.value)}
+              disabled={isLoading}
+            >
+              {countryCodes.map((country) => (
+                <option key={country.code} value={country.code}>
+                  {country.code}
+                </option>
+              ))}
+            </select>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              value={formData.phone}
+              onChange={handleChange}
+              className="signup-input signup-phone-input"
+              required
+              disabled={isLoading}
+            />
+          </div>
           <input
             type="text"
             name="catName"

@@ -118,6 +118,35 @@
   transform: scale(0.95);
 }
 
+/* Logout button */
+.home-logout-btn {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  background: rgba(156, 39, 176, 0.9);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 3;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.home-logout-btn:hover {
+  transform: scale(1.05);
+  background: rgba(156, 39, 176, 1);
+}
+
+.home-logout-btn:active {
+  transform: scale(0.95);
+}
+
 /* Content */
 .home-content {
   position: relative;
@@ -494,6 +523,13 @@
     right: 20px;
   }
 
+  .home-logout-btn {
+    width: 40px;
+    height: 40px;
+    top: 90px;
+    right: 20px;
+  }
+
   .home-content {
     max-width: 100%;
     padding: 10px 12px 0px 12px;
@@ -614,9 +650,9 @@
   }
 
   .home-prize-img-right {
-    width: 90px;
-    right: -3px;
-    bottom: -8px;
+    width: 22%;
+    right: 1px;
+    bottom: 9px;
   }
 }
 
@@ -640,6 +676,13 @@
     width: 30px;
     height: 30px;
     top: 20px;
+    right: 20px;
+  }
+
+  .home-logout-btn {
+    width: 35px;
+    height: 35px;
+    top: 60px;
     right: 20px;
   }
 
@@ -776,6 +819,13 @@
     right: 21px;
   }
 
+  .home-logout-btn {
+    width: 38px;
+    height: 38px;
+    top: 75px;
+    right: 21px;
+  }
+
   .home-content {
     max-width: 100%;
     padding: 10px 14px 0px 14px;
@@ -817,7 +867,7 @@
 
   .home-btn {
     padding: 13px 6px;
-    font-size: 14px;
+    font-size: 12px;
     border-width: 3px;
     border-radius: 13px;
   }
@@ -873,7 +923,7 @@
   }
 
   .home-prize-text span {
-    font-size: 11px;
+    font-size: 9px;
   }
 
   .home-prize-img-left {
@@ -884,8 +934,8 @@
 
   .home-prize-img-right {
     width: 65px;
-    right: -4px;
-    bottom: -11px;
+    right: 3px;
+    bottom: 9px;
   }
 }
 
@@ -907,6 +957,13 @@
     width: 39.5px;
     height: 39.5px;
     top: 19.5px;
+    right: 19.5px;
+  }
+
+  .home-logout-btn {
+    width: 36px;
+    height: 36px;
+    top: 65px;
     right: 19.5px;
   }
 
@@ -1039,6 +1096,13 @@
     width: 39.5px;
     height: 39.5px;
     top: 19.5px;
+    right: 19.5px;
+  }
+
+  .home-logout-btn {
+    width: 36px;
+    height: 36px;
+    top: 65px;
     right: 19.5px;
   }
 
@@ -1295,6 +1359,13 @@
     right: 18px;
   }
 
+  .home-logout-btn {
+    width: 36px;
+    height: 36px;
+    top: 68px;
+    right: 18px;
+  }
+
   .home-content {
     max-width: 100%;
     padding: 8px 10px 0px 10px;
@@ -1433,6 +1504,13 @@
     width: 29px;
     height: 29px;
     top: 21px;
+    right: 21px;
+  }
+
+  .home-logout-btn {
+    width: 32px;
+    height: 32px;
+    top: 58px;
     right: 21px;
   }
 
