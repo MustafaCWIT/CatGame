@@ -250,13 +250,13 @@
     font-size: 34px;
     margin-bottom: 20px;
     text-align: center;
-    margin-top: 50px;          
+    margin-top: 10px;          
   }
 
   .modal-subtitle {
     font-size: 34px;
     margin-bottom: 28px;
-    margin-top: 50px;
+    margin-top: 10px;
   }
 
   .modal-steps {
@@ -642,13 +642,13 @@
   }
 
   .modal-title {
-    font-size: 30px;
+    font-size: 20px;
     margin-bottom: 17px;
     text-align: center;
   }
 
   .modal-subtitle {
-    font-size: 30px;
+    font-size: 20px;
     margin-bottom: 24px;
   }
 
@@ -665,7 +665,7 @@
   .modal-prize-card {
     border-radius: 19px;
     padding: 20px 19px;
-    min-height: 110px;
+    min-height: 80px;
   }
 
   .modal-prize-card-top {
@@ -696,9 +696,11 @@
   }
 
   .modal-prize-img-food {
-    width: 50%;
+    width: 44%;
     right: 0;
     bottom: 0;
+    margin-top: 0px;
+
   }
 
   .modal-qualification-text {
@@ -799,7 +801,7 @@
   }
 
   .modal-prize-desc {
-    font-size: 9px;
+    font-size: 8px;
   }
 
   .modal-prize-img-cat {
