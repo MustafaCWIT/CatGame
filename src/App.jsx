@@ -388,12 +388,17 @@ function App() {
   }, []);
 
   const handleViewProfile = useCallback(() => {
+    if (!session) {
+      // If user is not logged in, show login modal
+      setShowLoginModal(true);
+      return;
+    }
     // Reload progress to ensure we have the latest data
     const latestProgress = loadProgress();
     setProgress(latestProgress);
     setAutoScrollThemes(false);
     setScreen('levels');
-  }, []);
+  }, [session]);
 
   const handleResetProgress = useCallback(async () => {
     if (window.confirm('Reset all progress? This will set XP to 0 and cannot be undone.')) {
@@ -548,6 +553,7 @@ function App() {
         onGoBack={handleGoHome}
         onVideoUpload={handleGoToUpload}
         autoScrollToThemes={autoScrollThemes}
+        onLogout={session ? handleLogout : null}
       />
     );
   } else if (screen === 'upload') {

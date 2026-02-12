@@ -16,7 +16,8 @@ export default function LevelsScreen({
   onStartGame,
   onGoBack,
   onVideoUpload,
-  autoScrollToThemes = false
+  autoScrollToThemes = false,
+  onLogout
 }) {
   const [selectedTheme, setSelectedTheme] = useState('midnight');
   const [isReady, setIsReady] = useState(false);
@@ -172,6 +173,15 @@ export default function LevelsScreen({
             ))}
           </div>
         </div>
+
+        {/* Logout button */}
+        {onLogout && (
+          <div className="levels-logout-section">
+            <button className="levels-logout-btn" onClick={onLogout}>
+              logout
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -118,35 +118,6 @@
   transform: scale(0.95);
 }
 
-/* Logout button */
-.home-logout-btn {
-  position: fixed;
-  top: 100px;
-  right: 30px;
-  width: 40px;
-  height: 40px;
-  background: rgba(156, 39, 176, 0.9);
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  z-index: 3;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.home-logout-btn:hover {
-  transform: scale(1.05);
-  background: rgba(156, 39, 176, 1);
-}
-
-.home-logout-btn:active {
-  transform: scale(0.95);
-}
-
 /* Content */
 .home-content {
   position: relative;
