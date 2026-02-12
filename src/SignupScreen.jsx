@@ -61,10 +61,9 @@ export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
     fullName: '',
     email: '',
     password: '',
-    phone: '',
+    phone: '+971',
     catName: ''
   });
-  const [countryCode, setCountryCode] = useState('+971'); 
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -95,9 +94,8 @@ export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isLoading) {
-      // Combine country code with phone number
-      const phoneWithCode = countryCode + formData.phone;
-      onSignup({ ...formData, phone: phoneWithCode });
+      // Phone already includes the prefix in a single field
+      onSignup(formData);
     }
   };
 
@@ -162,30 +160,16 @@ export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
             required
             disabled={isLoading}
           />
-          <div className="signup-phone-wrapper">
-            <select
-              className="signup-phone-code"
-              value={countryCode}
-              onChange={(e) => setCountryCode(e.target.value)}
-              disabled={isLoading}
-            >
-              {countryCodes.map((country) => (
-                <option key={country.code} value={country.code}>
-                  {country.code}
-                </option>
-              ))}
-            </select>
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone Number"
-              value={formData.phone}
-              onChange={handleChange}
-              className="signup-input signup-phone-input"
-              required
-              disabled={isLoading}
-            />
-          </div>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number (e.g., +971)"
+            value={formData.phone}
+            onChange={handleChange}
+            className="signup-input"
+            required
+            disabled={isLoading}
+          />
           <input
             type="text"
             name="catName"
