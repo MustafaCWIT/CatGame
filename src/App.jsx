@@ -557,6 +557,7 @@ function App() {
         onUpload={handleVideoUpload}
         userId={session?.user?.id}
         onGoToThankYou={() => setScreen('thankyou')}
+        onProfileClick={handleViewProfile}
       />
     );
   } else if (screen === 'thankyou') {
