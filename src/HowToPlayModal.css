@@ -726,8 +726,13 @@
     height: 100%;
     min-height: 100vh;
     border-radius: 0;
-    padding: 5px 18px 65px 18px;
+    padding: 8px 18px 50px 18px;
     border: none;
+    justify-content: flex-start;
+  }
+
+  .modal-content-wrapper {
+    flex: 0 0 auto;
   }
 
   .modal-section {
@@ -811,7 +816,8 @@
 
   .modal-qualification-text {
     font-size: 10px;
-    margin-top: 28px;
+    margin-top: 13px;
+    margin-bottom: 20px;
     padding: 0;
     text-align: left;
   }
@@ -820,8 +826,8 @@
     padding: 10px 45px;
     font-size: 16px;
     border-radius: 10px;
-   
-
+    margin: 0 auto;
+    align-self: center;
   }
 }
 
