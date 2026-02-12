@@ -867,7 +867,7 @@
 
   .home-btn {
     padding: 13px 6px;
-    font-size: 14px;
+    font-size: 12px;
     border-width: 3px;
     border-radius: 13px;
   }
@@ -923,7 +923,7 @@
   }
 
   .home-prize-text span {
-    font-size: 11px;
+    font-size: 9px;
   }
 
   .home-prize-img-left {
@@ -934,8 +934,8 @@
 
   .home-prize-img-right {
     width: 65px;
-    right: -4px;
-    bottom: -11px;
+    right: 3px;
+    bottom: 9px;
   }
 }
 
