@@ -12,8 +12,7 @@ const ASSETS = ALL_ASSETS;
 
 export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
   const [formData, setFormData] = useState({
-    phone: '+971',
-    password: ''
+    phone: '+971'
   });
   const [isReady, setIsReady] = useState(false);
 
@@ -77,7 +76,7 @@ export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
 
         {/* Title */}
         <h1 className="signup-title">Signup to play</h1>
-        <p className="signup-subtitle">Please fill out the information below.</p>
+        <p className="signup-subtitle">Enter your phone number to continue.</p>
 
         {/* Form */}
         <form className="signup-form" onSubmit={handleSubmit}>
@@ -86,16 +85,6 @@ export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
             name="phone"
             placeholder="Phone Number (e.g., +971XXXXXXXXX)"
             value={formData.phone}
-            onChange={handleChange}
-            className="signup-input"
-            required
-            disabled={isLoading}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
             onChange={handleChange}
             className="signup-input"
             required
