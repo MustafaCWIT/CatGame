@@ -129,8 +129,11 @@ function App() {
   const handleLogout = useCallback(() => {
     setSession(null);
     saveSession(null);
-    setProgress({ totalXP: 0, videosCount: 0, activities: [], gameTimeSpent: 0 });
+    const emptyProgress = { totalXP: 0, videosCount: 0, activities: [], gameTimeSpent: 0 };
+    setProgress(emptyProgress);
+    saveProgress(emptyProgress);
     setUserData({ phone: '' });
+    saveUserData({ phone: '' });
     setScreen('home');
   }, []);
 
@@ -152,15 +155,17 @@ function App() {
       }
 
       if (data) {
-        setProgress({
+        const prog = {
           totalXP: data.total_xp || 0,
           videosCount: data.videos_count || 0,
           activities: data.activities || [],
           gameTimeSpent: data.game_time_spent || 0
-        });
-        setUserData({
-          phone: data.phone || ''
-        });
+        };
+        setProgress(prog);
+        saveProgress(prog);
+        const ud = { phone: data.phone || '' };
+        setUserData(ud);
+        saveUserData(ud);
       }
     } catch (err) {
       console.error('Error fetching profile:', err);
@@ -168,19 +173,31 @@ function App() {
   }, []);
 
   const updateProfile = useCallback(async (updates) => {
-    if (!session?.user) return;
+    if (!session?.user) {
+      console.warn('updateProfile called but no session exists. Updates:', updates);
+      return;
+    }
     try {
-      const { error } = await supabase
+      console.log('Updating profile for user:', session.user.id, 'with updates:', updates);
+      const { data, error } = await supabase
         .from('profiles')
         .update(updates)
-        .eq('id', session.user.id);
-      if (error) throw error;
+        .eq('id', session.user.id)
+        .select(); // Add .select() to get the updated row back
+
+      if (error) {
+        console.error('Supabase UPDATE error:', error);
+        throw error;
+      }
+
+      console.log('Profile updated successfully. Updated row:', data);
     } catch (err) {
       console.error('Supabase Profile Update Error:', {
         message: err.message,
         code: err.code,
         details: err.details,
-        hint: err.hint
+        hint: err.hint,
+        stack: err.stack
       });
       throw err; // Re-throw so callers know it failed
     }
@@ -283,14 +300,18 @@ function App() {
       setSession(newSession);
       saveSession(newSession);
 
-      // Load profile data into state
-      setProgress({
+      // Load profile data into state and localStorage
+      const prog = {
         totalXP: profile.total_xp || 0,
         videosCount: profile.videos_count || 0,
         activities: profile.activities || [],
         gameTimeSpent: profile.game_time_spent || 0
-      });
-      setUserData({ phone: profile.phone || '' });
+      };
+      setProgress(prog);
+      saveProgress(prog);
+      const ud = { phone: profile.phone || '' };
+      setUserData(ud);
+      saveUserData(ud);
 
       setShowLoginModal(false);
       setScreen('starting');
@@ -330,6 +351,14 @@ function App() {
   }, []);
 
   const handleEndGame = useCallback((score) => {
+    console.log('=== handleEndGame CALLED ===');
+    console.log('Score:', score);
+    console.log('Current progress:', progress);
+    console.log('Session exists?', !!session?.user);
+    if (session?.user) {
+      console.log('User ID:', session.user.id);
+    }
+
     const newXP = progress.totalXP + score;
     // Use helper function to get current date
     const dateStr = getCurrentDateString();
@@ -353,18 +382,31 @@ function App() {
       activities: [newActivity, ...activities].slice(0, 10),
       gameTimeSpent: totalGameTime
     };
+
+    console.log('Updated progress object:', updated);
+
     setProgress(updated);
     saveProgress(updated);
     setSessionScore(score);
     setGameStartTime(null); // Reset game start time
     gameStartTimeRef.current = null;
 
-    // Sync to Supabase
-    updateProfile({
-      total_xp: updated.totalXP,
-      activities: updated.activities,
-      game_time_spent: updated.gameTimeSpent
-    });
+    // Sync to Supabase only if session exists
+    if (session?.user) {
+      console.log('Syncing XP and activities to Supabase:', {
+        userId: session.user.id,
+        total_xp: updated.totalXP,
+        activities: updated.activities,
+        game_time_spent: updated.gameTimeSpent
+      });
+      updateProfile({
+        total_xp: updated.totalXP,
+        activities: updated.activities,
+        game_time_spent: updated.gameTimeSpent
+      });
+    } else {
+      console.warn('Cannot sync to Supabase: No active session');
+    }
   }, [progress, session, updateProfile, gameStartTime]);
 
   const handleShowGameOver = useCallback((score) => {
@@ -387,15 +429,20 @@ function App() {
       };
       setProgress(updated);
       saveProgress(updated);
-      // Update in Supabase
-      updateProfile({
-        game_time_spent: totalGameTime
-      });
+      // Update in Supabase only if session exists
+      if (session?.user) {
+        console.log('Saving game time on pause:', totalGameTime);
+        updateProfile({
+          game_time_spent: totalGameTime
+        });
+      } else {
+        console.warn('Cannot save game time: No active session');
+      }
       // Reset start time so we can track resume
       setGameStartTime(null);
       gameStartTimeRef.current = null;
     }
-  }, [progress, gameStartTime, updateProfile]);
+  }, [progress, gameStartTime, session, updateProfile]);
 
   const handleResume = useCallback(() => {
     setIsPaused(false);
@@ -467,7 +514,12 @@ function App() {
   }, []);
 
   const handleVideoUpload = useCallback(async (videoUrl, receiptUrl = null, storeName = null) => {
-    if (!session?.user) return;
+    if (!session?.user) {
+      console.warn('handleVideoUpload called but no session exists');
+      return;
+    }
+
+    console.log('Processing video upload for user:', session.user.id);
 
     // Use helper function to get current date
     const dateStr = getCurrentDateString();
@@ -507,6 +559,7 @@ function App() {
         store_name: storeNames
       };
 
+      console.log('Updating profile with video upload data:', updates);
       await updateProfile(updates);
     } catch (err) {
       console.error('CRITICAL: Error updating profile with upload data:', {
@@ -549,11 +602,21 @@ function App() {
               }
             }}
             onGoHome={() => {
+              // If paused, save XP before going home
+              if (isPaused && sessionScore > 0) {
+                console.log('Going home from pause - saving XP:', sessionScore);
+                handleEndGame(sessionScore);
+              }
               setShowGameOverModal(false);
               setIsPaused(false);
               handleGoHome();
             }}
             onUnlockThemes={() => {
+              // If paused, save XP before ending
+              if (isPaused && sessionScore > 0) {
+                console.log('Ending game from pause - saving XP:', sessionScore);
+                handleEndGame(sessionScore);
+              }
               setShowGameOverModal(false);
               setIsPaused(false);
               handleUnlockThemes();
