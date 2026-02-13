@@ -93,11 +93,7 @@ export default function LevelsScreen({
       <div className="levels-content">
         {/* User Profile */}
         <div className="levels-user-section">
-          <h1 className="levels-user-name">{userData.fullName || 'Stella Metthew'}</h1>
-          <div className="levels-user-info">
-            <span>{userData.email || 'stella@gmail.com'}</span>
-            <span>{userData.phone || '052 2785545'}</span>
-          </div>
+          <h1 className="levels-user-name">{userData.phone || 'Player'}</h1>
         </div>
 
         {/* Stats Section */}
@@ -106,7 +102,7 @@ export default function LevelsScreen({
             <img src={dollarImg} alt="" className="levels-stat-img" />
             <div className="levels-stat-content">
               <span className="levels-stat-label">Points Earned</span>
-              <span className="levels-stat-value">{totalXP.toLocaleString() || '15000'}</span>
+              <span className="levels-stat-value">{totalXP.toLocaleString()}</span>
             </div>
           </div>
           <div className="levels-stat-column">
@@ -114,7 +110,7 @@ export default function LevelsScreen({
               <img src={gameImg} alt="" className="levels-stat-img" />
               <div className="levels-stat-content">
                 <span className="levels-stat-label">Videos uploaded</span>
-                <span className="levels-stat-value">{String(videosCount || 2).padStart(2, '0')}</span>
+                <span className="levels-stat-value">{String(videosCount).padStart(2, '0')}</span>
               </div>
             </div>
             <button className="levels-upload-btn" onClick={onVideoUpload}>
@@ -157,12 +153,9 @@ export default function LevelsScreen({
         <div className="levels-activity-section">
           <h2 className="levels-activity-title">My Activity</h2>
           <div className="levels-activity-list">
-            {(activities.length > 0 ? activities : [
-              { text: "You earned 4500 points playing midnight paws", date: "29/01/2026" },
-              { text: "You earned 4500 points playing midnight paws", date: "29/01/2026" },
-              { text: "You earned 4500 points playing midnight paws", date: "29/01/2026" },
-              { text: "You earned 4500 points playing midnight paws", date: "29/01/2026" }
-            ]).map((activity, index) => (
+            {activities.length === 0 ? (
+              <p className="levels-activity-empty">No activity yet. Play a game to get started!</p>
+            ) : activities.map((activity, index) => (
               <div key={index} className="levels-activity-item">
                 <div className="levels-activity-icon">
                   <img src={gameImg} alt="" className="levels-activity-img" />

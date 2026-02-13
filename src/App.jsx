@@ -3,7 +3,6 @@ import SplashScreen from './SplashScreen';
 import HowToPlayModal from './HowToPlayModal';
 import LoginModal from './LoginModal';
 import Home from './Home';
-import SignupScreen from './SignupScreen';
 import StartingScreen from './StartingScreen';
 import Game from './game/Game';
 import GameOver from './GameOver';
@@ -15,6 +14,8 @@ import { supabase } from './lib/supabase';
 import { useEffect } from 'react';
 import { ALL_ASSETS } from './game/assets';
 
+import { useActivityTracker } from './hooks/useActivityTracker';
+
 function AssetPreloader() {
   return (
     <div style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden', opacity: 0.01, pointerEvents: 'none', zIndex: -1 }}>
@@ -25,6 +26,7 @@ function AssetPreloader() {
   );
 }
 
+// Helper functions for localStorage
 function loadProgress() {
   try {
     const raw = localStorage.getItem('tap-to-purr-progress');
@@ -44,13 +46,52 @@ function loadUserData() {
     const raw = localStorage.getItem('tap-to-purr-user');
     if (raw) return JSON.parse(raw);
   } catch { /* ignore */ }
-  return { fullName: '', email: '', phone: '' };
+  return { phone: '' };
 }
 
 function saveUserData(data) {
   try {
     localStorage.setItem('tap-to-purr-user', JSON.stringify(data));
   } catch { /* ignore */ }
+}
+
+function loadSession() {
+  try {
+    const raw = localStorage.getItem('tap-to-purr-session');
+    if (raw) return JSON.parse(raw);
+  } catch { /* ignore */ }
+  return null;
+}
+
+function saveSession(session) {
+  try {
+    if (session) {
+      localStorage.setItem('tap-to-purr-session', JSON.stringify(session));
+    } else {
+      localStorage.removeItem('tap-to-purr-session');
+    }
+  } catch { /* ignore */ }
+}
+
+// Hash password — uses SHA-256 when available, falls back for non-secure contexts (HTTP)
+async function hashPassword(password) {
+  if (typeof crypto !== 'undefined' && crypto.subtle) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  // Fallback hash for HTTP contexts
+  let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+  for (let i = 0; i < password.length; i++) {
+    const ch = password.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0');
 }
 
 // Helper function to format current date correctly
@@ -88,14 +129,18 @@ function App() {
   const [gameStartTime, setGameStartTime] = useState(null);
   const gameStartTimeRef = useRef(null);
 
-  const handleLogout = useCallback(async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      setScreen('home');
-    } catch (err) {
-      alert(err.message);
-    }
+  // Use Custom Activity Tracker
+  useActivityTracker(session, screen);
+
+  const handleLogout = useCallback(() => {
+    setSession(null);
+    saveSession(null);
+    const emptyProgress = { totalXP: 0, videosCount: 0, activities: [], gameTimeSpent: 0 };
+    setProgress(emptyProgress);
+    saveProgress(emptyProgress);
+    setUserData({ phone: '' });
+    saveUserData({ phone: '' });
+    setScreen('home');
   }, []);
 
   const fetchProfile = useCallback(async (userId) => {
@@ -107,68 +152,70 @@ function App() {
         .single();
 
       if (error) {
-        // If the profile is not found (PGRST116), the user was likely deleted
         if (error.code === 'PGRST116') {
-          console.warn('Profile not found for session, logging out...');
-          handleLogout();
+          console.warn('Profile not found, clearing session...');
+          setSession(null);
+          saveSession(null);
         }
         throw error;
       }
 
       if (data) {
-        setProgress({
+        const prog = {
           totalXP: data.total_xp || 0,
           videosCount: data.videos_count || 0,
           activities: data.activities || [],
           gameTimeSpent: data.game_time_spent || 0
-        });
-        setUserData({
-          fullName: data.full_name || '',
-          email: data.email || '',
-          phone: data.phone || ''
-        });
+        };
+        setProgress(prog);
+        saveProgress(prog);
+        const ud = { phone: data.phone || '' };
+        setUserData(ud);
+        saveUserData(ud);
       }
     } catch (err) {
       console.error('Error fetching profile:', err);
     }
-  }, [handleLogout]);
+  }, []);
 
   const updateProfile = useCallback(async (updates) => {
-    if (!session?.user) return;
+    if (!session?.user) {
+      console.warn('updateProfile called but no session exists. Updates:', updates);
+      return;
+    }
     try {
-      const { error } = await supabase
+      console.log('Updating profile for user:', session.user.id, 'with updates:', updates);
+      const { data, error } = await supabase
         .from('profiles')
         .update(updates)
-        .eq('id', session.user.id);
-      if (error) throw error;
+        .eq('id', session.user.id)
+        .select(); // Add .select() to get the updated row back
+
+      if (error) {
+        console.error('Supabase UPDATE error:', error);
+        throw error;
+      }
+
+      console.log('Profile updated successfully. Updated row:', data);
     } catch (err) {
       console.error('Supabase Profile Update Error:', {
         message: err.message,
         code: err.code,
         details: err.details,
-        hint: err.hint
+        hint: err.hint,
+        stack: err.stack
       });
       throw err; // Re-throw so callers know it failed
     }
   }, [session]);
 
-  // Initialize Supabase session and fetch profile
+  // Restore session from localStorage on mount
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      if (session) fetchProfile(session.user.id);
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      if (session) fetchProfile(session.user.id);
-      else {
-        setProgress({ totalXP: 0, videosCount: 0, activities: [], gameTimeSpent: 0 });
-        setUserData({ fullName: '', email: '', phone: '' });
-      }
-    });
-
-    return () => subscription.unsubscribe();
+    const saved = loadSession();
+    if (saved) {
+      setSession(saved);
+      fetchProfile(saved.user.id);
+    }
   }, [fetchProfile]);
 
   // Sync gameStartTime with ref
@@ -208,46 +255,69 @@ function App() {
     }
   }, [session]);
 
-  const handleSignupClick = useCallback(() => {
-    setScreen('signup');
-  }, []);
-
-  const handleSignup = useCallback(async (formData) => {
-    setAuthLoading(true);
-    try {
-      const { error } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
-        options: {
-          data: {
-            full_name: formData.fullName,
-            phone: formData.phone,
-            cat_name: formData.catName
-          }
-        }
-      });
-
-      if (error) throw error;
-
-      alert('Signup successful! Your account is ready.');
-      setScreen('home');
-      setShowLoginModal(true);
-    } catch (err) {
-      alert(err.message);
-    } finally {
-      setAuthLoading(false);
-    }
-  }, []);
-
   const handleLogin = useCallback(async (formData) => {
     setAuthLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: formData.email,
-        password: formData.password
-      });
+      const hashedPwd = await hashPassword(formData.password);
 
-      if (error) throw error;
+      // Check if phone number already exists in profiles
+      const { data: existing, error: fetchError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('phone', formData.phone)
+        .single();
+
+      if (fetchError && fetchError.code !== 'PGRST116') throw fetchError;
+
+      let profile;
+
+      if (existing) {
+        // Phone exists — verify hashed password
+        if (existing.password !== hashedPwd) {
+          throw new Error('Incorrect password');
+        }
+        profile = existing;
+      } else {
+        // Phone not found — create new account with hashed password
+        const newId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+          const r = Math.random() * 16 | 0;
+          return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+        const { data: created, error: insertError } = await supabase
+          .from('profiles')
+          .insert({
+            id: newId,
+            phone: formData.phone,
+            password: hashedPwd,
+            total_xp: 0,
+            videos_count: 0,
+            activities: [],
+            game_time_spent: 0
+          })
+          .select()
+          .single();
+
+        if (insertError) throw insertError;
+        profile = created;
+      }
+
+      // Build session object and persist
+      const newSession = { user: { id: profile.id, phone: profile.phone } };
+      setSession(newSession);
+      saveSession(newSession);
+
+      // Load profile data into state and localStorage
+      const prog = {
+        totalXP: profile.total_xp || 0,
+        videosCount: profile.videos_count || 0,
+        activities: profile.activities || [],
+        gameTimeSpent: profile.game_time_spent || 0
+      };
+      setProgress(prog);
+      saveProgress(prog);
+      const ud = { phone: profile.phone || '' };
+      setUserData(ud);
+      saveUserData(ud);
 
       setShowLoginModal(false);
       setScreen('starting');
@@ -287,6 +357,14 @@ function App() {
   }, []);
 
   const handleEndGame = useCallback((score) => {
+    console.log('=== handleEndGame CALLED ===');
+    console.log('Score:', score);
+    console.log('Current progress:', progress);
+    console.log('Session exists?', !!session?.user);
+    if (session?.user) {
+      console.log('User ID:', session.user.id);
+    }
+
     const newXP = progress.totalXP + score;
     // Use helper function to get current date
     const dateStr = getCurrentDateString();
@@ -310,18 +388,54 @@ function App() {
       activities: [newActivity, ...activities].slice(0, 10),
       gameTimeSpent: totalGameTime
     };
+
+    console.log('Updated progress object:', updated);
+
     setProgress(updated);
     saveProgress(updated);
     setSessionScore(score);
     setGameStartTime(null); // Reset game start time
     gameStartTimeRef.current = null;
 
-    // Sync to Supabase
-    updateProfile({
-      total_xp: updated.totalXP,
-      activities: updated.activities,
-      game_time_spent: updated.gameTimeSpent
-    });
+    // Sync to Supabase only if session exists
+    if (session?.user) {
+      console.log('Syncing XP and activities to Supabase:', {
+        userId: session.user.id,
+        total_xp: updated.totalXP,
+        activities: updated.activities,
+        game_time_spent: updated.gameTimeSpent
+      });
+
+      // Update profiles table
+      updateProfile({
+        total_xp: updated.totalXP,
+        activities: updated.activities,
+        game_time_spent: updated.gameTimeSpent
+      });
+
+      // Also insert into user_activities table for normalized tracking
+      supabase
+        .from('user_activities')
+        .insert({
+          user_id: session.user.id,
+          activity_type: 'game_play',
+          activity_details: {
+            score: score,
+            xp_earned: score,
+            total_xp: updated.totalXP,
+            game_time: sessionTime
+          }
+        })
+        .then(({ error }) => {
+          if (error) {
+            console.error('Error inserting into user_activities:', error);
+          } else {
+            console.log('Activity inserted into user_activities table');
+          }
+        });
+    } else {
+      console.warn('Cannot sync to Supabase: No active session');
+    }
   }, [progress, session, updateProfile, gameStartTime]);
 
   const handleShowGameOver = useCallback((score) => {
@@ -344,15 +458,20 @@ function App() {
       };
       setProgress(updated);
       saveProgress(updated);
-      // Update in Supabase
-      updateProfile({
-        game_time_spent: totalGameTime
-      });
+      // Update in Supabase only if session exists
+      if (session?.user) {
+        console.log('Saving game time on pause:', totalGameTime);
+        updateProfile({
+          game_time_spent: totalGameTime
+        });
+      } else {
+        console.warn('Cannot save game time: No active session');
+      }
       // Reset start time so we can track resume
       setGameStartTime(null);
       gameStartTimeRef.current = null;
     }
-  }, [progress, gameStartTime, updateProfile]);
+  }, [progress, gameStartTime, session, updateProfile]);
 
   const handleResume = useCallback(() => {
     setIsPaused(false);
@@ -424,7 +543,12 @@ function App() {
   }, []);
 
   const handleVideoUpload = useCallback(async (videoUrl, receiptUrl = null, storeName = null) => {
-    if (!session?.user) return;
+    if (!session?.user) {
+      console.warn('handleVideoUpload called but no session exists');
+      return;
+    }
+
+    console.log('Processing video upload for user:', session.user.id);
 
     // Use helper function to get current date
     const dateStr = getCurrentDateString();
@@ -464,7 +588,22 @@ function App() {
         store_name: storeNames
       };
 
+      console.log('Updating profile with video upload data:', updates);
       await updateProfile(updates);
+
+      // Also insert into user_activities table
+      await supabase
+        .from('user_activities')
+        .insert({
+          user_id: session.user.id,
+          activity_type: 'video_upload',
+          activity_details: {
+            video_url: videoUrl,
+            store_name: storeName,
+            videos_count: updated.videosCount
+          }
+        });
+      console.log('Video upload activity inserted into user_activities table');
     } catch (err) {
       console.error('CRITICAL: Error updating profile with upload data:', {
         message: err.message,
@@ -478,8 +617,6 @@ function App() {
   let content;
   if (screen === 'splash') {
     content = <SplashScreen onLoadingComplete={handleSplashComplete} />;
-  } else if (screen === 'signup') {
-    content = <SignupScreen onSignup={handleSignup} onGoHome={handleGoHome} isLoading={authLoading} />;
   } else if (screen === 'starting') {
     content = <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} onProfileClick={handleViewProfile} onGoHome={handleGoHome} />;
   } else if (screen === 'game') {
@@ -508,11 +645,21 @@ function App() {
               }
             }}
             onGoHome={() => {
+              // If paused, save XP before going home
+              if (isPaused && sessionScore > 0) {
+                console.log('Going home from pause - saving XP:', sessionScore);
+                handleEndGame(sessionScore);
+              }
               setShowGameOverModal(false);
               setIsPaused(false);
               handleGoHome();
             }}
             onUnlockThemes={() => {
+              // If paused, save XP before ending
+              if (isPaused && sessionScore > 0) {
+                console.log('Ending game from pause - saving XP:', sessionScore);
+                handleEndGame(sessionScore);
+              }
               setShowGameOverModal(false);
               setIsPaused(false);
               handleUnlockThemes();
@@ -589,7 +736,6 @@ function App() {
           <LoginModal
             onClose={handleCloseLoginModal}
             onLogin={handleLogin}
-            onSignup={handleSignupClick}
             isLoading={authLoading}
           />
         )}
