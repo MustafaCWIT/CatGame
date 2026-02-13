@@ -3,7 +3,6 @@ import SplashScreen from './SplashScreen';
 import HowToPlayModal from './HowToPlayModal';
 import LoginModal from './LoginModal';
 import Home from './Home';
-import SignupScreen from './SignupScreen';
 import StartingScreen from './StartingScreen';
 import Game from './game/Game';
 import GameOver from './GameOver';
@@ -44,13 +43,52 @@ function loadUserData() {
     const raw = localStorage.getItem('tap-to-purr-user');
     if (raw) return JSON.parse(raw);
   } catch { /* ignore */ }
-  return { fullName: '', email: '', phone: '' };
+  return { phone: '' };
 }
 
 function saveUserData(data) {
   try {
     localStorage.setItem('tap-to-purr-user', JSON.stringify(data));
   } catch { /* ignore */ }
+}
+
+function loadSession() {
+  try {
+    const raw = localStorage.getItem('tap-to-purr-session');
+    if (raw) return JSON.parse(raw);
+  } catch { /* ignore */ }
+  return null;
+}
+
+function saveSession(session) {
+  try {
+    if (session) {
+      localStorage.setItem('tap-to-purr-session', JSON.stringify(session));
+    } else {
+      localStorage.removeItem('tap-to-purr-session');
+    }
+  } catch { /* ignore */ }
+}
+
+// Hash password — uses SHA-256 when available, falls back for non-secure contexts (HTTP)
+async function hashPassword(password) {
+  if (typeof crypto !== 'undefined' && crypto.subtle) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  // Fallback hash for HTTP contexts
+  let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+  for (let i = 0; i < password.length; i++) {
+    const ch = password.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0');
 }
 
 // Helper function to format current date correctly
@@ -88,14 +126,12 @@ function App() {
   const [gameStartTime, setGameStartTime] = useState(null);
   const gameStartTimeRef = useRef(null);
 
-  const handleLogout = useCallback(async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      setScreen('home');
-    } catch (err) {
-      alert(err.message);
-    }
+  const handleLogout = useCallback(() => {
+    setSession(null);
+    saveSession(null);
+    setProgress({ totalXP: 0, videosCount: 0, activities: [], gameTimeSpent: 0 });
+    setUserData({ phone: '' });
+    setScreen('home');
   }, []);
 
   const fetchProfile = useCallback(async (userId) => {
@@ -107,10 +143,10 @@ function App() {
         .single();
 
       if (error) {
-        // If the profile is not found (PGRST116), the user was likely deleted
         if (error.code === 'PGRST116') {
-          console.warn('Profile not found for session, logging out...');
-          handleLogout();
+          console.warn('Profile not found, clearing session...');
+          setSession(null);
+          saveSession(null);
         }
         throw error;
       }
@@ -123,15 +159,13 @@ function App() {
           gameTimeSpent: data.game_time_spent || 0
         });
         setUserData({
-          fullName: data.full_name || '',
-          email: data.email || '',
           phone: data.phone || ''
         });
       }
     } catch (err) {
       console.error('Error fetching profile:', err);
     }
-  }, [handleLogout]);
+  }, []);
 
   const updateProfile = useCallback(async (updates) => {
     if (!session?.user) return;
@@ -152,23 +186,13 @@ function App() {
     }
   }, [session]);
 
-  // Initialize Supabase session and fetch profile
+  // Restore session from localStorage on mount
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      if (session) fetchProfile(session.user.id);
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      if (session) fetchProfile(session.user.id);
-      else {
-        setProgress({ totalXP: 0, videosCount: 0, activities: [], gameTimeSpent: 0 });
-        setUserData({ fullName: '', email: '', phone: '' });
-      }
-    });
-
-    return () => subscription.unsubscribe();
+    const saved = loadSession();
+    if (saved) {
+      setSession(saved);
+      fetchProfile(saved.user.id);
+    }
   }, [fetchProfile]);
 
   // Sync gameStartTime with ref
@@ -208,46 +232,65 @@ function App() {
     }
   }, [session]);
 
-  const handleSignupClick = useCallback(() => {
-    setScreen('signup');
-  }, []);
-
-  const handleSignup = useCallback(async (formData) => {
-    setAuthLoading(true);
-    try {
-      const { error } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
-        options: {
-          data: {
-            full_name: formData.fullName,
-            phone: formData.phone,
-            cat_name: formData.catName
-          }
-        }
-      });
-
-      if (error) throw error;
-
-      alert('Signup successful! Your account is ready.');
-      setScreen('home');
-      setShowLoginModal(true);
-    } catch (err) {
-      alert(err.message);
-    } finally {
-      setAuthLoading(false);
-    }
-  }, []);
-
   const handleLogin = useCallback(async (formData) => {
     setAuthLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: formData.email,
-        password: formData.password
-      });
+      const hashedPwd = await hashPassword(formData.password);
 
-      if (error) throw error;
+      // Check if phone number already exists in profiles
+      const { data: existing, error: fetchError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('phone', formData.phone)
+        .single();
+
+      if (fetchError && fetchError.code !== 'PGRST116') throw fetchError;
+
+      let profile;
+
+      if (existing) {
+        // Phone exists — verify hashed password
+        if (existing.password !== hashedPwd) {
+          throw new Error('Incorrect password');
+        }
+        profile = existing;
+      } else {
+        // Phone not found — create new account with hashed password
+        const newId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+          const r = Math.random() * 16 | 0;
+          return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+        const { data: created, error: insertError } = await supabase
+          .from('profiles')
+          .insert({
+            id: newId,
+            phone: formData.phone,
+            password: hashedPwd,
+            total_xp: 0,
+            videos_count: 0,
+            activities: [],
+            game_time_spent: 0
+          })
+          .select()
+          .single();
+
+        if (insertError) throw insertError;
+        profile = created;
+      }
+
+      // Build session object and persist
+      const newSession = { user: { id: profile.id, phone: profile.phone } };
+      setSession(newSession);
+      saveSession(newSession);
+
+      // Load profile data into state
+      setProgress({
+        totalXP: profile.total_xp || 0,
+        videosCount: profile.videos_count || 0,
+        activities: profile.activities || [],
+        gameTimeSpent: profile.game_time_spent || 0
+      });
+      setUserData({ phone: profile.phone || '' });
 
       setShowLoginModal(false);
       setScreen('starting');
@@ -478,8 +521,6 @@ function App() {
   let content;
   if (screen === 'splash') {
     content = <SplashScreen onLoadingComplete={handleSplashComplete} />;
-  } else if (screen === 'signup') {
-    content = <SignupScreen onSignup={handleSignup} onGoHome={handleGoHome} isLoading={authLoading} />;
   } else if (screen === 'starting') {
     content = <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} onProfileClick={handleViewProfile} onGoHome={handleGoHome} />;
   } else if (screen === 'game') {
@@ -589,7 +630,6 @@ function App() {
           <LoginModal
             onClose={handleCloseLoginModal}
             onLogin={handleLogin}
-            onSignup={handleSignupClick}
             isLoading={authLoading}
           />
         )}

@@ -10,59 +10,10 @@ const {
 
 const ASSETS = ALL_ASSETS;
 
-// Common country codes
-const countryCodes = [
-  { code: '+1', country: 'US/CA' },
-  { code: '+44', country: 'UK' },
-  { code: '+61', country: 'AU' },
-  { code: '+971', country: 'UAE' },
-  { code: '+966', country: 'SA' },
-  { code: '+974', country: 'QA' },
-  { code: '+965', country: 'KW' },
-  { code: '+973', country: 'BH' },
-  { code: '+968', country: 'OM' },
-  { code: '+961', country: 'LB' },
-  { code: '+962', country: 'JO' },
-  { code: '+20', country: 'EG' },
-  { code: '+91', country: 'IN' },
-  { code: '+86', country: 'CN' },
-  { code: '+81', country: 'JP' },
-  { code: '+82', country: 'KR' },
-  { code: '+33', country: 'FR' },
-  { code: '+49', country: 'DE' },
-  { code: '+39', country: 'IT' },
-  { code: '+34', country: 'ES' },
-  { code: '+31', country: 'NL' },
-  { code: '+32', country: 'BE' },
-  { code: '+41', country: 'CH' },
-  { code: '+46', country: 'SE' },
-  { code: '+47', country: 'NO' },
-  { code: '+45', country: 'DK' },
-  { code: '+358', country: 'FI' },
-  { code: '+351', country: 'PT' },
-  { code: '+353', country: 'IE' },
-  { code: '+48', country: 'PL' },
-  { code: '+7', country: 'RU' },
-  { code: '+90', country: 'TR' },
-  { code: '+27', country: 'ZA' },
-  { code: '+55', country: 'BR' },
-  { code: '+52', country: 'MX' },
-  { code: '+54', country: 'AR' },
-  { code: '+65', country: 'SG' },
-  { code: '+60', country: 'MY' },
-  { code: '+66', country: 'TH' },
-  { code: '+84', country: 'VN' },
-  { code: '+62', country: 'ID' },
-  { code: '+63', country: 'PH' },
-];
-
 export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    password: '',
     phone: '+971',
-    catName: ''
+    password: ''
   });
   const [isReady, setIsReady] = useState(false);
 
@@ -131,20 +82,10 @@ export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
         {/* Form */}
         <form className="signup-form" onSubmit={handleSubmit}>
           <input
-            type="text"
-            name="fullName"
-            placeholder="Full Name"
-            value={formData.fullName}
-            onChange={handleChange}
-            className="signup-input"
-            required
-            disabled={isLoading}
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email address"
-            value={formData.email}
+            type="tel"
+            name="phone"
+            placeholder="Phone Number (e.g., +971XXXXXXXXX)"
+            value={formData.phone}
             onChange={handleChange}
             className="signup-input"
             required
@@ -155,26 +96,6 @@ export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
             name="password"
             placeholder="Password"
             value={formData.password}
-            onChange={handleChange}
-            className="signup-input"
-            required
-            disabled={isLoading}
-          />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone Number (e.g., +971)"
-            value={formData.phone}
-            onChange={handleChange}
-            className="signup-input"
-            required
-            disabled={isLoading}
-          />
-          <input
-            type="text"
-            name="catName"
-            placeholder="Your Cat Name"
-            value={formData.catName}
             onChange={handleChange}
             className="signup-input"
             required
