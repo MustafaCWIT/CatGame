@@ -73,27 +73,6 @@ function saveSession(session) {
   } catch { /* ignore */ }
 }
 
-// Hash password — uses SHA-256 when available, falls back for non-secure contexts (HTTP)
-async function hashPassword(password) {
-  if (typeof crypto !== 'undefined' && crypto.subtle) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(password);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-  }
-  // Fallback hash for HTTP contexts
-  let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
-  for (let i = 0; i < password.length; i++) {
-    const ch = password.charCodeAt(i);
-    h1 = Math.imul(h1 ^ ch, 2654435761);
-    h2 = Math.imul(h2 ^ ch, 1597334677);
-  }
-  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-  return (h2 >>> 0).toString(16).padStart(8, '0') + (h1 >>> 0).toString(16).padStart(8, '0');
-}
-
 // Helper function to format current date correctly
 function getCurrentDateString() {
   const now = new Date();
@@ -258,8 +237,6 @@ function App() {
   const handleLogin = useCallback(async (formData) => {
     setAuthLoading(true);
     try {
-      const hashedPwd = await hashPassword(formData.password);
-
       // Check if phone number already exists in profiles
       const { data: existing, error: fetchError } = await supabase
         .from('profiles')
@@ -272,13 +249,10 @@ function App() {
       let profile;
 
       if (existing) {
-        // Phone exists — verify hashed password
-        if (existing.password !== hashedPwd) {
-          throw new Error('Incorrect password');
-        }
+        // Phone exists — log in directly
         profile = existing;
       } else {
-        // Phone not found — create new account with hashed password
+        // Phone not found — create new account
         const newId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
           const r = Math.random() * 16 | 0;
           return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
@@ -288,7 +262,6 @@ function App() {
           .insert({
             id: newId,
             phone: formData.phone,
-            password: hashedPwd,
             total_xp: 0,
             videos_count: 0,
             activities: [],

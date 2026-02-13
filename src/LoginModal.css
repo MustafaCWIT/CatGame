@@ -92,33 +92,6 @@
   background: #4D014E;
 }
 
-.login-password-wrapper {
-  position: relative;
-}
-
-.login-password-wrapper .login-input {
-  padding-right: 44px;
-}
-
-.login-eye-btn {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.7);
-  cursor: pointer;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.login-eye-btn:hover {
-  color: white;
-}
-
 .login-btn {
   width: 40%;
   padding: 24px 24px;
