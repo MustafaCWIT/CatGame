@@ -14,6 +14,8 @@ import { supabase } from './lib/supabase';
 import { useEffect } from 'react';
 import { ALL_ASSETS } from './game/assets';
 
+import { useActivityTracker } from './hooks/useActivityTracker';
+
 function AssetPreloader() {
   return (
     <div style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden', opacity: 0.01, pointerEvents: 'none', zIndex: -1 }}>
@@ -24,6 +26,7 @@ function AssetPreloader() {
   );
 }
 
+// Helper functions for localStorage
 function loadProgress() {
   try {
     const raw = localStorage.getItem('tap-to-purr-progress');
@@ -125,6 +128,9 @@ function App() {
   const [autoScrollThemes, setAutoScrollThemes] = useState(false);
   const [gameStartTime, setGameStartTime] = useState(null);
   const gameStartTimeRef = useRef(null);
+
+  // Use Custom Activity Tracker
+  useActivityTracker(session, screen);
 
   const handleLogout = useCallback(() => {
     setSession(null);
@@ -399,11 +405,34 @@ function App() {
         activities: updated.activities,
         game_time_spent: updated.gameTimeSpent
       });
+
+      // Update profiles table
       updateProfile({
         total_xp: updated.totalXP,
         activities: updated.activities,
         game_time_spent: updated.gameTimeSpent
       });
+
+      // Also insert into user_activities table for normalized tracking
+      supabase
+        .from('user_activities')
+        .insert({
+          user_id: session.user.id,
+          activity_type: 'game_play',
+          activity_details: {
+            score: score,
+            xp_earned: score,
+            total_xp: updated.totalXP,
+            game_time: sessionTime
+          }
+        })
+        .then(({ error }) => {
+          if (error) {
+            console.error('Error inserting into user_activities:', error);
+          } else {
+            console.log('Activity inserted into user_activities table');
+          }
+        });
     } else {
       console.warn('Cannot sync to Supabase: No active session');
     }
@@ -561,6 +590,20 @@ function App() {
 
       console.log('Updating profile with video upload data:', updates);
       await updateProfile(updates);
+
+      // Also insert into user_activities table
+      await supabase
+        .from('user_activities')
+        .insert({
+          user_id: session.user.id,
+          activity_type: 'video_upload',
+          activity_details: {
+            video_url: videoUrl,
+            store_name: storeName,
+            videos_count: updated.videosCount
+          }
+        });
+      console.log('Video upload activity inserted into user_activities table');
     } catch (err) {
       console.error('CRITICAL: Error updating profile with upload data:', {
         message: err.message,
