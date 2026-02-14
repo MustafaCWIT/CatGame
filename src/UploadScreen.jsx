@@ -8,7 +8,7 @@ import { useLanguage } from './i18n/LanguageContext';
 const ASSETS = [backgroundImg, logoImg];
 
 export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYou, onProfileClick }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const videoInputRef = useRef(null);
   const receiptInputRef = useRef(null);
   const [selectedVideoFile, setSelectedVideoFile] = useState(null);
@@ -171,6 +171,8 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
               onChange={(e) => setUserName(e.target.value)}
               disabled={uploading}
               autoComplete="name"
+              lang={language}
+              dir={language === 'ar' ? 'rtl' : 'ltr'}
             />
           </div>
 
@@ -185,6 +187,8 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
               onChange={(e) => setStoreName(e.target.value)}
               disabled={uploading}
               autoComplete="off"
+              lang={language}
+              dir={language === 'ar' ? 'rtl' : 'ltr'}
             />
           </div>
 

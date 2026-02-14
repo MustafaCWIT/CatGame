@@ -1318,7 +1318,7 @@
   }
 
   .home-prize-text span {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .home-prize-img-left {
@@ -1328,9 +1328,9 @@
   }
 
   .home-prize-img-right {
-    width: 70px;
+    width: 60px;
     right: -3px;
-    bottom: -8px;
+    bottom: 0;
   }
 }
 
