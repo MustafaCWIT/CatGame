@@ -16,6 +16,7 @@ import { ALL_ASSETS } from './game/assets';
 
 import { useActivityTracker } from './hooks/useActivityTracker';
 import { useLanguage } from './i18n/LanguageContext';
+import LanguageSelectModal from './LanguageSelectModal';
 
 function AssetPreloader() {
   return (
@@ -94,8 +95,8 @@ if (typeof window !== 'undefined') {
 }
 
 function App() {
-  const { t } = useLanguage();
-  const [screen, setScreen] = useState('splash');
+  const { t, setLanguage } = useLanguage();
+  const [screen, setScreen] = useState('langSelect');
   const [showModal, setShowModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [progress, setProgress] = useState(loadProgress);
@@ -589,8 +590,15 @@ function App() {
     }
   }, [progress, session, updateProfile, t]);
 
+  const handleLanguageSelect = useCallback((lang) => {
+    setLanguage(lang);
+    setScreen('splash');
+  }, [setLanguage]);
+
   let content;
-  if (screen === 'splash') {
+  if (screen === 'langSelect') {
+    content = <LanguageSelectModal onSelect={handleLanguageSelect} />;
+  } else if (screen === 'splash') {
     content = <SplashScreen onLoadingComplete={handleSplashComplete} />;
   } else if (screen === 'starting') {
     content = <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} onProfileClick={handleViewProfile} onGoHome={handleGoHome} />;
