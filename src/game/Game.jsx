@@ -14,7 +14,8 @@ import { useLanguage } from '../i18n/LanguageContext';
 const GAME_DURATION = 120; // 2 minutes
 
 export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGameOver, isPaused, onPause }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const toLocalNum = (n) => language === 'ar' ? Number(n).toLocaleString('ar-EG') : String(n);
   const {
     score,
     objects,
@@ -172,7 +173,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
-  const timeStr = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  const timeStr = `${toLocalNum(minutes)}:${toLocalNum(seconds).padStart(2, '0')}`;
 
   const glassStyle = {
     background: 'rgba(0,0,0,0.4)',
@@ -246,7 +247,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
             fontWeight: 700,
             color: 'white',
             fontVariantNumeric: 'tabular-nums'
-          }}>{score}</span>
+          }}>{toLocalNum(score)}</span>
         </div>
 
         {/* Right: Timer */}
@@ -317,7 +318,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
         }}>
           <div style={{ ...glassStyle, background: 'rgba(0,0,0,0.35)', padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 14, minWidth: 260 }}>
             <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: 1 }}>
-              {t('game_lvl')} {playerLevel + 1}
+              {t('game_lvl')} {toLocalNum(playerLevel + 1)}
             </span>
             <span style={{ fontSize: 14, fontWeight: 600, color: level.primaryColor }}>{level.name}</span>
             {/* XP progress to next level */}
@@ -336,7 +337,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
                   }} />
                 </div>
                 <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', fontVariantNumeric: 'tabular-nums' }}>
-                  {newTotalXP}/{nextLevelXP} {t('game_xp')}
+                  {toLocalNum(newTotalXP)}/{toLocalNum(nextLevelXP)} {t('game_xp')}
                 </span>
               </>
             )}
