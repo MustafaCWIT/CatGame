@@ -16,7 +16,7 @@ const {
 } = GAME_ASSETS;
 
 export default function SplashScreen({ onLoadingComplete }) {
-  const { t, toggleLanguage } = useLanguage();
+  const { t } = useLanguage();
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -96,11 +96,6 @@ export default function SplashScreen({ onLoadingComplete }) {
 
   return (
     <div className={`splash-screen ${isLoaded ? 'splash-fade-out' : ''}`}>
-      {/* Language toggle */}
-      <button className="splash-lang-toggle" onClick={toggleLanguage}>
-        {t('lang_toggle')}
-      </button>
-
       {/* Background - Show only when loaded to avoid flash */}
       {imagesLoaded && (
         <img

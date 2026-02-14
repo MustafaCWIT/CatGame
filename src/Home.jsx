@@ -17,7 +17,7 @@ const ASSETS = ALL_ASSETS;
 
 export default function Home({ onStartGame, onResetProgress, onLogout, user, onProfileClick, onGoToUpload }) {
   const [isReady, setIsReady] = useState(false);
-  const { t, toggleLanguage } = useLanguage();
+  const { t } = useLanguage();
 
   useEffect(() => {
     let loaded = 0;
@@ -50,11 +50,6 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user, onP
 
       {/* Cloud at top right */}
       <img src={cloudsImg} alt="" className="home-cloud" />
-
-      {/* Language toggle */}
-      <button className="home-lang-toggle" onClick={toggleLanguage}>
-        {t('lang_toggle')}
-      </button>
 
       {/* Profile icon at top right */}
       <div className="home-profile" onClick={onProfileClick} style={{ cursor: 'pointer' }}>

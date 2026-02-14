@@ -20,7 +20,7 @@ export default function LevelsScreen({
   autoScrollToThemes = false,
   onLogout
 }) {
-  const { t } = useLanguage();
+  const { t, toggleLanguage } = useLanguage();
   const [selectedTheme, setSelectedTheme] = useState('midnight');
   const [isReady, setIsReady] = useState(false);
   const themeSectionRef = useRef(null);
@@ -168,6 +168,13 @@ export default function LevelsScreen({
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Language toggle */}
+        <div className="levels-lang-section">
+          <button className="levels-lang-btn" onClick={toggleLanguage}>
+            {t('lang_toggle')}
+          </button>
         </div>
 
         {/* Logout button */}
