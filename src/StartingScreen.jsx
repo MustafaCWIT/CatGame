@@ -17,7 +17,7 @@ const {
 const ASSETS_TO_PRELOAD = ALL_ASSETS;
 
 export default function StartingScreen({ levelName, onCountdownComplete, onProfileClick, onGoHome }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [count, setCount] = useState(1);
   const [isReady, setIsReady] = useState(false);
 
@@ -137,7 +137,7 @@ export default function StartingScreen({ levelName, onCountdownComplete, onProfi
       {/* Countdown */}
       <div className="starting-countdown">
         <span className="starting-label">{t('starting_label')}</span>
-        <span className="starting-number">{count}</span>
+        <span className="starting-number">{language === 'ar' ? count.toLocaleString('ar-EG') : count}</span>
       </div>
     </div>
   );
