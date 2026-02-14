@@ -27,7 +27,7 @@ export default function LoginModal({ onClose, onLogin, isLoading }) {
         </button>
 
         {/* Title */}
-        <h2 className="login-title">Login to Play</h2>
+        {/* <h2 className="login-title">Login to Play</h2> */}
         <p className="login-subtitle">Enter your phone number to continue.</p>
 
         {/* Form */}
