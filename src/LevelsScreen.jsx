@@ -20,7 +20,8 @@ export default function LevelsScreen({
   autoScrollToThemes = false,
   onLogout
 }) {
-  const { t, toggleLanguage } = useLanguage();
+  const { t, language, toggleLanguage } = useLanguage();
+  const locale = language === 'ar' ? 'ar-EG' : undefined;
   const [selectedTheme, setSelectedTheme] = useState('midnight');
   const [isReady, setIsReady] = useState(false);
   const themeSectionRef = useRef(null);
@@ -105,7 +106,7 @@ export default function LevelsScreen({
             <img src={dollarImg} alt="" className="levels-stat-img" />
             <div className="levels-stat-content">
               <span className="levels-stat-label">{t('levels_points')}</span>
-              <span className="levels-stat-value">{totalXP.toLocaleString()}</span>
+              <span className="levels-stat-value">{totalXP.toLocaleString(locale)}</span>
             </div>
           </div>
           <div className="levels-stat-column">
@@ -113,7 +114,7 @@ export default function LevelsScreen({
               <img src={gameImg} alt="" className="levels-stat-img" />
               <div className="levels-stat-content">
                 <span className="levels-stat-label">{t('levels_videos')}</span>
-                <span className="levels-stat-value">{String(videosCount).padStart(2, '0')}</span>
+                <span className="levels-stat-value">{language === 'ar' ? Number(videosCount).toLocaleString('ar-EG') : String(videosCount).padStart(2, '0')}</span>
               </div>
             </div>
             <button className="levels-upload-btn" onClick={onVideoUpload}>

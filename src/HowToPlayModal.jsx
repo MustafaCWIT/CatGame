@@ -4,7 +4,8 @@ import foodBoxesImg from './assets/foodBoxes.png';
 import { useLanguage } from './i18n/LanguageContext';
 
 export default function HowToPlayModal({ onClose }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const n = (num) => language === 'ar' ? num.toLocaleString('ar-EG') : num;
 
   return (
     <div className="modal-overlay">
@@ -17,19 +18,19 @@ export default function HowToPlayModal({ onClose }) {
           <div className="modal-section">
             <div className="modal-steps">
               <div className="modal-step">
-                <span className="modal-step-number">1</span>
+                <span className="modal-step-number">{n(1)}</span>
                 <span className="modal-step-text">{t('howto_step1')}</span>
               </div>
               <div className="modal-step">
-                <span className="modal-step-number">2</span>
+                <span className="modal-step-number">{n(2)}</span>
                 <span className="modal-step-text">{t('howto_step2')}</span>
               </div>
               <div className="modal-step">
-                <span className="modal-step-number">3</span>
+                <span className="modal-step-number">{n(3)}</span>
                 <span className="modal-step-text">{t('howto_step3')}</span>
               </div>
               <div className="modal-step">
-                <span className="modal-step-number">4</span>
+                <span className="modal-step-number">{n(4)}</span>
                 <span className="modal-step-text">{t('howto_step4')}</span>
               </div>
             </div>

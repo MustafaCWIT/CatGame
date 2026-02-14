@@ -229,6 +229,25 @@
   transform: scale(0.97);
 }
 
+/* RTL / Arabic overrides */
+html[lang="ar"] .modal-step {
+  flex-direction: row-reverse;
+}
+
+html[lang="ar"] .modal-step-text {
+  text-align: right;
+}
+
+html[lang="ar"] .modal-title,
+html[lang="ar"] .modal-subtitle {
+  font-family: 'Cairo', 'Poppins', sans-serif;
+}
+
+html[lang="ar"] .modal-qualification-text {
+  text-align: right;
+  font-family: 'Cairo', 'Poppins', sans-serif;
+}
+
 /* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
 
 /* Tablet breakpoint */

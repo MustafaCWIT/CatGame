@@ -473,6 +473,34 @@
   transform: translateY(0);
 }
 
+/* RTL / Arabic overrides */
+html[lang="ar"] .levels-stat-card,
+html[lang="ar"] .levels-stat-video-card {
+  flex-direction: row-reverse;
+}
+
+html[lang="ar"] .levels-stat-content {
+  align-items: flex-end;
+  text-align: right;
+}
+
+html[lang="ar"] .levels-user-section {
+  text-align: right;
+}
+
+html[lang="ar"] .levels-activity-item {
+  flex-direction: row-reverse;
+}
+
+html[lang="ar"] .levels-activity-text {
+  text-align: right;
+}
+
+html[lang="ar"] .levels-section-title,
+html[lang="ar"] .levels-activity-title {
+  text-align: right;
+}
+
 /* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
 
 /* Tablet breakpoint */
