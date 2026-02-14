@@ -518,7 +518,7 @@ function App() {
     setScreen('upload');
   }, []);
 
-  const handleVideoUpload = useCallback(async (videoUrl, receiptUrl = null, storeName = null) => {
+  const handleVideoUpload = useCallback(async (videoUrl, receiptUrl = null, storeName = null, userName = null) => {
     if (!session?.user) {
       console.warn('handleVideoUpload called but no session exists');
       return;
@@ -561,7 +561,8 @@ function App() {
       const updates = {
         videos_count: updated.videosCount,
         activities: updated.activities,
-        store_name: storeNames
+        store_name: storeNames,
+        ...(userName ? { full_name: userName } : {})
       };
 
       console.log('Updating profile with video upload data:', updates);

@@ -13,6 +13,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
   const receiptInputRef = useRef(null);
   const [selectedVideoFile, setSelectedVideoFile] = useState(null);
   const [selectedReceiptFile, setSelectedReceiptFile] = useState(null);
+  const [userName, setUserName] = useState('');
   const [storeName, setStoreName] = useState('');
   const [isReady, setIsReady] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -72,7 +73,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
 
       if (onUpload) {
         // Pass nulls for file URLs since we are no longer uploading them
-        await onUpload(null, null, storeName);
+        await onUpload(null, null, storeName, userName);
       }
 
       // Redirect to thank you screen
@@ -159,7 +160,21 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
             />
           </div>
 
-          {/* Section 3: Name of the Store of Purchase */}
+          {/* Section 3: Your Name */}
+          <div className="upload-section">
+            <h3 className="upload-section-title">{t('upload_username_title')}</h3>
+            <input
+              type="text"
+              className="upload-text-input"
+              placeholder={t('upload_username_placeholder')}
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              disabled={uploading}
+              autoComplete="name"
+            />
+          </div>
+
+          {/* Section 4: Name of the Store of Purchase */}
           <div className="upload-section">
             <h3 className="upload-section-title">{t('upload_store_title')}</h3>
             <input
