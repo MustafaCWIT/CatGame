@@ -95,7 +95,8 @@ export default function LevelsScreen({
       <div className="levels-content">
         {/* User Profile */}
         <div className="levels-user-section">
-          <h1 className="levels-user-name">{userData.phone || t('levels_player')}</h1>
+          <h1 className="levels-user-name">{userData.full_name || t('levels_player')}</h1>
+          {userData.phone && <p className="levels-user-phone">{userData.phone}</p>}
         </div>
 
         {/* Stats Section */}

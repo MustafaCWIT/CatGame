@@ -120,8 +120,8 @@ function App() {
     const emptyProgress = { totalXP: 0, videosCount: 0, activities: [], gameTimeSpent: 0 };
     setProgress(emptyProgress);
     saveProgress(emptyProgress);
-    setUserData({ phone: '' });
-    saveUserData({ phone: '' });
+    setUserData({ phone: '', full_name: '' });
+    saveUserData({ phone: '', full_name: '' });
     setScreen('home');
   }, []);
 
@@ -151,7 +151,7 @@ function App() {
         };
         setProgress(prog);
         saveProgress(prog);
-        const ud = { phone: data.phone || '' };
+        const ud = { phone: data.phone || '', full_name: data.full_name || '' };
         setUserData(ud);
         saveUserData(ud);
       }

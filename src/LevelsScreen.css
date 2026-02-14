@@ -136,7 +136,16 @@
   font-size: 32px;
   font-weight: 800;
   color: white;
+  margin: 0 0 2px 0;
+}
+
+.levels-user-phone {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
   margin: 0 0 5px 0;
+  direction: ltr;
 }
 
 .levels-user-info {
