@@ -222,7 +222,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
           />
         ))}
         {ripples.map(r => <Ripple key={r.id} ripple={r} onDone={clearRipple} />)}
-        {pointPopups.map(p => <PointPopup key={p.id} popup={p} onDone={clearPointPopup} />)}
+        {pointPopups.map(p => <PointPopup key={p.id} popup={p} onDone={clearPointPopup} language={language} />)}
       </svg>
 
       {/* HUD */}
