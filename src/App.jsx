@@ -346,7 +346,8 @@ function App() {
     const dateStr = getCurrentDateString();
 
     const newActivity = {
-      text: t('activity_earned', { score }),
+      key: 'activity_earned',
+      params: { score },
       date: dateStr
     };
 
@@ -530,7 +531,7 @@ function App() {
     const dateStr = getCurrentDateString();
 
     const newActivity = {
-      text: t('activity_uploaded'),
+      key: 'activity_uploaded',
       date: dateStr
     };
     const activities = progress.activities || [];

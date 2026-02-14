@@ -163,7 +163,7 @@ export default function LevelsScreen({
                 <div className="levels-activity-icon">
                   <img src={gameImg} alt="" className="levels-activity-img" />
                 </div>
-                <span className="levels-activity-text">{activity.text}</span>
+                <span className="levels-activity-text">{activity.key ? t(activity.key, activity.params) : activity.text}</span>
                 <span className="levels-activity-date">{activity.date}</span>
               </div>
             ))}
