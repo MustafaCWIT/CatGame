@@ -10,6 +10,10 @@
     <title>Whiskus</title>
   </head>
   <body>
+    <script>
+      // Restore language before React renders to prevent direction flash
+      try{var l=localStorage.getItem('tap-to-purr-language');if(l==='ar'){document.documentElement.lang='ar';document.documentElement.dir='rtl';}}catch(e){}
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

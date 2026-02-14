@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './SplashScreen.css';
 import { ALL_ASSETS, preloadImage, GAME_ASSETS } from './game/assets';
+import { useLanguage } from './i18n/LanguageContext';
 
 // Destructure common images for use in local render
 const {
@@ -15,6 +16,7 @@ const {
 } = GAME_ASSETS;
 
 export default function SplashScreen({ onLoadingComplete }) {
+  const { t, toggleLanguage } = useLanguage();
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -94,6 +96,11 @@ export default function SplashScreen({ onLoadingComplete }) {
 
   return (
     <div className={`splash-screen ${isLoaded ? 'splash-fade-out' : ''}`}>
+      {/* Language toggle */}
+      <button className="splash-lang-toggle" onClick={toggleLanguage}>
+        {t('lang_toggle')}
+      </button>
+
       {/* Background - Show only when loaded to avoid flash */}
       {imagesLoaded && (
         <img
@@ -123,7 +130,7 @@ export default function SplashScreen({ onLoadingComplete }) {
 
       {/* Main content - structure always visible, images conditional */}
       <div className="splash-content splash-content-visible">
-        <h1 className="splash-title">Tap To Purr</h1>
+        <h1 className="splash-title">{t('splash_title')}</h1>
 
         {imagesLoaded && (
           <>

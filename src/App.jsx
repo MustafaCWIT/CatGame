@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import { ALL_ASSETS } from './game/assets';
 
 import { useActivityTracker } from './hooks/useActivityTracker';
+import { useLanguage } from './i18n/LanguageContext';
 
 function AssetPreloader() {
   return (
@@ -93,6 +94,7 @@ if (typeof window !== 'undefined') {
 }
 
 function App() {
+  const { t } = useLanguage();
   const [screen, setScreen] = useState('splash');
   const [showModal, setShowModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -343,7 +345,7 @@ function App() {
     const dateStr = getCurrentDateString();
 
     const newActivity = {
-      text: `You earned ${score} points playing midnight paws`,
+      text: t('activity_earned', { score }),
       date: dateStr
     };
 
@@ -409,7 +411,7 @@ function App() {
     } else {
       console.warn('Cannot sync to Supabase: No active session');
     }
-  }, [progress, session, updateProfile, gameStartTime]);
+  }, [progress, session, updateProfile, gameStartTime, t]);
 
   const handleShowGameOver = useCallback((score) => {
     handleEndGame(score);
@@ -493,7 +495,7 @@ function App() {
   }, [session]);
 
   const handleResetProgress = useCallback(async () => {
-    if (window.confirm('Reset all progress? This will set XP to 0 and cannot be undone.')) {
+    if (window.confirm(t('reset_confirm'))) {
       localStorage.removeItem('tap-to-purr-progress');
       const resetProgress = { totalXP: 0, videosCount: 0, activities: [] };
       setProgress(resetProgress);
@@ -509,7 +511,7 @@ function App() {
         });
       }
     }
-  }, [session, updateProfile]);
+  }, [session, updateProfile, t]);
 
   const handleGoToUpload = useCallback(() => {
     setScreen('upload');
@@ -527,7 +529,7 @@ function App() {
     const dateStr = getCurrentDateString();
 
     const newActivity = {
-      text: 'You uploaded a video',
+      text: t('activity_uploaded'),
       date: dateStr
     };
     const activities = progress.activities || [];
@@ -585,7 +587,7 @@ function App() {
         code: err.code
       });
     }
-  }, [progress, session, updateProfile]);
+  }, [progress, session, updateProfile, t]);
 
   let content;
   if (screen === 'splash') {

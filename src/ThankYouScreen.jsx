@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './ThankYouScreen.css';
 import { ALL_ASSETS, GAME_ASSETS } from './game/assets';
+import { useLanguage } from './i18n/LanguageContext';
 
 const {
   background: backgroundImg,
@@ -11,6 +12,7 @@ const {
 const ASSETS = ALL_ASSETS;
 
 export default function ThankYouScreen({ onGoHome, onProfileClick }) {
+  const { t } = useLanguage();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -57,18 +59,18 @@ export default function ThankYouScreen({ onGoHome, onProfileClick }) {
         <img src={catImg} alt="Cat" className="thankyou-cat" />
 
         {/* Thank You Text */}
-        <h1 className="thankyou-title">Thank you</h1>
+        <h1 className="thankyou-title">{t('thankyou_title')}</h1>
         <p className="thankyou-message">
-        Your submission is successful. We will reach out to you if you are one of the winners.
+          {t('thankyou_message')}
         </p>
 
         {/* Action Buttons */}
         <div className="thankyou-actions">
           <button className="thankyou-btn" onClick={onGoHome}>
-            Home Screen
+            {t('thankyou_home')}
           </button>
           <button className="thankyou-btn" onClick={onProfileClick}>
-            My Profile
+            {t('thankyou_profile')}
           </button>
         </div>
       </div>

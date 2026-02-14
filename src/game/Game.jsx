@@ -9,10 +9,12 @@ import PointPopup from './PointPopup';
 import Background, { BackgroundDefs } from './Background';
 import { createObject } from '../hooks/useGameState';
 import pauseImg from '../assets/pauseImg.png';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const GAME_DURATION = 120; // 2 minutes
 
 export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGameOver, isPaused, onPause }) {
+  const { t } = useLanguage();
   const {
     score,
     objects,
@@ -315,7 +317,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
         }}>
           <div style={{ ...glassStyle, background: 'rgba(0,0,0,0.35)', padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 14, minWidth: 260 }}>
             <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: 1 }}>
-              Lvl {playerLevel + 1}
+              {t('game_lvl')} {playerLevel + 1}
             </span>
             <span style={{ fontSize: 14, fontWeight: 600, color: level.primaryColor }}>{level.name}</span>
             {/* XP progress to next level */}
@@ -334,12 +336,12 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
                   }} />
                 </div>
                 <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', fontVariantNumeric: 'tabular-nums' }}>
-                  {newTotalXP}/{nextLevelXP} XP
+                  {newTotalXP}/{nextLevelXP} {t('game_xp')}
                 </span>
               </>
             )}
             {!nextLevelXP && (
-              <span style={{ fontSize: 10, color: 'rgba(110,231,183,0.6)' }}>MAX</span>
+              <span style={{ fontSize: 10, color: 'rgba(110,231,183,0.6)' }}>{t('game_max')}</span>
             )}
           </div>
         </div>
