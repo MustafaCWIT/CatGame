@@ -601,7 +601,7 @@ function App() {
   } else if (screen === 'splash') {
     content = <SplashScreen onLoadingComplete={handleSplashComplete} />;
   } else if (screen === 'starting') {
-    content = <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} onProfileClick={handleViewProfile} onGoHome={handleGoHome} />;
+    content = <StartingScreen onCountdownComplete={handleCountdownComplete} onProfileClick={handleViewProfile} onGoHome={handleGoHome} />;
   } else if (screen === 'game') {
     content = (
       <>
