@@ -241,6 +241,148 @@
 }
 
 
+/* Terms & Conditions Checkbox */
+.upload-terms-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.upload-terms-checkbox {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  margin-top: 2px;
+  accent-color: #FFB300;
+  cursor: pointer;
+}
+
+.upload-terms-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+.upload-terms-link {
+  background: none;
+  border: none;
+  color: #FFB300;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Terms Modal */
+.terms-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+  animation: termsFadeIn 0.2s ease;
+}
+
+.terms-modal {
+  background: linear-gradient(180deg, #930F74 0%, #4D014B 100%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  animation: termsSlideUp 0.3s ease;
+}
+
+.terms-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.terms-modal-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.terms-modal-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.terms-modal-close:hover {
+  opacity: 1;
+}
+
+.terms-modal-body {
+  padding: 16px 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.terms-modal-body p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 0 0 14px 0;
+}
+
+.terms-modal-body strong {
+  color: white;
+}
+
+.terms-modal-accept {
+  margin: 12px 24px 20px;
+  padding: 12px;
+  background: linear-gradient(180deg, #FFBA0A 0%, #DC6900 100%);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 186, 10, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.terms-modal-accept:active {
+  transform: scale(0.97);
+}
+
+@keyframes termsFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes termsSlideUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 /* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
 
 /* Tablet breakpoint */
