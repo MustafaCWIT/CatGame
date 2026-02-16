@@ -11,7 +11,7 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
   const level = LEVELS[levelIndex];
 
   // Map object types to directions: 0 = Vertical, 1 = Horizontal
-  const verticalTypes = ['clouds', 'cloud', 'bowl', 'star', 'stars', 'leaf', 'flower', 'paw', 'foodBox', 'foodBoxes', 'treat', 'moon', 'orb', 'sparkle'];
+  const verticalTypes = ['clouds', 'cloud', 'bowl', 'star', 'stars', 'leaf', 'flower', 'paw', 'foodBox', 'foodBoxes', 'catFood', 'treat', 'moon', 'orb', 'sparkle'];
   const horizontalTypes = ['fish', 'sparrow', 'butterfly', 'comet', 'dollar', 'nebula'];
 
   // Determine direction based on index to ensure 3 Horizontal (0,1,2) and 3 Vertical (3,4,5)
@@ -53,14 +53,20 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
     const slotIndex = (index - 3) % objectsPerDirection;
     const slotWidth = screenW / objectsPerDirection;
 
-    const padding = responsiveObjectSize * 0.15;
-    let slotStart = slotIndex * slotWidth + padding;
-    let slotEnd = (slotIndex + 1) * slotWidth - responsiveObjectSize - padding;
-
-    if (slotEnd < slotStart) {
-      x = slotIndex * slotWidth + (slotWidth - responsiveObjectSize) / 2;
+    if (type === 'catFood') {
+      // catFood always drops in the middle slot
+      const middleSlot = 1;
+      x = middleSlot * slotWidth + (slotWidth - responsiveObjectSize) / 2;
     } else {
-      x = slotStart + Math.random() * (slotEnd - slotStart);
+      const padding = responsiveObjectSize * 0.15;
+      let slotStart = slotIndex * slotWidth + padding;
+      let slotEnd = (slotIndex + 1) * slotWidth - responsiveObjectSize - padding;
+
+      if (slotEnd < slotStart) {
+        x = slotIndex * slotWidth + (slotWidth - responsiveObjectSize) / 2;
+      } else {
+        x = slotStart + Math.random() * (slotEnd - slotStart);
+      }
     }
 
     y = -responsiveObjectSize; // Start fully off-screen
