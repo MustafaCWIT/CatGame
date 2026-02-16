@@ -12,6 +12,8 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
   const [selectedVideoFile, setSelectedVideoFile] = useState(null);
   const [selectedReceiptFile, setSelectedReceiptFile] = useState(null);
   const [storeName, setStoreName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [userCountry, setUserCountry] = useState('');
   const [isReady, setIsReady] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
@@ -70,7 +72,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
 
       if (onUpload) {
         // Pass nulls for file URLs since we are no longer uploading them
-        await onUpload(null, null, storeName);
+        await onUpload(null, null, storeName, userEmail, userCountry);
       }
 
       // Redirect to thank you screen
@@ -168,6 +170,34 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
               onChange={(e) => setStoreName(e.target.value)}
               disabled={uploading}
               autoComplete="off"
+            />
+          </div>
+
+          {/* Section 4: Email */}
+          <div className="upload-section">
+            <h3 className="upload-section-title">Your Email</h3>
+            <input
+              type="email"
+              className="upload-text-input"
+              placeholder="Enter your email"
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
+              disabled={uploading}
+              autoComplete="email"
+            />
+          </div>
+
+          {/* Section 5: Country */}
+          <div className="upload-section">
+            <h3 className="upload-section-title">Country Name</h3>
+            <input
+              type="text"
+              className="upload-text-input"
+              placeholder="Enter your country"
+              value={userCountry}
+              onChange={(e) => setUserCountry(e.target.value)}
+              disabled={uploading}
+              autoComplete="country-name"
             />
           </div>
 
