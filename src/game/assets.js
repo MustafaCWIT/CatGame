@@ -17,6 +17,7 @@ import catViewingImg from '../assets/catViewing.png';
 import clearCloudsImg from '../assets/clearClouds.png';
 import foodBoxImg from '../assets/foodBox.png';
 import foodBoxesImg from '../assets/foodBoxes.png';
+import catFoodImg from '../assets/catFood.png';
 import signUpCloudImg from '../assets/signUpCloud.png';
 import sleepCatImg from '../assets/sleepCat.png';
 import blurCloudsImg from '../assets/clouds.png';
@@ -43,6 +44,7 @@ export const GAME_ASSETS = {
     clearClouds: clearCloudsImg,
     foodBox: foodBoxImg,
     foodBoxes: foodBoxesImg,
+    catFood: catFoodImg,
     signUpCloud: signUpCloudImg,
     sleepCat: sleepCatImg,
     blurClouds: blurCloudsImg,

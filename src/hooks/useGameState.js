@@ -12,7 +12,7 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
 
   // Map object types to directions: 0 = Vertical, 1 = Horizontal
   const verticalTypes = ['clouds', 'cloud', 'bowl', 'star', 'stars', 'leaf', 'flower', 'paw', 'foodBox', 'foodBoxes', 'treat', 'moon', 'orb', 'sparkle'];
-  const horizontalTypes = ['fish', 'sparrow', 'butterfly', 'comet', 'dollar', 'nebula'];
+  const horizontalTypes = ['fish', 'sparrow', 'butterfly', 'comet', 'dollar', 'nebula', 'catFood'];
 
   // Determine direction based on index to ensure 3 Horizontal (0,1,2) and 3 Vertical (3,4,5)
   // if MAX_OBJECTS = 6
@@ -72,14 +72,20 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
     const slotIndex = index % objectsPerDirection;
     const slotHeight = screenH / objectsPerDirection;
 
-    const padding = responsiveObjectSize * 0.15;
-    let slotStart = slotIndex * slotHeight + padding;
-    let slotEnd = (slotIndex + 1) * slotHeight - responsiveObjectSize - padding;
-
-    if (slotEnd < slotStart) {
-      y = slotIndex * slotHeight + (slotHeight - responsiveObjectSize) / 2;
+    if (type === 'catFood') {
+      // catFood always moves in the middle row
+      const middleSlot = 1;
+      y = middleSlot * slotHeight + (slotHeight - responsiveObjectSize) / 2;
     } else {
-      y = slotStart + Math.random() * (slotEnd - slotStart);
+      const padding = responsiveObjectSize * 0.15;
+      let slotStart = slotIndex * slotHeight + padding;
+      let slotEnd = (slotIndex + 1) * slotHeight - responsiveObjectSize - padding;
+
+      if (slotEnd < slotStart) {
+        y = slotIndex * slotHeight + (slotHeight - responsiveObjectSize) / 2;
+      } else {
+        y = slotStart + Math.random() * (slotEnd - slotStart);
+      }
     }
 
     x = -responsiveObjectSize; // Start fully off-screen
@@ -107,8 +113,8 @@ export function createObject(levelIndex, screenW, screenH, existingObjects = [],
     targetY,
     duration,
     scale: randomBetween(1.0, 1.3),
-    rotation: (type === 'fish' || type === 'sparrow' || type === 'clouds' || type === 'cloud') ? 0 : randomBetween(0, 360),
-    rotationSpeed: (type === 'fish' || type === 'sparrow' || type === 'clouds' || type === 'cloud') ? 0 : randomBetween(-0.1, 0.1),
+    rotation: (type === 'fish' || type === 'sparrow' || type === 'clouds' || type === 'cloud' || type === 'catFood') ? 0 : randomBetween(0, 360),
+    rotationSpeed: (type === 'fish' || type === 'sparrow' || type === 'clouds' || type === 'cloud' || type === 'catFood') ? 0 : randomBetween(-0.1, 0.1),
     opacity: 1,
     spawning: true,
     moveIndex: index

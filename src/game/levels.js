@@ -6,7 +6,7 @@ export const LEVELS = [
     name: 'Soft Sky',
     xpRequired: 0,       // unlocked from start
     background: ['#2d1b69', '#1a1040', '#3b2d80'],
-    objects: ['fish', 'star', 'stars', 'sparrow', 'bowl', 'clouds', 'leaf'],
+    objects: ['fish', 'star', 'stars', 'sparrow', 'bowl', 'clouds', 'leaf', 'catFood'],
     objectColors: ['#c4b5fd', '#a78bfa', '#7dd3fc', '#e0e7ff'],
     primaryColor: '#c4b5fd', // Purple for UI elements
     secondaryColor: '#a78bfa',
@@ -17,7 +17,7 @@ export const LEVELS = [
     name: 'Cozy Bowl World',
     xpRequired: 3000,
     background: ['#7c2d12', '#451a03', '#c2410c'],
-    objects: ['bowl', 'treat', 'foodBox', 'foodBoxes', 'paw', 'dollar', 'clouds', 'leaf', 'stars'],
+    objects: ['bowl', 'treat', 'foodBox', 'foodBoxes', 'paw', 'dollar', 'clouds', 'leaf', 'stars', 'catFood'],
     objectColors: ['#fdba74', '#fb923c', '#fbbf24', '#fde68a'],
     primaryColor: '#fb923c', // Orange for UI elements
     secondaryColor: '#fdba74',
@@ -151,6 +151,7 @@ export const OBJECT_POINTS = {
   sparrow: 3,
   foodBox: 2,
   foodBoxes: 4,
+  catFood: 3,
   dollar: 5,
   stars: 4,
   sparkle: 2,
