@@ -519,7 +519,7 @@ function App() {
     setScreen('upload');
   }, []);
 
-  const handleVideoUpload = useCallback(async (videoUrl, receiptUrl = null, storeName = null, userName = null) => {
+  const handleVideoUpload = useCallback(async (videoUrl, receiptUrl = null, storeName = null, userEmail = null, userCountry = null) => {
     if (!session?.user) {
       console.warn('handleVideoUpload called but no session exists');
       return;
@@ -555,15 +555,18 @@ function App() {
         throw fetchError;
       }
 
-      // Prepare updated arrays - only update store_name as requested
+      // Prepare updated arrays
       const storeNames = [...(currentProfile?.store_name || []), storeName || ''];
+      const emails = [...(currentProfile?.email || []), userEmail || ''];
+      const countries = [...(currentProfile?.country || []), userCountry || ''];
 
       // Update profile with synced JSONB arrays
       const updates = {
         videos_count: updated.videosCount,
         activities: updated.activities,
         store_name: storeNames,
-        ...(userName ? { full_name: userName } : {})
+        email: emails,
+        country: countries
       };
 
       console.log('Updating profile with video upload data:', updates);

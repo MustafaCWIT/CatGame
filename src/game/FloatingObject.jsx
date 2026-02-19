@@ -8,6 +8,7 @@ import gameCloudImg from '../assets/gameCloud.png';
 import sparrowImg from '../assets/sparrow.png';
 import foodBoxImg from '../assets/foodBox.png';
 import foodBoxesImg from '../assets/foodBoxes.png';
+import catFoodImg from '../assets/catFood.png';
 import leafImg from '../assets/leaf.png';
 import dollarImg from '../assets/dollar.png';
 import starsImg from '../assets/stars.png';
@@ -30,6 +31,7 @@ const FloatingObject = memo(function FloatingObject({ obj, onOffScreen, register
     sparrow: sparrowImg,
     foodBox: foodBoxImg,
     foodBoxes: foodBoxesImg,
+    catFood: catFoodImg,
     leaf: leafImg,
     dollar: dollarImg,
     stars: starsImg,
@@ -79,7 +81,7 @@ const FloatingObject = memo(function FloatingObject({ obj, onOffScreen, register
 
     // Rotation animation
     let rotateTween;
-    if (obj.rotationSpeed !== 0) {
+    if (obj.rotationSpeed !== 0 && obj.type !== 'catFood') {
       rotateTween = gsap.to(innerRef.current, {
         rotation: `+=${obj.rotationSpeed * 360}`,
         duration: 10 + Math.random() * 5,

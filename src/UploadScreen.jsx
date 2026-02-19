@@ -15,9 +15,13 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
   const [selectedReceiptFile, setSelectedReceiptFile] = useState(null);
   const [userName, setUserName] = useState('');
   const [storeName, setStoreName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [userCountry, setUserCountry] = useState('');
   const [isReady, setIsReady] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
 
   useEffect(() => {
     let loaded = 0;
@@ -73,7 +77,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
 
       if (onUpload) {
         // Pass nulls for file URLs since we are no longer uploading them
-        await onUpload(null, null, storeName, userName);
+        await onUpload(null, null, storeName, userEmail, userCountry);
       }
 
       // Redirect to thank you screen
@@ -192,15 +196,97 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
             />
           </div>
 
+          {/* Section 4: Email */}
+          <div className="upload-section">
+            <h3 className="upload-section-title">Your Email</h3>
+            <input
+              type="email"
+              className="upload-text-input"
+              placeholder="Enter your email"
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
+              disabled={uploading}
+              autoComplete="email"
+            />
+          </div>
+
+          {/* Section 5: Country */}
+          <div className="upload-section">
+            <h3 className="upload-section-title">Country Name</h3>
+            <input
+              type="text"
+              className="upload-text-input"
+              placeholder="Enter your country"
+              value={userCountry}
+              onChange={(e) => setUserCountry(e.target.value)}
+              disabled={uploading}
+              autoComplete="country-name"
+            />
+          </div>
+
+          {/* Terms & Conditions Checkbox */}
+          <label className="upload-terms-label">
+            <input
+              type="checkbox"
+              checked={agreedToTerms}
+              onChange={(e) => setAgreedToTerms(e.target.checked)}
+              disabled={uploading}
+              className="upload-terms-checkbox"
+            />
+            <span className="upload-terms-text">
+              I agree to the{' '}
+              <button
+                type="button"
+                className="upload-terms-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowTermsModal(true);
+                }}
+              >
+                Terms & Conditions
+              </button>
+            </span>
+          </label>
+
           <button
             className="upload-submit-btn"
             onClick={handleUpload}
-            disabled={uploading || !selectedVideoFile}
+            disabled={uploading || !selectedVideoFile || !agreedToTerms}
           >
             {uploading ? t('upload_btn_loading') : t('upload_btn')}
           </button>
         </div>
       </div>
+
+      {/* Terms & Conditions Modal */}
+      {showTermsModal && (
+        <div className="terms-modal-overlay" onClick={() => setShowTermsModal(false)}>
+          <div className="terms-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="terms-modal-header">
+              <h2 className="terms-modal-title">Terms & Conditions</h2>
+              <button className="terms-modal-close" onClick={() => setShowTermsModal(false)}>
+                &times;
+              </button>
+            </div>
+            <div className="terms-modal-body">
+              <p><strong>1. Eligibility</strong><br />This promotion is open to residents of participating countries. You must be 18 years or older to participate.</p>
+              <p><strong>2. How to Enter</strong><br />Purchase any Whiskas product, upload a video of your cat playing the game, and submit proof of purchase along with the required details.</p>
+              <p><strong>3. Video Requirements</strong><br />The uploaded video must clearly show a cat interacting with the game. Videos that do not meet this requirement may be disqualified.</p>
+              <p><strong>4. Personal Data</strong><br />By submitting your information, you consent to the collection and use of your personal data (including email, phone number, and country) for the purposes of this promotion.</p>
+              <p><strong>5. Intellectual Property</strong><br />By uploading a video, you grant Whiskas a non-exclusive, royalty-free license to use, display, and share the video for promotional purposes.</p>
+              <p><strong>6. Disqualification</strong><br />Any fraudulent entries, including fake receipts or videos, will result in immediate disqualification.</p>
+              <p><strong>7. Liability</strong><br />Whiskas is not responsible for any technical issues during the upload process. Entries that fail to upload due to technical errors must be resubmitted.</p>
+              <p><strong>8. Changes to Terms</strong><br />Whiskas reserves the right to modify these terms and conditions at any time without prior notice.</p>
+            </div>
+            <button className="terms-modal-accept" onClick={() => {
+              setAgreedToTerms(true);
+              setShowTermsModal(false);
+            }}>
+              Accept
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
