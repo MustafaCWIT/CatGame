@@ -198,29 +198,31 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
 
           {/* Section 4: Email */}
           <div className="upload-section">
-            <h3 className="upload-section-title">Your Email</h3>
+            <h3 className="upload-section-title">{t('upload_email_title')}</h3>
             <input
               type="email"
               className="upload-text-input"
-              placeholder="Enter your email"
+              placeholder={t('upload_email_placeholder')}
               value={userEmail}
               onChange={(e) => setUserEmail(e.target.value)}
               disabled={uploading}
               autoComplete="email"
+              dir={language === 'ar' ? 'rtl' : 'ltr'}
             />
           </div>
 
           {/* Section 5: Country */}
           <div className="upload-section">
-            <h3 className="upload-section-title">Country Name</h3>
+            <h3 className="upload-section-title">{t('upload_country_title')}</h3>
             <input
               type="text"
               className="upload-text-input"
-              placeholder="Enter your country"
+              placeholder={t('upload_country_placeholder')}
               value={userCountry}
               onChange={(e) => setUserCountry(e.target.value)}
               disabled={uploading}
               autoComplete="country-name"
+              dir={language === 'ar' ? 'rtl' : 'ltr'}
             />
           </div>
 
@@ -234,7 +236,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
               className="upload-terms-checkbox"
             />
             <span className="upload-terms-text">
-              I agree to the{' '}
+              {language === 'ar' ? 'أوافق على ' : 'I agree to the '}
               <button
                 type="button"
                 className="upload-terms-link"
@@ -243,7 +245,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
                   setShowTermsModal(true);
                 }}
               >
-                Terms & Conditions
+                {language === 'ar' ? 'الشروط والأحكام' : 'Terms & Conditions'}
               </button>
             </span>
           </label>
