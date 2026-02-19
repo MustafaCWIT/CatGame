@@ -3,10 +3,12 @@ import './GameOver.css';
 import catViewingImg from './assets/catViewing.png';
 import dollarImg from './assets/dollar.png';
 import gameBackgroundImg from './assets/gameBackground.png';
+import { useLanguage } from './i18n/LanguageContext';
 
 const ASSETS = [catViewingImg, dollarImg, gameBackgroundImg];
 
 export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes, onProfileClick, isPaused, onGoToUpload }) {
+  const { t, language } = useLanguage();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -55,23 +57,23 @@ export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes,
           <img src={dollarImg} alt="Dollar" className="go-dollar" />
 
           {/* Score text */}
-          <p className="go-label">You have got</p>
-          <h1 className="go-score">+{score.toLocaleString()}</h1>
+          <p className="go-label">{t('gameover_label')}</p>
+          <h1 className="go-score">+{score.toLocaleString(language === 'ar' ? 'ar-EG' : undefined)}</h1>
 
           {/* Action buttons */}
           <div className="go-actions">
             <button className="go-btn go-btn-play" onClick={onPlayAgain}>
-              {isPaused ? "Resume" : "Play Again"}
+              {isPaused ? t('gameover_resume') : t('gameover_play_again')}
             </button>
             <button className="go-btn go-btn-end" onClick={onUnlockThemes}>
-              End Game
+              {t('gameover_end')}
             </button>
           </div>
         </div>
 
         {/* Bottom button moved inside container */}
         <button className="go-unlock-btn" onClick={onGoToUpload || onUnlockThemes}>
-         Upload Video & Win 
+          {t('gameover_upload')}
         </button>
       </div>
     </div>

@@ -179,6 +179,18 @@
   opacity: 0.7;
 }
 
+html[lang="ar"] .upload-text-input {
+  text-align: right;
+  font-family: 'Cairo', 'Poppins', sans-serif;
+}
+
+html[lang="ar"] .upload-card-title,
+html[lang="ar"] .upload-section-title,
+html[lang="ar"] .upload-section-instruction {
+  text-align: right;
+  font-family: 'Cairo', 'Poppins', sans-serif;
+}
+
 .upload-text-input:focus {
   border-color: rgba(255, 255, 255, 0.5);
 }

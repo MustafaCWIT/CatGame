@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import './Home.css';
 import { ALL_ASSETS, GAME_ASSETS } from './game/assets';
+import { useLanguage } from './i18n/LanguageContext';
 
 const {
   background: backgroundImg,
@@ -16,6 +17,7 @@ const ASSETS = ALL_ASSETS;
 
 export default function Home({ onStartGame, onResetProgress, onLogout, user, onProfileClick, onGoToUpload }) {
   const [isReady, setIsReady] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     let loaded = 0;
@@ -73,7 +75,7 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user, onP
 
         {/* Title and Cat in same row */}
         <div className="home-hero">
-          <h1 className="home-title">Tap To Purr</h1>
+          <h1 className="home-title">{t('home_title')}</h1>
           <div className="home-cat-container">
             <div className="home-cat-circle"></div>
             <img src={catImg} alt="Cat" className="home-cat" />
@@ -83,15 +85,15 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user, onP
         {/* Action buttons */}
         <div className="home-buttons">
           <div className="home-btn-wrapper">
-            <div className="home-step-tag">STEP 1</div>
+            <div className="home-step-tag">{t('home_step1')}</div>
             <button className="home-btn home-btn-play" onClick={onStartGame}>
-              Play Tap-To-Purr
+              {t('home_play')}
             </button>
           </div>
           <div className="home-btn-wrapper">
-            <div className="home-step-tag">STEP 2</div>
+            <div className="home-step-tag">{t('home_step2')}</div>
             <button className="home-btn home-btn-upload" onClick={onGoToUpload}>
-              Upload Cat Video & Win
+              {t('home_upload')}
             </button>
           </div>
         </div>
@@ -99,19 +101,19 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user, onP
 
         {/* Participate section */}
         <div className="home-participate">
-          <h2 className="home-participate-title">Participate and win</h2>
+          <h2 className="home-participate-title">{t('home_participate')}</h2>
           <div className="home-prize-buttons">
             <button className="home-prize-btn home-prize-btn-left">
               <img src={sleepCatImg} alt="" className="home-prize-img home-prize-img-left" />
               <div className="home-prize-text">
-                <span>Purradise</span>
-                <span>Reset Day</span>
+                <span>{t('home_prize1_line1')}</span>
+                <span>{t('home_prize1_line2')}</span>
               </div>
             </button>
             <button className="home-prize-btn home-prize-btn-right">
               <div className="home-prize-text">
-                <span>A Year of Whiskas</span>
-                <span>Wet & Dry Food</span>
+                <span>{t('home_prize2_line1')}</span>
+                <span>{t('home_prize2_line2')}</span>
               </div>
               <img src={foodBoxImg} alt="" className="home-prize-img home-prize-img-right" />
             </button>

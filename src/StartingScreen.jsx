@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './StartingScreen.css';
 import { ALL_ASSETS, GAME_ASSETS } from './game/assets';
+import { useLanguage } from './i18n/LanguageContext';
 
 const {
   background: backgroundImg,
@@ -16,6 +17,7 @@ const {
 const ASSETS_TO_PRELOAD = ALL_ASSETS;
 
 export default function StartingScreen({ levelName, onCountdownComplete, onProfileClick, onGoHome }) {
+  const { t, language } = useLanguage();
   const [count, setCount] = useState(1);
   const [isReady, setIsReady] = useState(false);
 
@@ -76,7 +78,7 @@ export default function StartingScreen({ levelName, onCountdownComplete, onProfi
   if (!isReady) {
     return (
       <div className="starting-screen loading">
-        <div className="starting-loader-text">Loading Assets...</div>
+        <div className="starting-loader-text">{t('starting_loading')}</div>
       </div>
     );
   }
@@ -100,7 +102,7 @@ export default function StartingScreen({ levelName, onCountdownComplete, onProfi
       </div>
 
       {/* Level name */}
-      <h1 className="starting-title">{levelName || 'Midnight Paws'}</h1>
+      <h1 className="starting-title">{levelName || t('starting_level_midnight')}</h1>
 
       {/* Game preview wrapper with Tablet Frame */}
       <div className="starting-preview-wrapper">
@@ -134,8 +136,8 @@ export default function StartingScreen({ levelName, onCountdownComplete, onProfi
 
       {/* Countdown */}
       <div className="starting-countdown">
-        <span className="starting-label">Starting in</span>
-        <span className="starting-number">{count}</span>
+        <span className="starting-label">{t('starting_label')}</span>
+        <span className="starting-number">{language === 'ar' ? count.toLocaleString('ar-EG') : count}</span>
       </div>
     </div>
   );

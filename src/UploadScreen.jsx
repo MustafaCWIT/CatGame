@@ -3,14 +3,17 @@ import './UploadScreen.css';
 import backgroundImg from './assets/background.png';
 import logoImg from './assets/logo.png';
 import { supabase } from './lib/supabase';
+import { useLanguage } from './i18n/LanguageContext';
 
 const ASSETS = [backgroundImg, logoImg];
 
 export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYou, onProfileClick }) {
+  const { t, language } = useLanguage();
   const videoInputRef = useRef(null);
   const receiptInputRef = useRef(null);
   const [selectedVideoFile, setSelectedVideoFile] = useState(null);
   const [selectedReceiptFile, setSelectedReceiptFile] = useState(null);
+  const [userName, setUserName] = useState('');
   const [storeName, setStoreName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userCountry, setUserCountry] = useState('');
@@ -56,12 +59,12 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
 
   const handleUpload = async () => {
     if (!selectedVideoFile) {
-      setUploadError('Please select a video file.');
+      setUploadError(t('upload_error_no_video'));
       return;
     }
 
     if (!userId) {
-      setUploadError('You must be logged in to upload metadata.');
+      setUploadError(t('upload_error_no_login'));
       return;
     }
 
@@ -111,7 +114,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
       <div className="upload-content">
         {/* Upload Card */}
         <div className="upload-card">
-          <h2 className="upload-card-title">Upload video</h2>
+          <h2 className="upload-card-title">{t('upload_title')}</h2>
 
           {uploadError && (
             <div className="upload-error-msg" style={{ color: '#f87171', marginBottom: '12px', fontSize: '14px' }}>
@@ -121,14 +124,14 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
 
           {/* Section 1: Upload Cat video playing game */}
           <div className="upload-section">
-            <h3 className="upload-section-title">Upload Cat video playing game</h3>
-            <p className="upload-section-instruction">Please make sure the cat is visible playing the game in the video</p>
+            <h3 className="upload-section-title">{t('upload_video_title')}</h3>
+            <p className="upload-section-instruction">{t('upload_video_instruction')}</p>
             <button
               className="upload-select-btn"
               onClick={() => videoInputRef.current?.click()}
               disabled={uploading}
             >
-              {selectedVideoFile ? selectedVideoFile.name : 'Select file'}
+              {selectedVideoFile ? selectedVideoFile.name : t('upload_select_file')}
             </button>
             <input
               ref={videoInputRef}
@@ -142,14 +145,14 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
 
           {/* Section 2: Upload Receipt / Proof of Purchase */}
           <div className="upload-section">
-            <h3 className="upload-section-title">Upload Recipt / Proof of Purchase of Whiskas product</h3>
-            <p className="upload-section-instruction">Please upload a clear picture of the reciept</p>
+            <h3 className="upload-section-title">{t('upload_receipt_title')}</h3>
+            <p className="upload-section-instruction">{t('upload_receipt_instruction')}</p>
             <button
               className="upload-select-btn"
               onClick={() => receiptInputRef.current?.click()}
               disabled={uploading}
             >
-              {selectedReceiptFile ? selectedReceiptFile.name : 'Select file'}
+              {selectedReceiptFile ? selectedReceiptFile.name : t('upload_select_file')}
             </button>
             <input
               ref={receiptInputRef}
@@ -161,17 +164,35 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
             />
           </div>
 
-          {/* Section 3: Name of the Store of Purchase */}
+          {/* Section 3: Your Name */}
           <div className="upload-section">
-            <h3 className="upload-section-title">Name of the Store of Purchase</h3>
+            <h3 className="upload-section-title">{t('upload_username_title')}</h3>
             <input
               type="text"
               className="upload-text-input"
-              placeholder="Store Name"
+              placeholder={t('upload_username_placeholder')}
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              disabled={uploading}
+              autoComplete="name"
+              lang={language}
+              dir={language === 'ar' ? 'rtl' : 'ltr'}
+            />
+          </div>
+
+          {/* Section 4: Name of the Store of Purchase */}
+          <div className="upload-section">
+            <h3 className="upload-section-title">{t('upload_store_title')}</h3>
+            <input
+              type="text"
+              className="upload-text-input"
+              placeholder={t('upload_store_placeholder')}
               value={storeName}
               onChange={(e) => setStoreName(e.target.value)}
               disabled={uploading}
               autoComplete="off"
+              lang={language}
+              dir={language === 'ar' ? 'rtl' : 'ltr'}
             />
           </div>
 
@@ -232,7 +253,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
             onClick={handleUpload}
             disabled={uploading || !selectedVideoFile || !agreedToTerms}
           >
-            {uploading ? 'Uploading...' : 'Upload'}
+            {uploading ? t('upload_btn_loading') : t('upload_btn')}
           </button>
         </div>
       </div>

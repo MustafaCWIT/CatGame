@@ -5,6 +5,7 @@ import dollarImg from './assets/dollar.png';
 import gameImg from './assets/game.png';
 import backgroundImg from './assets/background.png';
 import cloudsImg from './assets/clouds.png';
+import { useLanguage } from './i18n/LanguageContext';
 
 const ASSETS = [logoImg, dollarImg, gameImg, backgroundImg, cloudsImg];
 
@@ -19,6 +20,8 @@ export default function LevelsScreen({
   autoScrollToThemes = false,
   onLogout
 }) {
+  const { t, language, toggleLanguage } = useLanguage();
+  const locale = language === 'ar' ? 'ar-EG' : undefined;
   const [selectedTheme, setSelectedTheme] = useState('midnight');
   const [isReady, setIsReady] = useState(false);
   const themeSectionRef = useRef(null);
@@ -93,7 +96,8 @@ export default function LevelsScreen({
       <div className="levels-content">
         {/* User Profile */}
         <div className="levels-user-section">
-          <h1 className="levels-user-name">{userData.phone || 'Player'}</h1>
+          <h1 className="levels-user-name">{userData.full_name || t('levels_player')}</h1>
+          {userData.phone && <p className="levels-user-phone">{userData.phone}</p>}
         </div>
 
         {/* Stats Section */}
@@ -101,27 +105,27 @@ export default function LevelsScreen({
           <div className="levels-stat-card">
             <img src={dollarImg} alt="" className="levels-stat-img" />
             <div className="levels-stat-content">
-              <span className="levels-stat-label">Points Earned</span>
-              <span className="levels-stat-value">{totalXP.toLocaleString()}</span>
+              <span className="levels-stat-label">{t('levels_points')}</span>
+              <span className="levels-stat-value">{totalXP.toLocaleString(locale)}</span>
             </div>
           </div>
           <div className="levels-stat-column">
             <div className="levels-stat-video-card">
               <img src={gameImg} alt="" className="levels-stat-img" />
               <div className="levels-stat-content">
-                <span className="levels-stat-label">Videos uploaded</span>
-                <span className="levels-stat-value">{String(videosCount).padStart(2, '0')}</span>
+                <span className="levels-stat-label">{t('levels_videos')}</span>
+                <span className="levels-stat-value">{language === 'ar' ? Number(videosCount).toLocaleString('ar-EG') : String(videosCount).padStart(2, '0')}</span>
               </div>
             </div>
             <button className="levels-upload-btn" onClick={onVideoUpload}>
-              Upload Video
+              {t('levels_upload_btn')}
             </button>
           </div>
         </div>
 
         {/* Select Theme Section */}
         <div className="levels-theme-section" ref={themeSectionRef}>
-          <h2 className="levels-section-title">Select theme</h2>
+          <h2 className="levels-section-title">{t('levels_select_theme')}</h2>
           <div className="levels-theme-cards">
             <div
               className={`levels-theme-card levels-theme-midnight ${selectedTheme === 'midnight' ? 'levels-theme-selected' : ''}`}
@@ -133,7 +137,7 @@ export default function LevelsScreen({
                 </svg>
               </div>
               <div className="levels-theme-footer">
-                <span className="levels-theme-name">Midnight Paws</span>
+                <span className="levels-theme-name">{t('levels_theme_midnight')}</span>
               </div>
             </div>
             <div className="levels-theme-card levels-theme-locked">
@@ -143,7 +147,7 @@ export default function LevelsScreen({
                 </svg>
               </div>
               <div className="levels-theme-footer">
-                <span className="levels-theme-name">Purrlight Valley</span>
+                <span className="levels-theme-name">{t('levels_theme_purrlight')}</span>
               </div>
             </div>
           </div>
@@ -151,27 +155,34 @@ export default function LevelsScreen({
 
         {/* My Activity Section */}
         <div className="levels-activity-section">
-          <h2 className="levels-activity-title">My Activity</h2>
+          <h2 className="levels-activity-title">{t('levels_activity_title')}</h2>
           <div className="levels-activity-list">
             {activities.length === 0 ? (
-              <p className="levels-activity-empty">No activity yet. Play a game to get started!</p>
+              <p className="levels-activity-empty">{t('levels_activity_empty')}</p>
             ) : activities.map((activity, index) => (
               <div key={index} className="levels-activity-item">
                 <div className="levels-activity-icon">
                   <img src={gameImg} alt="" className="levels-activity-img" />
                 </div>
-                <span className="levels-activity-text">{activity.text}</span>
+                <span className="levels-activity-text">{activity.key ? t(activity.key, activity.params) : activity.text}</span>
                 <span className="levels-activity-date">{activity.date}</span>
               </div>
             ))}
           </div>
         </div>
 
+        {/* Language toggle */}
+        <div className="levels-lang-section">
+          <button className="levels-lang-btn" onClick={toggleLanguage}>
+            {t('lang_toggle')}
+          </button>
+        </div>
+
         {/* Logout button */}
         {onLogout && (
           <div className="levels-logout-section">
             <button className="levels-logout-btn" onClick={onLogout}>
-              logout
+              {t('levels_logout')}
             </button>
           </div>
         )}

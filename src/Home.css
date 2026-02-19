@@ -88,6 +88,31 @@
   transform: scale(1.05);
 }
 
+/* Language toggle button */
+.home-lang-toggle {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  height: 40px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 4;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.home-lang-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
 /* Reset XP button */
 .home-reset-btn {
   position: fixed;
@@ -1293,7 +1318,7 @@
   }
 
   .home-prize-text span {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .home-prize-img-left {
@@ -1303,9 +1328,9 @@
   }
 
   .home-prize-img-right {
-    width: 70px;
+    width: 60px;
     right: -3px;
-    bottom: -8px;
+    bottom: 0;
   }
 }
 

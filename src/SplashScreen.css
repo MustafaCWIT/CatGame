@@ -17,6 +17,31 @@
   pointer-events: none;
 }
 
+/* Language toggle on splash */
+.splash-lang-toggle {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  height: 40px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 10000;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.splash-lang-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
 .splash-background {
   position: absolute;
   inset: 0;

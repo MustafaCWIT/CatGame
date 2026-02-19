@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import './LoginModal.css';
+import { useLanguage } from './i18n/LanguageContext';
 
 export default function LoginModal({ onClose, onLogin, isLoading }) {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     phone: '+971'
   });
@@ -27,15 +29,15 @@ export default function LoginModal({ onClose, onLogin, isLoading }) {
         </button>
 
         {/* Title */}
-        <h2 className="login-title">Login to Play</h2>
-        <p className="login-subtitle">Enter your phone number to continue.</p>
+        {/* <h2 className="login-title">Login to Play</h2> */}
+        <p className="login-subtitle">{t('login_subtitle')}</p>
 
         {/* Form */}
         <form className="login-form" onSubmit={handleSubmit}>
           <input
             type="tel"
             name="phone"
-            placeholder="Phone Number (e.g., +971XXXXXXXXX)"
+            placeholder={t('login_placeholder')}
             value={formData.phone}
             onChange={handleChange}
             className="login-input"
@@ -44,7 +46,7 @@ export default function LoginModal({ onClose, onLogin, isLoading }) {
           />
 
           <button type="submit" className="login-btn" disabled={isLoading}>
-            {isLoading ? <span className="btn-loader" /> : 'Login'}
+            {isLoading ? <span className="btn-loader" /> : t('login_btn')}
           </button>
         </form>
 

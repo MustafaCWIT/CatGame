@@ -9,10 +9,13 @@ import PointPopup from './PointPopup';
 import Background, { BackgroundDefs } from './Background';
 import { createObject } from '../hooks/useGameState';
 import pauseImg from '../assets/pauseImg.png';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const GAME_DURATION = 120; // 2 minutes
 
 export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGameOver, isPaused, onPause }) {
+  const { t, language } = useLanguage();
+  const toLocalNum = (n) => language === 'ar' ? Number(n).toLocaleString('ar-EG') : String(n);
   const {
     score,
     objects,
@@ -170,7 +173,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
-  const timeStr = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  const timeStr = `${toLocalNum(minutes)}:${toLocalNum(seconds).padStart(2, '0')}`;
 
   const glassStyle = {
     background: 'rgba(0,0,0,0.4)',
@@ -219,7 +222,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
           />
         ))}
         {ripples.map(r => <Ripple key={r.id} ripple={r} onDone={clearRipple} />)}
-        {pointPopups.map(p => <PointPopup key={p.id} popup={p} onDone={clearPointPopup} />)}
+        {pointPopups.map(p => <PointPopup key={p.id} popup={p} onDone={clearPointPopup} language={language} />)}
       </svg>
 
       {/* HUD */}
@@ -244,7 +247,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
             fontWeight: 700,
             color: 'white',
             fontVariantNumeric: 'tabular-nums'
-          }}>{score}</span>
+          }}>{toLocalNum(score)}</span>
         </div>
 
         {/* Right: Timer */}
@@ -315,7 +318,7 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
         }}>
           <div style={{ ...glassStyle, background: 'rgba(0,0,0,0.35)', padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 14, minWidth: 260 }}>
             <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: 1 }}>
-              Lvl {playerLevel + 1}
+              {t('game_lvl')} {toLocalNum(playerLevel + 1)}
             </span>
             <span style={{ fontSize: 14, fontWeight: 600, color: level.primaryColor }}>{level.name}</span>
             {/* XP progress to next level */}
@@ -334,12 +337,12 @@ export default function Game({ playerLevel, totalXP, onEnd, onRestart, onShowGam
                   }} />
                 </div>
                 <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', fontVariantNumeric: 'tabular-nums' }}>
-                  {newTotalXP}/{nextLevelXP} XP
+                  {toLocalNum(newTotalXP)}/{toLocalNum(nextLevelXP)} {t('game_xp')}
                 </span>
               </>
             )}
             {!nextLevelXP && (
-              <span style={{ fontSize: 10, color: 'rgba(110,231,183,0.6)' }}>MAX</span>
+              <span style={{ fontSize: 10, color: 'rgba(110,231,183,0.6)' }}>{t('game_max')}</span>
             )}
           </div>
         </div>

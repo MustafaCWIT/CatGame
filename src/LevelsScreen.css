@@ -136,7 +136,16 @@
   font-size: 32px;
   font-weight: 800;
   color: white;
+  margin: 0 0 2px 0;
+}
+
+.levels-user-phone {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
   margin: 0 0 5px 0;
+  direction: ltr;
 }
 
 .levels-user-info {
@@ -401,6 +410,36 @@
 }
 
 /* Logout section */
+.levels-lang-section {
+  width: 100%;
+  max-width: 650px;
+  padding: 20px 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.levels-lang-btn {
+  padding: 12px 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.levels-lang-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.levels-lang-btn:active {
+  transform: scale(0.97);
+}
+
 .levels-logout-section {
   width: 100%;
   max-width: 650px;
@@ -432,6 +471,34 @@
 
 .levels-logout-btn:active {
   transform: translateY(0);
+}
+
+/* RTL / Arabic overrides */
+html[lang="ar"] .levels-stat-card,
+html[lang="ar"] .levels-stat-video-card {
+  flex-direction: row-reverse;
+}
+
+html[lang="ar"] .levels-stat-content {
+  align-items: flex-end;
+  text-align: right;
+}
+
+html[lang="ar"] .levels-user-section {
+  text-align: right;
+}
+
+html[lang="ar"] .levels-activity-item {
+  flex-direction: row-reverse;
+}
+
+html[lang="ar"] .levels-activity-text {
+  text-align: right;
+}
+
+html[lang="ar"] .levels-section-title,
+html[lang="ar"] .levels-activity-title {
+  text-align: right;
 }
 
 /* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */

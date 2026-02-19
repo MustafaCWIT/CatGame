@@ -15,6 +15,8 @@ import { useEffect } from 'react';
 import { ALL_ASSETS } from './game/assets';
 
 import { useActivityTracker } from './hooks/useActivityTracker';
+import { useLanguage } from './i18n/LanguageContext';
+import LanguageSelectModal from './LanguageSelectModal';
 
 function AssetPreloader() {
   return (
@@ -93,7 +95,8 @@ if (typeof window !== 'undefined') {
 }
 
 function App() {
-  const [screen, setScreen] = useState('splash');
+  const { t, setLanguage } = useLanguage();
+  const [screen, setScreen] = useState('langSelect');
   const [showModal, setShowModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [progress, setProgress] = useState(loadProgress);
@@ -117,8 +120,8 @@ function App() {
     const emptyProgress = { totalXP: 0, videosCount: 0, activities: [], gameTimeSpent: 0 };
     setProgress(emptyProgress);
     saveProgress(emptyProgress);
-    setUserData({ phone: '' });
-    saveUserData({ phone: '' });
+    setUserData({ phone: '', full_name: '' });
+    saveUserData({ phone: '', full_name: '' });
     setScreen('home');
   }, []);
 
@@ -148,7 +151,7 @@ function App() {
         };
         setProgress(prog);
         saveProgress(prog);
-        const ud = { phone: data.phone || '' };
+        const ud = { phone: data.phone || '', full_name: data.full_name || '' };
         setUserData(ud);
         saveUserData(ud);
       }
@@ -343,7 +346,8 @@ function App() {
     const dateStr = getCurrentDateString();
 
     const newActivity = {
-      text: `You earned ${score} points playing midnight paws`,
+      key: 'activity_earned',
+      params: { score },
       date: dateStr
     };
 
@@ -409,7 +413,7 @@ function App() {
     } else {
       console.warn('Cannot sync to Supabase: No active session');
     }
-  }, [progress, session, updateProfile, gameStartTime]);
+  }, [progress, session, updateProfile, gameStartTime, t]);
 
   const handleShowGameOver = useCallback((score) => {
     handleEndGame(score);
@@ -493,7 +497,7 @@ function App() {
   }, [session]);
 
   const handleResetProgress = useCallback(async () => {
-    if (window.confirm('Reset all progress? This will set XP to 0 and cannot be undone.')) {
+    if (window.confirm(t('reset_confirm'))) {
       localStorage.removeItem('tap-to-purr-progress');
       const resetProgress = { totalXP: 0, videosCount: 0, activities: [] };
       setProgress(resetProgress);
@@ -509,7 +513,7 @@ function App() {
         });
       }
     }
-  }, [session, updateProfile]);
+  }, [session, updateProfile, t]);
 
   const handleGoToUpload = useCallback(() => {
     setScreen('upload');
@@ -527,7 +531,7 @@ function App() {
     const dateStr = getCurrentDateString();
 
     const newActivity = {
-      text: 'You uploaded a video',
+      key: 'activity_uploaded',
       date: dateStr
     };
     const activities = progress.activities || [];
@@ -589,13 +593,20 @@ function App() {
         code: err.code
       });
     }
-  }, [progress, session, updateProfile]);
+  }, [progress, session, updateProfile, t]);
+
+  const handleLanguageSelect = useCallback((lang) => {
+    setLanguage(lang);
+    setScreen('splash');
+  }, [setLanguage]);
 
   let content;
-  if (screen === 'splash') {
+  if (screen === 'langSelect') {
+    content = <LanguageSelectModal onSelect={handleLanguageSelect} />;
+  } else if (screen === 'splash') {
     content = <SplashScreen onLoadingComplete={handleSplashComplete} />;
   } else if (screen === 'starting') {
-    content = <StartingScreen levelName="Midnight Paws" onCountdownComplete={handleCountdownComplete} onProfileClick={handleViewProfile} onGoHome={handleGoHome} />;
+    content = <StartingScreen onCountdownComplete={handleCountdownComplete} onProfileClick={handleViewProfile} onGoHome={handleGoHome} />;
   } else if (screen === 'game') {
     content = (
       <>

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function PointPopup({ popup, onDone }) {
+export default function PointPopup({ popup, onDone, language }) {
   const [y, setY] = useState(popup.y);
   const [scale, setScale] = useState(0.5);
   const [opacity, setOpacity] = useState(0);
@@ -75,7 +75,7 @@ export default function PointPopup({ popup, onDone }) {
           userSelect: 'none',
         }}
       >
-        +{popup.points}
+        +{language === 'ar' ? Number(popup.points).toLocaleString('ar-EG') : popup.points}
       </text>
     </g>
   );
