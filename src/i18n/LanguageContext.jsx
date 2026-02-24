@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import translations from './translations';
 
 const STORAGE_KEY = 'tap-to-purr-language';
@@ -42,6 +42,16 @@ export function LanguageProvider({ children }) {
       Object.entries(params).forEach(([k, v]) => {
         text = text.replace(`{${k}}`, v);
       });
+    }
+    if (text.includes('®')) {
+      const parts = text.split('®');
+      return React.createElement(React.Fragment, null,
+        ...parts.flatMap((part, i) =>
+          i < parts.length - 1
+            ? [part, React.createElement('span', { key: i, className: 'reg-mark' }, '®')]
+            : [part]
+        )
+      );
     }
     return text;
   }, [language]);

@@ -59,6 +59,30 @@ html[lang="ar"] .go-score {
   font-family: 'Cairo', 'Fredoka', sans-serif;
 }
 
+.reg-mark {
+  font-size: 1em;
+  vertical-align: super;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 900px) {
+  .reg-mark {
+    font-size: 1.1em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .reg-mark {
+    font-size: 1.2em;
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .reg-mark {
+    font-size: 1.3em;
+  }
+}
+
 /* Keep all layouts LTR — only text content changes to Arabic */
 .app-main-container {
   direction: ltr;

@@ -9,7 +9,7 @@ const translations = {
     home_participate: 'Participate and win',
     home_prize1_line1: 'Purradise',
     home_prize1_line2: 'Reset Day',
-    home_prize2_line1: 'A Year of Whiskas',
+    home_prize2_line1: 'A Year of Whiskas®',
     home_prize2_line2: 'Wet & Dry Food',
 
     // Splash
@@ -33,13 +33,13 @@ const translations = {
     howto_title: 'How to play',
     howto_step1: 'Place the tablet on the floor and let the cat interact and play the game',
     howto_step2: 'The cat taps the objects and collect points',
-    howto_step3: 'Cat owner records the cat playing and upload the video along with proof of Whiskas product purchase.',
+    howto_step3: 'Cat owner records the cat playing and upload the video along with proof of Whiskas® product purchase.',
     howto_step4: 'Lucky winners will be announced at the end of the campaign',
     howto_participate: 'Participate and win',
     howto_prize1_title: 'Purradise Reset Day',
     howto_prize1_desc: 'premium grooming experience at a top-rated pet spa, including pickup and drop-off.',
-    howto_prize2_title: 'A Year of Whiskas Wet & Dry Food',
-    howto_qualify: 'To qualify for the participation and chance to win the prizes, it is required to upload the video along with proof of Whiskas product purchase.',
+    howto_prize2_title: 'A Year of Whiskas® Wet & Dry Food',
+    howto_qualify: 'To qualify for the participation and chance to win the prizes, it is required to upload the video along with proof of Whiskas® product purchase.',
     howto_go: "Let's Go",
 
     // Login Modal
@@ -64,8 +64,8 @@ const translations = {
     upload_title: 'Upload video',
     upload_video_title: 'Upload Cat video playing game',
     upload_video_instruction: 'Please make sure the cat is visible playing the game in the video',
-    upload_receipt_title: 'Upload Recipt / Proof of Purchase of Whiskas product',
-    upload_receipt_instruction: 'Please upload a clear picture of the reciept',
+    upload_receipt_title: 'Upload Receipt / Proof of Purchase of Whiskas® product',
+    upload_receipt_instruction: 'Please upload a clear picture of the receipt',
     upload_username_title: 'Your Name',
     upload_username_placeholder: 'Enter your name',
     upload_store_title: 'Name of the Store of Purchase',
@@ -113,7 +113,7 @@ const translations = {
     home_participate: 'شارك واربح',
     home_prize1_line1: 'يوم عناية فاخر',
     home_prize1_line2: 'لقطتك',
-    home_prize2_line1: 'عام كامل من طعام Whiskas',
+    home_prize2_line1: 'عام كامل من طعام Whiskas®',
     home_prize2_line2: 'الرطب والجاف',
 
     // Splash
@@ -142,7 +142,7 @@ const translations = {
     howto_participate: 'شارك واربح',
     howto_prize1_title: 'يوم عناية فاخر لقطتك',
     howto_prize1_desc: 'جلسة عناية متكاملة في سبا للحيوانات الأليفة مع خدمة الاستلام والتوصيل',
-    howto_prize2_title: 'الرطب والجاف Whiskas عام كامل من طعام',
+    howto_prize2_title: 'الرطب والجاف Whiskas® عام كامل من طعام',
     howto_qualify: 'للدخول في السحب يجب رفع الفيديو مع فاتورة الشراء',
     howto_go: 'لنبدأ',
 
@@ -168,7 +168,7 @@ const translations = {
     upload_title: 'رفع فيديو',
     upload_video_title: 'ارفع فيديو لقطتك أثناء اللعب',
     upload_video_instruction: 'يرجى التأكد من ظهور القطة بوضوح وهي تلعب في الفيديو',
-    upload_receipt_title: ' Whiskas رفع إيصال / إثبات شراء منتج',
+    upload_receipt_title: ' Whiskas® رفع إيصال / إثبات شراء منتج',
     upload_receipt_instruction: 'يرجى رفع صورة واضحة للإيصال',
     upload_username_title: 'اسمك',
     upload_username_placeholder: 'أدخل اسمك',
