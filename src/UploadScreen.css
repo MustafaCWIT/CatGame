@@ -396,6 +396,23 @@ html[lang="ar"] .upload-terms-text {
   transform: scale(0.97);
 }
 
+.terms-modal-ar {
+  direction: rtl;
+}
+
+.terms-modal-ar .terms-modal-title {
+  font-family: 'Cairo', 'Poppins', sans-serif;
+}
+
+.terms-modal-ar .terms-modal-body p {
+  font-family: 'Cairo', 'Poppins', sans-serif;
+  text-align: right;
+}
+
+.terms-modal-ar .terms-modal-accept {
+  font-family: 'Cairo', 'Poppins', sans-serif;
+}
+
 @keyframes termsFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
