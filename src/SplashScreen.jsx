@@ -113,7 +113,9 @@ export default function SplashScreen({ onLoadingComplete }) {
           <img src={cloudsImg} alt="" className="splash-clouds splash-clouds-right" />
 
           {/* Logo */}
-          <img src={logoImg} alt="Whiskas" className="splash-logo" />
+          <div className="logo-halo-wrap splash-logo-wrap">
+            <img src={logoImg} alt="Whiskas" className="splash-logo" />
+          </div>
 
           {/* Fish */}
           <img src={fishImg} alt="" className="splash-fish" />

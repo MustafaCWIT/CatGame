@@ -71,7 +71,9 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user, onP
 
       <div className="home-content">
         {/* Logo */}
-        <img src={logoImg} alt="Whiskas" className="home-logo" />
+        <div className="logo-halo-wrap home-logo-wrap">
+          <img src={logoImg} alt="Whiskas" className="home-logo" />
+        </div>
 
         {/* Title and Cat in same row */}
         <div className="home-hero">

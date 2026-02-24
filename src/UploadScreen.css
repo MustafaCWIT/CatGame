@@ -55,12 +55,14 @@
   transform: scale(0.95);
 }
 
-.upload-logo {
-  height: 70px;
+.upload-logo-wrap {
   position: absolute;
   left: 50%;
- 
   transform: translateX(-50%);
+}
+
+.upload-logo {
+  height: 70px;
   margin-bottom: 20px;
   overflow: visible;
 }

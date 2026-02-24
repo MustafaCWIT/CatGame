@@ -32,14 +32,14 @@ const translations = {
     // How To Play Modal
     howto_title: 'How to play',
     howto_step1: 'Place the tablet on the floor and let the cat interact and play the game',
-    howto_step2: 'The cat taps the objects and collect points',
-    howto_step3: 'Cat owner records the cat playing and upload the video along with proof of Whiskas® product purchase.',
+    howto_step2: 'The cat taps the objects and collects points',
+    howto_step3: 'The cat owner records the cat playing and uploads the video along with proof of Whiskas® product purchase',
     howto_step4: 'Lucky winners will be announced at the end of the campaign',
     howto_participate: 'Participate and win',
     howto_prize1_title: 'Purradise Reset Day',
-    howto_prize1_desc: 'premium grooming experience at a top-rated pet spa, including pickup and drop-off.',
+    howto_prize1_desc: 'A premium grooming experience at a top-rated pet spa, including pickup and drop-off.',
     howto_prize2_title: 'A Year of Whiskas® Wet & Dry Food',
-    howto_qualify: 'To qualify for the participation and chance to win the prizes, it is required to upload the video along with proof of Whiskas® product purchase.',
+    howto_qualify: 'To qualify for participation and a chance to win the prizes, it is required to upload the video along with proof of Whiskas® product purchase.',
     howto_go: "Let's Go",
 
     // Login Modal
@@ -62,13 +62,13 @@ const translations = {
 
     // Upload Screen
     upload_title: 'Upload video',
-    upload_video_title: 'Upload Cat video playing game',
+    upload_video_title: 'Upload cat video playing the game',
     upload_video_instruction: 'Please make sure the cat is visible playing the game in the video',
     upload_receipt_title: 'Upload Receipt / Proof of Purchase of Whiskas® product',
     upload_receipt_instruction: 'Please upload a clear picture of the receipt',
     upload_username_title: 'Your Name',
     upload_username_placeholder: 'Enter your name',
-    upload_store_title: 'Name of the Store of Purchase',
+    upload_store_title: 'Store Name',
     upload_store_placeholder: 'Store Name',
     upload_email_title: 'Email',
     upload_email_placeholder: 'Enter your email',

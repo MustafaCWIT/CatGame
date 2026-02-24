@@ -23,6 +23,12 @@
   max-width: 340px;
 }
 
+.lang-modal .logo-halo-wrap::before {
+  width: 180%;
+  height: 180%;
+  background: radial-gradient(circle, rgba(167, 38, 142, 0.35) 0%, rgba(167, 38, 142, 0.15) 35%, transparent 70%);
+}
+
 .lang-modal-logo {
   width: 120px;
   height: auto;
