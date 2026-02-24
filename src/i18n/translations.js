@@ -94,7 +94,7 @@ const translations = {
     game_xp: 'XP',
 
     // Activity text (dynamic)
-    activity_earned: 'You earned {score} points playing midnight paws',
+    activity_earned: "You scored {score} points playing 'Tap-To-Purr' Midnight Paws",
     activity_uploaded: 'You uploaded a video',
 
     // Misc
@@ -126,7 +126,7 @@ const translations = {
     // Starting Screen
     starting_label: 'يبدأ خلال',
     starting_loading: '...جاري تحميل الأصول',
-    starting_level_midnight: 'مخالب منتصف الليل',
+    starting_level_midnight: 'مخالب ميدنايت',
 
     // Game Over
     gameover_label: 'لقد حصلت على',
@@ -156,10 +156,10 @@ const translations = {
 
     // Levels Screen
     levels_points: 'النقاط المكتسبة',
-    levels_videos: 'الفيديوهات المرفوعة',
-    levels_upload_btn: 'ارفع فيديو',
-    levels_select_theme: 'اختر المظهر',
-    levels_theme_midnight: 'مخالب منتصف الليل',
+    levels_videos: 'الفيديوهات المحمّلة',
+    levels_upload_btn: 'حمّل الفيديو',
+    levels_select_theme: 'اختر الخلفية',
+    levels_theme_midnight: 'مخالب ميدنايت',
     levels_theme_purrlight: 'وادي بورلايت',
     levels_activity_title: 'نشاطي',
     levels_activity_empty: 'لا يوجد نشاط بعد. العب لعبة للبدء!',
@@ -199,7 +199,7 @@ const translations = {
     game_xp: 'خبرة',
 
     // Activity text (dynamic)
-    activity_earned: 'حصلت على {score} نقطة في مخالب منتصف الليل',
+    activity_earned: "حصلت على {score} نقطة/نقاط بلعبة 'انقر للخرخرة' مخالب ميدنايت",
     activity_uploaded: 'قمت برفع فيديو',
 
     // Misc

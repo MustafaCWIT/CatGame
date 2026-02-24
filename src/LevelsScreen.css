@@ -410,6 +410,14 @@
   font-size: 12px;
 }
 
+.levels-activity-empty {
+  color: white;
+}
+
+html[lang="ar"] .levels-activity-empty {
+  text-align: right;
+}
+
 /* Logout section */
 .levels-lang-section {
   width: 100%;
