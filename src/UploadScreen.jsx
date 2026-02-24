@@ -247,7 +247,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
                   setShowTermsModal(true);
                 }}
               >
-                {language === 'ar' ? 'الشروط والأحكام' : 'Terms & Conditions'}
+                {language === 'ar' ? 'الشّروط والأحكام' : 'Terms & Conditions'}
               </button>
             </span>
           </label>

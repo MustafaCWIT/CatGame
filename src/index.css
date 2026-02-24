@@ -86,6 +86,7 @@ html[lang="ar"] .go-score {
   font-size: 1em;
   vertical-align: super;
   font-weight: 700;
+  unicode-bidi: isolate;
 }
 
 @media screen and (max-width: 900px) {

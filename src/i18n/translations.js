@@ -168,9 +168,9 @@ const translations = {
 
     // Upload Screen
     upload_title: 'رفع فيديو',
-    upload_video_title: 'قم بتحميل فيديو قطّتك',
+    upload_video_title: 'حمّل فيديو قطّتك وهي تلعب',
     upload_video_instruction: 'يرجى التأكد من ظهور القطة بوضوح وهي تلعب في الفيديو',
-    upload_receipt_title: 'رفع إيصال / إثبات شراء منتج ويسكاس®',
+    upload_receipt_title: '®حمّل إيصال/ إثبات شراء منتج ويسكاس',   
     upload_receipt_instruction: 'يرجى رفع صورة واضحة للإيصال',
     upload_username_title: 'اسمك',
     upload_username_placeholder: 'أدخل اسمك',
@@ -180,7 +180,7 @@ const translations = {
     upload_email_placeholder: 'أدخل بريدك الإلكتروني',
     upload_country_title: 'اسم الدولة',
     upload_country_placeholder: 'أدخل اسم الدولة',
-    upload_terms: 'أوافق على الشروط والأحكام',
+    upload_terms: ' الشروط والأحكامأوافق على',
     upload_btn: 'إرسال',
     upload_btn_loading: '...جاري الرفع',
     upload_select_file: 'اختيار ملف',
