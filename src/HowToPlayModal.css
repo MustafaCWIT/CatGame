@@ -64,7 +64,7 @@
 
 .modal-step {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 15px;
 }
 
@@ -181,8 +181,8 @@
 .modal-prize-img-food {
   position: absolute;
   right: 0;
-  bottom: 0;
-  width: 50%;
+  bottom: -19px;
+  width: 25%;
   height: auto;
   z-index: 2;
   object-fit: contain;
@@ -249,6 +249,15 @@ html[lang="ar"] .modal-qualification-text {
 }
 
 /* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
+
+/* Large screens: width greater than 900px */
+@media screen and (min-width: 901px) {
+  .modal-prize-img-food {
+    width: 25%;
+    right: -1px;
+    bottom: -2px;
+  }
+}
 
 /* Tablet breakpoint */
 @media screen and (max-width: 900px) {

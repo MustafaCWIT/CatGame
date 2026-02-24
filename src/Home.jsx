@@ -17,7 +17,7 @@ const ASSETS = ALL_ASSETS;
 
 export default function Home({ onStartGame, onResetProgress, onLogout, user, onProfileClick, onGoToUpload }) {
   const [isReady, setIsReady] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     let loaded = 0;
@@ -71,7 +71,9 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user, onP
 
       <div className="home-content">
         {/* Logo */}
-        <img src={logoImg} alt="Whiskas" className="home-logo" />
+        <div className="logo-halo-wrap home-logo-wrap">
+          <img src={logoImg} alt="Whiskas" className="home-logo" />
+        </div>
 
         {/* Title and Cat in same row */}
         <div className="home-hero">

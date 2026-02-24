@@ -103,7 +103,9 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
             <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
           </svg>
         </button>
-        <img src={logoImg} alt="Whiskas" className="upload-logo" />
+        <div className="logo-halo-wrap upload-logo-wrap">
+          <img src={logoImg} alt="Whiskas" className="upload-logo" />
+        </div>
         <button className="upload-profile-btn" onClick={onProfileClick}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
@@ -245,7 +247,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
                   setShowTermsModal(true);
                 }}
               >
-                {language === 'ar' ? 'الشروط والأحكام' : 'Terms & Conditions'}
+                {language === 'ar' ? 'الشّروط والأحكام' : 'Terms & Conditions'}
               </button>
             </span>
           </label>
@@ -263,28 +265,43 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
       {/* Terms & Conditions Modal */}
       {showTermsModal && (
         <div className="terms-modal-overlay" onClick={() => setShowTermsModal(false)}>
-          <div className="terms-modal" onClick={(e) => e.stopPropagation()}>
+          <div className={`terms-modal${language === 'ar' ? ' terms-modal-ar' : ''}`} onClick={(e) => e.stopPropagation()}>
             <div className="terms-modal-header">
-              <h2 className="terms-modal-title">Terms & Conditions</h2>
+              <h2 className="terms-modal-title">{language === 'ar' ? 'الشروط والأحكام' : 'Terms & Conditions'}</h2>
               <button className="terms-modal-close" onClick={() => setShowTermsModal(false)}>
                 &times;
               </button>
             </div>
             <div className="terms-modal-body">
-              <p><strong>1. Eligibility</strong><br />This promotion is open to residents of participating countries. You must be 18 years or older to participate.</p>
-              <p><strong>2. How to Enter</strong><br />Purchase any Whiskas product, upload a video of your cat playing the game, and submit proof of purchase along with the required details.</p>
-              <p><strong>3. Video Requirements</strong><br />The uploaded video must clearly show a cat interacting with the game. Videos that do not meet this requirement may be disqualified.</p>
-              <p><strong>4. Personal Data</strong><br />By submitting your information, you consent to the collection and use of your personal data (including email, phone number, and country) for the purposes of this promotion.</p>
-              <p><strong>5. Intellectual Property</strong><br />By uploading a video, you grant Whiskas a non-exclusive, royalty-free license to use, display, and share the video for promotional purposes.</p>
-              <p><strong>6. Disqualification</strong><br />Any fraudulent entries, including fake receipts or videos, will result in immediate disqualification.</p>
-              <p><strong>7. Liability</strong><br />Whiskas is not responsible for any technical issues during the upload process. Entries that fail to upload due to technical errors must be resubmitted.</p>
-              <p><strong>8. Changes to Terms</strong><br />Whiskas reserves the right to modify these terms and conditions at any time without prior notice.</p>
+              {language === 'ar' ? (
+                <>
+                  <p><strong>١. الأهلية</strong><br />هذا العرض الترويجي مفتوح للمقيمين في الدول المشاركة. يجب أن يكون عمرك ١٨ عامًا أو أكثر للمشاركة.</p>
+                  <p><strong>٢. طريقة الاشتراك</strong><br />قم بشراء أي منتج من ويسكاس®، وحمّل فيديو لقطتك وهي تلعب اللعبة، وأرفق إثبات الشراء مع البيانات المطلوبة.</p>
+                  <p><strong>٣. متطلبات الفيديو</strong><br />يجب أن يُظهر الفيديو المرفوع القطة بوضوح وهي تتفاعل مع اللعبة. قد يتم استبعاد الفيديوهات التي لا تستوفي هذا الشرط.</p>
+                  <p><strong>٤. البيانات الشخصية</strong><br />بتقديم معلوماتك، فإنك توافق على جمع واستخدام بياناتك الشخصية (بما في ذلك البريد الإلكتروني ورقم الهاتف والدولة) لأغراض هذا العرض الترويجي.</p>
+                  <p><strong>٥. الملكية الفكرية</strong><br />برفع الفيديو، فإنك تمنح ويسكاس® ترخيصًا غير حصري وبدون مقابل لاستخدام الفيديو وعرضه ومشاركته لأغراض ترويجية.</p>
+                  <p><strong>٦. الاستبعاد</strong><br />أي مشاركات احتيالية، بما في ذلك الإيصالات أو الفيديوهات المزيفة، ستؤدي إلى الاستبعاد الفوري.</p>
+                  <p><strong>٧. المسؤولية</strong><br />ويسكاس® غير مسؤولة عن أي مشاكل تقنية أثناء عملية الرفع. يجب إعادة تقديم المشاركات التي تفشل في الرفع بسبب أخطاء تقنية.</p>
+                  <p><strong>٨. تعديل الشروط</strong><br />تحتفظ ويسكاس® بالحق في تعديل هذه الشروط والأحكام في أي وقت دون إشعار مسبق.</p>
+                </>
+              ) : (
+                <>
+                  <p><strong>1. Eligibility</strong><br />This promotion is open to residents of participating countries. You must be 18 years or older to participate.</p>
+                  <p><strong>2. How to Enter</strong><br />Purchase any Whiskas product, upload a video of your cat playing the game, and submit proof of purchase along with the required details.</p>
+                  <p><strong>3. Video Requirements</strong><br />The uploaded video must clearly show a cat interacting with the game. Videos that do not meet this requirement may be disqualified.</p>
+                  <p><strong>4. Personal Data</strong><br />By submitting your information, you consent to the collection and use of your personal data (including email, phone number, and country) for the purposes of this promotion.</p>
+                  <p><strong>5. Intellectual Property</strong><br />By uploading a video, you grant Whiskas a non-exclusive, royalty-free license to use, display, and share the video for promotional purposes.</p>
+                  <p><strong>6. Disqualification</strong><br />Any fraudulent entries, including fake receipts or videos, will result in immediate disqualification.</p>
+                  <p><strong>7. Liability</strong><br />Whiskas is not responsible for any technical issues during the upload process. Entries that fail to upload due to technical errors must be resubmitted.</p>
+                  <p><strong>8. Changes to Terms</strong><br />Whiskas reserves the right to modify these terms and conditions at any time without prior notice.</p>
+                </>
+              )}
             </div>
             <button className="terms-modal-accept" onClick={() => {
               setAgreedToTerms(true);
               setShowTermsModal(false);
             }}>
-              Accept
+              {language === 'ar' ? 'موافق' : 'Accept'}
             </button>
           </div>
         </div>

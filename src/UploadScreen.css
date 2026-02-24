@@ -55,12 +55,14 @@
   transform: scale(0.95);
 }
 
-.upload-logo {
-  height: 70px;
+.upload-logo-wrap {
   position: absolute;
   left: 50%;
- 
   transform: translateX(-50%);
+}
+
+.upload-logo {
+  height: 70px;
   margin-bottom: 20px;
   overflow: visible;
 }
@@ -187,6 +189,15 @@ html[lang="ar"] .upload-text-input {
 html[lang="ar"] .upload-card-title,
 html[lang="ar"] .upload-section-title,
 html[lang="ar"] .upload-section-instruction {
+  text-align: right;
+  font-family: 'Cairo', 'Poppins', sans-serif;
+}
+
+html[lang="ar"] .upload-terms-label {
+  direction: rtl;
+}
+
+html[lang="ar"] .upload-terms-text {
   text-align: right;
   font-family: 'Cairo', 'Poppins', sans-serif;
 }
@@ -383,6 +394,23 @@ html[lang="ar"] .upload-section-instruction {
 
 .terms-modal-accept:active {
   transform: scale(0.97);
+}
+
+.terms-modal-ar {
+  direction: rtl;
+}
+
+.terms-modal-ar .terms-modal-title {
+  font-family: 'Cairo', 'Poppins', sans-serif;
+}
+
+.terms-modal-ar .terms-modal-body p {
+  font-family: 'Cairo', 'Poppins', sans-serif;
+  text-align: right;
+}
+
+.terms-modal-ar .terms-modal-accept {
+  font-family: 'Cairo', 'Poppins', sans-serif;
 }
 
 @keyframes termsFadeIn {

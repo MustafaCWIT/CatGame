@@ -72,7 +72,9 @@ export default function SignupScreen({ onSignup, onGoHome, isLoading }) {
 
       <div className="signup-content">
         {/* Logo */}
-        <img src={logoImg} alt="Whiskas" className="signup-logo" />
+        <div className="logo-halo-wrap">
+          <img src={logoImg} alt="Whiskas" className="signup-logo" />
+        </div>
 
         {/* Title */}
         <h1 className="signup-title">Signup to play</h1>

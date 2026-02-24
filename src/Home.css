@@ -157,9 +157,12 @@
 }
 
 /* Logo */
+.home-logo-wrap {
+  margin-top: 20px;
+}
+
 .home-logo {
   width: 280px;
-  margin-top: 20px;
   height: auto;
   overflow: visible;
 }

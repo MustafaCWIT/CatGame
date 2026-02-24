@@ -9,11 +9,12 @@ const translations = {
     home_participate: 'Participate and win',
     home_prize1_line1: 'Purradise',
     home_prize1_line2: 'Reset Day',
-    home_prize2_line1: 'A Year of Whiskas',
+    home_prize2_line1: 'A Year of Whiskas®',
     home_prize2_line2: 'Wet & Dry Food',
 
     // Splash
     splash_title: 'Tap To Purr',
+    splash_name: 'purradise',
     splash_loading: 'Loading Purradise...',
     splash_ready: 'Ready!',
 
@@ -32,14 +33,14 @@ const translations = {
     // How To Play Modal
     howto_title: 'How to play',
     howto_step1: 'Place the tablet on the floor and let the cat interact and play the game',
-    howto_step2: 'The cat taps the objects and collect points',
-    howto_step3: 'Cat owner records the cat playing and upload the video along with proof of Whiskas product purchase.',
+    howto_step2: 'The cat taps the objects and collects points',
+    howto_step3: 'The cat owner records the cat playing and uploads the video along with proof of Whiskas® product purchase',
     howto_step4: 'Lucky winners will be announced at the end of the campaign',
     howto_participate: 'Participate and win',
     howto_prize1_title: 'Purradise Reset Day',
-    howto_prize1_desc: 'premium grooming experience at a top-rated pet spa, including pickup and drop-off.',
-    howto_prize2_title: 'A Year of Whiskas Wet & Dry Food',
-    howto_qualify: 'To qualify for the participation and chance to win the prizes, it is required to upload the video along with proof of Whiskas product purchase.',
+    howto_prize1_desc: 'A premium grooming experience at a top-rated pet spa, including pickup and drop-off.',
+    howto_prize2_title: 'A Year of Whiskas® Wet & Dry Food',
+    howto_qualify: 'To qualify for participation and a chance to win the prizes, it is required to upload the video along with proof of Whiskas® product purchase.',
     howto_go: "Let's Go",
 
     // Login Modal
@@ -62,13 +63,13 @@ const translations = {
 
     // Upload Screen
     upload_title: 'Upload video',
-    upload_video_title: 'Upload Cat video playing game',
+    upload_video_title: 'Upload cat video playing the game',
     upload_video_instruction: 'Please make sure the cat is visible playing the game in the video',
-    upload_receipt_title: 'Upload Recipt / Proof of Purchase of Whiskas product',
-    upload_receipt_instruction: 'Please upload a clear picture of the reciept',
+    upload_receipt_title: 'Upload Receipt / Proof of Purchase of Whiskas® product',
+    upload_receipt_instruction: 'Please upload a clear picture of the receipt',
     upload_username_title: 'Your Name',
     upload_username_placeholder: 'Enter your name',
-    upload_store_title: 'Name of the Store of Purchase',
+    upload_store_title: 'Store Name',
     upload_store_placeholder: 'Store Name',
     upload_email_title: 'Email',
     upload_email_placeholder: 'Enter your email',
@@ -93,7 +94,7 @@ const translations = {
     game_xp: 'XP',
 
     // Activity text (dynamic)
-    activity_earned: 'You earned {score} points playing midnight paws',
+    activity_earned: "You scored {score} points playing 'Tap-To-Purr' Midnight Paws",
     activity_uploaded: 'You uploaded a video',
 
     // Misc
@@ -105,26 +106,27 @@ const translations = {
 
   ar: {
     // Home
-    home_title: 'انقر للخرخرة',
-    home_step1: 'الخطوة 1',
-    home_step2: 'الخطوة 2',
+    home_title: 'إلعب - أنقر للخرخرة',
+    home_step1: 'الخطوة ١',
+    home_step2: 'الخطوة ٢',
     home_play: 'العب',
-    home_upload: 'ارفع فيديو قطتك واربح',
+    home_upload: 'ارفع فيديو قطّتك واربح',
     home_participate: 'شارك واربح',
-    home_prize1_line1: 'يوم عناية فاخر',
-    home_prize1_line2: 'لقطتك',
-    home_prize2_line1: 'عام كامل من طعام Whiskas',
+    home_prize1_line1: 'يوم استرخاء',
+    home_prize1_line2: 'لقطّتك',
+    home_prize2_line1: 'عام كامل من طعام ويسكاس®',
     home_prize2_line2: 'الرطب والجاف',
 
     // Splash
     splash_title: 'انقر للخرخرة',
+    splash_name: 'عالم مليء بالمتعة',
     splash_loading: '...جاري تحميل بوراديس',
     splash_ready: '!جاهز',
 
     // Starting Screen
     starting_label: 'يبدأ خلال',
     starting_loading: '...جاري تحميل الأصول',
-    starting_level_midnight: 'مخالب منتصف الليل',
+    starting_level_midnight: 'مخالب ميدنايت',
 
     // Game Over
     gameover_label: 'لقد حصلت على',
@@ -135,15 +137,15 @@ const translations = {
 
     // How To Play Modal
     howto_title: 'طريقة اللعب',
-    howto_step1: 'ضع الجهاز اللوحي على الأرض ودع قطتك تتفاعل مع اللعبة',
-    howto_step2: 'تقوم القطة بلمس العناصر وجمع النقاط',
-    howto_step3: 'قم بتصويرها أثناء اللعب وارفع الفيديو مع فاتورة الشراء',
+    howto_step1: 'ضع الجهاز اللوحي على الأرض ودع قِطَّتك تتفاعل مع اللعبة',
+    howto_step2: 'تقوم القِطَّة بلمس العناصر وجمع النقاط',
+    howto_step3: 'يقوم مالك القِطَّة بتصويرها أثناء اللَّعب وتحميل الفيديو مع فاتورة الشراء',
     howto_step4: 'سيتم الإعلان عن الفائزين المحظوظين في نهاية الحملة',
     howto_participate: 'شارك واربح',
-    howto_prize1_title: 'يوم عناية فاخر لقطتك',
-    howto_prize1_desc: 'جلسة عناية متكاملة في سبا للحيوانات الأليفة مع خدمة الاستلام والتوصيل',
-    howto_prize2_title: 'الرطب والجاف Whiskas عام كامل من طعام',
-    howto_qualify: 'للدخول في السحب يجب رفع الفيديو مع فاتورة الشراء',
+    howto_prize1_title: 'يوم حافل بالمتعة والاسترخاء',
+    howto_prize1_desc: 'تجربة عناية فاخرة في سبا للحيوانات الأليفة، تشمل خدمة التوصيل من وإلى السبا',
+    howto_prize2_title: 'عام كامل من طعام ويسكاس® الرطب والجاف',
+    howto_qualify: '®للمشاركة وفرصة الفوز بالجوائز، يجب تحميل الفيديو مع فاتورة شراء منتجات ويسكاس',
     howto_go: 'لنبدأ',
 
     // Login Modal
@@ -154,10 +156,10 @@ const translations = {
 
     // Levels Screen
     levels_points: 'النقاط المكتسبة',
-    levels_videos: 'الفيديوهات المرفوعة',
-    levels_upload_btn: 'ارفع فيديو',
-    levels_select_theme: 'اختر المظهر',
-    levels_theme_midnight: 'مخالب منتصف الليل',
+    levels_videos: 'الفيديوهات المحمّلة',
+    levels_upload_btn: 'حمّل الفيديو',
+    levels_select_theme: 'اختر الخلفية',
+    levels_theme_midnight: 'مخالب ميدنايت',
     levels_theme_purrlight: 'وادي بورلايت',
     levels_activity_title: 'نشاطي',
     levels_activity_empty: 'لا يوجد نشاط بعد. العب لعبة للبدء!',
@@ -166,9 +168,9 @@ const translations = {
 
     // Upload Screen
     upload_title: 'رفع فيديو',
-    upload_video_title: 'ارفع فيديو لقطتك أثناء اللعب',
+    upload_video_title: 'حمّل فيديو قطّتك وهي تلعب',
     upload_video_instruction: 'يرجى التأكد من ظهور القطة بوضوح وهي تلعب في الفيديو',
-    upload_receipt_title: ' Whiskas رفع إيصال / إثبات شراء منتج',
+    upload_receipt_title: '®حمّل إيصال/ إثبات شراء منتج ويسكاس',   
     upload_receipt_instruction: 'يرجى رفع صورة واضحة للإيصال',
     upload_username_title: 'اسمك',
     upload_username_placeholder: 'أدخل اسمك',
@@ -178,7 +180,7 @@ const translations = {
     upload_email_placeholder: 'أدخل بريدك الإلكتروني',
     upload_country_title: 'اسم الدولة',
     upload_country_placeholder: 'أدخل اسم الدولة',
-    upload_terms: 'أوافق على الشروط والأحكام',
+    upload_terms: ' الشروط والأحكامأوافق على',
     upload_btn: 'إرسال',
     upload_btn_loading: '...جاري الرفع',
     upload_select_file: 'اختيار ملف',
@@ -197,7 +199,7 @@ const translations = {
     game_xp: 'خبرة',
 
     // Activity text (dynamic)
-    activity_earned: 'حصلت على {score} نقطة في مخالب منتصف الليل',
+    activity_earned: "حصلت على {score} نقطة/نقاط بلعبة 'انقر للخرخرة' مخالب ميدنايت",
     activity_uploaded: 'قمت برفع فيديو',
 
     // Misc

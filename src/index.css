@@ -59,6 +59,54 @@ html[lang="ar"] .go-score {
   font-family: 'Cairo', 'Fredoka', sans-serif;
 }
 
+.logo-halo-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-halo-wrap::before {
+  content: '';
+  position: absolute;
+  width: 250%;
+  height: 250%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(167, 38, 142, 0.55) 0%, rgba(167, 38, 142, 0.3) 35%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.logo-halo-wrap > img {
+  position: relative;
+  z-index: 1;
+}
+
+.reg-mark {
+  font-size: 1em;
+  vertical-align: super;
+  font-weight: 700;
+  unicode-bidi: isolate;
+}
+
+@media screen and (max-width: 900px) {
+  .reg-mark {
+    font-size: 1.1em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .reg-mark {
+    font-size: 1.2em;
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .reg-mark {
+    font-size: 1.3em;
+  }
+}
+
 /* Keep all layouts LTR — only text content changes to Arabic */
 .app-main-container {
   direction: ltr;

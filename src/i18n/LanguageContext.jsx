@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import translations from './translations';
 
 const STORAGE_KEY = 'tap-to-purr-language';
@@ -36,12 +36,27 @@ export function LanguageProvider({ children }) {
     setLanguage(language === 'en' ? 'ar' : 'en');
   }, [language, setLanguage]);
 
+  const toArabicNumerals = useCallback((str) => {
+    return String(str).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+  }, []);
+
   const t = useCallback((key, params) => {
     let text = translations[language]?.[key] || translations.en?.[key] || key;
     if (params) {
       Object.entries(params).forEach(([k, v]) => {
-        text = text.replace(`{${k}}`, v);
+        const val = language === 'ar' && typeof v === 'number' ? toArabicNumerals(v) : v;
+        text = text.replace(`{${k}}`, val);
       });
+    }
+    if (text.includes('®')) {
+      const parts = text.split('®');
+      return React.createElement(React.Fragment, null,
+        ...parts.flatMap((part, i) =>
+          i < parts.length - 1
+            ? [part, React.createElement('span', { key: i, className: 'reg-mark' }, '®')]
+            : [part]
+        )
+      );
     }
     return text;
   }, [language]);

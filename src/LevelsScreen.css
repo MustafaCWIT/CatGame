@@ -94,14 +94,15 @@
   cursor: pointer;
 }
 
-.levels-logo {
-  height: 70px;
-  /* Increased from 50px */
+.levels-logo-wrap {
   position: absolute;
   left: 50%;
   top: 60px;
-  /* Increased from 35px to prevent shadow clipping */
   transform: translateX(-50%);
+}
+
+.levels-logo {
+  height: 70px;
   overflow: visible;
 }
 
@@ -409,6 +410,14 @@
   font-size: 12px;
 }
 
+.levels-activity-empty {
+  color: white;
+}
+
+html[lang="ar"] .levels-activity-empty {
+  text-align: right;
+}
+
 /* Logout section */
 .levels-lang-section {
   width: 100%;
@@ -520,9 +529,12 @@ html[lang="ar"] .levels-activity-title {
     height: 40px;
   }
 
+  .levels-logo-wrap {
+    top: 20px;
+  }
+
   .levels-logo {
     height: 75px;
-    top: 20px;
   }
 
   .levels-content {
@@ -670,9 +682,12 @@ html[lang="ar"] .levels-activity-title {
     height: 38px;
   }
 
+  .levels-logo-wrap {
+    top: 25px;
+  }
+
   .levels-logo {
     height: 50px;
-    top: 25px;
   }
 
   .levels-content {
@@ -820,9 +835,12 @@ html[lang="ar"] .levels-activity-title {
     height: 36.5px;
   }
 
+  .levels-logo-wrap {
+    top: 23.5px;
+  }
+
   .levels-logo {
     height: 47.5px;
-    top: 23.5px;
   }
 
   .levels-content {
@@ -970,9 +988,12 @@ html[lang="ar"] .levels-activity-title {
     height: 36px;
   }
 
+  .levels-logo-wrap {
+    top: 23px;
+  }
+
   .levels-logo {
     height: 47px;
-    top: 23px;
   }
 
   .levels-content {
@@ -1120,9 +1141,12 @@ html[lang="ar"] .levels-activity-title {
     height: 37px;
   }
 
+  .levels-logo-wrap {
+    top: 24px;
+  }
+
   .levels-logo {
     height: 48px;
-    top: 24px;
   }
 
   .levels-content {
@@ -1270,9 +1294,12 @@ html[lang="ar"] .levels-activity-title {
     height: 36px;
   }
 
+  .levels-logo-wrap {
+    top: 22px;
+  }
+
   .levels-logo {
     height: 45px;
-    top: 22px;
   }
 
   .levels-content {
@@ -1436,9 +1463,12 @@ html[lang="ar"] .levels-activity-title {
     height: 34px;
   }
 
+  .levels-logo-wrap {
+    top: 20px;
+  }
+
   .levels-logo {
     height: 42px;
-    top: 20px;
   }
 
   .levels-content {
@@ -1595,9 +1625,12 @@ html[lang="ar"] .levels-activity-title {
     height: 32px;
   }
 
+  .levels-logo-wrap {
+    top: 18px;
+  }
+
   .levels-logo {
     height: 38px;
-    top: 18px;
   }
 
   .levels-content {

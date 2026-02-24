@@ -53,12 +53,15 @@
   transform: scale(0.95);
 }
 
-.thankyou-logo {
-  height: 85px;
+.thankyou-logo-wrap {
   position: absolute;
   left: 50%;
   top: 60px;
   transform: translateX(-50%);
+}
+
+.thankyou-logo {
+  height: 85px;
   overflow: visible;
   margin-bottom: 20px;
 }

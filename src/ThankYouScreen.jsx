@@ -46,7 +46,9 @@ export default function ThankYouScreen({ onGoHome, onProfileClick }) {
             <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
           </svg>
         </button>
-        <img src={logoImg} alt="Whiskas" className="thankyou-logo" />
+        <div className="logo-halo-wrap thankyou-logo-wrap">
+          <img src={logoImg} alt="Whiskas" className="thankyou-logo" />
+        </div>
         <div className="thankyou-profile-btn" onClick={onProfileClick} style={{ cursor: 'pointer' }}>
           <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />

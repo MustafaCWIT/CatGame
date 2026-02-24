@@ -8,7 +8,7 @@ const {
   background: backgroundImg,
   logo: logoImg,
   cat: catImg,
-  name: nameImg,
+
   fish: fishImg,
   bowl: bowlImg,
   gameCloud: cloudsImg,
@@ -16,7 +16,7 @@ const {
 } = GAME_ASSETS;
 
 export default function SplashScreen({ onLoadingComplete }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -113,7 +113,9 @@ export default function SplashScreen({ onLoadingComplete }) {
           <img src={cloudsImg} alt="" className="splash-clouds splash-clouds-right" />
 
           {/* Logo */}
-          <img src={logoImg} alt="Whiskas" className="splash-logo" />
+          <div className="logo-halo-wrap splash-logo-wrap">
+            <img src={logoImg} alt="Whiskas" className="splash-logo" />
+          </div>
 
           {/* Fish */}
           <img src={fishImg} alt="" className="splash-fish" />
@@ -123,26 +125,43 @@ export default function SplashScreen({ onLoadingComplete }) {
         </>
       )}
 
-      {/* Main content - structure always visible, images conditional */}
+      {/* Title */}
       <div className="splash-content splash-content-visible">
         <h1 className="splash-title">{t('splash_title')}</h1>
+      </div>
 
-        {imagesLoaded && (
-          <>
-            <img src={catImg} alt="Cat" className="splash-cat" />
-            <img src={nameImg} alt="Purradise" className="splash-name" />
-          </>
-        )}
+      {/* Cat */}
+      {imagesLoaded && (
+        <img src={catImg} alt="Cat" className="splash-cat" />
+      )}
 
-        {/* Loader - keeps user updated */}
-        <div className="splash-loader-container">
-          <div className="splash-loader">
-            <div className="splash-loader-fill" style={{ width: `${progress}%` }} />
-          </div>
-          <span className="splash-loader-text">
-            {/* {imagesLoaded ? 'Ready!' : `Loading Purradise... ${progress}%`} */}
-          </span>
+      {/* Purradise text */}
+      {imagesLoaded && (
+        <div className={`splash-name${language === 'ar' ? ' splash-name-ar' : ''}`}>
+          {language === 'ar' ? (
+            <span className="splash-name-letter splash-name-ar-text">
+              {t('splash_name')}
+            </span>
+          ) : (
+            'purradise'.split('').map((char, i) => (
+              <span
+                key={i}
+                className={`splash-name-letter${i === 0 ? ' splash-name-p' : ''}${i >= 1 && i <= 3 ? ' splash-name-urr' : ''}${i === 1 ? ' splash-name-u' : i === 2 ? ' splash-name-big' : ''}${i >= 3 ? ' splash-name-tail' : ''}`}
+                style={{ animationDelay: `${i * 0.12}s` }}
+              >
+                {char}
+              </span>
+            ))
+          )}
         </div>
+      )}
+
+      {/* Loader */}
+      <div className="splash-loader-container">
+        <div className="splash-loader">
+          <div className="splash-loader-fill" style={{ width: `${progress}%` }} />
+        </div>
+        <span className="splash-loader-text" />
       </div>
     </div>
   );

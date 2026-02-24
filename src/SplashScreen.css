@@ -142,15 +142,16 @@
 
 /* Main content */
 .splash-content {
-  position: relative;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
-  padding: 20px;
-  gap: 0;
+  padding: 0;
   transition: opacity 0.5s ease-in;
 }
 
@@ -164,14 +165,17 @@
   pointer-events: auto;
 }
 
-.splash-logo {
+.splash-logo-wrap {
   position: absolute;
   top: 3%;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 4;
+}
+
+.splash-logo {
   width: 120px;
   height: auto;
-  z-index: 4;
 }
 
 .splash-title {
@@ -181,10 +185,8 @@
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   margin: 0;
-  margin-bottom: 20px;
+  padding: 0;
   letter-spacing: 1px;
-  order: 1;
-  flex-shrink: 0;
   transition: opacity 0.5s ease-in;
 }
 
@@ -193,31 +195,84 @@
   height: auto;
   display: block;
   animation: catBounce 1.5s ease-in-out infinite;
-  order: 2;
-  flex-shrink: 0;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  transform: translate(-50%, -50%);
   transition: opacity 0.5s ease-in;
+  z-index: 3;
 }
 
 @keyframes catBounce {
 
   0%,
   100% {
-    transform: translateY(0);
+    transform: translate(-50%, -50%);
   }
 
   50% {
-    transform: translateY(-5px);
+    transform: translate(-50%, calc(-50% - 5px));
   }
 }
 
 .splash-name {
-  width: 240px;
-  height: auto;
-  margin-top: -60px;
-  display: block;
-  order: 3;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translateX(-50%);
   transition: opacity 0.5s ease-in;
+  user-select: none;
+  font-size: 64px;
+  z-index: 3;
+  white-space: nowrap;
+}
+
+.splash-name-letter {
+  font-family: 'Fredoka', 'Poppins', sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  display: inline-block;
+  animation: purradiseWave 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.splash-name-urr {
+  color: #f0e6ff;
+  text-shadow: 0 0 8px rgba(200, 140, 255, 0.6), 0 0 20px rgba(167, 38, 142, 0.4);
+}
+
+.splash-name-letter.splash-name-u {
+  margin-top: -10px;
+}
+
+.splash-name-ar {
+  direction: rtl;
+}
+
+.splash-name-ar-text {
+  font-family: 'Cairo', 'Poppins', sans-serif;
+  font-size: 1.2em;
+  animation: purradiseWave 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes purradiseWave {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-14px);
+  }
+  40% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /* Loader */
@@ -226,12 +281,16 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  order: 4;
+  position: absolute;
+  left: 50%;
+  top: 78%;
+  transform: translateX(-50%);
+  z-index: 3;
 }
 
 .splash-loader {
-  width: 200px;
-  height: 12px;
+  width: 390px;
+  height: 20px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   overflow: hidden;
@@ -303,17 +362,16 @@
 
   .splash-cat {
     width: 370px;
-    left: 37%;
   }
 
   .splash-name {
-    width: 500px;
-    margin-top: -102px;
+    font-size: 72px;
   }
 
   .splash-loader {
     width: 390px;
     height: 20px;
+    
   }
 
   .splash-loader-text {
@@ -346,28 +404,24 @@
     width: 95px;
   }
 
-  .splash-content {
-    padding: 18px;
+  .splash-logo-wrap {
+    top: 2.5%;
   }
 
   .splash-logo {
     width: 90px;
-    top: 2.5%;
   }
 
   .splash-title {
     font-size: 28px;
-    margin-bottom: 18px;
   }
 
   .splash-cat {
     width: 200px;
-    left: 50%;
   }
 
   .splash-name {
-    width: 180px;
-    margin-top: -45px;
+    font-size: 30px;
   }
 
   .splash-loader {
@@ -405,28 +459,24 @@
     width: 53px;
   }
 
-  .splash-content {
-    padding: 17px;
+  .splash-logo-wrap {
+    top: 2.2%;
   }
 
   .splash-logo {
     width: 88px;
-    top: 2.2%;
   }
 
   .splash-title {
     font-size: 27px;
-    margin-bottom: 17px;
   }
 
   .splash-cat {
     width: 195px;
-    left: 50%;
   }
 
   .splash-name {
-    width: 175px;
-    margin-top: -43px;
+    font-size: 29px;
   }
 
   .splash-loader {
@@ -464,28 +514,24 @@
     width: 54px;
   }
 
-  .splash-content {
-    padding: 17.5px;
+  .splash-logo-wrap {
+    top: 2.3%;
   }
 
   .splash-logo {
     width: 89px;
-    top: 2.3%;
   }
 
   .splash-title {
     font-size: 27.5px;
-    margin-bottom: 17px;
   }
 
   .splash-cat {
     width: 197px;
-    left: 50%;
   }
 
   .splash-name {
-    width: 177px;
-    margin-top: -44px;
+    font-size: 30px;
   }
 
   .splash-loader {
@@ -523,28 +569,24 @@
     width: 52px;
   }
 
-  .splash-content {
-    padding: 16px;
+  .splash-logo-wrap {
+    top: 2.2%;
   }
 
   .splash-logo {
     width: 85px;
-    top: 2.2%;
   }
 
   .splash-title {
     font-size: 26px;
-    margin-bottom: 16px;
   }
 
   .splash-cat {
     width: 190px;
-    left: 50%;
   }
 
   .splash-name {
-    width: 170px;
-    margin-top: -42px;
+    font-size: 28px;
   }
 
   .splash-loader {
@@ -582,28 +624,24 @@
     width: 50px;
   }
 
-  .splash-content {
-    padding: 15px;
+  .splash-logo-wrap {
+    top: 2%;
   }
 
   .splash-logo {
     width: 80px;
-    top: 2%;
   }
 
   .splash-title {
     font-size: 24px;
-    margin-bottom: 15px;
   }
 
   .splash-cat {
     width: 180px;
-    left: 50%;
   }
 
   .splash-name {
-    width: 160px;
-    margin-top: -40px;
+    font-size: 27px;
   }
 
   .splash-loader {
@@ -641,28 +679,24 @@
     width: 45px;
   }
 
-  .splash-content {
-    padding: 12px;
+  .splash-logo-wrap {
+    top: 1.8%;
   }
 
   .splash-logo {
     width: 72px;
-    top: 1.8%;
   }
 
   .splash-title {
     font-size: 22px;
-    margin-bottom: 12px;
   }
 
   .splash-cat {
     width: 165px;
-    left: 50%;
   }
 
   .splash-name {
-    width: 145px;
-    margin-top: -36px;
+    font-size: 24px;
   }
 
   .splash-loader {
@@ -700,28 +734,24 @@
     width: 40px;
   }
 
-  .splash-content {
-    padding: 10px;
+  .splash-logo-wrap {
+    top: 1.5%;
   }
 
   .splash-logo {
     width: 65px;
-    top: 1.5%;
   }
 
   .splash-title {
     font-size: 20px;
-    margin-bottom: 10px;
   }
 
   .splash-cat {
     width: 150px;
-    left: 50%;
   }
 
   .splash-name {
-    width: 130px;
-    margin-top: -32px;
+    font-size: 22px;
   }
 
   .splash-loader {
