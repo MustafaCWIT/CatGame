@@ -215,12 +215,53 @@
 }
 
 .splash-name {
-  width: 240px;
-  height: auto;
   margin-top: -60px;
-  display: block;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
   order: 3;
   transition: opacity 0.5s ease-in;
+  user-select: none;
+}
+
+.splash-name-letter {
+  font-family: 'Fredoka', 'Poppins', sans-serif;
+  font-size: 38px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1;
+  display: inline-block;
+  animation: purradiseWave 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.splash-name-urr {
+  color: #f0e6ff;
+  text-shadow: 0 0 8px rgba(200, 140, 255, 0.6), 0 0 20px rgba(167, 38, 142, 0.4);
+}
+
+.splash-name-letter.splash-name-u {
+  font-size: 2em;
+  margin-top: -12px;
+  font-weight: 700;
+}
+
+.splash-name-letter.splash-name-big {
+  font-size: 1.6em;
+}
+
+@keyframes purradiseWave {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-14px);
+  }
+  40% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /* Loader */
@@ -310,8 +351,11 @@
   }
 
   .splash-name {
-    width: 500px;
     margin-top: -102px;
+  }
+
+  .splash-name-letter {
+    font-size: 57px;
   }
 
   .splash-loader {
@@ -372,8 +416,11 @@
   }
 
   .splash-name {
-    width: 180px;
     margin-top: -45px;
+  }
+
+  .splash-name-letter {
+    font-size: 30px;
   }
 
   .splash-loader {
@@ -434,8 +481,11 @@
   }
 
   .splash-name {
-    width: 175px;
     margin-top: -43px;
+  }
+
+  .splash-name-letter {
+    font-size: 29px;
   }
 
   .splash-loader {
@@ -496,8 +546,11 @@
   }
 
   .splash-name {
-    width: 177px;
     margin-top: -44px;
+  }
+
+  .splash-name-letter {
+    font-size: 30px;
   }
 
   .splash-loader {
@@ -558,8 +611,11 @@
   }
 
   .splash-name {
-    width: 170px;
     margin-top: -42px;
+  }
+
+  .splash-name-letter {
+    font-size: 28px;
   }
 
   .splash-loader {
@@ -620,8 +676,11 @@
   }
 
   .splash-name {
-    width: 160px;
     margin-top: -40px;
+  }
+
+  .splash-name-letter {
+    font-size: 27px;
   }
 
   .splash-loader {
@@ -682,8 +741,11 @@
   }
 
   .splash-name {
-    width: 145px;
     margin-top: -36px;
+  }
+
+  .splash-name-letter {
+    font-size: 24px;
   }
 
   .splash-loader {
@@ -744,8 +806,11 @@
   }
 
   .splash-name {
-    width: 130px;
     margin-top: -32px;
+  }
+
+  .splash-name-letter {
+    font-size: 22px;
   }
 
   .splash-loader {

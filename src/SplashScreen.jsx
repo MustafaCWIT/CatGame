@@ -8,7 +8,7 @@ const {
   background: backgroundImg,
   logo: logoImg,
   cat: catImg,
-  name: nameImg,
+
   fish: fishImg,
   bowl: bowlImg,
   gameCloud: cloudsImg,
@@ -132,7 +132,17 @@ export default function SplashScreen({ onLoadingComplete }) {
         {imagesLoaded && (
           <>
             <img src={catImg} alt="Cat" className="splash-cat" />
-            <img src={nameImg} alt="Purradise" className="splash-name" />
+            <div className="splash-name">
+              {'purradise'.split('').map((char, i) => (
+                <span
+                  key={i}
+                  className={`splash-name-letter${i >= 1 && i <= 3 ? ' splash-name-urr' : ''}${i === 1 ? ' splash-name-u' : i === 2 ? ' splash-name-big' : ''}`}
+                  style={{ animationDelay: `${i * 0.12}s` }}
+                >
+                  {char}
+                </span>
+              ))}
+            </div>
           </>
         )}
 
