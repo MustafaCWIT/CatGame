@@ -14,6 +14,7 @@ const translations = {
 
     // Splash
     splash_title: 'Tap To Purr',
+    splash_name: 'purradise',
     splash_loading: 'Loading Purradise...',
     splash_ready: 'Ready!',
 
@@ -118,6 +119,7 @@ const translations = {
 
     // Splash
     splash_title: 'انقر للخرخرة',
+    splash_name: 'عالم مليء بالمتعة',
     splash_loading: '...جاري تحميل بوراديس',
     splash_ready: '!جاهز',
 
