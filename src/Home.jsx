@@ -17,7 +17,7 @@ const ASSETS = ALL_ASSETS;
 
 export default function Home({ onStartGame, onResetProgress, onLogout, user, onProfileClick, onGoToUpload }) {
   const [isReady, setIsReady] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     let loaded = 0;

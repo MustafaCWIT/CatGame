@@ -106,15 +106,15 @@ const translations = {
 
   ar: {
     // Home
-    home_title: 'انقر للخرخرة',
-    home_step1: 'الخطوة 1',
-    home_step2: 'الخطوة 2',
+    home_title: 'إلعب - أنقر للخرخرة',
+    home_step1: 'الخطوة ١',
+    home_step2: 'الخطوة ٢',
     home_play: 'العب',
-    home_upload: 'ارفع فيديو قطتك واربح',
+    home_upload: 'ارفع فيديو قطّتك واربح',
     home_participate: 'شارك واربح',
-    home_prize1_line1: 'يوم عناية فاخر',
-    home_prize1_line2: 'لقطتك',
-    home_prize2_line1: 'عام كامل من طعام Whiskas®',
+    home_prize1_line1: 'يوم استرخاء',
+    home_prize1_line2: 'لقطّتك',
+    home_prize2_line1: 'عام كامل من طعام ويسكاس®',
     home_prize2_line2: 'الرطب والجاف',
 
     // Splash
@@ -137,15 +137,15 @@ const translations = {
 
     // How To Play Modal
     howto_title: 'طريقة اللعب',
-    howto_step1: 'ضع الجهاز اللوحي على الأرض ودع قطتك تتفاعل مع اللعبة',
-    howto_step2: 'تقوم القطة بلمس العناصر وجمع النقاط',
-    howto_step3: 'قم بتصويرها أثناء اللعب وارفع الفيديو مع فاتورة الشراء',
+    howto_step1: 'ضع الجهاز اللوحي على الأرض ودع قِطَّتك تتفاعل مع اللعبة',
+    howto_step2: 'تقوم القِطَّة بلمس العناصر وجمع النقاط',
+    howto_step3: 'يقوم مالك القِطَّة بتصويرها أثناء اللَّعب وتحميل الفيديو مع فاتورة الشراء',
     howto_step4: 'سيتم الإعلان عن الفائزين المحظوظين في نهاية الحملة',
     howto_participate: 'شارك واربح',
-    howto_prize1_title: 'يوم عناية فاخر لقطتك',
-    howto_prize1_desc: 'جلسة عناية متكاملة في سبا للحيوانات الأليفة مع خدمة الاستلام والتوصيل',
-    howto_prize2_title: 'الرطب والجاف Whiskas® عام كامل من طعام',
-    howto_qualify: 'للدخول في السحب يجب رفع الفيديو مع فاتورة الشراء',
+    howto_prize1_title: 'يوم حافل بالمتعة والاسترخاء',
+    howto_prize1_desc: 'تجربة عناية فاخرة في سبا للحيوانات الأليفة، تشمل خدمة التوصيل من وإلى السبا',
+    howto_prize2_title: 'عام كامل من طعام ويسكاس® الرطب والجاف',
+    howto_qualify: 'للمشاركة وفرصة الفوز بالجوائز، يجب تحميل الفيديو مع فاتورة شراء منتجات ويسكاس®',
     howto_go: 'لنبدأ',
 
     // Login Modal
@@ -168,9 +168,9 @@ const translations = {
 
     // Upload Screen
     upload_title: 'رفع فيديو',
-    upload_video_title: 'ارفع فيديو لقطتك أثناء اللعب',
+    upload_video_title: 'قم بتحميل فيديو قطّتك',
     upload_video_instruction: 'يرجى التأكد من ظهور القطة بوضوح وهي تلعب في الفيديو',
-    upload_receipt_title: ' Whiskas® رفع إيصال / إثبات شراء منتج',
+    upload_receipt_title: 'رفع إيصال / إثبات شراء منتج ويسكاس®',
     upload_receipt_instruction: 'يرجى رفع صورة واضحة للإيصال',
     upload_username_title: 'اسمك',
     upload_username_placeholder: 'أدخل اسمك',
