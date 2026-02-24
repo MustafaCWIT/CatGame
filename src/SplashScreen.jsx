@@ -136,7 +136,7 @@ export default function SplashScreen({ onLoadingComplete }) {
               {'purradise'.split('').map((char, i) => (
                 <span
                   key={i}
-                  className={`splash-name-letter${i >= 1 && i <= 3 ? ' splash-name-urr' : ''}${i === 1 ? ' splash-name-u' : i === 2 ? ' splash-name-big' : ''}`}
+                  className={`splash-name-letter${i === 0 ? ' splash-name-p' : ''}${i >= 1 && i <= 3 ? ' splash-name-urr' : ''}${i === 1 ? ' splash-name-u' : i === 2 ? ' splash-name-big' : ''}${i >= 3 ? ' splash-name-tail' : ''}`}
                   style={{ animationDelay: `${i * 0.12}s` }}
                 >
                   {char}
