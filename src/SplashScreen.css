@@ -222,21 +222,17 @@
   order: 3;
   transition: opacity 0.5s ease-in;
   user-select: none;
+  font-size: 38px;
 }
 
 .splash-name-letter {
   font-family: 'Fredoka', 'Poppins', sans-serif;
-  font-size: 38px;
+  font-size: 1em;
   font-weight: 700;
   color: #fff;
   line-height: 1;
   display: inline-block;
   animation: purradiseWave 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-}
-
-.splash-name-letter.splash-name-p {
-  font-size: 1.6em;
-  font-weight: 700;
 }
 
 .splash-name-urr {
@@ -245,19 +241,7 @@
 }
 
 .splash-name-letter.splash-name-u {
-  font-size: 1.75em;
   margin-top: -10px;
-  font-weight: 700;
-}
-
-.splash-name-letter.splash-name-big {
-  font-size: 1.6em;
-  font-weight: 700;
-}
-
-.splash-name-letter.splash-name-tail {
-  font-weight: 700;
-  opacity: 0.92;
 }
 
 @keyframes purradiseWave {
@@ -363,9 +347,6 @@
 
   .splash-name {
     margin-top: -102px;
-  }
-
-  .splash-name-letter {
     font-size: 57px;
   }
 
@@ -428,9 +409,6 @@
 
   .splash-name {
     margin-top: -45px;
-  }
-
-  .splash-name-letter {
     font-size: 30px;
   }
 
@@ -493,9 +471,6 @@
 
   .splash-name {
     margin-top: -43px;
-  }
-
-  .splash-name-letter {
     font-size: 29px;
   }
 
@@ -558,9 +533,6 @@
 
   .splash-name {
     margin-top: -44px;
-  }
-
-  .splash-name-letter {
     font-size: 30px;
   }
 
@@ -623,9 +595,6 @@
 
   .splash-name {
     margin-top: -42px;
-  }
-
-  .splash-name-letter {
     font-size: 28px;
   }
 
@@ -688,9 +657,6 @@
 
   .splash-name {
     margin-top: -40px;
-  }
-
-  .splash-name-letter {
     font-size: 27px;
   }
 
@@ -753,9 +719,6 @@
 
   .splash-name {
     margin-top: -36px;
-  }
-
-  .splash-name-letter {
     font-size: 24px;
   }
 
@@ -818,9 +781,6 @@
 
   .splash-name {
     margin-top: -32px;
-  }
-
-  .splash-name-letter {
     font-size: 22px;
   }
 
