@@ -38,9 +38,9 @@ const translations = {
     howto_step4: 'Lucky winners will be announced at the end of the campaign',
     howto_participate: 'Participate and win',
     howto_prize1_title: 'Purradise Reset Day',
-    howto_prize1_desc: 'A premium grooming experience at a top-rated pet spa, including pickup and drop-off.',
+    howto_prize1_desc: 'A premium grooming experience at a top-rated pet spa, including pickup and drop-off',
     howto_prize2_title: 'A Year of Whiskas® Wet & Dry Food',
-    howto_qualify: 'To qualify for participation and a chance to win the prizes, it is required to upload the video along with proof of Whiskas® product purchase.',
+    howto_qualify: 'To qualify for participation and a chance to win the prizes, it is required to upload the video along with proof of Whiskas® product purchase',
     howto_go: "Let's Go",
 
     // Login Modal
@@ -109,8 +109,8 @@ const translations = {
     home_title: 'إلعب - أنقر للخرخرة',
     home_step1: 'الخطوة ١',
     home_step2: 'الخطوة ٢',
-    home_play: 'العب',
-    home_upload: 'ارفع فيديو قطّتك واربح',
+    home_play: 'إلعب - أنقر للخرخرة',
+    home_upload:'قم بتحميل فيديو قطّتك',
     home_participate: 'شارك واربح',
     home_prize1_line1: 'يوم استرخاء',
     home_prize1_line2: 'لقطّتك',
@@ -137,13 +137,13 @@ const translations = {
 
     // How To Play Modal
     howto_title: 'طريقة اللعب',
-    howto_step1: 'ضع الجهاز اللوحي على الأرض ودع قِطَّتك تتفاعل مع اللعبة',
-    howto_step2: 'تقوم القِطَّة بلمس العناصر وجمع النقاط',
-    howto_step3: 'يقوم مالك القِطَّة بتصويرها أثناء اللَّعب وتحميل الفيديو مع فاتورة الشراء',
+    howto_step1: 'ضع الجهاز اللوحي على الأرض ودع قطّتك تتفاعل مع اللعبة',
+    howto_step2: 'تقوم القطّة بلمس العناصر وجمع النقاط',
+    howto_step3:'يقوم مالك القطّة بتصويرها أثناء اللّعب وتحميل الفيديو مع فاتورة الشراء',
     howto_step4: 'سيتم الإعلان عن الفائزين المحظوظين في نهاية الحملة',
     howto_participate: 'شارك واربح',
     howto_prize1_title: 'يوم حافل بالمتعة والاسترخاء',
-    howto_prize1_desc: 'تجربة عناية فاخرة في سبا للحيوانات الأليفة، تشمل خدمة التوصيل من وإلى السبا',
+    howto_prize1_desc: 'تجربة عناية فاخرة في سبا للحيوانات الأليفة، تشمل خدمة التوصيل من وإلى السبا',
     howto_prize2_title: 'عام كامل من طعام ويسكاس® الرطب والجاف',
     howto_qualify: '®للمشاركة وفرصة الفوز بالجوائز، يجب تحميل الفيديو مع فاتورة شراء منتجات ويسكاس',
     howto_go: 'لنبدأ',
@@ -158,7 +158,7 @@ const translations = {
     levels_points: 'النقاط المكتسبة',
     levels_videos: 'الفيديوهات المحمّلة',
     levels_upload_btn: 'حمّل الفيديو',
-    levels_select_theme: 'اختر الخلفية',
+    levels_select_theme:'إختر الخلفيّة',
     levels_theme_midnight: 'مخالب ميدنايت',
     levels_theme_purrlight: 'وادي بورلايت',
     levels_activity_title: 'نشاطي',
@@ -199,7 +199,7 @@ const translations = {
     game_xp: 'خبرة',
 
     // Activity text (dynamic)
-    activity_earned: "حصلت على {score} نقطة/نقاط بلعبة 'انقر للخرخرة' مخالب ميدنايت",
+    activity_earned: "حصلت على {score} نقطة بلعبة 'انقر للخرخرة' مخالب ميدنايت",
     activity_uploaded: 'قمت برفع فيديو',
 
     // Misc

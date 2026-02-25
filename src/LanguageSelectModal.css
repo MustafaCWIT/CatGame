@@ -4,7 +4,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1a1040 0%, #2d1b69 50%, #3b2d80 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #e911b3a6;
   z-index: 99999;
 }
 

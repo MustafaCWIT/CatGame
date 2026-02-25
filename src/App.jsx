@@ -110,6 +110,7 @@ function App() {
   const [autoScrollThemes, setAutoScrollThemes] = useState(false);
   const [gameStartTime, setGameStartTime] = useState(null);
   const gameStartTimeRef = useRef(null);
+  const loginRedirectRef = useRef('starting');
 
   // Use Custom Activity Tracker
   useActivityTracker(session, screen);
@@ -233,6 +234,7 @@ function App() {
     if (session) {
       setScreen('starting');
     } else {
+      loginRedirectRef.current = 'starting';
       setShowLoginModal(true);
     }
   }, [session]);
@@ -296,7 +298,8 @@ function App() {
       saveUserData(ud);
 
       setShowLoginModal(false);
-      setScreen('starting');
+      setScreen(loginRedirectRef.current || 'starting');
+      loginRedirectRef.current = 'starting';
     } catch (err) {
       alert(err.message);
     } finally {
@@ -316,6 +319,7 @@ function App() {
 
   const handleCloseLoginModal = useCallback(() => {
     setShowLoginModal(false);
+    loginRedirectRef.current = 'starting';
   }, []);
 
   const handleStartGame = useCallback(() => {
@@ -347,7 +351,7 @@ function App() {
 
     const newActivity = {
       key: 'activity_earned',
-      params: { score },
+      params: { score: String(score) },
       date: dateStr
     };
 
@@ -485,7 +489,7 @@ function App() {
 
   const handleViewProfile = useCallback(() => {
     if (!session) {
-      // If user is not logged in, show login modal
+      loginRedirectRef.current = 'levels';
       setShowLoginModal(true);
       return;
     }
@@ -516,8 +520,13 @@ function App() {
   }, [session, updateProfile, t]);
 
   const handleGoToUpload = useCallback(() => {
-    setScreen('upload');
-  }, []);
+    if (session) {
+      setScreen('upload');
+    } else {
+      loginRedirectRef.current = 'upload';
+      setShowLoginModal(true);
+    }
+  }, [session]);
 
   const handleVideoUpload = useCallback(async (videoUrl, receiptUrl = null, storeName = null, userEmail = null, userCountry = null) => {
     if (!session?.user) {
