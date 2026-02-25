@@ -42,7 +42,7 @@ export const GAME_ASSETS = {
     game: gameImg,
     catViewing: catViewingImg,
     clearClouds: clearCloudsImg,
-    foodBox: foodBoxesImg,
+    foodBox: foodBoxImg,
     foodBoxes: foodBoxesImg,
     catFood: catFoodImg,
     signUpCloud: signUpCloudImg,
