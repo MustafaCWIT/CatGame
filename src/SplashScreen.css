@@ -251,13 +251,42 @@
 
 .splash-name-ar {
   direction: rtl;
+  gap: 0.25em;
 }
 
-.splash-name-ar-text {
+.splash-name-ar-word {
   font-family: 'Cairo', 'Poppins', sans-serif;
   font-size: 1.2em;
-  animation: purradiseWave 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow:
+    0 0 12px rgba(200, 140, 255, 0.7),
+    0 0 24px rgba(167, 38, 142, 0.5),
+    2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.splash-wave-up {
+  animation: waveUp 1.4s ease-in-out infinite;
+}
+
+.splash-wave-down {
+  animation: waveDown 1.4s ease-in-out infinite;
+}
+
+@keyframes waveUp {
+  0%, 100% {
+    transform: translateY(12px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes waveDown {
+  0%, 100% {
+    transform: translateY(-12px);
+  }
+  50% {
+    transform: translateY(12px);
+  }
 }
 
 @keyframes purradiseWave {

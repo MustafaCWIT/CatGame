@@ -139,9 +139,14 @@ export default function SplashScreen({ onLoadingComplete }) {
       {imagesLoaded && (
         <div className={`splash-name${language === 'ar' ? ' splash-name-ar' : ''}`}>
           {language === 'ar' ? (
-            <span className="splash-name-letter splash-name-ar-text">
-              {t('splash_name')}
-            </span>
+            t('splash_name').split(' ').map((word, i) => (
+              <span
+                key={i}
+                className={`splash-name-letter splash-name-ar-word ${i % 2 === 0 ? 'splash-wave-up' : 'splash-wave-down'}`}
+              >
+                {word}
+              </span>
+            ))
           ) : (
             'purradise'.split('').map((char, i) => (
               <span

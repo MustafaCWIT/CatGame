@@ -248,6 +248,16 @@ html[lang="ar"] .modal-qualification-text {
   font-family: 'Cairo', 'Poppins', sans-serif;
 }
 
+html[lang="ar"] .modal-prize-content {
+  text-align: right;
+  align-items: flex-end;
+}
+
+html[lang="ar"] .modal-prize-title,
+html[lang="ar"] .modal-prize-desc {
+  font-family: 'Cairo', 'Poppins', sans-serif;
+}
+
 /* ==================== DEVICE-SPECIFIC BREAKPOINTS ==================== */
 
 /* Large screens: width greater than 900px */
@@ -356,6 +366,7 @@ html[lang="ar"] .modal-qualification-text {
     font-size: 18px;
     margin: 0 auto 30px;
   }
+
 }
 
 /* Large phones: 430px width (iPhone 14 Pro Max) */
@@ -453,6 +464,7 @@ html[lang="ar"] .modal-qualification-text {
     font-size: 17px;
     margin: 0 auto 30px;
   }
+
 }
 
 /* 423px width breakpoint */
@@ -546,6 +558,7 @@ html[lang="ar"] .modal-qualification-text {
     font-size: 16px;
     margin: 0 auto 30px;
   }
+
 }
 
 /* 443px width breakpoint */
@@ -646,6 +659,7 @@ html[lang="ar"] .modal-qualification-text {
     font-size: 16px;
     margin: 0 auto 30px;
   }
+
 }
 
 /* Medium-large phones: 412-414px width (iPhone XR, Pixel) */
@@ -738,8 +752,8 @@ html[lang="ar"] .modal-qualification-text {
     padding: 10px 48px;
     font-size: 16px;
     margin: 0 auto 30px;
-    
   }
+
 }
 
 /* Medium phones: 390px width (iPhone 12/13/14) */
@@ -856,6 +870,7 @@ html[lang="ar"] .modal-qualification-text {
     margin: 0 auto;
     align-self: center;
   }
+
 }
 
 /* Standard phones: 375px width (iPhone SE, 6/7/8) */
@@ -950,6 +965,7 @@ html[lang="ar"] .modal-qualification-text {
     border-radius: 9px;
     margin: 0 auto 20px;
   }
+
 }
 
 /* Small phones: 360px width (Galaxy S5, etc.) */
@@ -1056,4 +1072,5 @@ html[lang="ar"] .modal-qualification-text {
     border-radius: 8px;
     margin: 0 auto 18px;
   }
+
 }
