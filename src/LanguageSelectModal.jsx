@@ -1,11 +1,11 @@
 import './LanguageSelectModal.css';
 import { GAME_ASSETS } from './game/assets';
 
-const { logo: logoImg } = GAME_ASSETS;
+const { logo: logoImg, background: backgroundImg } = GAME_ASSETS;
 
 export default function LanguageSelectModal({ onSelect }) {
   return (
-    <div className="lang-modal">
+    <div className="lang-modal" style={{ backgroundImage: `url(${backgroundImg})` }}>
       <div className="lang-modal-card">
         <div className="logo-halo-wrap">
           <img src={logoImg} alt="Whiskas" className="lang-modal-logo" />
