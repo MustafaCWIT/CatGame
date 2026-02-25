@@ -158,7 +158,7 @@ const translations = {
     levels_points: 'النقاط المكتسبة',
     levels_videos: 'الفيديوهات المحمّلة',
     levels_upload_btn: 'حمّل الفيديو',
-    levels_select_theme: 'اختر الخلفية',
+    levels_select_theme:'إختر الخلفيّة',
     levels_theme_midnight: 'مخالب ميدنايت',
     levels_theme_purrlight: 'وادي بورلايت',
     levels_activity_title: 'نشاطي',

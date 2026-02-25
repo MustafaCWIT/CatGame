@@ -293,11 +293,14 @@
   0% {
     transform: translateY(0);
   }
-  20% {
-    transform: translateY(-14px);
+  25% {
+    transform: translateY(-12px);
   }
-  40% {
+  50% {
     transform: translateY(0);
+  }
+  75% {
+    transform: translateY(12px);
   }
   100% {
     transform: translateY(0);
