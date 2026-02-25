@@ -40,7 +40,7 @@ const translations = {
     howto_prize1_title: 'Purradise Reset Day',
     howto_prize1_desc: 'A premium grooming experience at a top-rated pet spa, including pickup and drop-off',
     howto_prize2_title: 'A Year of Whiskas® Wet & Dry Food',
-    howto_qualify: 'To qualify for participation and a chance to win the prizes, it is required to upload the video along with proof of Whiskas® product purchase.',
+    howto_qualify: 'To qualify for participation and a chance to win the prizes, it is required to upload the video along with proof of Whiskas® product purchase',
     howto_go: "Let's Go",
 
     // Login Modal
@@ -199,7 +199,7 @@ const translations = {
     game_xp: 'خبرة',
 
     // Activity text (dynamic)
-    activity_earned: "حصلت على {score} نقطة/نقاط بلعبة 'انقر للخرخرة' مخالب ميدنايت",
+    activity_earned: "حصلت على {score} نقطة بلعبة 'انقر للخرخرة' مخالب ميدنايت",
     activity_uploaded: 'قمت برفع فيديو',
 
     // Misc

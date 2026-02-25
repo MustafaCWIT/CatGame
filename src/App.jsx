@@ -351,7 +351,7 @@ function App() {
 
     const newActivity = {
       key: 'activity_earned',
-      params: { score },
+      params: { score: String(score) },
       date: dateStr
     };
 

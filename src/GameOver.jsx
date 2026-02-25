@@ -58,7 +58,7 @@ export default function GameOver({ score, onPlayAgain, onGoHome, onUnlockThemes,
 
           {/* Score text */}
           <p className="go-label">{t('gameover_label')}</p>
-          <h1 className="go-score">+{score.toLocaleString(language === 'ar' ? 'ar-EG' : undefined)}</h1>
+          <h1 className="go-score">+{score.toLocaleString()}</h1>
 
           {/* Action buttons */}
           <div className="go-actions">
