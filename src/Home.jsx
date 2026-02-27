@@ -86,18 +86,37 @@ export default function Home({ onStartGame, onResetProgress, onLogout, user, onP
 
         {/* Action buttons */}
         <div className="home-buttons">
-          <div className="home-btn-wrapper">
-            <div className="home-step-tag">{t('home_step2')}</div>
-            <button className="home-btn home-btn-upload" onClick={onGoToUpload}>
-              {t('home_upload')}
-            </button>
-          </div>
-          <div className="home-btn-wrapper">
-            <div className="home-step-tag">{t('home_step1')}</div>
-            <button className="home-btn home-btn-play" onClick={onStartGame}>
-              {t('home_play')}
-            </button>
-          </div>
+          {language === 'ar' ? (
+            <>
+              <div className="home-btn-wrapper">
+                <div className="home-step-tag">{t('home_step2')}</div>
+                <button className="home-btn home-btn-upload" onClick={onGoToUpload}>
+                  {t('home_upload')}
+                </button>
+              </div>
+              <div className="home-btn-wrapper">
+                <div className="home-step-tag">{t('home_step1')}</div>
+                <button className="home-btn home-btn-play" onClick={onStartGame}>
+                  {t('home_play')}
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="home-btn-wrapper">
+                <div className="home-step-tag">{t('home_step1')}</div>
+                <button className="home-btn home-btn-play" onClick={onStartGame}>
+                  {t('home_play')}
+                </button>
+              </div>
+              <div className="home-btn-wrapper">
+                <div className="home-step-tag">{t('home_step2')}</div>
+                <button className="home-btn home-btn-upload" onClick={onGoToUpload}>
+                  {t('home_upload')}
+                </button>
+              </div>
+            </>
+          )}
         </div>
 
 
