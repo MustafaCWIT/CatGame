@@ -263,6 +263,7 @@
 .levels-theme-section {
   width: 100%;
   margin-bottom: 40px;
+  display: none;
 }
 
 .levels-section-title {
