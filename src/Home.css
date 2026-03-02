@@ -518,6 +518,7 @@
 
 [dir="rtl"] .home-prize-text span {
   font-size: 22px;
+  line-height: 1.4;
 }
 
 @media screen and (max-width: 900px) {
@@ -549,8 +550,16 @@
   font-size: 27px;
   font-weight: 700;
   color: white;
-  line-height: 1.1;
+  line-height: 1.4;
   white-space: normal;
+}
+
+.home-prize-btn-left .home-prize-text span {
+  line-height: 1.55;
+}
+
+[dir="rtl"] .home-prize-btn-left .home-prize-text {
+  gap: 10px;
 }
 
 .home-prize-img {
