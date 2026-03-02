@@ -867,8 +867,8 @@
   }
 
   .home-prize-img-left {
-    width: 70px;
-    left: -20px;
+    width: 78px;
+    left: -25px;
     top: -25px;
   }
 
@@ -1008,7 +1008,7 @@
   }
 
   .home-prize-img-left {
-    width: 65px;
+    width: 75px;
     left: -24px;
     top: -17px;
   }
@@ -1147,9 +1147,10 @@
   }
 
   .home-prize-img-left {
-    width: 60px;
-    left: -17px;
-    top: -18px;
+    width: 74px;
+    height: 86px;
+    left: -23px;
+    top: -24px;
   }
 
   .home-prize-img-right {
@@ -1286,9 +1287,10 @@
   }
 
   .home-prize-img-left {
-    width: 60px;
-    left: -17px;
-    top: -18px;
+    width: 74px;
+    height: 86px;
+    left: -23px;
+    top: -24px;
   }
 
   .home-prize-img-right {
