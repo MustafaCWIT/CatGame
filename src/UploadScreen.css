@@ -198,6 +198,10 @@ html[lang="ar"] .upload-card-title {
   align-self: flex-end;
 }
 
+html[lang="ar"] .upload-submit-btn {
+  align-self: flex-end;
+}
+
 html[lang="ar"] .upload-terms-label {
   direction: rtl;
 }
