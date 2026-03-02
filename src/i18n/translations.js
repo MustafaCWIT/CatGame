@@ -167,11 +167,11 @@ const translations = {
     levels_player: 'لاعب',
 
     // Upload Screen
-    upload_title: 'رفع فيديو',
+    upload_title: 'حمّل الفيديو',
     upload_video_title: 'حمّل فيديو قطّتك وهي تلعب',
     upload_video_instruction: 'يرجى التأكد من ظهور القطة بوضوح وهي تلعب في الفيديو',
     upload_receipt_title: '®حمّل إيصال/ إثبات شراء منتج ويسكاس',
-    upload_receipt_instruction: 'يرجى رفع صورة واضحة للإيصال',
+    upload_receipt_instruction: 'يرجى تحميل صورة واضحة للإيصال',
     upload_username_title: 'اسمك',
     upload_username_placeholder: 'أدخل اسمك',
     upload_store_title: 'اسم متجر الشراء',
