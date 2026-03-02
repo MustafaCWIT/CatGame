@@ -22,6 +22,10 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
   const [uploadError, setUploadError] = useState(null);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
+  const termsPoints = Array.from({ length: 8 }, (_, i) => ({
+    title: t(`terms_modal_point${i + 1}_title`),
+    body: t(`terms_modal_point${i + 1}_body`),
+  }));
 
   useEffect(() => {
     let loaded = 0;
@@ -238,7 +242,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
               className="upload-terms-checkbox"
             />
             <span className="upload-terms-text">
-              {language === 'ar' ? 'أوافق على ' : 'I agree to the '}
+              {t('upload_terms_prefix')}
               <button
                 type="button"
                 className="upload-terms-link"
@@ -247,7 +251,7 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
                   setShowTermsModal(true);
                 }}
               >
-                {language === 'ar' ? 'الشّروط والأحكام' : 'Terms & Conditions'}
+                {t('upload_terms_link')}
               </button>
             </span>
           </label>
@@ -267,41 +271,25 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
         <div className="terms-modal-overlay" onClick={() => setShowTermsModal(false)}>
           <div className={`terms-modal${language === 'ar' ? ' terms-modal-ar' : ''}`} onClick={(e) => e.stopPropagation()}>
             <div className="terms-modal-header">
-              <h2 className="terms-modal-title">{language === 'ar' ? 'الشروط والأحكام' : 'Terms & Conditions'}</h2>
+              <h2 className="terms-modal-title">{t('terms_modal_title')}</h2>
               <button className="terms-modal-close" onClick={() => setShowTermsModal(false)}>
                 &times;
               </button>
             </div>
             <div className="terms-modal-body">
-              {language === 'ar' ? (
-                <>
-                  <p><strong>١. الأهلية</strong><br />هذا العرض الترويجي مفتوح للمقيمين في الدول المشاركة. يجب أن يكون عمرك ١٨ عامًا أو أكثر للمشاركة.</p>
-                  <p><strong>٢. طريقة الاشتراك</strong><br />قم بشراء أي منتج من ويسكاس®، وحمّل فيديو لقطتك وهي تلعب اللعبة، وأرفق إثبات الشراء مع البيانات المطلوبة.</p>
-                  <p><strong>٣. متطلبات الفيديو</strong><br />يجب أن يُظهر الفيديو المرفوع القطة بوضوح وهي تتفاعل مع اللعبة. قد يتم استبعاد الفيديوهات التي لا تستوفي هذا الشرط.</p>
-                  <p><strong>٤. البيانات الشخصية</strong><br />بتقديم معلوماتك، فإنك توافق على جمع واستخدام بياناتك الشخصية (بما في ذلك البريد الإلكتروني ورقم الهاتف والدولة) لأغراض هذا العرض الترويجي.</p>
-                  <p><strong>٥. الملكية الفكرية</strong><br />برفع الفيديو، فإنك تمنح ويسكاس® ترخيصًا غير حصري وبدون مقابل لاستخدام الفيديو وعرضه ومشاركته لأغراض ترويجية.</p>
-                  <p><strong>٦. الاستبعاد</strong><br />أي مشاركات احتيالية، بما في ذلك الإيصالات أو الفيديوهات المزيفة، ستؤدي إلى الاستبعاد الفوري.</p>
-                  <p><strong>٧. المسؤولية</strong><br />ويسكاس® غير مسؤولة عن أي مشاكل تقنية أثناء عملية الرفع. يجب إعادة تقديم المشاركات التي تفشل في الرفع بسبب أخطاء تقنية.</p>
-                  <p><strong>٨. تعديل الشروط</strong><br />تحتفظ ويسكاس® بالحق في تعديل هذه الشروط والأحكام في أي وقت دون إشعار مسبق.</p>
-                </>
-              ) : (
-                <>
-                  <p><strong>1. Eligibility</strong><br />This promotion is open to residents of participating countries. You must be 18 years or older to participate.</p>
-                  <p><strong>2. How to Enter</strong><br />Purchase any Whiskas product, upload a video of your cat playing the game, and submit proof of purchase along with the required details.</p>
-                  <p><strong>3. Video Requirements</strong><br />The uploaded video must clearly show a cat interacting with the game. Videos that do not meet this requirement may be disqualified.</p>
-                  <p><strong>4. Personal Data</strong><br />By submitting your information, you consent to the collection and use of your personal data (including email, phone number, and country) for the purposes of this promotion.</p>
-                  <p><strong>5. Intellectual Property</strong><br />By uploading a video, you grant Whiskas a non-exclusive, royalty-free license to use, display, and share the video for promotional purposes.</p>
-                  <p><strong>6. Disqualification</strong><br />Any fraudulent entries, including fake receipts or videos, will result in immediate disqualification.</p>
-                  <p><strong>7. Liability</strong><br />Whiskas is not responsible for any technical issues during the upload process. Entries that fail to upload due to technical errors must be resubmitted.</p>
-                  <p><strong>8. Changes to Terms</strong><br />Whiskas reserves the right to modify these terms and conditions at any time without prior notice.</p>
-                </>
-              )}
+              {termsPoints.map((point) => (
+                <p key={point.title}>
+                  <strong>{point.title}</strong>
+                  <br />
+                  {point.body}
+                </p>
+              ))}
             </div>
             <button className="terms-modal-accept" onClick={() => {
               setAgreedToTerms(true);
               setShowTermsModal(false);
             }}>
-              {language === 'ar' ? 'موافق' : 'Accept'}
+              {t('terms_modal_accept')}
             </button>
           </div>
         </div>
