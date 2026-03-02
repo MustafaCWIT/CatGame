@@ -518,6 +518,7 @@
 
 [dir="rtl"] .home-prize-text span {
   font-size: 22px;
+  line-height: 1.4;
 }
 
 @media screen and (max-width: 900px) {
@@ -549,8 +550,16 @@
   font-size: 27px;
   font-weight: 700;
   color: white;
-  line-height: 1.1;
+  line-height: 1.4;
   white-space: normal;
+}
+
+.home-prize-btn-left .home-prize-text span {
+  line-height: 1.55;
+}
+
+[dir="rtl"] .home-prize-btn-left .home-prize-text {
+  gap: 10px;
 }
 
 .home-prize-img {
@@ -858,8 +867,8 @@
   }
 
   .home-prize-img-left {
-    width: 70px;
-    left: -20px;
+    width: 78px;
+    left: -25px;
     top: -25px;
   }
 
@@ -999,7 +1008,7 @@
   }
 
   .home-prize-img-left {
-    width: 65px;
+    width: 75px;
     left: -24px;
     top: -17px;
   }
@@ -1138,9 +1147,10 @@
   }
 
   .home-prize-img-left {
-    width: 60px;
-    left: -17px;
-    top: -18px;
+    width: 74px;
+    height: 86px;
+    left: -23px;
+    top: -24px;
   }
 
   .home-prize-img-right {
@@ -1277,9 +1287,10 @@
   }
 
   .home-prize-img-left {
-    width: 60px;
-    left: -17px;
-    top: -18px;
+    width: 74px;
+    height: 86px;
+    left: -23px;
+    top: -24px;
   }
 
   .home-prize-img-right {
