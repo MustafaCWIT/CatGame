@@ -193,6 +193,11 @@ html[lang="ar"] .upload-section-instruction {
   font-family: 'Cairo', 'Poppins', sans-serif;
 }
 
+html[lang="ar"] .upload-card-title {
+  width: 100%;
+  align-self: flex-end;
+}
+
 html[lang="ar"] .upload-terms-label {
   direction: rtl;
 }
