@@ -555,10 +555,10 @@
   white-space: normal;
 }
 
-.home-prize-btn-left .home-prize-text span {
+.home-prize-btn-left .home-prize-text span,
+.home-prize-btn-right .home-prize-text span {
   line-height: 1.2;
 }
-
 
 .home-prize-img {
   height: auto;
