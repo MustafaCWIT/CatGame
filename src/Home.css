@@ -469,6 +469,7 @@
   position: relative;
   z-index: 1;
   flex: 1;
+  gap: 10px;
 }
 
 [dir="rtl"] .home-prize-text {
@@ -518,7 +519,7 @@
 
 [dir="rtl"] .home-prize-text span {
   font-size: 22px;
-  line-height: 1.4;
+  line-height: 1.2;
 }
 
 @media screen and (max-width: 900px) {
@@ -550,17 +551,14 @@
   font-size: 27px;
   font-weight: 700;
   color: white;
-  line-height: 1.4;
+  line-height: 1.2;
   white-space: normal;
 }
 
 .home-prize-btn-left .home-prize-text span {
-  line-height: 1.55;
+  line-height: 1.2;
 }
 
-[dir="rtl"] .home-prize-btn-left .home-prize-text {
-  gap: 10px;
-}
 
 .home-prize-img {
   height: auto;
@@ -1008,7 +1006,7 @@
   }
 
   .home-prize-img-left {
-    width: 75px;
+    width: 55px;
     left: -24px;
     top: -17px;
   }
@@ -1147,7 +1145,7 @@
   }
 
   .home-prize-img-left {
-    width: 74px;
+    width: 54px;
     height: 86px;
     left: -23px;
     top: -24px;
@@ -1287,7 +1285,7 @@
   }
 
   .home-prize-img-left {
-    width: 74px;
+    width: 54px;
     height: 86px;
     left: -23px;
     top: -24px;
