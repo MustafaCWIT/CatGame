@@ -528,21 +528,14 @@ function App() {
     }
   }, [session]);
 
-  const handleVideoUpload = useCallback(async (videoUrl, receiptUrl = null, storeName = null, userEmail = null, userCountry = null) => {
+  const handleVideoUpload = useCallback(async (storeName = null, userEmail = null, userCountry = null) => {
     if (!session?.user) {
       console.warn('handleVideoUpload called but no session exists');
       return;
     }
 
-    console.log('Processing video upload for user:', session.user.id);
-
-    // Use helper function to get current date
     const dateStr = getCurrentDateString();
-
-    const newActivity = {
-      key: 'activity_uploaded',
-      date: dateStr
-    };
+    const newActivity = { key: 'activity_uploaded', date: dateStr };
     const activities = progress.activities || [];
     const updated = {
       ...progress,
@@ -553,7 +546,6 @@ function App() {
     saveProgress(updated);
 
     try {
-      // Fetch current profile to get existing records
       const { data: currentProfile, error: fetchError } = await supabase
         .from('profiles')
         .select('*')
@@ -564,45 +556,38 @@ function App() {
         throw fetchError;
       }
 
-      // Prepare updated arrays
-      const storeNames = [...(currentProfile?.store_name || []), storeName || ''];
-      const emails = [...(currentProfile?.email || []), userEmail || ''];
-      const countries = [...(currentProfile?.country || []), userCountry || ''];
-
-      // Update profile with synced JSONB arrays
       const updates = {
         videos_count: updated.videosCount,
-        activities: updated.activities,
-        store_name: storeNames,
-        email: emails,
-        country: countries
+        activities: updated.activities
       };
+      if (currentProfile && 'store_name' in currentProfile) {
+        updates.store_name = [...(currentProfile.store_name || []), storeName || ''];
+      }
+      if (currentProfile && 'upload_emails' in currentProfile) {
+        updates.upload_emails = [...(currentProfile.upload_emails || []), userEmail || ''];
+      }
+      if (currentProfile && 'country' in currentProfile) {
+        updates.country = [...(currentProfile.country || []), userCountry || ''];
+      }
 
-      console.log('Updating profile with video upload data:', updates);
       await updateProfile(updates);
 
-      // Also insert into user_activities table
-      await supabase
-        .from('user_activities')
-        .insert({
+      try {
+        await supabase.from('user_activities').insert({
           user_id: session.user.id,
           activity_type: 'video_upload',
           activity_details: {
-            video_url: videoUrl,
             store_name: storeName,
             videos_count: updated.videosCount
           }
         });
-      console.log('Video upload activity inserted into user_activities table');
+      } catch (actErr) {
+        console.warn('user_activities insert skipped (table may not exist):', actErr.message);
+      }
     } catch (err) {
-      console.error('CRITICAL: Error updating profile with upload data:', {
-        message: err.message,
-        details: err.details,
-        hint: err.hint,
-        code: err.code
-      });
+      console.error('Error updating profile:', err);
     }
-  }, [progress, session, updateProfile, t]);
+  }, [progress, session, updateProfile]);
 
   const handleLanguageSelect = useCallback((lang) => {
     setLanguage(lang);

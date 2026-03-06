@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import './UploadScreen.css';
 import backgroundImg from './assets/background.png';
 import logoImg from './assets/logo.png';
-import { supabase } from './lib/supabase';
+import { uploadFilesToS3 } from './lib/s3Upload';
 import { useLanguage } from './i18n/LanguageContext';
 
 const ASSETS = [backgroundImg, logoImg];
@@ -76,12 +76,11 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
     setUploadError(null);
 
     try {
-      // Skip uploading files to Supabase Storage as requested
-      // We only pass the store name to the parent component
+      // Upload to Hetzner S3 with userId in path: {userId}/videos/... and {userId}/receipts/...
+      await uploadFilesToS3(userId, selectedVideoFile, selectedReceiptFile || null);
 
       if (onUpload) {
-        // Pass nulls for file URLs since we are no longer uploading them
-        await onUpload(null, null, storeName, userEmail, userCountry);
+        await onUpload(storeName, userEmail, userCountry);
       }
 
       // Redirect to thank you screen
@@ -89,8 +88,8 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
         onGoToThankYou();
       }
     } catch (err) {
-      console.error('Error processing upload metadata:', err);
-      setUploadError(err.message || 'Failed to process upload. Please try again.');
+      console.error('Upload error:', err);
+      setUploadError(err.message || 'Failed to upload. Please try again.');
     } finally {
       setUploading(false);
     }
