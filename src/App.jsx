@@ -528,7 +528,7 @@ function App() {
     }
   }, [session]);
 
-  const handleVideoUpload = useCallback(async (storeName = null, userEmail = null, userCountry = null) => {
+  const handleVideoUpload = useCallback(async (storeName = null, userEmail = null, userCountry = null, videoUrl = null, receiptUrl = null) => {
     if (!session?.user) {
       console.warn('handleVideoUpload called but no session exists');
       return;
@@ -568,6 +568,12 @@ function App() {
       }
       if (currentProfile && 'country' in currentProfile) {
         updates.country = [...(currentProfile.country || []), userCountry || ''];
+      }
+      if (videoUrl) {
+        updates.video_urls = [...(currentProfile?.video_urls || []), videoUrl];
+      }
+      if (receiptUrl) {
+        updates.receipt_urls = [...(currentProfile?.receipt_urls || []), receiptUrl];
       }
 
       await updateProfile(updates);
