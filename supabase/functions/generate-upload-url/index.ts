@@ -48,6 +48,8 @@ Deno.serve(async (req) => {
       endpoint,
       credentials: { accessKeyId: accessKey, secretAccessKey: secretKey },
       forcePathStyle: true,
+      requestChecksumCalculation: 'WHEN_REQUIRED',
+      responseChecksumValidation: 'WHEN_REQUIRED',
     });
 
     const command = new PutObjectCommand({
