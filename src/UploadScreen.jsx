@@ -77,10 +77,10 @@ export default function UploadScreen({ onGoHome, onUpload, userId, onGoToThankYo
 
     try {
       // Upload to Hetzner S3 with userId in path: {userId}/videos/... and {userId}/receipts/...
-      await uploadFilesToS3(userId, selectedVideoFile, selectedReceiptFile || null);
+      const { videoUrl, receiptUrl } = await uploadFilesToS3(userId, selectedVideoFile, selectedReceiptFile || null);
 
       if (onUpload) {
-        await onUpload(storeName, userEmail, userCountry);
+        await onUpload(storeName, userEmail, userCountry, videoUrl, receiptUrl);
       }
 
       // Redirect to thank you screen

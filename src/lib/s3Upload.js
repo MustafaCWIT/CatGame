@@ -73,31 +73,45 @@ export async function uploadToPresignedUrl(file, presignedUrl) {
   }
 }
 
+const getBucketPublicUrl = () => {
+  const url = import.meta.env.VITE_HETZNER_BUCKET_URL;
+  if (!url) throw new Error('VITE_HETZNER_BUCKET_URL is required for storing file URLs');
+  return url.replace(/\/$/, '');
+};
+
 /**
  * Upload video and optional receipt to S3 (userId in path).
+ * Returns public URLs for storage in profiles table (admin panel direct access).
  * @param {string} userId - User ID
  * @param {File} videoFile - Video file
  * @param {File|null} receiptFile - Receipt image (optional)
- * @returns {Promise<void>}
+ * @returns {Promise<{videoUrl: string, receiptUrl: string|null}>}
  */
 export async function uploadFilesToS3(userId, videoFile, receiptFile) {
-  const { url: videoUrl } = await getPresignedUploadUrl(
+  const base = getBucketPublicUrl();
+
+  const { url: videoPresignedUrl, key: videoKey } = await getPresignedUploadUrl(
     userId,
     videoFile.name,
     videoFile.type || 'video/mp4',
     'video'
   );
-  await uploadToPresignedUrl(videoFile, videoUrl);
+  await uploadToPresignedUrl(videoFile, videoPresignedUrl);
+  const videoUrl = `${base}/${videoKey}`;
 
+  let receiptUrl = null;
   if (receiptFile) {
-    const { url: receiptUrl } = await getPresignedUploadUrl(
+    const { url: receiptPresignedUrl, key: receiptKey } = await getPresignedUploadUrl(
       userId,
       receiptFile.name,
       receiptFile.type || 'image/jpeg',
       'receipt'
     );
-    await uploadToPresignedUrl(receiptFile, receiptUrl);
+    await uploadToPresignedUrl(receiptFile, receiptPresignedUrl);
+    receiptUrl = `${base}/${receiptKey}`;
   }
+
+  return { videoUrl, receiptUrl };
 }
 
 /**
